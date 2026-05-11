@@ -1,0 +1,15 @@
+# 環境変数設定
+# 実際の値を入力してください
+
+# Gemini API キー（必須）
+# Google AI Studio から取得したキーを貼り付けてください
+# https://aistudio.google.com/apikey
+GEMINI_API_KEY=AIzaSyA69aycMZfd2zQ4QjEworb34PS0e7ovN34
+
+# Qiita API トークン（必須）
+# Qiita 設定 → アプリケーション → 新しいトークンを生成
+QIITA_API_TOKEN=0e5907cbad2734fa4d22d41c7a8719e16ff7da36
+
+# システム設定
+SYSTEM_ENVIRONMENT=production
+LOG_LEVEL=INFO

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNS運用自動化キット
+30日分投稿テンプレート + 運用カレンダー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            page-break-after: always;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .slide.content {
+            background: white;
+            color: #333;
+        }
+        .slide-content {
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.8em;
+            margin: 20px 0 15px 0;
+            color: #764ba2;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        .w1h-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            border-radius: 4px;
+        }
+        .w1h-label {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .w1h-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        .bullet {
+            margin: 12px 0 12px 30px;
+        }
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .benefit-icon {
+            font-size: 2em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .benefit-text {
+            flex-grow: 1;
+        }
+        .benefit-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .metric {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 8px 8px 8px 0;
+            font-weight: bold;
+        }
+        .case-study {
+            background: #f0f4ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .case-study-title {
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .case-before-after {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        .case-item {
+            flex: 1;
+            text-align: center;
+        }
+        .case-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .case-value {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .cta {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        @media print {
+            body { margin: 0; padding: 0; }
+            .slide { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- タイトルスライド -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>SNS運用自動化キット
+30日分投稿テンプレート + 運用カレンダー</h1>
+            <p class="subtitle">最低限5W1Hを含めたプレゼン資料</p>
+        </div>
+    </div>
+
+    
+    <!-- What スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>❓ What（何か）</h2>
+            <div class="w1h-section">
+                <div class="w1h-content">
+                    <p style="font-size: 1.3em; margin-bottom: 15px;">
+                        <strong>SNS投稿ネタ切れ問題を完全解決する
+                        30日分の投稿テンプレート + 運用カレンダー</strong>
+                    </p>
+                    <p>毎日「何を投稿しよう」と悩む時間を削減し、
+                    効果の高いコンテンツを習慣的に発信できるシステムです。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>👤 Who（誰向けか）</h2>
+            <div class="w1h-section">
+                <div class="w1h-label">対象者</div>
+                <div class="w1h-content">
+                    <div class="bullet">✅ SNSで集客したいが、毎日の投稿ネタが思いつかない人</div>
+                    <div class="bullet">✅ SNS投稿に週5時間以上かけている人</div>
+                    <div class="bullet">✅ フォロワーは多いがエンゲージメント率が低い人</div>
+                    <div class="bullet">✅ SNS運用を習慣化させたい経営者・フリーランス</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- When スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>⏰ When（いつ使うか）</h2>
+            <div class="w1h-section">
+                <div class="w1h-label">使用タイミング</div>
+                <div class="w1h-content">
+                    <div class="bullet">🌅 毎朝5分：その日の投稿テンプレートを確認＆執筆</div>
+                    <div class="bullet">📅 月初1回：30日分のテンプレートを自社用にカスタマイズ</div>
+                    <div class="bullet">📊 週1回：エンゲージメント分析＆翌週の改善</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Where スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>🎯 Where（どこで活かすか）</h2>
+            <div class="w1h-section">
+                <div class="w1h-label">活用場面</div>
+                <div class="w1h-content">
+                    <div class="bullet">📱 Instagram・Twitter・LinkedIn・Facebook・TikTok</div>
+                    <div class="bullet">📺 YouTube Shorts・Instagramリール</div>
+                    <div class="bullet">📝 ブログ・メルマガの素材源</div>
+                    <div class="bullet">📊 Google Spreadsheet・Notionでの投稿カレンダー管理</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>❓ Why（なぜ必要か）</h2>
+            <div class="w1h-section">
+                <div class="w1h-label">現在の課題</div>
+                <div class="w1h-content" style="color: #d32f2f; margin-bottom: 15px;">
+                    ❌ 毎日投稿ネタを考えるのに30分～1時間かかる<br>
+                    ❌ 投稿が不定期になってしまう<br>
+                    ❌ エンゲージメント率が1%以下と低い<br>
+                    ❌ フォロワー増加が停滞している
+                </div>
+            </div>
+            <div class="w1h-section">
+                <div class="w1h-label">このコンテンツで解決すること</div>
+                <div class="w1h-content" style="color: #2e7d32;">
+                    ✅ 毎日5分で投稿完成 (効率化：90%)<br>
+                    ✅ 毎日投稿習慣が身につく<br>
+                    ✅ エンゲージメント率が3%以上に改善<br>
+                    ✅ 月2倍のペースでフォロワー増加
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>📖 How（どう使うか）</h2>
+            <div class="w1h-section">
+                <div class="w1h-label">3ステップで運用</div>
+                <div class="w1h-content">
+                    <h3 style="color: #667eea; margin-top: 0;">Step 1: 月初に30日分をカスタマイズ</h3>
+                    <div class="bullet" style="margin-left: 20px;">提供テンプレートから30日分を自社用にアレンジ（1時間で完了）</div>
+
+                    <h3 style="color: #667eea;">Step 2: 毎朝5分で投稿実行</h3>
+                    <div class="bullet" style="margin-left: 20px;">テンプレートに情報追加＆投稿するだけ</div>
+
+                    <h3 style="color: #667eea;">Step 3: 週1回データ分析＆改善</h3>
+                    <div class="bullet" style="margin-left: 20px;">エンゲージメント高い投稿を分析して翌週に反映</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 具体的成果スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>📊 得られる具体的成果</h2>
+            <div style="margin-top: 30px;">
+                <div class="benefit">
+                    <div class="benefit-icon">⏱️</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">投稿準備時間</div>
+                        <div>従来：30分/投稿 → 実現：5分/投稿</div>
+                        <div style="color: #667eea; font-weight: bold; margin-top: 5px;">効率化：6倍</div>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">フォロワー増加率</div>
+                        <div>従来：月+10% → 実現：月+25%</div>
+                        <div style="color: #667eea; font-weight: bold; margin-top: 5px;">改善：2.5倍</div>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">💬</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">エンゲージメント率</div>
+                        <div>従来：1% → 実現：3.5%</div>
+                        <div style="color: #667eea; font-weight: bold; margin-top: 5px;">改善：3.5倍</div>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">📈</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">リード獲得数</div>
+                        <div>従来：月5件 → 実現：月35件</div>
+                        <div style="color: #667eea; font-weight: bold; margin-top: 5px;">改善：7倍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 実例スライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>💼 実例：オンライン講師Bさんの成果</h2>
+            <div class="case-study">
+                <div class="case-study-title">導入前（3ヶ月前）</div>
+                <div class="case-before-after">
+                    <div class="case-item">
+                        <div class="case-label">投稿頻度</div>
+                        <div class="case-value">週3回</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-label">フォロワー数</div>
+                        <div class="case-value">2,000人</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-label">月間リード</div>
+                        <div class="case-value">5件</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study" style="background: #f0fff4; border-left-color: #2e7d32;">
+                <div class="case-study-title" style="color: #2e7d32;">導入後（現在）</div>
+                <div class="case-before-after">
+                    <div class="case-item">
+                        <div class="case-label">投稿頻度</div>
+                        <div class="case-value" style="color: #2e7d32;">毎日</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-label">フォロワー数</div>
+                        <div class="case-value" style="color: #2e7d32;">5,000人</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-label">月間リード</div>
+                        <div class="case-value" style="color: #2e7d32;">35件</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 1.2em; color: #2e7d32; margin-top: 20px; font-weight: bold;">
+                📈 売上が150万→280万に増加（わずか3ヶ月）
+            </p>
+        </div>
+    </div>
+
+    <!-- 30日後のゴールスライド -->
+    <div class="slide content page-break">
+        <div class="slide-content">
+            <h2>🎯 30日後に達成できる状態</h2>
+            <div style="margin-top: 30px;">
+                <div class="benefit" style="background: #fff3e0;">
+                    <div class="benefit-icon">✅</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">毎日投稿が習慣化</div>
+                        <div>テンプレート活用で毎日5分で投稿完成＆継続可能に</div>
+                    </div>
+                </div>
+
+                <div class="benefit" style="background: #f3e5f5;">
+                    <div class="benefit-icon">✅</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">フォロワーが月2倍ペースで増加</div>
+                        <div>毎日投稿継続により、安定したフォロワー増加が実現</div>
+                    </div>
+                </div>
+
+                <div class="benefit" style="background: #e3f2fd;">
+                    <div class="benefit-icon">✅</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">月間リード獲得が3倍以上に</div>
+                        <div>投稿数＋質の向上により、リード獲得が安定的に増加</div>
+                    </div>
+                </div>
+
+                <div class="benefit" style="background: #e8f5e9;">
+                    <div class="benefit-icon">✅</div>
+                    <div class="benefit-text">
+                        <div class="benefit-title">SNS運用が月15時間→月3時間に</div>
+                        <div>運用時間を大幅削減しながら成果最大化</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA スライド -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2 style="color: white; border-bottom-color: white; margin-bottom: 40px;">
+                毎日5分でSNS集客を
+                <br>習慣化させましょう
+            </h2>
+            <div class="metric" style="background: rgba(255,255,255,0.2); display: block; text-align: center; font-size: 1.3em;">
+                含まれるもの：<br>
+                ✅ 30日分の投稿テンプレート<br>
+                ✅ 業界別カスタマイズガイド<br>
+                ✅ エンゲージメント分析シート<br>
+                ✅ 月間投稿カレンダー
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

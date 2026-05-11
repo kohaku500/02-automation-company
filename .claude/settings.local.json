@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/makoto1234/.claude/projects/-home-makoto1234-makoto-projects/memory/**)",
+      "Bash(ls -la /home/makoto1234/.claude/projects/ | grep \"01\")",
+      "Read(//home/makoto1234/.claude/projects/**)",
+      "WebSearch",
+      "WebFetch(domain:www.youtube.com)"
+    ],
+    "additionalDirectories": [
+      "/home/makoto1234/.claude/projects/-home-makoto1234-makoto-projects/memory"
+    ]
+  },
+  "autoApproveCLAUDEmd": true
+}

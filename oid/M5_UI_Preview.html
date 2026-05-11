@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M5 Core S3 試験ジグ UI プレビュー</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #333;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+      gap: 10px;
+      display: flex;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #764ba2;
+    }
+
+    button.active {
+      background: #4caf50;
+    }
+
+    .m5-screen {
+      width: 320px;
+      height: 240px;
+      background: black;
+      border: 3px solid #333;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .info {
+      color: #999;
+      margin-top: 20px;
+      font-size: 12px;
+      max-width: 400px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 M5 Core S3 試験ジグ UI プレビュー</h1>
+
+  <div class="controls">
+    <button onclick="showPage(0)" id="btn0">PAGE 0: Real-time</button>
+    <button onclick="showPage(1)" id="btn1">PAGE 1: Graph</button>
+    <button onclick="showPage(2)" id="btn2">PAGE 2: Stats</button>
+    <button onclick="showPage(3)" id="btn3">PAGE 3: Sensors</button>
+    <button onclick="animateWave()">▶ アニメーション</button>
+  </div>
+
+  <div class="m5-screen">
+    <canvas id="display" width="320" height="240"></canvas>
+  </div>
+
+  <div class="info">
+    <p>M5 Core S3 の 320×240 ピクセル液晶画面をシミュレート</p>
+    <p>Phase 2.2 (Enhanced Display) - 4ページシステム</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('display');
+    const ctx = canvas.getContext('2d');
+    let currentPage = 0;
+    let isAnimating = false;
+
+    // サンプルデータ
+    const sampleData = {
+      accelX: [],
+      accelY: [],
+      accelZ: [],
+      time: 0
+    };
+
+    // 初期データ生成
+    for (let i = 0; i < 100; i++) {
+      sampleData.accelX.push(0.2 * Math.sin(i * 0.1) + Math.random() * 0.1);
+      sampleData.accelY.push(-0.15 * Math.cos(i * 0.08) + Math.random() * 0.08);
+      sampleData.accelZ.push(9.8 + 0.1 * Math.sin(i * 0.05) + Math.random() * 0.05);
+    }
+
+    function clearScreen() {
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, 320, 240);
+    }
+
+    function drawText(text, x, y, color = '#ffffff', size = 12) {
+      ctx.fillStyle = color;
+      ctx.font = `${size}px 'Courier New'`;
+      ctx.fillText(text, x, y);
+    }
+
+    function drawLine(x1, y1, x2, y2, color = '#ffffff', width = 1) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
+    function drawRect(x, y, w, h, color = '#ffffff') {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(x, y, w, h);
+    }
+
+    // ===== PAGE 0: Real-time Data =====
+    function drawPage0() {
+      clearScreen();
+
+      drawText('REC (5240 ms) | Samples: 52', 10, 15, '#ffffff', 10);
+
+      drawText('=== ACCELERATION ===', 10, 35, '#ff6b6b', 10);
+      drawText('X:   0.123 g | Avg:  0.115g', 10, 48, '#ffffff', 10);
+      drawText('Y:  -0.156 g | Avg: -0.142g', 10, 61, '#ffffff', 10);
+      drawText('Z:   9.823 g | Avg:  9.821g', 10, 74, '#ffffff', 10);
+
+      drawText('=== GYROSCOPE ===', 10, 91, '#4caf50', 10);
+      drawText('X:    2.456 dps', 10, 104, '#ffffff', 10);
+      drawText('Y:   -1.234 dps', 10, 117, '#ffffff', 10);
+      drawText('Z:    0.789 dps', 10, 130, '#ffffff', 10);
+
+      drawText('Temp: 25.3°C | Press: 1013.2', 10, 151, '#00bcd4', 10);
+
+      drawText('Page 0/3: Real-time', 10, 225, '#888888', 9);
+    }
+
+    // ===== PAGE 1: Acceleration Graph =====
+    function drawPage1() {
+      clearScreen();
+
+      drawText('PAGE 1: ACCEL GRAPH | 100 samples', 10, 15, '#ffffff', 10);
+      drawText('X Y Z', 10, 27, '#ffffff', 10);
+
+      // グラフエリア
+      const graphX = 30;
+      const graphY = 40;
+      const graphW = 280;
+      const graphH = 160;
+
+      // 軸を描画
+      drawLine(graphX, graphY + graphH, graphX + graphW, graphY + graphH, '#888888', 1);
+      drawLine(graphX, graphY, graphX, graphY + graphH, '#888888', 1);
+
+      // Y軸ラベル
+      drawText('10', graphX - 25, graphY, '#888888', 8);
+      drawText('-10', graphX - 28, graphY + graphH - 5, '#888888', 8);
+      drawText('0', graphX - 15, graphY + graphH / 2, '#888888', 8);
+
+      // スケール
+      const scale = graphH / 20.0;
+
+      // 3軸をプロット（色分け）
+      const colors = ['#ff6b6b', '#4caf50', '#2196f3']; // Red, Green, Blue
+      const labels = ['X', 'Y', 'Z'];
+      const dataSets = [sampleData.accelX, sampleData.accelY, sampleData.accelZ];
+
+      for (let axis = 0; axis < 3; axis++) {
+        // ラベル
+        drawText(labels[axis], graphX + 10 + axis * 30, graphY - 10, colors[axis], 10);
+
+        // 波形を描画
+        for (let i = 0; i < dataSets[axis].length - 1; i++) {
+          const val1 = dataSets[axis][i];
+          const val2 = dataSets[axis][i + 1];
+
+          const x1 = graphX + (i * graphW / dataSets[axis].length);
+          const y1 = graphY + graphH - (val1 + 10) * scale;
+          const x2 = graphX + ((i + 1) * graphW / dataSets[axis].length);
+          const y2 = graphY + graphH - (val2 + 10) * scale;
+
+          drawLine(x1, y1, x2, y2, colors[axis], 1);
+        }
+      }
+
+      // グラフ枠
+      drawRect(graphX, graphY, graphW, graphH, '#888888');
+
+      drawText('[B] Next | [C] Clear Stats', 10, 225, '#00bcd4', 9);
+    }
+
+    // ===== PAGE 2: Statistics =====
+    function drawPage2() {
+      clearScreen();
+
+      drawText('PAGE 2: STATISTICS | 52 samples', 10, 15, '#ffffff', 10);
+
+      drawText('=== ACCELERATION ===', 10, 35, '#ff6b6b', 10);
+      drawText('X: Avg=0.115g StdDev=0.023g', 10, 48, '#ffffff', 9);
+      drawText('   RMS=0.117g P2P=0.142g', 10, 59, '#ffffff', 9);
+      drawText('Y: Avg=-0.142g StdDev=0.031', 10, 71, '#ffffff', 9);
+      drawText('   RMS=0.145g P2P=0.187g', 10, 82, '#ffffff', 9);
+      drawText('Z: Avg=9.821g StdDev=0.018g', 10, 94, '#ffffff', 9);
+      drawText('   RMS=9.821g P2P=0.045g', 10, 105, '#ffffff', 9);
+
+      drawText('=== GYROSCOPE ===', 10, 120, '#4caf50', 10);
+      drawText('X: Avg=2.234 Min=1.456 Max=2.9', 10, 133, '#ffffff', 9);
+      drawText('Y: Avg=-1.123 Min=-1.789 Max=', 10, 144, '#ffffff', 9);
+      drawText('Z: Avg=0.678 Min=0.345 Max=0.9', 10, 155, '#ffffff', 9);
+
+      drawText('[B] Next | [C] Clear Stats', 10, 225, '#00bcd4', 9);
+    }
+
+    // ===== PAGE 3: Sensor Panel =====
+    function drawPage3() {
+      clearScreen();
+
+      drawText('PAGE 3: SENSOR PANEL', 10, 15, '#ffffff', 10);
+
+      drawText('=== TEMPERATURE ===', 10, 35, '#ffeb3b', 10);
+      drawText('Current: 25.34°C', 10, 48, '#ffffff', 9);
+      drawText('Min: 24.12°C | Max: 25.67°C', 10, 59, '#ffffff', 9);
+
+      drawText('=== PRESSURE ===', 10, 75, '#00bcd4', 10);
+      drawText('Current: 1013.24 hPa', 10, 88, '#ffffff', 9);
+      drawText('Min: 1013.12 | Max: 1013.45', 10, 99, '#ffffff', 9);
+
+      drawText('=== ALTITUDE ===', 10, 115, '#ff69b4', 10);
+      drawText('Current: 45.23 m', 10, 128, '#ffffff', 9);
+      drawText('Min: 42.56 | Max: 48.12 m', 10, 139, '#ffffff', 9);
+
+      drawText('=== MAGNETOMETER ===', 10, 155, '#00bcd4', 10);
+      drawText('X: 23.45 | Y: 5.12 | Z: 41.2 mT', 10, 168, '#ffffff', 9);
+
+      drawText('[B] Next | [C] Clear Stats', 10, 225, '#00bcd4', 9);
+    }
+
+    function showPage(page) {
+      currentPage = page;
+      isAnimating = false;
+
+      // ボタン状態更新
+      for (let i = 0; i < 4; i++) {
+        document.getElementById(`btn${i}`).classList.remove('active');
+      }
+      document.getElementById(`btn${page}`).classList.add('active');
+
+      // ページ描画
+      [drawPage0, drawPage1, drawPage2, drawPage3][page]();
+    }
+
+    function animateWave() {
+      isAnimating = !isAnimating;
+
+      if (isAnimating) {
+        currentPage = 1; // Graph ページに切り替え
+        let frame = 0;
+
+        function animate() {
+          // データを更新（リアルタイムシミュレート）
+          for (let i = 0; i < sampleData.accelX.length - 1; i++) {
+            sampleData.accelX[i] = sampleData.accelX[i + 1];
+            sampleData.accelY[i] = sampleData.accelY[i + 1];
+            sampleData.accelZ[i] = sampleData.accelZ[i + 1];
+          }
+
+          const newTime = frame * 0.1;
+          sampleData.accelX[99] = 0.2 * Math.sin(newTime) + Math.random() * 0.1 - 0.05;
+          sampleData.accelY[99] = -0.15 * Math.cos(newTime * 0.8) + Math.random() * 0.08 - 0.04;
+          sampleData.accelZ[99] = 9.8 + 0.1 * Math.sin(newTime * 0.5) + Math.random() * 0.05;
+
+          drawPage1();
+          frame++;
+
+          if (isAnimating) {
+            requestAnimationFrame(animate);
+          }
+        }
+
+        animate();
+      }
+    }
+
+    // 初期表示
+    showPage(0);
+  </script>
+</body>
+</html>

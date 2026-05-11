@@ -1,0 +1,5746 @@
+{
+  "classification_date": "2026-05-09T07:33:49.662534",
+  "total_conversations": 552,
+  "classifications": [
+    {
+      "file_id": "0063ebb8-5021-4516-9499-41376ac5f3e6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:00:06.310551",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "006492f5-e120-4094-9e93-8c5b031490e5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:49:04.814832",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "009a5506-8f0c-4df0-a074-4e1766cbd9b8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-15T23:49:20.922675",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "00d7478b-dd36-42dd-a629-517963cd10d8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:17:54.544336",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "00f752e8-c8e9-483b-b0e5-8e22da32bb8b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:18:51.679212",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0139e774-f2a3-4e6d-8bf9-f631eedb0bb1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T15:14:21.573895",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "016ece46-a454-437b-b3e5-197ddc8a2cfc.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:38:39.008447",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0184b2d1-51e8-43fe-bbf3-04fb67aae648.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-18T16:43:43.523801",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "0210da20-bc4a-4304-91e3-6be98234347c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-18T07:16:42.974938",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "022c3ec2-04a4-4b49-90c4-86b2f29bee89.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-21T21:57:17.195655",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "02ce8123-adea-443c-83ce-1775699960f4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:00:05.686559",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "03230795-e329-4f9d-9f8d-0975dce0c5f8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:45:04.554964",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "03aaa9d9-6ee4-471a-a71f-6c67e78d963e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:50:13.962357",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0408e854-985f-4b8c-a213-10ac5677a4c8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-13T06:46:58.430937",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "04258a26-d416-4f38-ad90-cea4034160e4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:19:05.188198",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "05fbce7d-1dcb-4f01-8e88-226baefca00c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T07:53:10.500430",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "060696b4-8338-4a93-ab94-2a1eb0debd7b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:15:04.434505",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "06394dfc-754e-486b-aa45-11b7cda2642b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:15:04.956128",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "06f0708d-95ea-4270-929a-34d0b0a3ee5c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:43:28.573606",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0712e7e6-55cf-4935-965c-eaccc4cdae7c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:10:01.160320",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0728d6c1-7834-4ffe-86b2-eced23a8628b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T20:50:29.406903",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "076c680c-037e-4876-aa9c-a2c1868c79cb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:30:14.536709",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0826e4e0-619c-4157-947c-6cafca81b11f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:41:05.457129",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "08a9199a-1e1a-4831-8afa-cc24fab93d2e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T05:55:21.122467",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0a442129-f39f-45d0-ba71-5d77f3554dd3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:15:04.625609",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0a5d0d16-d1c9-4cdb-896b-24236a25222b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:27:27.331176",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0ba7a66e-c0f5-4be0-8b31-5668c6ebabb5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:29:32.677432",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0bf55b69-3edf-4289-9be4-69be356fcd88.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:47:45.234271",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0c12d895-fbc9-4a9b-92ab-05b926851dbe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-26T08:27:51.766813",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0c1b716a-9241-41d7-809e-67af58c7c69c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:07:00.420926",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0cc35e5e-f5e7-432c-8174-303ec5d9dcc9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:32:15.908289",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0e101b4b-c210-4174-9b25-1114be084600.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T13:53:04.255077",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "0e275284-01eb-459e-ba53-7336964294e3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:07:04.539680",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0e35c18c-940e-44e4-83fe-f0e371ac9222.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:45:04.452016",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0e73e20b-62be-4b0c-9419-19591a5b13b6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T14:07:04.999010",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0ee2f8c1-5143-4453-929a-d370d5621d8d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-26T06:15:09.712698",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "0ef9f1bc-5d44-4084-adf0-902c398fd6a1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:25:43.144860",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1027ab4f-c3f8-4717-b2c2-85dc1844d291.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:33:51.035572",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "10857997-58a5-4cd2-ba80-1b09fd3fe5a1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:06:16.481744",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "10da80ab-03b7-463d-a9e0-21b73755590b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:19:04.895207",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "116f40de-4488-4f7e-b749-e25d2da577b7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:20:56.933779",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "11b0be07-f6aa-4d98-b8eb-bf34be77735e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:20:55.362061",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "11fda1ba-df18-4644-a406-35b5385b9b15.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:25:39.541440",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "12e7facc-9cbf-43dd-b8d9-d55d74f10d75.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:29:15.307394",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1311f03a-a1cf-435d-bac8-e7b35f38bddd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:27:07.799632",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "13668af2-534f-4605-bafd-2f1e8ecac1d6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:36:05.640644",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "13954006-2587-419a-a83c-f85d7dce493b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:01:58.080177",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "13a8536d-24f5-4808-9f25-d13c72be3ca2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:36:42.931587",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "13d0fdc0-0bd8-4b93-89d1-7299577fea7c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-25T08:44:14.011431",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "13e6b74a-dfba-4427-bf24-b90880c4afab.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:15:04.295201",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "140b5c40-041f-41f2-a975-0178d9f27abc.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:11:16.376928",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "146e831d-3c02-4f4a-ba0f-38c8ec6313da.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:33:04.452125",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "156d66c3-d1ef-4684-a7a4-0db86144d439.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:10:52.963238",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "15766f4a-794c-4359-93ae-9594ff6ca352.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:49:01.508476",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1577e431-6dfd-4411-8720-6ab458a5a12f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:25:34.949894",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "16060bad-a6e4-4c94-a081-dd31104e8684.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:25:29.070110",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1807f1b4-ad13-4239-9735-cf9b67c0dc80.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:17:33.225701",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1843d38a-76c1-4826-aa4a-776edacc9250.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:44:05.813369",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "19733316-76ca-47f5-ad04-16e5303daf49.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-21T21:57:17.767656",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "19e48c99-e411-4513-9a49-dfa08e2d86ad.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:11:05.116484",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1b6c2fba-ba18-45b4-a86e-2028822a31cf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:26:51.580824",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1b920276-ad9e-41e3-938f-a1a9656e9a36.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:15:04.892552",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1c4428b8-ec3f-4f77-8e17-ca4d830a1637.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:32:03.927643",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1ca31fef-1331-4933-b1e5-611bdb535324.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:33:05.009405",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1d22182c-7779-4e49-850b-576bdc3c74a5.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T13:37:04.959216",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "1d25407e-4434-49e2-8096-eba9400a693c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:22:48.513762",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1d5c2e9d-2b4e-498d-8ef8-85e9747cf753.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T16:02:06.704176",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "1dc20916-2485-49a7-8678-261776020cc0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:11:04.505276",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1e2919cc-48bd-4346-874f-bad6ce534684.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:33:04.731785",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1e3907d7-ee03-47ff-95d4-f60c0d600477.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:49:04.579059",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1e88bfc0-eade-4f74-8493-0767032dd39f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:03:04.755935",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1e975e81-3f69-4571-970f-025f2040d075.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:41:04.180938",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1f7f6caf-a2f1-440b-95f5-6a8eccc9c935.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:13:56.051580",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "1fce907b-6907-4077-8612-c8bac3d6674d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:49:04.737467",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "201b9f5e-8605-40c1-868a-408d7b3c4d4f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:33:04.860046",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "206f5d94-ec05-4c60-b877-8b85ef8a267e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:47:20.131087",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "20b88e4e-d118-430a-bfab-150b2057c096.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:55:05.961331",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "21db23a6-4300-40d9-b064-fca1fca79161.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:41:51.765728",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "21f7193a-c5b7-4d99-86bc-30b135543e54.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T14:15:05.062806",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "22114a68-7bfd-4771-b339-eb7dfbfe5e99.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:19:04.403658",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "223b1d68-d4bd-49ac-a227-f6b000a0fb99.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:23:05.133441",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "22c34470-5fe8-4f02-bcc0-126dcb7c2255.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:04:33.237497",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "22e3f07f-6893-4306-b0cd-d2f5073ee589.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:30:41.803564",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "23e23530-6da1-4d44-9f73-3132075ed760.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:39:06.628259",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "24844acf-9fbf-444f-b2a2-b5d9b77100e7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:10:16.407621",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "252cac8e-62a1-4eaf-972a-bcc4767296cf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:11:04.832041",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "26565096-9870-46eb-a42c-cb7e12659d5c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T05:45:05.990506",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "268bb8a0-83f8-4334-a7b9-747e521d763a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:33:45.136714",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "26980a74-d066-4bb3-8b5c-b8ae1e468846.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:30:04.566873",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "26a53327-744f-4d8c-95f0-7ae48b6c87ef.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:48:58.477815",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "26bd69d1-764a-49af-a35e-9a9bb0c7c44a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:33:57.725634",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "27f3835e-0eab-43e5-87fd-5ae395d08117.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:23:04.918960",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "28254782-4848-4f7f-a153-ef0386efc018.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T06:42:51.156684",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "282ca863-02eb-4177-8957-becbfe85bd3d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:30:04.404896",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "28dcc0ce-088b-4a2d-af90-1003b333350c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:13:03.270037",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "292215a7-7498-4d5d-8fdc-8f26e3383c4b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:34:07.357417",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "29339ac9-b3ba-49fa-b29d-2945000726c6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:05:48.892625",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "298873f5-9385-4506-a651-5f7de861a05e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:49:05.236424",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "298b35e9-08ed-49d6-b79f-f3cffe5b9701.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:41:07.751326",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2a80a21e-23fc-4f42-bfbf-058d40564433.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:53:06.580184",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2a8b7ad5-fa69-4935-b986-ffd1467ad7ce.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:55:43.437770",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2ab059af-cff2-4ca2-9e35-e521dcf6cd82.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:01:25.235709",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2b083b76-6272-4d95-8544-dfa7dd51d2f2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-22T09:47:56.113802",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "2b08bdd1-4c73-4cd8-a529-5d6faf362246.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:25:54.749810",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2b5f949b-d113-40fb-8665-515537f94092.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:11:04.695682",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2be025db-b839-4817-a51c-71a127b2dfbc.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:23:04.843386",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2bf71018-f9e9-4b39-ba3a-742c3c08b3b3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:34:21.598953",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2c71466b-c496-4af7-9605-f6e2e010ce0b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:00:04.648160",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2d0c9f45-67d7-4f99-a1b4-f1f09e51d225.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:02:46.551497",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2d8ea623-0d42-4cf9-b4e7-91867ea52516.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:52:52.610251",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2dae4b06-850d-4d8c-b23d-1c253cc0a5d5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:23:23.796324",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2de3c12b-e92e-4156-8c47-a1924085259c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:10:00.986189",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2df772cb-89fd-4ad3-9d8c-4b7e323af1df.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:32:28.309625",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2df896d1-f5b7-4b3a-b18d-89a0228bea36.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:37:54.987750",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2e0bd9f3-b86a-492d-bbb3-6735c77ce645.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:56:38.813051",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2eb544e2-f695-4e15-8dfc-303339b2336f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:59:26.873761",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2edceffe-6ca4-453b-ac11-9a837d1cc414.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:17:52.284568",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2f160107-993b-4906-80d3-396af88b1949.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:21:20.664714",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2f20683d-c2f4-432c-9c1b-928725efe84e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:39:18.605617",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2fa56043-9252-4e14-a64d-b7e0853ad126.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:00:05.149082",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2fde6ae9-114c-4e60-85bd-f38cb12cd7ed.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:26:58.927964",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "2ffcc47b-8c8e-4d2b-a7ae-ceb33731c9b4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:03:04.847675",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "30d0e38d-b08b-4aeb-a808-7f630ec9737d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:30:24.769210",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "314882b7-d0e6-4138-86d9-35f9f68877f0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:49:06.160940",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "32200c81-4e08-4b23-a946-d005bbd3e732.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:17:27.976585",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "32212ce1-2854-4a66-ab23-185846d85c02.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:41:04.453162",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "338c941a-af9a-4f29-84c4-389167039372.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:02:07.637984",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "339db9b5-0fbc-4a40-90f4-4c4012af6364.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:19:04.572789",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "33be0b6f-5378-4896-b0fc-6ee26b9f5acd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:19:04.916987",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "34405ddf-ba70-40b1-81de-e24d6509a0b7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:45:05.175785",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "360a0951-484f-49e3-baf5-56b4586d7147.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:38:44.774447",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "36d8c70b-82c5-41b6-92e2-e0e1ffad12fe.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-17T00:43:59.324181",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "3800911e-d810-4840-9cac-a0874adfac52.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:14:40.214958",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "38c82c2e-da89-40df-bc0f-330ee130e13b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:11:05.196360",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "38cddf5d-aadb-43b1-a05e-e552b4332ecf.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-20T17:41:28.046618",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "3906313f-1b91-40b9-a3c9-e0b19cbfcd5d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:02:32.182560",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "39903e88-41c3-437f-86d2-cf3002dfcdfd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:29:48.872298",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "39b7112d-6b6f-4ff4-9c7c-a5c4ebbd4d4f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:57:14.643645",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "39befa47-fc3a-4510-85d0-416e62e0e61b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:03:05.198585",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "39bf3263-3c44-40b3-a456-0177ae1186ef.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:27:04.622843",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "39ce7b69-6f97-4daa-8352-b96ac1d5f17a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:21:56.179839",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "3a3fee20-4165-407f-b7f7-11da14541ae1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:09:41.233731",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "3a9ca286-728f-4ad5-b4f5-026bdc86b245.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-13T16:38:45.254647",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "3d08de91-345f-4d92-a04e-420c191fcee3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:15:05.363901",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "3d89cb51-c306-45d8-b6d2-882b97b2b144.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:57:05.123276",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "3e4ad8ec-fdab-40ab-b4ad-1854c8f07418.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:07:05.076835",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "3f45cf00-8977-49a4-9d0b-3f5e03b59184.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T05:57:10.674464",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "3f8ac2b8-85d8-4fd9-b58a-48a6d0f0dc2d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T06:55:10.628614",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "3fd35685-315d-4561-a58b-d94eb81669f3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:38:13.769175",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4077ede6-594f-47de-95d2-f207c439e28f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:33:04.291210",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "407dfbd1-021d-42c6-9313-40b582519c7e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:27:31.520311",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "40eabc91-d8ee-48a4-b3e8-d3d43b50c110.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:26:37.412722",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "41a1341b-a3e5-48f8-b8bd-ec64878e5e59.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:49:07.487955",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "42f2ddf2-52ce-4302-b16f-43a3b97f952f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:05:41.043484",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "431d0d92-0647-45fc-93ef-fc29098d5a95.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T14:03:05.106957",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "436fcbe6-8ac5-442c-9c50-7ceaf6934677.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:25:32.211851",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "440dd85c-c17a-48b7-81a7-9b14684a1817.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T21:53:04.790834",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "44332a39-47f9-4889-99a1-607301809344.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-24T01:12:54.441239",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4482b67c-397d-44ab-939d-133d2c6f2c56.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:45:05.165121",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "45493236-9980-4029-b7c2-648a1392be52.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:07:04.875850",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "45867ce7-3e5f-4e2c-bf6a-f33fd4255550.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T22:37:05.270587",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "463564af-d1cb-4921-b3be-6ce225fb89e3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:20:53.649688",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "46fb29d0-f461-49dd-86ee-288791e39000.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:48:11.988850",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "480b14fa-9e2d-43c7-8961-6c82708b0a98.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T02:26:21.421783",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "4878c085-14f6-489a-a1a5-bd2b9af41bc9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:04:48.298268",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "487e1848-a356-4ad5-bd58-a997b65ff406.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T04:59:19.025072",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "48edbff3-5d53-46d2-bccb-8d4cd4c0cf9f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:31:12.159606",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "49efaf6f-cb64-4bf7-ae4e-95138c486d0f.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T15:45:26.316206",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "49fb9413-1e8b-487b-b565-37cd3a11b50c.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T07:37:04.588479",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "4a12a840-6499-4735-a40c-a48a8554d714.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:05:10.215257",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4a59f6f6-56c4-43b5-8da7-ab4de598f114.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-19T20:52:51.499654",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "4b52e97f-5f3a-409e-b6c3-5c6cfe189091.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T06:40:54.554289",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "4b9e1f9b-69e3-486d-bfa4-8556c1147f55.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:49:04.235998",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4d223453-d055-4bc8-aaa0-f5fd3bb62ada.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T05:23:59.314587",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4d491656-b63b-4762-a229-56c60db039c5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:59:56.119020",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4e39b3c2-d6d3-4b84-8144-3ef3bb06db5f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:53:22.658378",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4f4320b4-f7c7-478b-a5e4-0e1fb270173c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:54:22.514057",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "4fd0f21f-d38f-4f28-8fc1-7c325460f924.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:15:04.325036",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "504959f3-d7bf-4e60-b6f1-f6e0a2209545.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T14:19:04.798860",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "50a60547-03a3-4883-9e0f-7dc9429ca545.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:37:10.594088",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "521e4a58-cdc4-441b-9511-4d1f352968a4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:30:04.495038",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "527f50fd-034f-4cc9-a858-84edcdaae6de.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:45:04.752923",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "52bebac2-0d75-4450-8448-88c872822b8b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:00:06.248976",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "532638f7-d92e-4afb-a229-4283458c676e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T01:00:03.998134",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "538b2a60-4c61-4442-a768-bfc8a5684e73.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:07:05.557437",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "53e92468-0515-437b-a5d4-e5ddc53a6349.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:04:54.441787",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "540fe2cd-b8a1-4793-942f-ada77958e69a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-18T07:10:12.437130",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "54463450-37b7-48e4-84ec-4c0f9c776498.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:39:39.181848",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "55566f0f-bab2-4cbf-b617-613a3b1d0aa2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:06:58.752588",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "55d4008b-507f-4fe4-989f-6510ff5fab03.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:29:12.147623",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "562232f2-6469-4f0e-89a7-6b519f9cbfd8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:55:06.773493",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "569d6708-401a-446e-a97c-1541363ba3fa.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:21:39.222218",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "575e605c-6787-429b-9e33-e4e52a0c52e9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-05-09T07:09:36.869204",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "579a7a56-022d-44a9-be41-38dfb08b0441.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:19:06.006963",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "580e0c92-87f0-43db-bdda-5683139ce1cf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:30:04.747173",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "58d27ff5-991f-4e06-800d-302af4d0ef7f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-18T15:59:52.824010",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "594c0e45-2fe0-408f-9199-86da984cba8a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:07:04.603029",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5a110c8d-fe4d-42b9-9f61-727c71edd254.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:19:05.482501",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5a1b224c-edcd-4350-9e32-1abb40ca3080.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:16:37.848572",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5a4fbb5b-029a-4d07-85bd-162d61d464e4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:54:20.032657",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5bf8a44e-e639-4f4d-9c20-d0a6d47fa2ee.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T22:33:36.656126",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "5c3727fe-62ee-4f16-8ea8-38638ed31de5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:04:11.540161",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5c499118-8d91-45a7-bc28-2b7ca8ad0657.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T09:58:51.369546",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "5e89111a-17d5-4419-9c82-14c7b3cc46a1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:30:28.488028",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5e9ef884-a6da-4508-96e0-66f273f8a25b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:45:04.857721",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5f105074-03d8-4910-802b-95cfed6ac042.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:03:04.548629",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "5f2b970e-5b1c-4bb8-b672-a6e2c44360fe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:27:44.050366",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "60b84f1d-6aab-41f8-963d-dc8419371012.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:30:04.789386",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "60fd4511-4ab5-47b3-8a9b-1fe662b27b55.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:45:19.156843",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "61154c40-97f6-4721-8f68-c02bb320f9ea.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:30:44.622388",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "614b25b7-d6b1-4156-b04b-3014f9b86b34.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T12:53:05.247227",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "619cedf4-a430-4da3-a5c9-b12c5d73413c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:49:04.249297",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "622e634a-3552-4cd2-a980-e0564d53a747.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T12:53:04.100860",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "623cbacc-7771-4034-9e01-67af2663ea5f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T01:56:47.277930",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "62408b5f-0741-4cd0-aacf-71604b6f9716.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:52:37.242014",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "629ccecc-769c-44d4-8d8e-3ceaca2c1a58.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:11:04.748819",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "63575e08-1436-48e4-8fc3-de26a05aa19b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:44:02.752689",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "63781e7e-1043-469b-a948-9a103009bcd6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:13:28.801718",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "64ac20bf-abda-49ea-b8f4-6601d224a7ef.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:09:48.974923",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "659a9773-eaa7-41c1-aada-8ef7fb6a299e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:06:10.711029",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "65fe0c4d-48d8-4fad-a493-7d77c87bbbf0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:45:04.902586",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "66617b26-1407-468b-b1d7-0483f90ac807.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-13T21:32:57.778502",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "6717cec0-1180-4578-8eab-9ff34d85870c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:46:55.361359",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "686988e2-57f2-4f01-ab61-364feb57a797.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:45:04.479336",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "68f17f29-5e6d-4171-a0b3-ae88a0f54ab7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:19:05.315885",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6dd28222-bc86-440f-b7d8-88788da7d00f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:51:32.038951",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6dd30e8e-8b24-4dfb-b95b-16ec991091ae.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:27:04.284971",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6e2ab9c9-a111-4b2b-aece-ab0213ecfdea.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:22:16.995406",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6f394912-6123-4ed5-b9f2-f39c31f87c0b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:13:34.547667",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6f3d5141-6ff2-4e7e-9cee-87dffa4b994b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:31:20.457877",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6ff3db1d-1f8d-4142-8954-beadc62ad7d6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:03:04.472308",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "6fffb4b8-efa5-4092-b1ab-bff0a005c9c0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:44:15.238283",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "702eb73c-6861-4346-908c-354fe1b9a936.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T14:59:23.968416",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "704a52ed-9d9b-4f62-b13c-399a127ee8cb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:49:04.959773",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "70efc29b-e879-4d90-8523-7abb9712ee30.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:44:54.290186",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7125587a-ce60-4728-b867-db55af86458f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:59:55.480397",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "715abb7a-0d02-43c3-9f79-48591e45897d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:00:27.366131",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "71f986f0-1425-4dcb-8fa9-082eed44962e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:29:58.826109",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "729b9b43-e9f9-497a-a514-0560685ffe77.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T23:58:07.018942",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "72a5ef28-9103-47e0-b164-5321641d8121.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:32:41.663380",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "72aec2f6-1ffd-4f96-9dd5-5695a9f5797c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:49:56.475526",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "738f90bf-0034-4296-99cf-42a784a2ee05.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:26:06.214352",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "740e9d15-5828-4c4d-826b-5682a3d9a14f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:17:34.083662",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "74552f16-855e-436a-9c8d-869f9a332b9f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:27:04.514685",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "749566a9-5f6d-4620-a7af-cad9febd97fd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:17:15.779423",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "74de0142-f869-4afc-bd24-6b25f80ce69a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:06:37.754298",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "76095170-7414-4c30-84e5-04b07b34376e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T20:57:37.175007",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "761b70b2-5dc5-4c9b-8613-04c6cb576273.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T07:57:25.765997",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "767adda5-45e6-4f6e-b25b-42c340f3ce74.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-05-09T07:08:42.931365",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "76daacca-02fe-4fb9-b8d8-b2d224f88a40.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:59:45.319507",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "76e949ea-8177-40be-b4f8-bfd00fc5bd1c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:47:09.995543",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7712a591-c011-4bcd-bdfa-45e77c80c096.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:06:07.116811",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "774f02ff-718a-473c-bdec-9d75166ad92d.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T05:51:34.604884",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "77b03491-6b47-4f06-a6ec-9ae398aeec6b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:33:04.628956",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "77ba9452-63f5-4020-9f31-6a2fb2febac4.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T12:03:24.651450",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "7976333d-8ab2-4b52-a50a-d85f5ba5d091.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:15:06.769433",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "79c8af15-1ef0-41ca-91b5-fae2d2bb8771.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:47:39.670030",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7a536263-7872-43db-96b4-8e14ad8f14c7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:15:24.327269",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7a7311c6-9412-4016-80b8-afad0d9162ca.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:00:04.844296",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7b386d87-2443-41f4-9825-1af02d6c5fc8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:48:39.053917",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7bd98f46-3825-461d-beb6-bfb6e68f6e26.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:49:04.508907",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7be4a83f-5144-4981-bdb5-d19dd2f0cd04.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:30:05.880966",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7c3e99de-ebb3-4e6e-9255-48aadb287f14.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:31:50.977632",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7c9370e8-a4a9-48ef-9a78-444c66a0c803.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T16:37:04.904034",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "7ca05214-fe9f-4312-859f-1016cbe207a3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:10:44.884817",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7cc07040-815d-4f3a-a401-948adcea6b5b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:19:04.641107",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7cd2e077-79ff-46a9-8384-9589e6ac1fbe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:15:00.326393",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7e8ad261-5ca7-44e1-97bf-9b19b7e0a03e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:19:07.208558",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "7e9f8c56-e30b-409e-8eaa-846f31793ee8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:12:26.548584",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "80f924bb-8ecc-4783-b99e-1b5af26066e1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T23:07:05.478394",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "818c824f-957c-4820-a5b7-eaa6b4fc3e42.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:47:19.121590",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "822dfa93-2d1c-4f35-be07-ff626899197c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-05-09T07:33:43.871578",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "8259b9a0-a350-4c4d-8933-20156932e060.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:23:04.838866",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "82c93d74-1e30-4eb5-919d-81e2160d7b9d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:13:58.698158",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "83ddf1cb-c76f-4c27-85a0-453ff0050fc4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:28:04.749213",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "84a6be55-d6c1-4a1f-bb31-d4561d8e4d94.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T18:44:21.507544",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "85351103-e09e-4876-9e38-a7d38fde0963.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:39:52.758178",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "85c5008c-62f8-491e-961c-ed33852ad93e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T21:33:04.466902",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "85ead0e0-9d0d-4c64-ac3a-b31d4ec7eae4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:11:07.226319",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "86b3ab54-88c8-4248-a147-cd753434dd3d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T03:53:05.233333",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "87376de2-36c6-44d1-be81-464294e8332f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:27:13.367396",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "877467e1-a535-4aea-8018-8bcd24c5e8a5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:00:05.776634",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8861b616-f638-416b-b3e8-3834466abebd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:28:53.229798",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "88afb8ca-7341-49aa-83ed-8e677d43a223.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:27:04.491048",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8a2fe353-2064-4b81-ab98-78df75884b57.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:07:04.783926",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8ab5e190-eace-4948-8fcc-ffe0bd5dc6b4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:42:29.944649",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8b7a1268-f6e2-4e14-b0ba-77f433be46ef.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-05-09T07:09:22.949348",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "8c976a98-6165-4b9d-a704-b954cc16c55a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:02:31.531264",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8cb1db05-331e-44d9-9128-7573e6a973f3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-15T23:49:20.386675",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "8d14b043-1cc5-4417-8eda-e8960e71efef.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:23:05.004291",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8d804282-18fc-4781-8134-ed95f211e369.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:45:38.195786",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8e3c639e-e7c2-42b3-8773-fbd89cf856c6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:36:38.172050",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8edf034f-97f7-47e5-9957-052bf1cde37e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:25:48.697804",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8f356412-5c62-40b4-ace9-0bf7d0f365ed.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:22:24.004549",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8f636c2f-36d5-4cf2-997d-cfd7d2791573.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:08:11.419467",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8f99160c-6ebc-48db-a1d0-7e98661d4fea.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:03:05.765202",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "8f9df428-75e7-481b-a67e-9c17abff0eb6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:33:04.956498",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "90804f67-f224-4244-b99e-629c224fab1f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:49:05.513115",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "91a1f4ac-5f34-4bd4-8aa8-47af1e1adb40.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:43:56.316454",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "91cde66f-be47-4ad1-8615-56de4ab6b57d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:17:17.474067",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "929e1a14-fd0f-4cd1-9307-78975bc921b2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:11:04.695912",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "92ff333f-bbbb-48da-b3e2-42d4a406ca60.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:10:09.901499",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9335623d-9e3b-4061-a5a6-089b122baad1.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T11:38:04.565175",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "945ad241-12ba-4fb7-9275-cc697d9ef488.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:11:04.515211",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "94c0a25e-e38b-4d74-9a4f-a9bc0f1d3ea4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:03:09.571033",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "94c7518d-f9a2-4beb-b9e1-dc7f43ff0009.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:11:05.080143",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9501f7b7-4b3f-4d39-acfb-99c8d5e6e36a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:26:20.769186",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9655d6c4-45b2-4190-adaf-9a855c884bd1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T16:38:56.701091",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "96d937f0-7bea-4e60-ba65-8c0309c6b7f5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:35:44.331371",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "96edef0b-0e02-42e6-8d59-9a4b8031a156.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T02:53:04.645587",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "97bfe2c7-7a90-4b8c-818d-1687e6d2fd62.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:06:46.851907",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "981d7214-3798-47e9-9f19-7f28d85ae701.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:59:30.415720",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "982d7196-56ec-43a6-91af-b1cf514e1d94.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T09:25:27.793679",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "98dd362e-6cc4-4e23-bc7a-c67c3f0df89e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-05-09T07:09:09.229979",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "98e83fc9-0749-4d81-9dd6-bd6a850f0b7e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:03:04.284844",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9a3994dd-7e3f-40b2-829f-039da6bd087b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-20T17:46:11.466614",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "9a471b19-1df7-4328-b0e0-2cab5e31e752.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:45:25.078363",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9a73057d-dc98-4c50-b61e-60a544bde43b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:55:05.633932",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9b86952d-45fe-460d-8f32-dd472c2102ec.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-05-02T17:31:07.517070",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9b99db65-3864-407f-ada9-4d323599c283.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:45:04.396370",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9bb01c4f-1acf-49ac-a25d-3806ade4bbe1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-23T20:54:02.978232",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "9ca0119d-e60c-414b-aadd-dfc1c71fc543.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:27:04.792304",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9cb63f92-4e4a-40b8-bd96-5c9c6b9bdc04.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:14:32.093488",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9cc06e86-46b6-4e29-988b-4f86adcaac14.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:07:04.757066",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9cc0e438-f3f4-4f3f-b1ca-65c0da469006.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:20:54.294369",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9cd0e2fd-7a3a-47d4-add8-20eaf4dd5097.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T09:57:18.031582",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "9dcb3d23-399f-4230-a735-76be93e86b3d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:49:04.055114",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9e2c2d4d-10e8-442c-bc4a-4101a6d99f90.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:10:33.121855",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9e369ae9-be00-429f-a1af-f123f85e2608.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T05:58:55.988672",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "9e77aa39-4842-457b-8fd5-8ccfd64aa0a6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:11:04.657527",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9f0d0c02-b44b-4786-9918-962155dfc2c1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:01:52.121760",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "9f5db899-6996-466a-a646-136384d225fe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:27:04.871825",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a020b2ad-1e29-4755-abb5-e5c72824fdcb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:27:08.764531",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a0dc6a1f-952b-45b5-bd69-d6e98e70f873.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:17:34.185002",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a1887f03-7ee5-4015-99e9-54b4a4bd8827.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T19:40:21.235358",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "a19d0c70-e241-4ed9-b247-378186bb1f30.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-26T06:18:31.336187",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a1ccd419-2520-45cf-b3b2-6a856fc941be.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T12:11:04.665049",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a299de4c-6d1d-494d-b447-81f9d6501399.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:30:44.889960",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a2aa97bf-d98c-4f97-907c-58f1d9aeea67.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:27:05.004424",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a2f35283-f2d9-4603-b966-0a0e958c2115.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T21:16:14.510970",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a340bd62-33c7-4091-88c7-c2549d6aa674.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:54:20.049569",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a50748c5-5abf-4544-b00d-09d2107623a6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-05-03T06:13:18.080092",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "a5620f0d-c6b8-4643-a306-3bcc99504ef2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:39:19.561107",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a58cca69-fe8d-4f9a-8001-6346e283d886.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T10:59:37.487716",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "a60f8547-672f-4688-809a-34021bdf1e49.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:00:05.079942",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a6395bdd-7f53-4155-9fb4-3656db6de785.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:41:05.439791",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a79cedec-7e05-4527-a596-a50521eae3fd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:43:34.303094",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a7a65f2e-c8ae-42ba-a811-ab4fc8a23767.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:23:05.060076",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a7bfb7e7-332a-47e2-b73c-5d7079a7b588.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T17:53:05.059761",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "a7de6481-f398-4a68-acba-3b2b11c99826.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T12:37:04.556946",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "a97db818-bf13-4c82-aa85-e48548595efd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:41:04.508216",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a9934ba5-965b-4630-97b2-2c2d69fa19ca.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:15:04.968083",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "a99ae027-4ff1-437e-b8a1-b22c87418d0e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:13:15.477251",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "aa0fb291-c44f-4645-8c06-b1dc9acd81f2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:36:39.068717",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "aa5fef4e-07d7-486f-b837-97e67ce23c02.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:27:04.928062",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "aa66d7f0-1ceb-413a-92ae-050fb54ad535.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-14T14:28:58.689345",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "ab30e27d-a22f-4fc5-83cf-5668ad9b44b7.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T23:41:32.890247",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "ab722e42-6b00-43af-8a25-e0444103a002.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:52:26.099610",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ab7a8430-c12b-474a-8157-59f2c18f262f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:17:11.723269",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "aba74cdd-dd80-47ce-9846-2f19a367449b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:30:17.248528",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "abf2e754-0eb2-476e-b529-cd9870a62fed.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T15:43:22.929163",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "ac576c91-8ce0-4c48-bf85-110de45ef3a9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:45:11.479943",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ac5a7949-f1de-4b31-90ce-4b65972111d1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:33:04.498000",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ac5d9f9b-ddd5-47fb-8ac1-f191ec9a6b0e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:15:04.745028",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ac73d519-3319-49b1-aa2f-9fb41fd4c729.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:32:45.245190",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ac79b382-8f33-4362-846b-df46affb0f6d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:03:05.028168",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ac9dc873-6dba-4db5-87b0-cad903338838.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:22:13.409231",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "acf4f917-a914-4da5-813f-493804ea30e4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:27:04.623381",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "acfb8a45-5e75-41f2-b9e6-37bf4668495e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:45:20.144691",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ad16804f-71f1-4d8c-bb22-bf7ee12fac30.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T00:43:36.742184",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "ae93c275-e891-4739-a6db-3d31b9625193.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:47:10.728453",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "aed3d1c2-b6cd-4fb8-be47-0639e91de5a0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T14:11:04.859012",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "af430654-9f16-4b4b-85f3-e7a0dfbe727a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:34:43.996953",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "af98fb98-8c85-45e2-8058-1c3ea45a5c49.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T10:19:17.189471",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "afccaca6-ae10-4d72-8a7e-399a6a47cee2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:41:04.648026",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b016305e-7cf8-45f4-81ad-2f01e5253699.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:41:05.132216",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b0a80d51-94bf-440d-b669-3cb4b2d562e9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:00:04.660838",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b0c84101-7b07-4a63-acf7-f8c442f9bd5d.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T03:37:04.901396",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "b0d7b5e9-305a-4f20-a859-cd0c2b6ce9c5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:22:42.553458",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b31cea51-3e76-474f-9900-9237d71c22f5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T12:10:16.239464",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b3c104d1-b368-46da-ac4e-83dfcfc7265d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T09:19:04.792099",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b3cb5c95-ade5-4e62-a522-f355c5eadc8f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:17:57.569243",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b4f43834-2515-4ef8-b50e-821c5e0cde57.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T07:40:02.918072",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "b56bbcd6-72f4-46ad-8565-9fdb787836b7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:00:05.919695",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b59a6a3a-776b-4db1-a73c-d2c02726b9d7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:07:04.805964",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b69346a4-e93a-4b5c-926c-33fcf3655365.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T02:37:26.757637",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "b6d6ca68-a4fd-43c2-9bf4-3938f75a66dd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:29:46.730333",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b6f6b86a-7a94-4b56-96d3-2913a4ba9413.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:31:59.115564",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b70265b6-ecce-4fe8-a38f-2c22ffefa62f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:10:11.066402",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b72d381d-ec1b-4e8f-9a60-a405026c3133.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:11:04.682484",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b7986450-b246-4c7c-b0c0-b29e70dfc2df.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:45:05.422647",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b7af3021-29fb-43e1-b4bb-cb9e123dd867.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:45:04.896243",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b7dec5e6-fc34-41ff-8456-8142b98a71b5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T14:26:00.794938",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b823a2d0-1f7c-4b40-920e-ea73af6187f3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:42:16.057364",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b892fb18-1921-4e1c-8692-d5cb618aec1f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:31:49.630102",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b8b2ab56-5cb3-4cd8-a3e0-40503bbf49de.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T11:53:04.117108",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "b8d7ea2c-fc99-407c-a7f5-634f99bc0d0b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:08:44.107543",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "b91f7cb0-f19d-48c2-b41e-11c74cb291e0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T09:17:15.149704",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ba49d080-488d-46d7-947f-c7131b3961e1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:07:04.284441",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ba8011f7-3fe8-4ed0-a8a7-618c1f4eec23.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T23:31:56.790432",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bae1ce0a-0df5-47a7-81f4-a1de97a2f357.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:26:30.898256",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "baf1a8a5-50b7-4373-9694-145188be2baf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:10:05.413252",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "baff0630-59e7-4e36-bdab-f14c9cdf92ca.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T17:30:04.895787",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bb83c86c-62aa-4053-a4bc-9adda90f6563.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:05:56.724834",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bbb1f489-1d7b-4a4d-a789-bc561cffdac4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:17:51.641929",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bbcab6f4-75cc-41ad-a5bf-bb955ea1176d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-18T16:43:43.347401",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "bc586239-1228-47ef-8425-f2a972039e5d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:53:32.567523",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bc73f99a-a08d-454a-9ca0-1cf4adb1bb1a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:48:28.952199",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bcd2336f-8660-4410-b8c9-ade4095cc6bd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:30:17.265873",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bd069871-9006-46ab-a259-2f77ca48a6b1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:03:04.937080",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bd4b57d2-f647-431c-9a02-60a9e77614bd.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T10:41:01.161370",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "bf1d5874-3889-4041-b92f-b82fa19308eb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:16:48.586147",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bf6a767a-95c8-49ab-a972-7554b3468aeb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T11:47:05.999528",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bfc73f2e-a829-42e7-9195-5033edbd2c25.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:07:04.236366",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "bfe6c62e-9f5b-41b4-bc9f-6b0d30c833f3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:15:05.004095",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c038fdff-0eb6-4525-a613-9ab420191bd3.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:57:04.711937",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c1933228-7ee8-4f19-b3c9-578a6f39298f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:46:00.917895",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c19519bb-3c3e-4bc9-ba8d-76dce2b12eb8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T14:05:13.204595",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c2f945c6-c4af-40fe-bd69-0b740c009774.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:32:43.162324",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c306fd3d-4f65-482b-88e4-d2f1fc180a96.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:41:04.209728",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c3123ac8-10d8-4408-922b-a6ae24b8dca5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:00:04.725668",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c3375076-d686-453b-aa01-e204d2982c2d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:17:24.686104",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c345b2d3-0cc4-49e3-b89e-820ee3b41a40.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:09:46.193944",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c3729ea6-ddc0-4e93-b660-c9005c725685.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:55:05.472546",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c380e509-4a94-42ab-a7ed-c1f0066168fd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:03:06.129671",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c40d205d-8363-492a-8237-d177d7d1e285.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:23:04.588967",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c42aaeba-535d-4e57-b5b4-d8ec5008e577.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T21:37:04.370895",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "c5ba0b5d-bb38-4ec9-952c-8814f6b470a1.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T11:01:36.331717",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "c5cebb94-2da7-48ca-a9b4-4212f1d8c5ca.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T09:42:18.953605",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "c5f77095-7639-4d9b-806d-bbbf6a33793e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:14:37.119431",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c611a7d3-406d-402b-b84a-a10f48add364.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:06:15.517851",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c6b418e4-4d05-4ba1-a545-848d3017b3cc.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T08:49:04.908024",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c6bbc238-25b5-41cc-b7cc-d70ff65b0253.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T06:17:37.682382",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c78b3149-cbb2-4a20-a359-5ee8456b8d03.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:05:15.766204",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c7ad043b-3111-4d65-ae0e-2fa7bc9e3829.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T17:37:05.143804",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "c83f60d2-ecda-4ccc-a43e-63ced01f9c67.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T01:04:30.790123",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "c844a788-4373-4e3f-beed-cb5f488cbb19.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T16:30:04.792059",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ca29a7fb-fdd5-4c89-a61e-3cfa9cad1d9e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:30:04.331134",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cb3cd23e-760d-4b26-beb5-a89c95e2aeee.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:27:05.689511",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cb479468-c23e-48b2-8b73-4acb0b707dc4.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:33:22.820935",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cb5d2733-297a-4368-ba84-e217bb4f3228.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T13:39:57.448706",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "cb8d30c1-ecad-4d61-81bb-f88703be520f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-05-09T07:08:40.996711",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cba2a95f-10bd-4e87-a3bc-7330b2bb31d2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:30:18.824910",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cba71fb1-dcec-480a-be1d-7737c0bc0a3b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:45:04.521181",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cbb08ebc-4fa8-404c-a339-67d50fbb7c76.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T11:58:00.551198",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "cbf85ee9-5126-40bd-9c76-f4d947e41c40.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:30:05.006708",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cbfba3aa-6ac6-45cf-ad8a-af0fb57ff75f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:53:17.995274",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ce74df5d-4abf-481a-8c12-c3b7fe87e193.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:41:04.598897",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ce901b68-7b77-49a4-8fbe-febf95193a11.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T09:39:11.495721",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "cf95c2a4-6b53-4c6a-a97b-93db529375ad.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:13:33.321948",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "cfe8e28a-4196-4f5b-a09d-ffc842f3ad19.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:32:56.234041",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d06bdcbf-e901-4930-ad13-0c821c199061.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:32:06.428898",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d0d263c3-4b3b-4d58-84a0-538470cc261e.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-21T04:48:14.083552",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "d156803c-2d58-459f-9ed3-e820e5c86199.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:21:39.095196",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d1cd59eb-83c5-4f2c-95ef-6de57ffa8b6e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T06:55:44.602241",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "d22dbe5d-3823-48a2-920a-0cc384b1806b.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T01:42:27.833753",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d257db3d-d8e2-4605-b270-ebe2831de7a6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-05-04T07:42:18.695073",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d30a3185-e59c-4b4c-b550-fdad5ca70308.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:30:37.877197",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d32f9e74-9bf8-4246-8411-27e38e46d576.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T11:30:21.727532",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d3899b48-44b3-44af-9da6-5c8b29fc973f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:11:46.109948",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d419408e-f35e-4b30-9a28-8d9ef0800fda.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T03:41:04.677068",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d5f57488-63b8-46eb-8b41-eda0c096b926.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:01:34.470221",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d6b49ee8-d8a8-40ef-ac77-25584f6da557.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T13:15:04.460808",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d88810fc-c3e3-406d-8c8d-6bd950b73a27.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:19:04.796091",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d917c992-d468-4f14-a75d-6911f6108c45.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T18:39:58.239530",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "d9df3c17-f863-4f92-b995-a1d9c17c375a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:23:05.502653",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "da9f898c-acef-4430-9b45-5247c52513dd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T14:52:23.596433",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dac40db6-7876-48d8-9b12-1d737ce34557.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-28T08:53:04.712095",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "db2c5649-23fd-41ad-8461-ecc931c1ca39.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:19:04.942545",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dc629d7d-17e1-482f-b870-983601dde969.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T16:07:05.328157",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dc9f3d9d-3eb9-4307-8fa8-f288459aadd0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T07:21:39.118128",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dd59d167-340a-4d19-ab74-85b7d7ca60cf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T02:57:04.633630",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dd818e20-b844-4b4c-9835-a6c79eff7346.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:06:15.170402",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dd8698a1-d497-44ba-b87e-2ae0a83cca37.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:47:45.075284",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dde70fa9-b657-470b-87f7-e487760dbb80.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T13:00:05.667271",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "de937a32-02d0-410d-9742-10f458205602.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:02:47.250208",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "de961289-b284-4389-94cf-5f6227f91303.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:10:39.543916",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "de98634e-7b74-4f1a-a9ee-42d3cb754e99.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T03:19:04.561614",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "dea0e012-f25d-4710-b11a-587133fca213.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:07:05.538761",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "df184385-a31c-48c7-9aca-92541e8b4182.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T08:56:47.041774",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "df535baa-04f4-4a46-ae3c-d2fb345155fd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:05:43.837300",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "df5a5bf5-0a72-4d28-9371-657a1c98becb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:01:24.779830",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "df8b6849-9a24-42a8-9b61-120280c9cb29.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:57:05.074562",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e02785a5-02d4-4468-a7b7-ce92dd670a2c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T17:23:05.187871",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e07630b5-9367-481b-aec5-2cc990e14a80.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T05:46:52.870489",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e0a88b1f-1ba1-4efc-b8f6-9899350969ea.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T00:48:29.246190",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e102e65b-3455-4bc0-a8d8-e57f39b6cab5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:41:05.214618",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e187a8af-f930-4e92-a403-0b021b623f93.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T08:37:04.140210",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "e1a590ff-49df-40e1-9174-541faa778cc7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T07:30:05.020402",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e21830d7-4262-48d5-9982-125363b75e06.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:17:32.243209",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e2f26e68-5cdc-4b3e-a593-ce38b5f6b533.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T12:37:04.975302",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "e301d030-052b-4fb7-a153-eaf7fda4752a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T07:23:05.224262",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e32eb641-10c3-43c4-bd74-9e2a7b682e21.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T13:47:19.408685",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e3ddbde9-b490-41d7-bf30-23d9158bd147.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-13T11:32:01.378937",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "e4450aac-c25c-4483-855a-b37b18bc5e0f.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T04:07:04.513271",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e49a9532-529b-4c95-8e6c-fa31ebbd9d01.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T06:57:04.308571",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e529f11d-742d-43c7-9307-e18fad87d6f5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:44:46.412219",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e6462c33-dba0-40ab-8cc8-07b1e3c92f48.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T19:10:10.415430",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e65ee93d-fa5a-4725-89f9-e4ea24ca4f58.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T08:45:02.557826",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e6867609-b976-43ec-9da5-ddb6c22975f5.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T10:06:15.137510",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e813a17d-252d-40b1-a6cf-419c1e450676.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T07:46:38.438032",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e85327ba-6047-4762-b146-0b183dd4b3a8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T15:48:11.958535",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "e8cbf73f-78a1-47f9-a207-4ef6f18fa61c.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-20T17:46:27.198612",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "e8dc548e-9b9a-4d1a-9803-9694f68c0912.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T22:53:05.094516",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "e9267b30-ace9-4fd9-aab3-3f98834c6360.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:13:30.239136",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "e9714fd7-9c8e-4a9e-a8fe-8d1ebdd3dff6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-13T11:32:01.374938",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "e98b1ce5-6f8d-4ce5-bf2c-fcbbf9f5f7ec.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:29:31.846253",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ea6dfe36-3db5-4f8b-b122-4b60e66d01a9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:21:33.861016",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "eb9269da-9d84-4bda-8b7e-12f7f00112bf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T08:57:04.580166",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ec7597cd-cdab-4b4c-a0d3-230cf44b86dd.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T19:44:19.707278",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ece9e4df-ff0a-4a14-bfea-ac30669fbbe6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T10:48:35.703547",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ed934add-e667-4696-b837-f1051b3cfda9.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:05:01.532799",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ed94f5c2-fa6f-412f-afde-280c43e72393.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T14:39:39.192472",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "ee6e929a-d4a4-4b02-a2ab-8a05c1dab6a2.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T20:29:44.691167",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "efaa7839-ee41-4ec8-a6c5-29493f491d39.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:17:21.856336",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "efe02280-8aa8-4f8e-b440-2af79048e897.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:33:05.102445",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f03ee906-55a9-4b9d-8d95-ed55205abecd.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T21:05:57.399030",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "f06d9817-9c9e-4b52-86a8-195f521d1148.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T08:19:30.189895",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f0b72845-a747-4984-91b9-482d4d8dbd26.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-25T09:25:07.153119",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f0bb1de1-9e4a-4365-856a-3958979713b0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:53:52.836889",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f0e8b2ac-dfe2-4313-b07d-9f676e8b47ad.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T22:03:05.314713",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f213fb07-1061-4cdb-9023-5eeeeede2e06.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:15:04.467666",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f2dcacbc-45c3-412e-8126-db79cdb41385.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:11:04.722771",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f35ce93e-6e82-402e-9704-a309ad96d8ae.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T20:37:46.599030",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f35eddb1-67ad-496c-87f8-ee8b4dd3426d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T16:53:05.003937",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "f38b63cb-c5e2-4fdf-b27f-c0bf612e0cfe.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-28T04:48:49.776917",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "f3d57517-d160-4bec-8dbb-dbcdff65aea7.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T18:56:25.071518",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "f50e7314-ebca-404e-b42c-8f1d64236974.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T08:07:07.540917",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "f7c45db8-73f9-4ca6-9047-fdcbf06e6ba1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T10:58:16.965326",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "f8e6d598-f3fa-4b27-ad24-b4ec0eaa2060.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-27T13:58:07.512649",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "f91afad0-5fc9-41b5-b667-30b9bdf56118.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T10:19:15.903774",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f948fca2-2288-471c-aa8b-e5b5e5da44cf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T12:57:04.876857",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f9519af2-e3e1-43ed-8758-cdad9d36355d.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T11:05:27.569297",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f95feb4a-178a-4fa2-8b77-c7a90af47674.jsonl",
+      "assigned_to": "01_career",
+      "confidence": 0.95,
+      "reason": "Career-related keywords (自動設計, JIS, 計算など)",
+      "updated": "2026-04-27T08:41:18.493842",
+      "detected_keywords": [
+        "01_career"
+      ]
+    },
+    {
+      "file_id": "f971cf0b-ce61-4998-941c-b94d3cf332de.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T04:45:46.705143",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f9a5ebc8-234d-45e5-9a15-07d7ae9035e8.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T18:43:49.727536",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "f9dafb74-a0c7-4243-99c4-3586eb2afebe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T05:00:36.413064",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fa1892b1-12ea-4ee7-868d-52c45f2e27fe.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T06:34:48.604388",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fa473b08-eaa8-4eeb-9979-5256d04fb8bf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T14:00:05.090930",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fb74b4bb-42d3-425f-a1f8-f9d1b0de7c32.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T11:00:55.825315",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fb904532-a153-481a-aad2-2bb415b6c657.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T00:14:48.860284",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fbb5aeef-a76a-4f95-a91e-d70bc8f222ba.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T15:05:47.688385",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fc0ecd8c-64e0-436f-9e10-fa29d26dcb6a.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T02:13:48.801859",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fc6f7d77-0089-4bd7-a5bf-6948ab352eda.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T15:04:46.880391",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fc988fe9-1cac-4f25-a9b7-97b3d7af15e6.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.5,
+      "reason": "Unknown content - defaulted to 02_business",
+      "updated": "2026-04-12T15:49:39.152783",
+      "detected_keywords": [
+        "unknown"
+      ]
+    },
+    {
+      "file_id": "fca6115c-31a0-4b69-8d52-76e14789db21.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T05:13:27.189009",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fcb8cef9-ea00-4ffd-a453-072354bac21e.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T12:02:13.623414",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fd7ad05a-71cf-42b1-a3b8-657c1ca2dba0.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:03:05.006813",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fdfac1af-eaf0-46f5-ab88-4b425785b4ff.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-28T13:33:05.047117",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "fe0b837a-3b3f-4d5a-b834-353e958cfccf.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-27T22:49:05.279202",
+      "detected_keywords": [
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ffce3c0c-1a7d-44da-be3e-003905cf53bb.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.65,
+      "reason": "Both keywords detected. Assigned by update date",
+      "updated": "2026-04-27T06:39:52.690295",
+      "detected_keywords": [
+        "01_career",
+        "02_business"
+      ]
+    },
+    {
+      "file_id": "ffcfbf25-d7f9-4a58-a4a0-6dcd2d81dda1.jsonl",
+      "assigned_to": "02_business",
+      "confidence": 0.95,
+      "reason": "Business-related keywords (BoltSense, 秘書室, 営業部など)",
+      "updated": "2026-04-28T09:35:08.988043",
+      "detected_keywords": [
+        "02_business"
+      ]
+    }
+  ]
+}

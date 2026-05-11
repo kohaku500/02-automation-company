@@ -1,0 +1,20 @@
+[
+  {
+    "file": "/home/makoto1234/makoto_projects/02_完全自動化_収益化会社/生成物・商品/output_assets/1-note.json",
+    "status": "PASS",
+    "violations": [],
+    "scanned_at": "2026-05-03T11:25:03.263162"
+  },
+  {
+    "file": "/home/makoto1234/makoto_projects/02_完全自動化_収益化会社/生成物・商品/output_assets/2-BOOTH.json",
+    "status": "PASS",
+    "violations": [],
+    "scanned_at": "2026-05-03T11:25:03.263546"
+  },
+  {
+    "file": "/home/makoto1234/makoto_projects/02_完全自動化_収益化会社/生成物・商品/output_assets/3-Kindle.json",
+    "status": "PASS",
+    "violations": [],
+    "scanned_at": "2026-05-03T11:25:03.263808"
+  }
+]

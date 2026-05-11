@@ -1,0 +1,51 @@
+{
+  "business_idea_id": 3,
+  "platform": "Kindle",
+  "title": "初心者向けAI活用ガイド：実務5分チュートリアル集",
+  "generated_at": "2026-05-03T09:24:11.446367",
+  "bonuses": [
+    {
+      "type": "lifehack",
+      "title": "初心者向けAI活用ガイド：実務5分チュートリアル集 - 実装チェックリスト",
+      "format": "markdown",
+      "content": {
+        "checklist_items": [
+          "ステップ1: 環境セットアップ（2分）",
+          "ステップ2: テンプレート導入（1分）",
+          "ステップ3: 初回テスト実行（1分）",
+          "ステップ4: カスタマイズ（1分）"
+        ],
+        "time_saving_claim": "5分で業務フローを自動化"
+      }
+    },
+    {
+      "type": "side_business_tool",
+      "title": "初心者向けAI活用ガイド：実務5分チュートリアル集 - 実装テンプレート",
+      "format": "excel/spreadsheet",
+      "content": {
+        "template_items": [
+          "顧客リスト管理シート",
+          "価格設定・利益計算ツール",
+          "納品管理チェックリスト",
+          "売上追跡ダッシュボード"
+        ],
+        "use_case": "そのままコピペで使用可能なテンプレート集"
+      }
+    },
+    {
+      "type": "educational_material",
+      "title": "初心者向けAI活用ガイド：実務5分チュートリアル集 - 図解マスターガイド",
+      "format": "pdf",
+      "content": {
+        "diagram_based": true,
+        "learning_time": "5分",
+        "structure": [
+          "概要図（全体像）",
+          "ステップ別フロー図",
+          "トラブルシューティング図",
+          "業界別カスタマイズ例"
+        ]
+      }
+    }
+  ]
+}

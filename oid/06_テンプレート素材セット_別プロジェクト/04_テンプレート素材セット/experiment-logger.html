@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>実験記録自動化アプリ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif;background:#f0f2f5;color:#222;display:flex;flex-direction:column}
+
+/* Header */
+.header{background:linear-gradient(135deg,#2E7D32 0%,#43A047 100%);color:#fff;padding:12px 16px 10px;display:flex;align-items:center;gap:10px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.header-icon{width:32px;height:32px;background:rgba(255,255,255,.22);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.header-texts{flex:1}
+.header-title{font-size:15px;font-weight:700;letter-spacing:.2px}
+.header-sub{font-size:10px;color:rgba(255,255,255,.65);margin-top:1px}
+
+/* Main */
+.main{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:10px 12px;gap:8px}
+
+/* Step indicator */
+.step-indicator{display:flex;justify-content:space-around;align-items:center;background:#fff;border-radius:12px;padding:12px;flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.08)}
+.step{display:flex;flex-direction:column;align-items:center;gap:4px}
+.step-number{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:#E8F5E9;color:#2E7D32}
+.step.active .step-number{background:#2E7D32;color:#fff;font-size:13px}
+.step-label{font-size:9px;color:#888;white-space:nowrap}
+.step.active .step-label{color:#2E7D32;font-weight:600}
+
+/* Upload zone */
+.upload-zone{background:#fff;border:2px dashed #2E7D32;border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;flex-shrink:0}
+.upload-zone:hover{background:#F1F8F6;border-color:#1B5E20}
+.upload-zone.dragover{background:#E8F5E9;border-color:#1B5E20;box-shadow:0 4px 12px rgba(46,125,50,.15)}
+.upload-icon{font-size:36px;margin-bottom:8px}
+.upload-text{font-size:13px;color:#333;font-weight:600;margin-bottom:4px}
+.upload-hint{font-size:11px;color:#999}
+#file-input{display:none}
+
+/* Test type chips */
+.test-type-section{flex-shrink:0}
+.section-label{font-size:11px;color:#888;font-weight:600;margin-bottom:6px}
+.test-type-chips{display:flex;gap:8px;flex-wrap:wrap}
+.test-chip{padding:8px 16px;border-radius:10px;border:1px solid #ccc;background:#fff;font-size:12px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.test-chip.type-1{border-color:#FF8A80;color:#FF6B6B}
+.test-chip.type-2{border-color:#FFB74D;color:#FFA726}
+.test-chip.type-3{border-color:#66BB6A;color:#43A047}
+.test-chip.active{font-weight:700;background:#E8F5E9;border-color:#2E7D32;color:#1B5E20}
+
+/* Form section (results) */
+.form-section{background:#fff;border-radius:14px;padding:14px;flex:1;overflow-y:auto;display:none}
+.form-section.show{display:block}
+.form-group{margin-bottom:14px}
+.form-label{font-size:11px;color:#888;font-weight:600;margin-bottom:4px;display:block}
+.form-input{width:100%;padding:10px 12px;border:1px solid #E0E0E0;border-radius:8px;font-size:13px;font-family:inherit;background:#fff}
+.form-input:focus{outline:none;border-color:#2E7D32;background:#f9fff8}
+.form-textarea{resize:vertical;min-height:80px}
+
+/* AI Analysis panel */
+.analysis-panel{background:#1C1E2E;border-radius:14px;padding:12px 14px;flex-shrink:0;display:none}
+.analysis-panel.show{display:block}
+.analysis-title{font-size:12px;font-weight:600;color:#C8D8D8;margin-bottom:8px}
+.analysis-text{font-size:13px;color:#E0E0E0;line-height:1.6}
+
+/* Loading indicator */
+.loading{display:none;text-align:center;padding:16px;flex-shrink:0}
+.loading.show{display:block}
+.spinner{width:28px;height:28px;border:3px solid #E0E0E0;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 8px;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:12px;color:#888}
+
+/* Status toast */
+.toast{position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 20px;border-radius:8px;font-size:12px;z-index:200;transition:bottom .3s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.toast.show{bottom:20px}
+
+/* Bottom bar */
+.bottom-bar{flex-shrink:0;background:#EAEDF0;padding:8px 12px;display:flex;gap:8px;border-top:1px solid #D8DCE0}
+.btn{flex:1;padding:12px 8px;border:none;border-radius:12px;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.2px;transition:all .2s}
+.btn-primary{background:#2E7D32;color:#fff}
+.btn-primary:active{background:#1B5E20}
+.btn-secondary{background:#2A2C3C;color:#fff}
+.btn-secondary:active{background:#1a1c2a}
+.btn-history{background:#E8F0F8;color:#1860A8;border:1px solid #B0C4DE}
+.btn-history:active{background:#d0e0f0}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:flex-end;display:none}
+.modal-overlay.show{display:flex}
+.modal-sheet{background:#fff;width:100%;max-height:75vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;animation:slideUp .22s ease-out}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid #E8ECF0;flex-shrink:0}
+.modal-title{font-size:14px;font-weight:700;color:#222}
+.modal-close{background:none;border:none;font-size:22px;color:#888;cursor:pointer;padding:2px 8px;line-height:1}
+.history-list{flex:1;overflow-y:auto;padding:8px 12px}
+.history-empty{text-align:center;color:#bbb;font-size:13px;padding:32px 0;line-height:2}
+.history-item{background:#F8F9FA;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.history-item-body{flex:1;min-width:0}
+.history-product{font-size:13px;font-weight:700;color:#111}
+.history-type{font-size:11px;color:#888;margin-top:2px}
+.history-ts{font-size:10px;color:#bbb;margin-top:2px}
+.history-del{background:none;border:1px solid #E0E0E0;border-radius:8px;color:#bbb;font-size:11px;padding:5px 10px;cursor:pointer;flex-shrink:0}
+
+/* Image preview */
+.preview-img{width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-icon">📝</div>
+  <div class="header-texts">
+    <div class="header-title">実験記録自動化 <span style="font-size:11px;font-weight:400;opacity:.7">v1.0</span></div>
+    <div class="header-sub">手書き実験記録 → AI自動定形化</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Step indicator -->
+  <div class="step-indicator">
+    <div class="step active" id="step-1">
+      <div class="step-number">1</div>
+      <div class="step-label">アップロード</div>
+    </div>
+    <div class="step" id="step-2">
+      <div class="step-number">2</div>
+      <div class="step-label">AI解析</div>
+    </div>
+    <div class="step" id="step-3">
+      <div class="step-number">3</div>
+      <div class="step-label">確認・保存</div>
+    </div>
+  </div>
+
+  <!-- Upload zone -->
+  <div class="upload-zone" id="upload-zone">
+    <div class="upload-icon">📸</div>
+    <div class="upload-text">実験記録を写真でアップロード</div>
+    <div class="upload-hint">ドラッグ&ドロップまたはクリック</div>
+    <input type="file" id="file-input" accept="image/*">
+  </div>
+
+  <!-- Test type selector -->
+  <div class="test-type-section" id="test-type-section" style="display:none">
+    <div class="section-label">試験種別</div>
+    <div class="test-type-chips">
+      <div class="test-chip type-1" data-type="性能試験">性能試験</div>
+      <div class="test-chip type-2" data-type="耐久試験">耐久試験</div>
+      <div class="test-chip type-3" data-type="動作試験">動作試験</div>
+    </div>
+  </div>
+
+  <!-- Image preview -->
+  <img id="preview-img" class="preview-img" style="display:none">
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">AI解析中...</div>
+  </div>
+
+  <!-- Form section -->
+  <div class="form-section" id="form-section">
+    <div class="form-group">
+      <label class="form-label">製品名</label>
+      <input type="text" class="form-input" id="productName" placeholder="例: スマートロック SL-200">
+    </div>
+    <div class="form-group">
+      <label class="form-label">型番</label>
+      <input type="text" class="form-input" id="modelNumber" placeholder="例: SL-200-JP">
+    </div>
+    <div class="form-group">
+      <label class="form-label">試験日時</label>
+      <input type="text" class="form-input" id="testDateTime" placeholder="例: 2026年5月5日 午前10時">
+    </div>
+    <div class="form-group">
+      <label class="form-label">試験条件</label>
+      <textarea class="form-input form-textarea" id="conditions" placeholder="温度: 25℃&#10;湿度: 60%RH"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">測定値</label>
+      <textarea class="form-input form-textarea" id="measurementsText" placeholder="電圧: 5.01V&#10;電流: 0.5A" style="min-height:60px"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">観察事項</label>
+      <textarea class="form-input form-textarea" id="observations" placeholder="動作音なし、ランプ正常点灯" style="min-height:60px"></textarea>
+    </div>
+  </div>
+
+  <!-- AI Analysis panel -->
+  <div class="analysis-panel" id="analysis-panel">
+    <div class="analysis-title">🤖 AI考察</div>
+    <div class="analysis-text" id="analysis-text"></div>
+  </div>
+
+</div>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+  <button class="btn btn-history" id="btn-history" onclick="openHistory()">履歴</button>
+  <button class="btn btn-secondary" id="btn-retry" onclick="retryAnalysis()" style="display:none">再解析</button>
+  <button class="btn btn-primary" id="btn-save" onclick="saveToSheets()" style="display:none">記録を保存</button>
+</div>
+
+<!-- Status toast -->
+<div class="toast" id="toast"></div>
+
+<!-- History modal -->
+<div class="modal-overlay" id="history-modal">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <div class="modal-title">記録履歴</div>
+      <button class="modal-close" onclick="closeHistory()">×</button>
+    </div>
+    <div class="history-list" id="history-list">
+      <div class="history-empty">記録がまだありません</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== グローバル定義 ==========
+const GAS_ENDPOINT = "https://script.google.com/macros/d/YOUR_DEPLOYMENT_ID/userweb?v=1"; // 後ほどGASのデプロイIDで更新
+let GEMINI_API_KEY = "";
+let selectedTestType = "";
+let currentAnalysis = null;
+let currentImage = null;
+
+// ========== 初期化 ==========
+async function init() {
+  // GASからAPIキーを取得
+  try {
+    const response = await fetch(GAS_ENDPOINT);
+    const data = await response.json();
+    GEMINI_API_KEY = data.apiKey;
+    console.log("API キー取得成功");
+  } catch (e) {
+    console.log("API キー取得失敗（GAS エンドポイント未設定の可能性）");
+  }
+
+  // ドラッグ&ドロップ設定
+  const uploadZone = document.getElementById("upload-zone");
+  uploadZone.addEventListener("click", () => document.getElementById("file-input").click());
+  uploadZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadZone.classList.add("dragover");
+  });
+  uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("dragover"));
+  uploadZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    uploadZone.classList.remove("dragover");
+    const files = e.dataTransfer.files;
+    if (files.length) handleFileSelect(files[0]);
+  });
+
+  document.getElementById("file-input").addEventListener("change", (e) => {
+    if (e.target.files.length) handleFileSelect(e.target.files[0]);
+  });
+
+  // 試験種別チップ
+  document.querySelectorAll(".test-chip").forEach(chip => {
+    chip.addEventListener("click", (e) => {
+      document.querySelectorAll(".test-chip").forEach(c => c.classList.remove("active"));
+      e.target.classList.add("active");
+      selectedTestType = e.target.dataset.type;
+    });
+  });
+
+  // localStorage 履歴をロード
+  loadHistory();
+}
+
+// ========== ファイル選択処理 ==========
+async function handleFileSelect(file) {
+  if (!file.type.startsWith("image/")) {
+    showToast("画像ファイルを選択してください");
+    return;
+  }
+
+  // 画像をプレビュー
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    currentImage = e.target.result;
+    document.getElementById("preview-img").src = currentImage;
+    document.getElementById("preview-img").style.display = "block";
+    document.getElementById("test-type-section").style.display = "block";
+
+    // 小さすぎる場合は自動で解析を開始（チップ選択不要）
+    if (selectedTestType) {
+      analyzeImage();
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+// ========== 画像解析（Gemini API） ==========
+async function analyzeImage() {
+  if (!currentImage) {
+    showToast("画像を選択してください");
+    return;
+  }
+  if (!selectedTestType) {
+    showToast("試験種別を選択してください");
+    return;
+  }
+  if (!GEMINI_API_KEY) {
+    showToast("API キーが未設定です");
+    return;
+  }
+
+  showLoading(true);
+  updateSteps(2);
+
+  try {
+    // base64 をリサイズ
+    const resizedBase64 = await resizeImage(currentImage, 1200);
+    const mimeType = getMimeTypeFromDataUrl(currentImage);
+
+    // プロンプト構築
+    const prompt = `あなたは品質管理・製品試験の専門家です。この手書き実験記録の写真を解析し、
+以下のJSONフォーマットで情報を抽出してください。
+
+試験種別ヒント: ${selectedTestType}
+
+出力フォーマット（JSON のみ返すこと）:
+{
+  "testDateTime": "試験日時（文字列、例: 2026年5月5日 午前10時）",
+  "productName": "製品名",
+  "modelNumber": "型番・品番",
+  "conditions": "試験条件（改行区切り、例: 温度: 25℃\\n湿度: 60%RH）",
+  "measurements": [
+    {"item": "測定項目名", "value": "数値", "unit": "単位"}
+  ],
+  "observations": "観察事項・現象・気づいたこと",
+  "aiAnalysis": "この試験結果の考察・分析（200～300字程度）。${selectedTestType}の視点から、今回の試験データから読み取れることや、次の改善提案、懸念点などを記載。"
+}
+
+読み取れない文字がある場合は、該当フィールドを空文字 "" にしてください。`;
+
+    // Gemini API へリクエスト
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: prompt },
+              {
+                inlineData: {
+                  mimeType: mimeType,
+                  data: resizedBase64.split(",")[1] // base64 部分のみ
+                }
+              }
+            ]
+          }]
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Gemini API エラー: ${response.status}`);
+    }
+
+    const result = await response.json();
+    const text = result.candidates[0].content.parts[0].text;
+
+    // JSON を抽出
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error("API レスポンスが不正なフォーマットです");
+    }
+
+    currentAnalysis = JSON.parse(jsonMatch[0]);
+
+    // フォームに自動入力
+    document.getElementById("productName").value = currentAnalysis.productName || "";
+    document.getElementById("modelNumber").value = currentAnalysis.modelNumber || "";
+    document.getElementById("testDateTime").value = currentAnalysis.testDateTime || "";
+    document.getElementById("conditions").value = currentAnalysis.conditions || "";
+    document.getElementById("measurementsText").value =
+      (currentAnalysis.measurements || []).map(m => `${m.item}: ${m.value}${m.unit}`).join("\n");
+    document.getElementById("observations").value = currentAnalysis.observations || "";
+    document.getElementById("analysis-text").textContent = currentAnalysis.aiAnalysis || "";
+
+    // UI更新
+    showLoading(false);
+    document.getElementById("form-section").classList.add("show");
+    document.getElementById("analysis-panel").classList.add("show");
+    document.getElementById("btn-retry").style.display = "flex";
+    document.getElementById("btn-save").style.display = "flex";
+    updateSteps(3);
+
+    showToast("AI解析完了");
+  } catch (error) {
+    console.error("Gemini API エラー:", error);
+    showLoading(false);
+    showToast("解析に失敗しました。再度試してください。");
+    document.getElementById("btn-retry").style.display = "flex";
+  }
+}
+
+// ========== 再解析 ==========
+function retryAnalysis() {
+  document.getElementById("form-section").classList.remove("show");
+  document.getElementById("analysis-panel").classList.remove("show");
+  document.getElementById("btn-retry").style.display = "none";
+  document.getElementById("btn-save").style.display = "none";
+  updateSteps(1);
+  analyzeImage();
+}
+
+// ========== Sheets に保存 ==========
+async function saveToSheets() {
+  const payload = {
+    id: `exp-${Date.now()}`,
+    testType: selectedTestType,
+    testDateTime: document.getElementById("testDateTime").value,
+    productName: document.getElementById("productName").value,
+    modelNumber: document.getElementById("modelNumber").value,
+    conditions: document.getElementById("conditions").value,
+    measurementsJson: JSON.stringify(currentAnalysis?.measurements || []),
+    measurementsText: document.getElementById("measurementsText").value,
+    observations: document.getElementById("observations").value,
+    aiAnalysis: document.getElementById("analysis-text").textContent,
+    inputMethod: "画像OCR",
+    notes: ""
+  };
+
+  showLoading(true);
+  try {
+    const response = await fetch(GAS_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" }, // GAS CORS回避
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      // 履歴に保存
+      saveToHistory(payload);
+
+      // UI リセット
+      resetForm();
+      showToast("記録を保存しました！");
+    } else {
+      throw new Error(result.error);
+    }
+  } catch (error) {
+    console.error("Sheets 保存エラー:", error);
+    showToast("保存に失敗しました");
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ========== ローカルストレージ履歴管理 ==========
+function saveToHistory(record) {
+  let history = JSON.parse(localStorage.getItem("experiment_history") || "[]");
+  history.unshift(record);
+  if (history.length > 50) history.pop();
+  localStorage.setItem("experiment_history", JSON.stringify(history));
+  loadHistory();
+}
+
+function loadHistory() {
+  const history = JSON.parse(localStorage.getItem("experiment_history") || "[]");
+  const historyList = document.getElementById("history-list");
+
+  if (history.length === 0) {
+    historyList.innerHTML = '<div class="history-empty">記録がまだありません</div>';
+    return;
+  }
+
+  historyList.innerHTML = history.map((record, idx) => `
+    <div class="history-item">
+      <div class="history-item-body">
+        <div class="history-product">${record.productName}</div>
+        <div class="history-type">${record.testType}</div>
+        <div class="history-ts">${new Date(parseInt(record.id.split('-')[1])).toLocaleString('ja-JP')}</div>
+      </div>
+      <button class="history-del" onclick="deleteHistory(${idx})">削除</button>
+    </div>
+  `).join("");
+}
+
+function deleteHistory(idx) {
+  let history = JSON.parse(localStorage.getItem("experiment_history") || "[]");
+  history.splice(idx, 1);
+  localStorage.setItem("experiment_history", JSON.stringify(history));
+  loadHistory();
+}
+
+// ========== モーダル制御 ==========
+function openHistory() {
+  document.getElementById("history-modal").classList.add("show");
+}
+
+function closeHistory() {
+  document.getElementById("history-modal").classList.remove("show");
+}
+
+// ========== UI ヘルパー ==========
+function showLoading(show) {
+  document.getElementById("loading").classList.toggle("show", show);
+}
+
+function updateSteps(stepNum) {
+  for (let i = 1; i <= 3; i++) {
+    const step = document.getElementById(`step-${i}`);
+    step.classList.toggle("active", i <= stepNum);
+  }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+function resetForm() {
+  document.getElementById("productName").value = "";
+  document.getElementById("modelNumber").value = "";
+  document.getElementById("testDateTime").value = "";
+  document.getElementById("conditions").value = "";
+  document.getElementById("measurementsText").value = "";
+  document.getElementById("observations").value = "";
+  document.getElementById("analysis-text").textContent = "";
+  document.getElementById("preview-img").style.display = "none";
+  document.getElementById("form-section").classList.remove("show");
+  document.getElementById("analysis-panel").classList.remove("show");
+  document.getElementById("btn-retry").style.display = "none";
+  document.getElementById("btn-save").style.display = "none";
+  document.getElementById("test-type-section").style.display = "none";
+  document.querySelectorAll(".test-chip").forEach(c => c.classList.remove("active"));
+  selectedTestType = "";
+  currentAnalysis = null;
+  currentImage = null;
+  updateSteps(1);
+}
+
+// ========== ユーティリティ ==========
+function getMimeTypeFromDataUrl(dataUrl) {
+  const match = dataUrl.match(/^data:([^;]+)/);
+  return match ? match[1] : "image/jpeg";
+}
+
+async function resizeImage(dataUrl, maxWidth) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      let width = img.width;
+      let height = img.height;
+
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      resolve(canvas.toDataURL(getMimeTypeFromDataUrl(dataUrl)));
+    };
+    img.src = dataUrl;
+  });
+}
+
+// 初期化実行
+init();
+</script>
+</body>
+</html>

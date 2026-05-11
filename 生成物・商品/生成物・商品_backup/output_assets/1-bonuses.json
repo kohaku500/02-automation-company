@@ -1,0 +1,51 @@
+{
+  "business_idea_id": 1,
+  "platform": "note",
+  "title": "AI時代の個人スキル販売術",
+  "generated_at": "2026-05-03T09:24:11.445698",
+  "bonuses": [
+    {
+      "type": "lifehack",
+      "title": "AI時代の個人スキル販売術 - 実装チェックリスト",
+      "format": "markdown",
+      "content": {
+        "checklist_items": [
+          "ステップ1: 環境セットアップ（2分）",
+          "ステップ2: テンプレート導入（1分）",
+          "ステップ3: 初回テスト実行（1分）",
+          "ステップ4: カスタマイズ（1分）"
+        ],
+        "time_saving_claim": "5分で業務フローを自動化"
+      }
+    },
+    {
+      "type": "side_business_tool",
+      "title": "AI時代の個人スキル販売術 - 実装テンプレート",
+      "format": "excel/spreadsheet",
+      "content": {
+        "template_items": [
+          "顧客リスト管理シート",
+          "価格設定・利益計算ツール",
+          "納品管理チェックリスト",
+          "売上追跡ダッシュボード"
+        ],
+        "use_case": "そのままコピペで使用可能なテンプレート集"
+      }
+    },
+    {
+      "type": "educational_material",
+      "title": "AI時代の個人スキル販売術 - 図解マスターガイド",
+      "format": "pdf",
+      "content": {
+        "diagram_based": true,
+        "learning_time": "5分",
+        "structure": [
+          "概要図（全体像）",
+          "ステップ別フロー図",
+          "トラブルシューティング図",
+          "業界別カスタマイズ例"
+        ]
+      }
+    }
+  ]
+}

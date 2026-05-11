@@ -1,0 +1,63 @@
+{
+  "verification_date": "2026-05-09",
+  "01_career": {
+    "directory": "/home/makoto1234/makoto_projects/01_会社🔒(フォルダは参照禁止)/.claude/conversations",
+    "file_count": 37,
+    "total_size_mb": 23.37,
+    "sample_files": [
+      {
+        "name": "0184b2d1-51e8-43fe-bbf3-04fb67aae648.jsonl",
+        "size_mb": 3.18
+      },
+      {
+        "name": "022c3ec2-04a4-4b49-90c4-86b2f29bee89.jsonl",
+        "size_mb": 0.9
+      },
+      {
+        "name": "1d22182c-7779-4e49-850b-576bdc3c74a5.jsonl",
+        "size_mb": 0.01
+      },
+      {
+        "name": "28254782-4848-4f7f-a153-ef0386efc018.jsonl",
+        "size_mb": 0.46
+      },
+      {
+        "name": "36d8c70b-82c5-41b6-92e2-e0e1ffad12fe.jsonl",
+        "size_mb": 0.98
+      }
+    ]
+  },
+  "02_business": {
+    "directory": "/home/makoto1234/makoto_projects/02_完全自動化_収益化会社/.claude/conversations",
+    "file_count": 515,
+    "total_size_mb": 234.47,
+    "sample_files": [
+      {
+        "name": "0063ebb8-5021-4516-9499-41376ac5f3e6.jsonl",
+        "size_mb": 0.01
+      },
+      {
+        "name": "006492f5-e120-4094-9e93-8c5b031490e5.jsonl",
+        "size_mb": 0.01
+      },
+      {
+        "name": "009a5506-8f0c-4df0-a074-4e1766cbd9b8.jsonl",
+        "size_mb": 0.5
+      },
+      {
+        "name": "00d7478b-dd36-42dd-a629-517963cd10d8.jsonl",
+        "size_mb": 0.4
+      },
+      {
+        "name": "00f752e8-c8e9-483b-b0e5-8e22da32bb8b.jsonl",
+        "size_mb": 0.22
+      }
+    ]
+  },
+  "summary": {
+    "total_files": 552,
+    "total_size_mb": 257.84,
+    "expected_total": 552,
+    "verification_status": "✓ PASS"
+  }
+}
