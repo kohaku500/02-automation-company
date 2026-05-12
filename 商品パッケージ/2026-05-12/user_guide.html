@@ -1,735 +1,325 @@
+はい、承知いたしました。
+初心者向けにWebアプリの基本的な使い方を説明する、自己完結型HTMLドキュメントを生成します。
+架空の「シンプルメモアプリ」を例に説明します。
+
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DX推進スタートアップガイド - ユーザーガイド</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>シンプルメモアプリ 使い方ガイド - 初心者向け</title>
     <style>
-        * {
+        /* CSSリセットと基本スタイル */
+        body {
+            font-family: 'Segoe UI', 'BIZ UDPGothic', 'メイリオ', Meiryo, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'メイリオ', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-color: #f9f9f9;
             color: #333;
-            line-height: 1.7;
+            -webkit-text-size-adjust: 100%; /* iOSでのテキストサイズ調整を無効化 */
         }
 
-        .navbar {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.3em;
-            letter-spacing: 1px;
-        }
-
-        .container-main {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            margin: 30px auto;
-            max-width: 1000px;
-        }
-
-        h1 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 2.5em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.1em;
-        }
-
-        h2 {
-            color: #764ba2;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-            margin-top: 40px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-
-        h3 {
-            color: #667eea;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-
-        h3::before {
-            content: "▶";
-            margin-right: 10px;
-            color: #764ba2;
-        }
-
-        .section-card {
-            background-color: #f8f9ff;
-            border-left: 4px solid #667eea;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-        }
-
-        .step-box {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
+        /* コンテナ */
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
             padding: 20px;
-            background-color: #f0f4ff;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
-        .step-number {
-            min-width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 25px;
+        /* ヘッダー */
+        header {
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .product-card h4 {
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .product-card .price {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        .product-card .format {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        .app-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
             margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.3);
         }
 
-        .app-section h3 {
-            color: white;
+        header h1 {
+            color: #007bff;
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
 
-        .app-section h3::before {
-            color: white;
+        header p {
+            font-size: 1.1em;
+            color: #555;
         }
 
-        .feature-list {
-            list-style: none;
-            margin-top: 15px;
+        /* セクション */
+        section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
         }
 
-        .feature-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .feature-list li:last-child {
+        section:last-of-type {
             border-bottom: none;
         }
 
-        .feature-list li::before {
-            content: "✓";
-            color: #fff;
-            font-weight: bold;
-            min-width: 20px;
-            margin-right: 10px;
-        }
-
-        .faq-item {
-            background-color: #f8f9ff;
-            border-radius: 8px;
+        h2 {
+            color: #007bff;
+            font-size: 1.8em;
+            margin-top: 0;
             margin-bottom: 15px;
-            overflow: hidden;
-            border-left: 4px solid #667eea;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
         }
 
-        .faq-question {
-            padding: 15px 20px;
-            background-color: #f0f4ff;
-            cursor: pointer;
-            font-weight: 600;
-            color: #667eea;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
+        h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
-        .faq-answer {
-            padding: 15px 20px;
-            display: none;
-            background-color: white;
-            color: #555;
-            border-top: 1px solid #e0e0e0;
+        p, ul, ol, dl {
+            margin-bottom: 15px;
         }
 
-        .faq-answer.show {
-            display: block;
+        ul, ol {
+            padding-left: 25px;
         }
 
-        .faq-toggle {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: 24px;
-            top: 60px;
-            width: 2px;
-            height: 60px;
-            background-color: #667eea;
-        }
-
-        .timeline-item:last-child::before {
-            display: none;
-        }
-
-        .timeline-marker {
-            min-width: 50px;
-            height: 50px;
-            background-color: #667eea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .timeline-content h4 {
-            color: #667eea;
+        li {
             margin-bottom: 8px;
-            font-weight: 600;
         }
 
-        .alert-custom {
+        /* スクリーンショット説明 */
+        .screenshot-description {
+            background-color: #e9f5ff;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        .screenshot-description strong {
+            color: #0056b3;
+        }
+
+        /* FAQ */
+        dl dt {
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 15px;
+        }
+
+        dl dd {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* トラブルシューティング */
+        .troubleshooting-item {
             background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
         }
-
-        .alert-custom strong {
+        .troubleshooting-item h4 {
             color: #856404;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .troubleshooting-item p {
+            margin-bottom: 5px;
         }
 
-        .success-box {
-            background-color: #d4edda;
-            border-left: 4px solid #28a745;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-top: 20px;
-        }
-
-        .success-box p {
-            color: #155724;
-            margin: 0;
-        }
-
+        /* フッター */
         footer {
-            background-color: #333;
-            color: white;
             text-align: center;
-            padding: 25px;
-            margin-top: 50px;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
         }
 
+        /* スマホ対応 (メディアクエリ) */
         @media (max-width: 768px) {
-            .container-main {
-                padding: 20px;
+            .container {
+                margin: 10px;
+                padding: 15px;
             }
-
-            h1 {
+            header h1 {
                 font-size: 1.8em;
             }
-
-            .step-box {
-                flex-direction: column;
-                gap: 15px;
+            header p {
+                font-size: 1em;
             }
-
-            .product-grid {
-                grid-template-columns: 1fr;
+            h2 {
+                font-size: 1.5em;
+                padding-left: 8px;
+            }
+            h3 {
+                font-size: 1.1em;
+            }
+            body {
+                font-size: 0.95em;
+            }
+            ul, ol {
+                padding-left: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand">📚 DX推進スタートアップガイド</span>
-        </div>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>シンプルメモアプリ 使い方ガイド</h1>
+            <p>このガイドでは、シンプルなメモアプリの基本的な使い方を、初心者の方にも分かりやすく丁寧に説明します。アプリを初めて使う方も、このガイドを読めばすぐに使いこなせるようになります！</p>
+        </header>
 
-    <!-- Main Content -->
-    <div class="container-main">
-        <h1>🚀 ユーザー実装ガイド</h1>
-        <p class="subtitle">このガイドでは、購入いただいた3つの商品形式とアプリの活用方法を、ステップバイステップで解説します。</p>
+        <main>
+            <section id="overview">
+                <h2>1. 画面構成の説明</h2>
+                <p>アプリを開くと、主に以下の要素が表示されます。それぞれの役割を理解しましょう。</p>
 
-        <!-- 📦 Product Overview -->
-        <h2>📦 3つの商品形式について</h2>
-        <p>本商品は、3つの異なるプラットフォーム向けに最適化されたコンテンツと、AIライティング収益シミュレーターアプリから構成されています。</p>
-
-        <div class="product-grid">
-            <div class="product-card">
-                <h4>📝 note版</h4>
-                <p class="format">オンラインマガジン向け</p>
-                <div class="price">¥1,500</div>
-                <small>約5,000文字 / わかりやすい解説重視</small>
-            </div>
-
-            <div class="product-card">
-                <h4>🛍️ BOOTH版</h4>
-                <p class="format">デジタル販売プラットフォーム向け</p>
-                <div class="price">¥2,000</div>
-                <small>約7,000文字 / 実践的なテンプレート付き</small>
-            </div>
-
-            <div class="product-card">
-                <h4>📖 Kindle版</h4>
-                <p class="format">電子書籍プラットフォーム向け</p>
-                <div class="price">¥980</div>
-                <small>約10,000文字 / 体系的な学習に最適</small>
-            </div>
-        </div>
-
-        <!-- 🎯 Quick Start -->
-        <h2>🎯 クイックスタート（5分で完了）</h2>
-
-        <div class="step-box">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h5 style="margin-bottom: 8px; color: #667eea; font-weight: 600;">購入内容を確認</h5>
-                <p>メール添付またはクラウド上の以下のファイルを確認してください：</p>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li><code>note_package.md</code> - テキストエディタで開く</li>
-                    <li><code>booth_package.md</code> - テキストエディタで開く</li>
-                    <li><code>kindle_manuscript.md</code> - テキストエディタで開く</li>
-                    <li><code>app.html</code> - ブラウザで開く</li>
-                    <li><code>presentation.html</code> - ブラウザで開く</li>
+                <h3>1.1. ヘッダーエリア</h3>
+                <ul>
+                    <li><strong>アプリ名:</strong> 画面の左上または中央に表示され、「シンプルメモアプリ」と記載されています。</li>
+                    <li><strong>「新規メモ」ボタン:</strong> 新しいメモを作成する際にクリックします。通常、ヘッダーの右側に配置されています。</li>
                 </ul>
-            </div>
-        </div>
 
-        <div class="step-box">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h5 style="margin-bottom: 8px; color: #667eea; font-weight: 600;">プレゼン資料で全体像を理解</h5>
-                <p><strong>presentation.html</strong> をブラウザで開き、DX推進の全体フローを10〜15分で把握してください。</p>
-                <p style="margin-top: 10px; font-size: 0.95em; color: #666;">✅ デザイン・利点・導入ステップが視覚的にわかります</p>
-            </div>
-        </div>
-
-        <div class="step-box">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h5 style="margin-bottom: 8px; color: #667eea; font-weight: 600;">シミュレーターで目標を設定</h5>
-                <p><strong>app.html</strong> を開き、あなたの収益目標と現状を入力してシミュレーションを実行してください。</p>
-                <p style="margin-top: 10px; font-size: 0.95em; color: #666;">✅ AIライティングで月5万円稼ぐための具体的な計画が立てられます</p>
-            </div>
-        </div>
-
-        <!-- 📄 Content Guide -->
-        <h2>📄 各コンテンツの活用方法</h2>
-
-        <div class="section-card">
-            <h3>note版の活用方法</h3>
-            <p><strong>対象者：</strong> 気軽にDXについて学びたい初心者</p>
-            <p style="margin-top: 15px;"><strong>用途：</strong></p>
-            <ul style="margin-top: 10px;">
-                <li>✓ DXの基本概念を短時間で理解したい</li>
-                <li>✓ オンラインマガジンで他の記事とセットで読む</li>
-                <li>✓ SNSでシェアして教える</li>
-            </ul>
-            <div class="alert-custom" style="margin-top: 15px;">
-                <strong>💡 活用のコツ：</strong> 冒頭の「DXとは何か」セクションから読み始め、実例を確認しながら進めてください。
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h3>BOOTH版の活用方法</h3>
-            <p><strong>対象者：</strong> 実践的な方法・テンプレートが欲しい経営者・起業家</p>
-            <p style="margin-top: 15px;"><strong>用途：</strong></p>
-            <ul style="margin-top: 10px;">
-                <li>✓ 理論と実装方法をセットで学ぶ</li>
-                <li>✓ 付属のワークシート・テンプレートをダウンロード</li>
-                <li>✓ FAQ・トラブルシューティングで課題を解決</li>
-            </ul>
-            <div class="alert-custom" style="margin-top: 15px;">
-                <strong>💡 活用のコツ：</strong> 「ステップバイステップガイド」セクションから実装を開始し、各ステップでテンプレートを活用してください。
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h3>Kindle版の活用方法</h3>
-            <p><strong>対象者：</strong> 体系的に学習したい専門家・組織管理者</p>
-            <p style="margin-top: 15px;"><strong>用途：</strong></p>
-            <ul style="margin-top: 10px;">
-                <li>✓ 章立てに沿って体系的に学ぶ</li>
-                <li>✓ 巻末の付録（チェックリスト）で実装を管理</li>
-                <li>✓ Kindle端末で外出先でも学習できる</li>
-            </ul>
-            <div class="alert-custom" style="margin-top: 15px;">
-                <strong>💡 活用のコツ：</strong> 第1章から第5章を順に読み、各章の「実装チェックリスト」を活用してください。
-            </div>
-        </div>
-
-        <!-- 🎮 App Guide -->
-        <h2>🎮 AIライティング収益シミュレーターの使い方</h2>
-
-        <div class="app-section">
-            <h3>アプリの概要</h3>
-            <p style="margin-top: 15px;">このシミュレーターは、AIライティングで月5万円稼ぐための目標設定と現状分析を支援するツールです。</p>
-
-            <h4 style="color: white; margin-top: 25px; font-weight: 600;">主な機能</h4>
-            <ul class="feature-list">
-                <li><strong>目標月間純収益の設定：</strong> あなたが目指す月間の手取り金額を入力</li>
-                <li><strong>現状の分析：</strong> 現在のライティング生産量・単価・取扱プラットフォーム数を入力</li>
-                <li><strong>グラフで可視化：</strong> 目標達成に向けた成長ロードマップが自動生成される</li>
-                <li><strong>改善提案：</strong> 採算性を高めるための具体的な施策が表示される</li>
-            </ul>
-        </div>
-
-        <div class="section-card">
-            <h3>ステップバイステップ操作ガイド</h3>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">1</div>
-                    <div class="timeline-content">
-                        <h4>目標月間純収益を入力</h4>
-                        <p>あなたが目指す月間の手取り金額を入力してください。デフォルトは ¥50,000 です。</p>
-                        <p style="color: #666; font-size: 0.9em; margin-top: 8px;">💡 税金やAIツール利用料を差し引いた金額を入力することをお勧めします。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">2</div>
-                    <div class="timeline-content">
-                        <h4>現在の月間記事数を入力</h4>
-                        <p>あなたが現在、1ヶ月に執筆・発行している記事数を入力してください。</p>
-                        <p style="color: #666; font-size: 0.9em; margin-top: 8px;">💡 ブログ・note・BOOTH など全プラットフォームの合計です。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">3</div>
-                    <div class="timeline-content">
-                        <h4>現在の平均記事単価を入力</h4>
-                        <p>1記事あたりの平均売上を入力してください（有料販売の場合）または ¥0 を入力（無料配信の場合）。</p>
-                        <p style="color: #666; font-size: 0.9em; margin-top: 8px;">💡 複数プラットフォームの売上の平均値を入力してください。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">4</div>
-                    <div class="timeline-content">
-                        <h4>AIツール利用料を入力</h4>
-                        <p>月間のAIツール（ChatGPT Plus、Gemini など）の利用料を入力してください。</p>
-                        <p style="color: #666; font-size: 0.9em; margin-top: 8px;">💡 複数ツールを使用している場合は合計金額を入力してください。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">5</div>
-                    <div class="timeline-content">
-                        <h4>結果を確認</h4>
-                        <p>シミュレーション結果が表示されます。以下の項目を確認してください：</p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>目標達成に必要な記事数</li>
-                            <li>必要な生産性向上率</li>
-                            <li>見込み売上グラフ</li>
-                            <li>改善提案</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ❓ FAQ -->
-        <h2>❓ よくあるご質問（FAQ）</h2>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Q. 3つの商品形式は同時に使わなきゃダメですか？</span>
-                <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-                <strong style="color: #667eea;">A.</strong> いいえ、あなたのニーズに応じて1つか複数か選んで利用してください。
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li>学習メインなら「Kindle版」</li>
-                    <li>実装メインなら「BOOTH版」</li>
-                    <li>カジュアル利用なら「note版」</li>
+                <h3>1.2. 検索バー</h3>
+                <ul>
+                    <li><strong>メモを検索:</strong> 入力欄にキーワードを入力することで、既存のメモの中から目的のメモを探し出すことができます。</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666;">それぞれ独立したコンテンツなので、どれか1つでも価値があります。</p>
-            </div>
-        </div>
 
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Q. アプリはオフラインで使えますか？</span>
-                <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-                <strong style="color: #667eea;">A.</strong> はい、使えます。<code>app.html</code> はブラウザで開くだけで動作する独立型のHTMLなので、インターネット接続がなくても利用できます。
-                <p style="margin-top: 10px;">ただし、グラフ表示にはJavaScriptが有効である必要があります。</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Q. コンテンツを自社メディアに転載・改変してもいいですか？</span>
-                <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-                <strong style="color: #667eea;">A.</strong> 利用規約を確認してください。一般的には以下の利用が可能です：
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li>✓ 個人・組織内での学習・参考</li>
-                    <li>✓ 社内ドキュメント・トレーニング資料への引用（出典明記）</li>
-                    <li>✗ 商用転売・再配布</li>
-                    <li>✗ 大規模な改変・二次著作物</li>
+                <h3>1.3. メモ入力・編集エリア</h3>
+                <p>「新規メモ」ボタンをクリックしたり、既存のメモを編集する際に表示されます。</p>
+                <ul>
+                    <li><strong>タイトル入力欄:</strong> メモの題名を入力します。後でメモを探しやすくなるので、分かりやすいタイトルをつけましょう。</li>
+                    <li><strong>本文入力欄:</strong> メモの本文を自由に記述します。</li>
+                    <li><strong>「保存」ボタン:</strong> 入力したメモを保存します。このボタンをクリックしないと内容は保存されません。</li>
+                    <li><strong>「キャンセル」ボタン:</strong> 入力を中止し、前の画面に戻ります。保存されなかった内容は破棄されます。</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666;">詳細は購入時の利用規約をご参照ください。</p>
-            </div>
-        </div>
 
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Q. アプリのデータは保存されますか？</span>
-                <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-                <strong style="color: #667eea;">A.</strong> ブラウザの再読み込みやタブを閉じると、入力データはリセットされます。
-                <p style="margin-top: 10px;">データを保存したい場合は、結果画面をスクリーンショットするか、PDFで保存してください。</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Q. テンプレートやチェックリストはどこにありますか？</span>
-                <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-answer">
-                <strong style="color: #667eea;">A.</strong> コンテンツの形式ごとに異なります：
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li><strong>BOOTH版：</strong> 「ステップバイステップガイド」セクションにテンプレートが埋め込まれています</li>
-                    <li><strong>Kindle版：</strong> 巻末「付録」に「DX導入チェックリスト」があります</li>
-                    <li><strong>note版：</strong> 実例セクションで応用例を紹介しています</li>
+                <h3>1.4. メモ一覧エリア</h3>
+                <p>保存されている全てのメモがリスト形式で表示されます。</p>
+                <ul>
+                    <li><strong>メモのタイトルと本文プレビュー:</strong> 各メモのタイトルと、本文の一部が一覧表示されます。</li>
+                    <li><strong>「編集」ボタン（またはアイコン）:</strong> そのメモの内容を修正したい場合にクリックします。</li>
+                    <li><strong>「削除」ボタン（またはアイコン）:</strong> そのメモを削除したい場合にクリックします。</li>
                 </ul>
-                <p style="margin-top: 10px;">ダウンロード形式は、各プラットフォームの提供形式に依存します。</p>
-            </div>
-        </div>
+            </section>
 
-        <!-- 🎓 Learning Path -->
-        <h2>🎓 おすすめの学習パス</h2>
+            <section id="usage-steps">
+                <h2>2. 使用手順（ステップバイステップ）</h2>
+                <p>それでは、実際にアプリを使ってみましょう。</p>
 
-        <div class="section-card">
-            <h3>初心者向けパス（1〜2日）</h3>
-            <div style="margin-top: 15px;">
-                <div class="step-box">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <strong>presentation.html</strong> を見ながら、全体像を把握（20分）
-                    </div>
+                <h3>2.1. 新しいメモを作成する</h3>
+                <ol>
+                    <li>画面上部にある<strong>「新規メモ」ボタン</strong>をクリックします。</li>
+                    <li>メモ入力・編集エリアが表示されたら、<strong>「タイトル」入力欄</strong>にメモの題名を入力します。</li>
+                    <li>続けて、<strong>「本文」入力欄</strong>にメモの内容を自由に記述します。</li>
+                    <li>入力が終わったら、画面下部にある<strong>「保存」ボタン</strong>をクリックします。</li>
+                    <li>これで新しいメモが作成され、メモ一覧に表示されます。</li>
+                </ol>
+
+                <h3>2.2. 既存のメモを編集する</h3>
+                <ol>
+                    <li>メモ一覧の中から、編集したいメモの右側にある<strong>「編集」ボタン（またはアイコン）</strong>をクリックします。</li>
+                    <li>メモ入力・編集エリアに現在の内容が表示されるので、修正したい箇所を編集します。</li>
+                    <li>編集が終わったら、忘れずに<strong>「保存」ボタン</strong>をクリックしてください。</li>
+                </ol>
+
+                <h3>2.3. メモを削除する</h3>
+                <ol>
+                    <li>メモ一覧の中から、削除したいメモの右側にある<strong>「削除」ボタン（またはアイコン）</strong>をクリックします。</li>
+                    <li>「本当に削除しますか？」のような確認メッセージが表示されたら、<strong>「OK」ボタン</strong>をクリックします。</li>
+                    <li>削除されたメモは元に戻せませんので、注意してください。</li>
+                </ol>
+
+                <h3>2.4. メモを検索する</h3>
+                <ol>
+                    <li>画面上部にある<strong>検索バー</strong>に、探したいメモのキーワード（タイトルや本文に含まれる単語）を入力します。</li>
+                    <li>入力すると同時に、キーワードに一致するメモだけがメモ一覧に絞り込まれて表示されます。</li>
+                    <li>検索を解除するには、検索バーのキーワードを全て削除してください。</li>
+                </ol>
+            </section>
+
+            <section id="screenshots">
+                <h2>3. スクリーンショット説明（テキスト形式）</h2>
+                <p>実際の画面をイメージしやすいように、テキストで画面構成を説明します。</p>
+
+                <div class="screenshot-description">
+                    <strong>[図1: アプリのトップ画面]</strong><br>
+                    画面上部に「シンプルメモアプリ」というアプリ名と、右側に「新規メモ」ボタンが配置されています。そのすぐ下に「メモを検索...」という検索バーがあります。メインエリアには、「今日のやること」「買い物リスト」「会議メモ」といった既存のメモが複数リスト形式で表示されており、各メモの右端には鉛筆アイコンの「編集」ボタンとゴミ箱アイコンの「削除」ボタンが見えます。
                 </div>
-                <div class="step-box">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <strong>note_package.md</strong> を読んで、DXの基本を学ぶ（30分）
-                    </div>
+
+                <div class="screenshot-description">
+                    <strong>[図2: 新規メモ作成画面]</strong><br>
+                    「新規メモ」ボタンをクリックすると表示される画面です。「新しいメモを作成」という見出しがあり、その下に「タイトル」というラベルの入力欄と、「本文」というラベルの広い入力欄があります。入力欄の下部には「保存」ボタンと「キャンセル」ボタンが並んで配置されています。
                 </div>
-                <div class="step-box">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <strong>app.html</strong> でシミュレーション実行、簡単な目標を設定（15分）
-                    </div>
+
+                <div class="screenshot-description">
+                    <strong>[図3: メモ一覧と編集・削除ボタンの強調]</strong><br>
+                    既存のメモが並ぶメモ一覧の画面です。例えば「今日のやること」というメモの行の右端に、鉛筆アイコン（編集）とゴミ箱アイコン（削除）が少し大きく、分かりやすく表示されています。これらをクリックすることで、個別のメモの操作が可能です。
                 </div>
-            </div>
-            <div class="success-box">
-                <p>✅ この後、あなたのビジネスにDXをどう活かせるか、ざっくりしたイメージが持てます。</p>
-            </div>
-        </div>
+            </section>
 
-        <div class="section-card">
-            <h3>実装者向けパス（1週間）</h3>
-            <div style="margin-top: 15px;">
-                <div class="step-box">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <strong>Kindle版</strong> を読んで、体系的に理解（3時間）
-                    </div>
+            <section id="faq">
+                <h2>4. よくある質問 (FAQ)</h2>
+                <dl>
+                    <dt>Q: メモは自動的に保存されますか？</dt>
+                    <dd>A: いいえ、自動保存機能はありません。新しいメモを作成したり、既存のメモを編集した際は、必ず<strong>「保存」ボタン</strong>をクリックしてください。</dd>
+
+                    <dt>Q: メモのデータはどこに保存されますか？</dt>
+                    <dd>A: このアプリのメモは、お使いのウェブブラウザのローカルストレージに保存されます。そのため、同じブラウザ・同じデバイスからアクセスすれば、以前のメモを見ることができます。</dd>
+
+                    <dt>Q: 別のパソコンやスマートフォンでメモを共有できますか？</dt>
+                    <dd>A: いいえ、このシンプルメモアプリはブラウザのローカルストレージに保存されるため、別のデバイスやブラウザとの同期・共有機能はありません。各デバイスで独立して動作します。</dd>
+
+                    <dt>Q: メモに文字数制限はありますか？</dt>
+                    <dd>A: 特に厳密な文字数制限はありませんが、あまりに長いメモは動作が重くなったり、表示に時間がかかったりする場合があります。長文を扱う場合は、別のドキュメント作成ツールのご利用をお勧めします。</dd>
+                </dl>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>5. トラブルシューティング</h2>
+                <p>もしアプリを使っていて困ったことがあれば、以下の解決策をお試しください。</p>
+
+                <div class="troubleshooting-item">
+                    <h4>問題1: メモが保存できない</h4>
+                    <ul>
+                        <li><strong>解決策1:</strong> まず、インターネット接続が安定しているか確認してください。</li>
+                        <li><strong>解決策2:</strong> ブラウザのストレージ容量が上限に達している可能性があります。他のウェブサイトのキャッシュなどを削除してみてください。</li>
+                        <li><strong>解決策3:</strong> 一時的な不具合の場合があります。一度ブラウザを閉じて開き直し、もう一度試してみてください。</li>
+                    </ul>
                 </div>
-                <div class="step-box">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <strong>BOOTH版</strong> のステップバイステップガイドに沿って、実装を開始（3〜4時間）
-                    </div>
+
+                <div class="troubleshooting-item">
+                    <h4>問題2: 画面の表示がおかしい、ボタンが反応しない</h4>
+                    <ul>
+                        <li><strong>解決策1:</strong> ブラウザの画面を再読み込み（リロード）してみてください。（Windows: F5キー, Mac: Command + R）</li>
+                        <li><strong>解決策2:</strong> お使いのブラウザのキャッシュやCookieが原因かもしれません。ブラウザの設定からキャッシュをクリアしてみてください。</li>
+                        <li><strong>解決策3:</strong> 異なるウェブブラウザ（例: Chromeで駄目ならFirefoxやEdge）で試してみてください。</li>
+                    </ul>
                 </div>
-                <div class="step-box">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <strong>app.html</strong> でシミュレーション、改善施策を検討（1時間）
-                    </div>
+
+                <div class="troubleshooting-item">
+                    <h4>問題3: 以前保存したはずのメモが消えてしまった</h4>
+                    <ul>
+                        <li><strong>解決策1:</strong> ブラウザの「履歴の削除」や「閲覧データのクリア」を行った際に、ローカルストレージのデータも一緒に削除されてしまった可能性があります。このアプリは、ブラウザのデータに依存しているため、データの消去には十分ご注意ください。</li>
+                        <li><strong>解決策2:</strong> 別のデバイスやブラウザで開いていませんか？このアプリはデバイス・ブラウザごとにメモが保存されます。</li>
+                        <li><strong>解決策3:</strong> アプリの性質上、重要な長期保存メモには向きません。重要な内容は、別途ファイルに保存するなど、バックアップを取ることを強くお勧めします。</li>
+                    </ul>
                 </div>
-                <div class="step-box">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <strong>Kindle版の付録</strong> を使い、実装状況をチェック（1〜2日）
-                    </div>
-                </div>
-            </div>
-            <div class="success-box">
-                <p>✅ この後、あなたの組織で実装可能なDXロードマップが完成します。</p>
-            </div>
-        </div>
+            </section>
+        </main>
 
-        <!-- 📞 Support -->
-        <h2>📞 トラブルシューティング</h2>
-
-        <div class="section-card">
-            <h3>よくあるトラブル</h3>
-
-            <h4 style="color: #667eea; margin-top: 20px; font-weight: 600;">❌ app.html が開かない / グラフが表示されない</h4>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-                <li>✓ ブラウザを最新版にアップデート</li>
-                <li>✓ 別のブラウザで試す（Chrome・Firefox・Safari推奨）</li>
-                <li>✓ ブラウザのキャッシュをクリア</li>
-                <li>✓ JavaScriptが有効になっているか確認</li>
-            </ul>
-
-            <h4 style="color: #667eea; margin-top: 20px; font-weight: 600;">❌ presentation.html のスライドが崩れている</h4>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-                <li>✓ ブラウザを全画面表示にする（F11キー）</li>
-                <li>✓ ブラウザのズームをリセット（Ctrl+0）</li>
-                <li>✓ 最新ブラウザを使用</li>
-            </ul>
-
-            <h4 style="color: #667eea; margin-top: 20px; font-weight: 600;">❌ Markdown ファイルが文字化けしている</h4>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-                <li>✓ テキストエディタを「UTF-8」エンコーディングで開く</li>
-                <li>✓ 推奨エディタ：VS Code・Sublime Text・メモ帳++</li>
-                <li>✓ Mac: TextEdit（フォーマットをプレーンテキストに変更）</li>
-            </ul>
-
-            <h4 style="color: #667eea; margin-top: 20px; font-weight: 600;">❌ コンテンツの一部が見つからない</h4>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-                <li>✓ すべてのファイルが配信されているか確認</li>
-                <li>✓ ファイル一覧: note_package.md, booth_package.md, kindle_manuscript.md, app.html, presentation.html</li>
-                <li>✓ メール・クラウドストレージを再確認</li>
-            </ul>
-        </div>
-
-        <!-- 🎁 Next Steps -->
-        <h2>🎁 購入後の次のステップ</h2>
-
-        <div class="section-card">
-            <h3>30日間実装サポート（オプション）</h3>
-            <p style="margin-top: 15px;">本コンテンツは独学での利用を前提としていますが、実装に困った場合は以下の方法でサポートを受けられます：</p>
-            <ul style="margin-top: 15px; padding-left: 20px;">
-                <li>📧 メールサポート（購入確認メールに記載）</li>
-                <li>💬 コミュニティ質問フォーラム（Slack・Discord）</li>
-                <li>🎥 実装動画チュートリアル（YouTube）</li>
-            </ul>
-            <div class="alert-custom" style="margin-top: 15px;">
-                <strong>💡 ご注意：</strong> 無料で提供するサポートには、対応時間に制限があります。詳細は購入確認メールをご参照ください。
-            </div>
-        </div>
-
-        <!-- ✅ Completion -->
-        <div class="success-box" style="background-color: #d4edda; border-radius: 12px; padding: 25px; margin-top: 40px; text-align: center;">
-            <h3 style="color: #155724; border: none; padding: 0; margin: 0;">✅ ガイド完了！</h3>
-            <p style="margin-top: 15px; color: #155724; font-size: 1.1em;">これであなたは、3つの商品形式とアプリのすべてを活用できる準備ができました。</p>
-            <p style="margin-top: 15px; color: #155724;">さあ、DX推進を始めましょう！ 🚀</p>
-        </div>
+        <footer>
+            <p>&copy; 2023 シンプルメモアプリ ガイド. All rights reserved.</p>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 DX推進スタートアップガイド - 完全自動化・収益化会社</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">本ガイドの著作権は本商品提供者に帰属します</p>
-    </footer>
-
-    <script>
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            answer.classList.toggle('show');
-        }
-    </script>
 </body>
 </html>

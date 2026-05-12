@@ -3,388 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>習慣トラッカー</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>note向けAI×副業記事 企画・執筆ロードマップアシスタント</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9Cug65" crossorigin="anonymous">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
             background-color: #f8f9fa;
-            padding-top: 20px;
-            padding-bottom: 20px;
         }
         .container {
-            max-width: 768px; /* For mobile-first approach */
+            max-width: 960px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
         .card {
-            margin-bottom: 20px;
-            border: none;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,.05);
         }
         .card-header {
-            background-color: #007bff;
+            background-color: #0d6efd;
             color: white;
             font-weight: bold;
-            border-radius: calc(0.5rem - 1px) calc(0.5rem - 1px) 0 0;
-            padding: 1rem 1.25rem;
-            font-size: 1.25rem;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            padding: 1rem 1.5rem;
         }
-        .list-group-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.25rem;
+        .form-label {
+            font-weight: bold;
         }
-        .list-group-item input[type="checkbox"] {
-            transform: scale(1.5); /* Make checkbox larger */
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        .form-control:focus {
-            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-            border-color: #007bff;
+        .output-box {
+            background-color: #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            min-height: 100px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: #0b5ed7;
+            border-color: #0b5ed7;
         }
-        .btn-danger {
-            padding: .375rem .75rem; /* Bootstrap default size */
-            font-size: .875rem;
+        h1, h2, h3 {
+            color: #343a40;
         }
         .chart-container {
             position: relative;
-            height: 250px;
+            height: 250px; /* Adjust height as needed for responsiveness */
             width: 100%;
-        }
-        #habitList .list-group-item:first-child {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        #habitList .list-group-item:last-child {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 576px) {
-            .card-header {
-                font-size: 1.1rem;
-                padding: 0.8rem 1rem;
-            }
-            .list-group-item {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.8rem 1rem;
-            }
-            .list-group-item span {
-                flex-grow: 1;
-                margin-right: 10px;
-                word-break: break-all;
-            }
-            .list-group-item input[type="checkbox"] {
-                 transform: scale(1.2);
-            }
-            .btn-danger {
-                padding: .25rem .5rem;
-                font-size: .75rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4 text-primary">習慣トラッカー</h1>
+        <h1 class="mb-4 text-center">note向けAI×副業記事 企画・執筆ロードマップアシスタント</h1>
+        <p class="lead text-center mb-5">2026年5月12日の未来を見据え、AI進化と働き方の多様化に対応した、5000字以上のnote記事企画・執筆を支援します。</p>
 
-        <!-- 習慣追加 -->
+        <!-- 1. 記事テーマ・キーワード入力 -->
         <div class="card">
-            <div class="card-header">新しい習慣を追加</div>
+            <div class="card-header">1. 記事テーマ・キーワード入力</div>
             <div class="card-body">
-                <div class="input-group">
-                    <input type="text" id="newHabitInput" class="form-control" placeholder="例: 毎日読書15分">
-                    <button class="btn btn-primary" id="addHabitBtn">追加</button>
+                <div class="mb-3">
+                    <label for="mainKeywords" class="form-label">主要キーワード（例: AI、副業、生産性向上、自己実現など）</label>
+                    <input type="text" class="form-control" id="mainKeywords" value="AI, 副業, 生産性向上, ロードマップ" placeholder="複数のキーワードをカンマ区切りで入力">
+                </div>
+                <div class="mb-3">
+                    <label for="targetAudience" class="form-label">ターゲット読者層（例: 初心者、中級者、AI活用を模索する人など）</label>
+                    <input type="text" class="form-control" id="targetAudience" value="AI活用に興味のある初心者, 副業を始めたい会社員" placeholder="ターゲット読者層を具体的に入力">
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-primary" id="generateIdeasBtn">企画案を生成</button>
                 </div>
             </div>
         </div>
 
-        <!-- 今日の習慣リスト -->
+        <!-- 2. タイトル案生成 -->
         <div class="card">
-            <div class="card-header">今日の習慣 (<span id="currentDate"></span>)</div>
-            <div class="card-body p-0">
-                <ul class="list-group list-group-flush" id="habitList">
-                    <!-- 習慣がここに動的に追加される -->
-                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <input type="checkbox" class="form-check-input me-3" id="dummyCheckbox1">
-                            <label for="dummyCheckbox1" class="mb-0">サンプル習慣1</label>
-                        </div>
-                        <button class="btn btn-danger btn-sm">削除</button>
-                    </li> -->
-                </ul>
-                <p id="noHabitsMessage" class="text-muted text-center py-3 m-0" style="display: none;">まだ習慣がありません。追加してみましょう！</p>
+            <div class="card-header">2. タイトル案生成（AIアシスタント提案）</div>
+            <div class="card-body">
+                <div class="output-box mb-3" id="titleSuggestions">
+                    企画案生成ボタンを押すと、魅力的なタイトル案が表示されます。
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-outline-primary" id="copyTitlesBtn">タイトル案をコピー</button>
+                </div>
             </div>
         </div>
 
-        <!-- 達成率グラフ -->
+        <!-- 3. 記事構成案生成 -->
         <div class="card">
-            <div class="card-header">過去7日間の達成状況</div>
+            <div class="card-header">3. 記事構成案生成（5000文字以上対応）</div>
             <div class="card-body">
+                <div class="output-box mb-3" id="articleOutline">
+                    企画案生成ボタンを押すと、5000字以上の記事構成案が表示されます。
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-outline-primary" id="copyOutlineBtn">構成案をコピー</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 執筆ロードマップシミュレーター -->
+        <div class="card">
+            <div class="card-header">4. 執筆ロードマップシミュレーター（目標5000文字）</div>
+            <div class="card-body">
+                <p>目標文字数: <strong>5000文字</strong></p>
+                <div class="mb-3">
+                    <label for="dailyWords" class="form-label">1日あたりの執筆可能文字数（目安）</label>
+                    <input type="number" class="form-control" id="dailyWords" value="1000" min="100">
+                </div>
+                <div class="mb-3">
+                    <label for="targetDays" class="form-label">目標執筆日数</label>
+                    <input type="number" class="form-control" id="targetDays" value="7" min="1">
+                </div>
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-primary" id="simulateBtn">ロードマップをシミュレート</button>
+                </div>
+
+                <div class="alert alert-info mt-3" id="simulationResult" role="alert" style="display: none;">
+                    <strong>シミュレーション結果:</strong><br>
+                    <span id="requiredDays"></span><br>
+                    <span id="dailyTargetWords"></span>
+                </div>
+
+                <h5 class="mt-4">執筆進捗イメージ</h5>
                 <div class="chart-container">
-                    <canvas id="habitChart"></canvas>
+                    <canvas id="progressChart"></canvas>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <!-- Bootstrap JS CDN (Popper.js bundled) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eRj03hSmwA7SMEU" crossorigin="anonymous"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" integrity="sha384-Fp6r/uFf+d/D3q8L0x1B6pB+C8+gB+Qj+N/M2rJ3n5t0zT6tV2F9t0+g+W/g+Z/Z" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 JS (Popper.js required) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYn/T0mH+BvC0hS5d9j1k2iS3a4o5p6v7j8l9k0m1n2o3p4q5r6s7t8u9v0wxyZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-BB1fS5S5d9j1k2iS3a4o5p6v7j8l9k0m1n2o3p4q5r6s7t8u9v0wxyZ" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 
     <script>
-        // DOM要素の取得
-        const newHabitInput = document.getElementById('newHabitInput');
-        const addHabitBtn = document.getElementById('addHabitBtn');
-        const habitList = document.getElementById('habitList');
-        const currentDateSpan = document.getElementById('currentDate');
-        const noHabitsMessage = document.getElementById('noHabitsMessage');
-        const habitChartCanvas = document.getElementById('habitChart');
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainKeywordsInput = document.getElementById('mainKeywords');
+            const targetAudienceInput = document.getElementById('targetAudience');
+            const generateIdeasBtn = document.getElementById('generateIdeasBtn');
+            const titleSuggestionsOutput = document.getElementById('titleSuggestions');
+            const articleOutlineOutput = document.getElementById('articleOutline');
+            const copyTitlesBtn = document.getElementById('copyTitlesBtn');
+            const copyOutlineBtn = document.getElementById('copyOutlineBtn');
 
-        // 定数
-        const HABITS_STORAGE_KEY = 'habitTracker_habits';
-        const LOGS_STORAGE_KEY = 'habitTracker_logs';
+            const dailyWordsInput = document.getElementById('dailyWords');
+            const targetDaysInput = document.getElementById('targetDays');
+            const simulateBtn = document.getElementById('simulateBtn');
+            const simulationResultDiv = document.getElementById('simulationResult');
+            const requiredDaysSpan = document.getElementById('requiredDays');
+            const dailyTargetWordsSpan = document.getElementById('dailyTargetWords');
+            const progressChartCanvas = document.getElementById('progressChart');
 
-        // データ構造
-        let habits = []; // [{ id: 'uuid', name: '習慣名', createdAt: 'timestamp' }]
-        let habitLogs = {}; // { 'YYYY-MM-DD': { 'habitId': true/false, ... }, ... }
+            const totalWordsGoal = 5000;
+            let progressChart; // Chart instance
 
-        // 現在の日付を取得 (YYYY-MM-DD形式)
-        const getFormattedDate = (date = new Date()) => {
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        };
+            // --- 企画案生成ロジック ---
+            generateIdeasBtn.addEventListener('click', () => {
+                const keywords = mainKeywordsInput.value.split(',').map(k => k.trim()).filter(k => k !== '');
+                const audience = targetAudienceInput.value.split(',').map(a => a.trim()).filter(a => a !== '');
 
-        const today = getFormattedDate();
-        currentDateSpan.textContent = today; // 今日の日付を表示
+                // タイトル案生成
+                titleSuggestionsOutput.innerHTML = generateTitleSuggestions(keywords, audience);
 
-        // UUID生成関数 (シンプル版)
-        const generateUUID = () => {
-            return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-        };
-
-        // LocalStorageからデータをロード
-        const loadData = () => {
-            try {
-                const storedHabits = localStorage.getItem(HABITS_STORAGE_KEY);
-                if (storedHabits) {
-                    habits = JSON.parse(storedHabits);
-                }
-                const storedLogs = localStorage.getItem(LOGS_STORAGE_KEY);
-                if (storedLogs) {
-                    habitLogs = JSON.parse(storedLogs);
-                }
-            } catch (e) {
-                console.error("Failed to load data from localStorage", e);
-                // データが壊れている場合は初期化
-                habits = [];
-                habitLogs = {};
-                saveData(); // 空のデータを保存
-                alert("データの読み込みに失敗しました。データを初期化しました。");
-            }
-        };
-
-        // LocalStorageにデータを保存
-        const saveData = () => {
-            try {
-                localStorage.setItem(HABITS_STORAGE_KEY, JSON.stringify(habits));
-                localStorage.setItem(LOGS_STORAGE_KEY, JSON.stringify(habitLogs));
-            } catch (e) {
-                console.error("Failed to save data to localStorage", e);
-                alert("データの保存に失敗しました。ストレージがいっぱいか、問題が発生しています。");
-            }
-        };
-
-        // 習慣リストをレンダリング
-        const renderHabits = () => {
-            habitList.innerHTML = ''; // リストをクリア
-            if (habits.length === 0) {
-                noHabitsMessage.style.display = 'block';
-                return;
-            } else {
-                noHabitsMessage.style.display = 'none';
-            }
-
-            habits.forEach(habit => {
-                const listItem = document.createElement('li');
-                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-                const isCompleted = habitLogs[today] && habitLogs[today][habit.id] === true;
-
-                listItem.innerHTML = `
-                    <div>
-                        <input type="checkbox" class="form-check-input me-3" id="habit-${habit.id}" ${isCompleted ? 'checked' : ''}>
-                        <label for="habit-${habit.id}" class="mb-0">${habit.name}</label>
-                    </div>
-                    <button class="btn btn-danger btn-sm" data-habit-id="${habit.id}">削除</button>
-                `;
-
-                // チェックボックスのイベントリスナー
-                const checkbox = listItem.querySelector(`#habit-${habit.id}`);
-                checkbox.addEventListener('change', (event) => {
-                    if (!habitLogs[today]) {
-                        habitLogs[today] = {};
-                    }
-                    habitLogs[today][habit.id] = event.target.checked;
-                    saveData();
-                    updateChart(); // グラフを更新
-                });
-
-                // 削除ボタンのイベントリスナー
-                const deleteButton = listItem.querySelector('button');
-                deleteButton.addEventListener('click', (event) => {
-                    const habitIdToDelete = event.target.dataset.habitId;
-                    habits = habits.filter(h => h.id !== habitIdToDelete);
-                    // 関連するログも削除（オプションだが、今回はしない。残しておいても問題ないため）
-                    saveData();
-                    renderHabits();
-                    updateChart(); // グラフを更新
-                });
-
-                habitList.appendChild(listItem);
+                // 記事構成案生成
+                articleOutlineOutput.innerHTML = generateArticleOutline(keywords, audience, totalWordsGoal);
             });
-        };
 
-        // 新しい習慣を追加
-        addHabitBtn.addEventListener('click', () => {
-            const habitName = newHabitInput.value.trim();
-            if (habitName) {
-                habits.push({
-                    id: generateUUID(),
-                    name: habitName,
-                    createdAt: Date.now()
-                });
-                newHabitInput.value = ''; // 入力フィールドをクリア
-                saveData();
-                renderHabits();
-                updateChart(); // グラフを更新
-            } else {
-                alert("習慣名を入力してください。");
-            }
-        });
+            function generateTitleSuggestions(keywords, audience) {
+                const baseTitles = [
+                    "【AI×副業】未来を拓く！月5万円を稼ぐための完全ロードマップ",
+                    "2026年を見据える！AI活用で「個人の生産性」を最大化するnote術",
+                    "自己実現を叶える！AI時代の新しい働き方と副業戦略5選",
+                    "未経験から始めるAI副業：5000文字で語る成功への最短ルート",
+                    "【未来予想】AIはあなたの副業をどう変える？実践的活用ガイド",
+                    "ChatGPTで加速！5000文字で伝える、AI時代の副業戦略と自己成長",
+                    "多様な働き方へシフト！AIを味方につける、あなたのキャリアロードマップ",
+                    "個人の生産性革命！AIツールを駆使した副業で「時間とお金」を手に入れる方法",
+                    "【実践編】AIでコンテンツ制作副業を始めるロードマップ（5000字超解説）",
+                    "AIアシスタントと一緒に！あなたのスキルを収益化するnote執筆術"
+                ];
 
-        // Enterキーで習慣を追加
-        newHabitInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                addHabitBtn.click();
-            }
-        });
-
-        // Chart.js インスタンス
-        let habitChart;
-
-        // グラフを更新する関数
-        const updateChart = () => {
-            if (habitChart) {
-                habitChart.destroy(); // 既存のグラフを破棄
-            }
-
-            const labels = [];
-            const data = [];
-            const todayDate = new Date();
-
-            // 過去7日間のデータを集計
-            for (let i = 6; i >= 0; i--) {
-                const date = new Date(todayDate);
-                date.setDate(todayDate.getDate() - i);
-                const formattedDate = getFormattedDate(date);
-                
-                labels.push(formattedDate.substring(5)); // 'MM-DD' 形式
-                
-                let completedCount = 0;
-                if (habitLogs[formattedDate]) {
-                    completedCount = Object.values(habitLogs[formattedDate]).filter(status => status === true).length;
+                const dynamicTitles = [];
+                if (keywords.length > 0) {
+                    keywords.forEach(kw => {
+                        audience.forEach(aud => {
+                            dynamicTitles.push(`【${kw}】で差をつける！${aud}のためのAI副業ロードマップ`);
+                            dynamicTitles.push(`${aud}必見！${kw}を極めるAI活用術で月収アップ`);
+                        });
+                    });
                 }
-                data.push(completedCount);
+
+                const suggestions = [...new Set([...baseTitles, ...dynamicTitles])].slice(0, 10); // 重複除去して最大10件
+
+                let html = '<ul>';
+                if (suggestions.length === 0) {
+                    html = '<p>キーワードとターゲット読者を入力して、企画案生成ボタンを押してください。</p>';
+                } else {
+                    suggestions.forEach(title => {
+                        html += `<li>${title}</li>`;
+                    });
+                    html += '</ul>';
+                }
+                return html;
             }
 
-            habitChart = new Chart(habitChartCanvas, {
-                type: 'bar', // 棒グラフに変更
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: '達成習慣数',
-                        data: data,
-                        backgroundColor: 'rgba(0, 123, 255, 0.7)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false // 凡例を非表示
-                        },
-                        title: {
-                            display: true,
-                            text: '過去7日間の達成習慣数',
-                            font: {
-                                size: 16
-                            },
-                            color: '#333'
-                        }
+            function generateArticleOutline(keywords, audience, wordCount) {
+                const keywordStr = keywords.join(', ');
+                const audienceStr = audience.join(', ');
+
+                if (keywords.length === 0 || audience.length === 0) {
+                    return '<p>キーワードとターゲット読者を入力して、企画案生成ボタンを押してください。</p>';
+                }
+
+                return `
+**note記事構成案（目標 ${wordCount}文字以上）**
+
+---
+
+**ターゲット読者:** ${audienceStr}
+**テーマ:** AI進化、働き方の多様化、個人の生産性向上、自己実現を背景としたAI×副業のロードマップ
+
+---
+
+### **はじめに：2026年の働き方とAI副業の衝撃 (約500文字)**
+*   激変する社会とAIの台頭
+*   なぜ今、AIを活用した副業が求められるのか？
+*   本記事で得られるもの（再現性の高いロードマップ、具体的な成功事例）
+
+### **第1章：AI進化がもたらす「個人の生産性」革命 (約800文字)**
+*   AIツールの現状と未来予測（ChatGPT, Midjourney, その他業務効率化AIなど）
+*   AIが奪う仕事、AIが創る仕事
+*   個人がAIを「使いこなす力」の重要性
+
+### **第2章：【実践】AIを活用した副業の具体的な形 (約1500文字)**
+*   **2-1. コンテンツ制作系副業（AIライティング、画像生成、動画編集アシスタント）**
+    *   具体的なAIツールと活用事例
+    *   収益化までのステップ
+*   **2-2. データ分析・マーケティング系副業（AIデータ分析、広告運用支援）**
+    *   AIを活用した市場分析、パーソナライズ
+    *   案件獲得のコツ
+*   **2-3. プログラミング・開発系副業（AIコード生成、テスト支援）**
+    *   AIペアプログラマーとしての活用
+    *   新しいサービスの開発事例
+*   **2-4. その他、AIと既存スキルを組み合わせたニッチな副業**
+    *   （例）AI通訳・翻訳、AI教育コンテンツ作成など
+*   **AI副業を始めるための心構えと初期投資（無料ツール活用含む）**
+
+### **第3章：再現性の高い「AI副業ロードマップ」5つのステップ (約1500文字)**
+*   **ステップ1: 自己分析とAIスキルの棚卸し**
+    *   得意なこと、興味関心、AIで補完できる部分の特定
+*   **ステップ2: 目標設定と具体的なAI副業の選定**
+    *   短期目標、長期目標、収益目標
+    *   ポートフォリオ作成の重要性
+*   **ステップ3: AIツールの学習と実践**
+    *   無料学習リソース、コミュニティ活用
+    *   小さな成功体験の積み重ね方
+*   **ステップ4: 案件獲得とポートフォリオ構築**
+    *   クラウドソーシング、SNS活用、直接営業
+    *   実績の作り方
+*   **ステップ5: 継続的な学習とアップデート**
+    *   AI進化への追随、コミュニティでの情報交換
+
+### **第4章：AI副業で自己実現を果たすためのマインドセット (約500文字)**
+*   失敗を恐れない挑戦の重要性
+*   インプットとアウトプットのサイクル
+*   持続可能な働き方とワークライフバランス
+
+### **まとめ：AIと共に、あなたの未来をデザインしよう (約200文字)**
+*   本記事の要点再確認
+*   読者への行動喚起
+*   2026年、そしてその先へ向かうメッセージ
+
+---
+
+**想定読後感:**
+*   AI副業の全体像が理解できた。
+*   具体的なステップが明確になり、すぐにでも行動できそうだ。
+*   未来への不安が希望に変わり、モチベーションが向上した。
+`;
+            }
+
+            // --- コピー機能 ---
+            copyTitlesBtn.addEventListener('click', () => {
+                copyToClipboard(titleSuggestionsOutput.innerText);
+                alert('タイトル案をコピーしました！');
+            });
+
+            copyOutlineBtn.addEventListener('click', () => {
+                copyToClipboard(articleOutlineOutput.innerText);
+                alert('構成案をコピーしました！');
+            });
+
+            function copyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                // textareaを画面外に配置してユーザーに見えないようにする
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('コピーに失敗しました', err);
+                    alert('お使いのブラウザではコピー機能がサポートされていないか、ブロックされました。手動でコピーしてください。');
+                } finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+
+
+            // --- 執筆ロードマップシミュレーターロジック ---
+            simulateBtn.addEventListener('click', () => {
+                const dailyWords = parseInt(dailyWordsInput.value);
+                const targetDays = parseInt(targetDaysInput.value);
+
+                if (isNaN(dailyWords) || dailyWords <= 0) {
+                    alert('1日あたりの執筆可能文字数を正しく入力してください。');
+                    return;
+                }
+                if (isNaN(targetDays) || targetDays <= 0) {
+                    alert('目標執筆日数を正しく入力してください。');
+                    return;
+                }
+
+                // 必要な日数
+                const requiredDays = Math.ceil(totalWordsGoal / dailyWords);
+                requiredDaysSpan.innerHTML = `現在のペース（1日あたり <strong>${dailyWords.toLocaleString()}文字</strong>）だと、約 <strong>${requiredDays} 日</strong>で執筆が完了します。`;
+
+                // 目標日数で達成するための1日あたり文字数
+                const dailyWordsForTargetDays = Math.ceil(totalWordsGoal / targetDays);
+                dailyTargetWordsSpan.innerHTML = `目標 <strong>${targetDays} 日</strong>で完了するには、1日あたり <strong>${dailyWordsForTargetDays.toLocaleString()} 文字</strong>の執筆が必要です。`;
+
+                simulationResultDiv.style.display = 'block';
+
+                updateChart(dailyWords, requiredDays);
+            });
+
+            function updateChart(dailyWords, requiredDays) {
+                if (progressChart) {
+                    progressChart.destroy(); // 既存のチャートを破棄
+                }
+
+                const labels = [];
+                const data = [];
+                let currentWords = 0;
+                let displayDaysLimit = Math.max(requiredDays + 2, 7); // 最低7日、必要日数より少し多めに表示
+                displayDaysLimit = Math.min(displayDaysLimit, 30); // 最大30日に制限 (チャートの可読性のため)
+
+                for (let i = 1; i <= displayDaysLimit; i++) {
+                    labels.push(`Day ${i}`);
+                    currentWords = Math.min(totalWordsGoal, currentWords + dailyWords);
+                    data.push(currentWords);
+                    if (currentWords >= totalWordsGoal && i > requiredDays) { // 目標達成後も少しは表示
+                         // break; // 特定の条件で停止するが、今回は柔軟に表示
+                    }
+                }
+                // もし表示制限日数に達しても目標に届いていない場合、最終日に目標値をプロット
+                if (currentWords < totalWordsGoal && displayDaysLimit < requiredDays) {
+                    labels.push(`Day ${displayDaysLimit} (途中)`);
+                    data[displayDaysLimit-1] = currentWords; // 最後に到達した文字数
+                    labels.push(`Day ${requiredDays} (目標)`);
+                    data.push(totalWordsGoal);
+                } else if (currentWords < totalWordsGoal && displayDaysLimit >= requiredDays && labels.length < requiredDays) {
+                     // 必要日数より表示日数が短いことは基本ないが、もしあれば調整
+                     labels.push(`Day ${requiredDays} (目標)`);
+                     data.push(totalWordsGoal);
+                }
+
+
+                const ctx = progressChartCanvas.getContext('2d');
+                progressChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '累計執筆文字数',
+                            data: data,
+                            backgroundColor: 'rgba(13, 110, 253, 0.2)',
+                            borderColor: 'rgba(13, 110, 253, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgba(13, 110, 253, 1)'
+                        }]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '達成数',
-                                font: {
-                                    size: 14
-                                },
-                                color: '#555'
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: '日数'
+                                }
                             },
-                            ticks: {
-                                stepSize: 1, // 軸の目盛りを整数にする
-                                callback: function(value) {if (value % 1 === 0) {return value;}}, // 整数のみ表示
-                                color: '#555'
+                            y: {
+                                beginAtZero: true,
+                                max: totalWordsGoal * 1.1, // 少し余裕を持たせる
+                                title: {
+                                    display: true,
+                                    text: '累計文字数'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString() + '字';
+                                    }
+                                }
                             }
                         },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '日付',
-                                font: {
-                                    size: 14
-                                },
-                                color: '#555'
-                            },
-                            ticks: {
-                                color: '#555'
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y.toLocaleString() + '字';
+                                        }
+                                        return label;
+                                    }
+                                }
                             }
                         }
                     }
-                }
-            });
-        };
+                });
+            }
 
-        // 初期化
-        loadData();
-        renderHabits();
-        updateChart();
+            // ページロード時にデフォルトの入力値で各セクションを初期表示
+            generateIdeasBtn.click();
+            simulateBtn.click();
+        });
     </script>
 </body>
 </html>
