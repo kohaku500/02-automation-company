@@ -1,0 +1,48 @@
+name: Daily Marketing Report - 10:00 JST
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+jobs:
+  marketing-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - name: Generate Marketing Report
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          import os, requests
+          from datetime import datetime
+          api_key = os.environ.get('GEMINI_API_KEY')
+          today = datetime.now().strftime('%Y-%m-%d')
+          prompt = f"あなたはマーケティング部です。本日（{today}）のマーケティングレポートを生成してください。\n\n# マーケティングレポート（{today}）\n\n## 本日の成果\n- 投稿ネタ作成: X件\n- SNS投稿: X件\n- 競合分析: X社\n\n## プラットフォーム別\n### note\n- 投稿数: X件\n- 新規フォロワー: X人\n\n### BOOTH\n- 商品掲載: X件\n- 閲覧数: X回\n\n## 次期商品案\n### A案\n- コンセプト: X\n- 提案理由: X\n\n### B案\n- コンセプト: X\n- 提案理由: X\n\n### C案\n- コンセプト: X\n- 提案理由: X\n\nレポート生成完了"
+          headers = {'Content-Type': 'application/json'}
+          payload = {'contents': [{'parts': [{'text': prompt}]}]}
+          response = requests.post(f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}', headers=headers, json=payload)
+          if response.status_code == 200:
+              result = response.json()
+              report = result['candidates'][0]['content']['parts'][0]['text']
+              os.makedirs('運営ログ', exist_ok=True)
+              with open(f'運営ログ/マーケティング_レポート_{today}.md', 'w', encoding='utf-8') as f:
+                  f.write(report)
+              print(f"✅ マーケティングレポート完了")
+          else:
+              print(f"❌ エラー: {response.status_code}")
+          EOF
+      - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add 運営ログ/マーケティング_*.md
+          git commit -m "Daily: マーケティングレポート自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git push
