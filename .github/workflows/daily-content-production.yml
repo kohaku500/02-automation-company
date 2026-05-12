@@ -1,0 +1,26 @@
+name: Daily Content Production Report - 17:00 JST
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  content-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - name: Generate Content
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 .github/scripts/generate_content.py
+      - name: Commit and Push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add 商品パッケージ/ || true
+          git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)" || true
+          git push || true
