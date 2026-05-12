@@ -35,48 +35,49 @@ jobs:
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
 
-          prompt = f"""あなたはコンテンツ制作部です。本日（{today}）の成果レポートを生成してください。
+          # マーケティング部の企画案ファイルを読む
+          marketing_file = f'商品企画/企画案_{today}.md'
+          marketing_content = ""
+          if os.path.exists(marketing_file):
+              with open(marketing_file, 'r', encoding='utf-8') as f:
+                  marketing_content = f.read()
 
-          # コンテンツ制作レポート（{today}）
+          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング部の企画案から、最も売れそうな1案を選んで、完全なnote商品パッケージを生成してください。
 
-          ## 本日の成果物
-          - 新規商品完成: X件
-          - 特典作成: X個
-          - パッケージング完了: X件
+          【マーケティング部からの企画案】
+          {marketing_content if marketing_content else "（企画案ファイルが見つかりません。独自にテーマを選定してください：初心者向けライフハック、副業で月5万稼ぐツール、など）"}
 
-          ## 制作中の商品
-          ### 商品1
-          - タイトル: X
-          - 進捗度: X%
-          - 予定完成日: X
+          ## 生成する内容（note向け）
 
-          ### 商品2
-          - タイトル: X
-          - 進捗度: X%
-          - 予定完成日: X
+          ### セクション1：商品情報
+          - 商品タイトル: （note記事のタイトル）
+          - 商品説明（note用・100文字程度）:
+          - 想定価格: ¥1,500
+          - 対象読者:
 
-          ## 品質メトリクス
-          - サムネイル作成: X件
-          - テンプレート検証: PASS
-          - セキュリティスキャン: PASS
+          ### セクション2：記事本文（5000文字以上）
+          完全なnote記事本文を生成してください。以下の構成で：
+          - はじめに（課題提示）
+          - 背景・なぜこの問題が重要か
+          - 解決方法（具体的で実行可能）
+          - ケーススタディ・事例
+          - まとめ・次のステップ
 
-          ## 3大特典進捗
-          ### ライフハック
-          - 完成度: X%
-          - 予定: X
+          ### セクション3：3大特典
 
-          ### 副業ツール
-          - 完成度: X%
-          - 予定: X
+          **特典1：ライフハック**
+          - ユーザーの作業を5分短縮するチェックリスト・テンプレート
+          （フォーマット、チェックリスト項目を含む）
 
-          ### 教育資料
-          - 完成度: X%
-          - 予定: X
+          **特典2：副業ツール**
+          - ユーザーが「0から1」を稼げるテンプレート・ツール
+          （実用的なシート、計算ツールの説明を含む）
 
-          ## 課題・依頼
-          - （該当があれば記載）
+          **特典3：教育資料**
+          - このジャンルの本質を5分で理解できる図解ベースの資料
+          （テキスト形式で図解の説明を含む）
 
-          レポート生成完了"""
+          パッケージ生成完了"""
 
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
@@ -89,11 +90,17 @@ jobs:
 
           if response.status_code == 200:
               result = response.json()
-              report = result['candidates'][0]['content']['parts'][0]['text']
-              os.makedirs('運営ログ', exist_ok=True)
-              with open(f'運営ログ/コンテンツ_レポート_{today}.md', 'w', encoding='utf-8') as f:
-                  f.write(report)
-              print(f"✅ コンテンツレポート生成完了")
+              package_content = result['candidates'][0]['content']['parts'][0]['text']
+
+              # パッケージフォルダを作成
+              package_dir = f'商品パッケージ/{today}'
+              os.makedirs(package_dir, exist_ok=True)
+
+              # パッケージ内容を保存
+              with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
+                  f.write(package_content)
+
+              print(f"✅ note向け商品パッケージ生成完了: {package_dir}")
           else:
               print(f"❌ エラー: {response.status_code}")
           EOF
@@ -104,7 +111,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add 運営ログ/コンテンツ_*.md
-          git commit -m "Daily: コンテンツレポート自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git add 商品パッケージ/*/
+          git commit -m "Daily: note向け商品パッケージ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
