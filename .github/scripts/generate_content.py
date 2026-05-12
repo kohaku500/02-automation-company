@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import time
 from datetime import datetime
 import requests
 import json
@@ -8,6 +9,40 @@ api_key = os.environ.get('GEMINI_API_KEY')
 if not api_key:
     print("❌ GEMINI_API_KEY が設定されていません")
     exit(1)
+
+def call_gemini_api(prompt, max_retries=3, retry_delay=10):
+    """リトライ機能付き Gemini API 呼び出し"""
+    headers = {'Content-Type': 'application/json'}
+    payload = {'contents': [{'parts': [{'text': prompt}]}]}
+
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(
+                f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                headers=headers,
+                json=payload,
+                timeout=300
+            )
+
+            if response.status_code == 200:
+                return response
+            elif response.status_code == 503:
+                if attempt < max_retries - 1:
+                    print(f"⚠️ API 過負荷（503）。{retry_delay}秒待機後に再試行します...（試行 {attempt+1}/{max_retries}）")
+                    time.sleep(retry_delay)
+                    continue
+                else:
+                    return response
+            else:
+                return response
+        except Exception as e:
+            if attempt < max_retries - 1:
+                print(f"⚠️ エラー発生。{retry_delay}秒待機後に再試行します...（試行 {attempt+1}/{max_retries}）")
+                time.sleep(retry_delay)
+            else:
+                raise
+
+    return response
 
 today = datetime.now().strftime('%Y-%m-%d')
 marketing_file = f'商品企画/企画案_{today}.md'
@@ -27,18 +62,10 @@ prompt = f"""あなたはコンテンツ制作部です。3プラットフォー
 2. BOOTH向け（7000文字以上）
 3. Kindle向け原稿（10000文字以上）"""
 
-headers = {'Content-Type': 'application/json'}
-payload = {'contents': [{'parts': [{'text': prompt}]}]}
-
 print("🔄 Gemini API を呼び出し中...")
 
 try:
-    response = requests.post(
-        f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-        headers=headers,
-        json=payload,
-        timeout=300
-    )
+    response = call_gemini_api(prompt)
 
     if response.status_code == 200:
         result = response.json()
@@ -80,13 +107,7 @@ try:
 
 プロフェッショナルで響くプレゼンのHTMLスライドコードのみを出力してください。"""
 
-        pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
-        pres_response = requests.post(
-            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-            headers=headers,
-            json=pres_payload,
-            timeout=300
-        )
+        pres_response = call_gemini_api(pres_prompt)
 
         if pres_response.status_code == 200:
             pres_result = pres_response.json()
@@ -128,13 +149,7 @@ try:
 
 すぐに使えるHTMLアプリコードのみを出力してください。"""
 
-        app_payload = {'contents': [{'parts': [{'text': app_prompt}]}]}
-        app_response = requests.post(
-            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-            headers=headers,
-            json=app_payload,
-            timeout=300
-        )
+        app_response = call_gemini_api(app_prompt)
 
         if app_response.status_code == 200:
             app_result = app_response.json()
@@ -175,13 +190,7 @@ try:
 
 <!DOCTYPE html>から</html>までの完全なHTMLコードを出力してください。"""
 
-        guide_payload = {'contents': [{'parts': [{'text': guide_prompt}]}]}
-        guide_response = requests.post(
-            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-            headers=headers,
-            json=guide_payload,
-            timeout=300
-        )
+        guide_response = call_gemini_api(guide_prompt)
 
         if guide_response.status_code == 200:
             guide_result = guide_response.json()
