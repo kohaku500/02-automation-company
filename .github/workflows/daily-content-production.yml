@@ -31,9 +31,13 @@ jobs:
           import os
           from datetime import datetime
           import requests
-          import re
+          import json
 
           api_key = os.environ.get('GEMINI_API_KEY')
+          if not api_key:
+              print("❌ エラー: GEMINI_API_KEY が設定されていません")
+              exit(1)
+
           today = datetime.now().strftime('%Y-%m-%d')
 
           marketing_file = f'商品企画/企画案_{today}.md'
@@ -41,30 +45,47 @@ jobs:
           if os.path.exists(marketing_file):
               with open(marketing_file, 'r', encoding='utf-8') as f:
                   marketing_content = f.read()
+          else:
+              print(f"⚠️ 警告: {marketing_file} が見つかりません")
 
-          prompt = f"""あなたはコンテンツ制作部です。3プラットフォーム向けパッケージを生成してください。"""
+          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング企画をベースに、3プラットフォーム向けパッケージを生成してください。
+
+【マーケティング企画】
+{marketing_content if marketing_content else "（企画案なし - デモ実行）"}
+
+以下の3種類のコンテンツを生成してください：
+1. note向け記事（5,000文字以上）
+2. BOOTH向けセールスページ（7,000文字以上）
+3. Kindle向け原稿（10,000文字以上）"""
 
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
 
-          response = requests.post(
-              f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-              headers=headers,
-              json=payload
-          )
+          try:
+              response = requests.post(
+                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                  headers=headers,
+                  json=payload,
+                  timeout=30
+              )
 
-          if response.status_code == 200:
-              result = response.json()
-              package_content = result['candidates'][0]['content']['parts'][0]['text']
-              package_dir = f'商品パッケージ/{today}'
-              os.makedirs(package_dir, exist_ok=True)
+              if response.status_code == 200:
+                  result = response.json()
+                  package_content = result['candidates'][0]['content']['parts'][0]['text']
+                  package_dir = f'商品パッケージ/{today}'
+                  os.makedirs(package_dir, exist_ok=True)
 
-              with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
-                  f.write(package_content)
+                  with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
+                      f.write(package_content)
 
-              print(f"✅ パッケージ生成完了: {package_dir}")
-          else:
-              print(f"❌ エラー: {response.status_code}")
+                  print(f"✅ パッケージ生成完了: {package_dir}")
+              else:
+                  print(f"❌ APIエラー: {response.status_code}")
+                  print(f"レスポンス: {response.text}")
+                  exit(1)
+          except Exception as e:
+              print(f"❌ エラー: {str(e)}")
+              exit(1)
           EOF
 
       - name: Commit and Push
@@ -73,7 +94,15 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add 商品パッケージ/*/
-          git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)" || echo "No changes"
-          git pull --rebase || true
-          git push
+          if [ -d "商品パッケージ" ]; then
+            git add 商品パッケージ/*/
+            if git diff --cached --quiet; then
+              echo "✅ コミットするファイルなし"
+            else
+              git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)"
+              git pull --rebase || true
+              git push
+            fi
+          else
+            echo "⚠️ 商品パッケージディレクトリが存在しません"
+          fi
