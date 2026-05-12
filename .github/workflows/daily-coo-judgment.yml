@@ -1,42 +1,135 @@
 name: Daily COO Judgment - 09:00 JST
+
 on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
+
 jobs:
   coo-judgment:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-python@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - run: pip install requests
+
+      - name: Install dependencies
+        run: pip install requests
+
       - name: Generate COO Judgment
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 << 'EOF'
-          import os, requests
+          import os
           from datetime import datetime
+          import requests
+
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
-          prompt = f"あなたはCOOです。本日（{today}）の経営判定レポートを生成してください。\n\n# COO判定レポート（{today}）\n\n## 本日の重要指標\n- MRR進捗: ¥XXXXX / ¥50,000目標\n- 新規顧客: X人\n- 顧客満足度: X.X / 5.0\n\n## 各部署への指示\n### マーケティング部\n- 優先商品: X案\n- プロモーション: X\n\n### コンテンツ制作部\n- 月間目標: X～X商品\n- 品質基準: X\n\n### クライアント管理部\n- リテンション優先度: X\n- 返金対応: X\n\n## 経営判定\n- 売上予測: ¥XXXXX\n- 最大課題: X\n- 対応方針: X\n\n判定完了"
+
+          prompt = f"""あなたはCOO（最高執行責任者）です。本日（{today}）の経営判定レポートを生成してください。
+
+          # COO判定レポート（{today}）
+
+          ## 本日の重要指標
+          - MRR進捗: ¥XXXXX / ¥50,000目標（XXX%）
+          - 新規顧客: X人
+          - 顧客満足度: X.X / 5.0
+          - チャーンレート: X%
+
+          ## 各部署への指示
+          ### マーケティング部
+          - 優先商品開発: X案を推奨
+          - プロモーション戦略: X
+          - 次期ターゲット層: X
+
+          ### コンテンツ制作部
+          - 月間目標: X～X商品
+          - 品質基準: X
+          - 納期厳守: X
+
+          ### クライアント管理部
+          - リテンション優先度: X
+          - 返金対応: X
+          - 特典充実化: X
+
+          ### 秘書室
+          - 明日以降の優先度: X
+          - 会議スケジュール: X
+          - 報告体制: X
+
+          ## 経営判定
+          ### 売上予測
+          - 当月予想: ¥XXXXX
+          - 評価: X
+
+          ### 課題分析
+          - 最大課題: X
+          - 対応方針: X
+
+          ### リスク警告
+          - 利益率30%以下の商品: なし/X件
+          - 需要警告: なし/X件
+
+          ## 部署編成判定
+
+          ### 現在の稼働部署
+          - COO判定部、マーケティング部、コンテンツ制作部、クライアント管理部、秘書室
+
+          ### 部署追加判定
+          以下の指標で新規部署の必要性を判定してください：
+          - MRR が ¥30,000 を超えたか → デザイン・品質向上部の追加を検討
+          - 顧客満足度が 4.0 未満か → カスタマーサポート強化部の追加を検討
+          - コンテンツ生産量が不足しているか → 第2コンテンツ制作部の追加を検討
+          - その他、データから判断した部署追加が必要か
+
+          ### 部署強化判定
+          - マーケティング部の企画採用率が低い → プロンプト強化・リサーチ強化を指示
+          - コンテンツ制作部の品質スコアが低い → 品質基準の引き上げ・プロンプト改善を指示
+          - 各部署の負担が大きい → 業務分担の見直しを提案
+
+          ### 部署縮小・廃止判定
+          - 生産コストが高く効果が低い部署 → 廃止を検討
+          - 重複機能がある部署 → 統合を検討
+
+          ### 判定結果
+          - 追加推奨: なし / 部署名（追加理由）
+          - 強化推奨: なし / 部署名（具体的な改善内容）
+          - 廃止推奨: なし / 部署名（廃止理由）
+
+          ## 明日の焦点
+          - X に集中
+
+          判定完了"""
+
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
-          response = requests.post(f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}', headers=headers, json=payload)
+
+          response = requests.post(
+              f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+              headers=headers,
+              json=payload
+          )
+
           if response.status_code == 200:
               result = response.json()
               judgment = result['candidates'][0]['content']['parts'][0]['text']
               os.makedirs('運営ログ', exist_ok=True)
               with open(f'運営ログ/COO判定_{today}.md', 'w', encoding='utf-8') as f:
                   f.write(judgment)
-              print(f"✅ COO判定完了")
+              print(f"✅ COO判定レポート生成完了")
           else:
               print(f"❌ エラー: {response.status_code}")
           EOF
+
       - name: Commit and Push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,4 +138,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add 運営ログ/COO判定_*.md
           git commit -m "Daily: COO判定自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git pull --rebase || true
           git push
