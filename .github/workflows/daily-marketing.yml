@@ -35,49 +35,49 @@ jobs:
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
 
-          prompt = f"""あなたはマーケティング部です。本日（{today}）のマーケティングレポートを生成してください。
+          prompt = f"""あなたはマーケティング部です。本日（{today}）に最も売れそうな商品企画案を10本生成してください。
 
-          # マーケティングレポート（{today}）
+          # note向け商品企画案10本（{today}）
 
-          ## 本日の成果
-          - 投稿ネタ作成: X件
-          - SNS投稿: X件
-          - 競合分析: X社
+          以下のフォーマットで、noteで売れそうな商品を10案提案してください：
 
-          ## プラットフォーム別パフォーマンス
-          ### note
-          - 投稿数: X件
-          - 新規フォロワー: X人
-          - エンゲージメント: X%
+          ## 企画案1
+          - タイトル: （note記事のタイトル案）
+          - ジャンル: ライフハック / 副業ツール / 教育資料 のいずれか
+          - ターゲット層: （具体的なペルソナ）
+          - 概要: （50文字程度の説明）
+          - 差別化ポイント: （競合との違い）
+          - 推定価格: ¥1,500
+          - 売上見込み: 高/中/低
 
-          ### BOOTH
-          - 商品掲載: X件
-          - 閲覧数: X回
+          ## 企画案2
+          - タイトル: ...
 
-          ### その他
-          - メルマガ: X配信
-          - SNS: X投稿
+          ## 企画案3
+          - タイトル: ...
 
-          ## 次期商品案
-          ### A案
-          - コンセプト: X
-          - 想定市場: X
-          - 提案理由: X
+          ## 企画案4
+          - タイトル: ...
 
-          ### B案
-          - コンセプト: X
-          - 想定市場: X
-          - 提案理由: X
+          ## 企画案5
+          - タイトル: ...
 
-          ### C案
-          - コンセプト: X
-          - 想定市場: X
-          - 提案理由: X
+          ## 企画案6
+          - タイトル: ...
 
-          ## 課題
-          - （該当があれば記載）
+          ## 企画案7
+          - タイトル: ...
 
-          レポート生成完了"""
+          ## 企画案8
+          - タイトル: ...
+
+          ## 企画案9
+          - タイトル: ...
+
+          ## 企画案10
+          - タイトル: ...
+
+          企画案生成完了"""
 
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
@@ -91,10 +91,10 @@ jobs:
           if response.status_code == 200:
               result = response.json()
               report = result['candidates'][0]['content']['parts'][0]['text']
-              os.makedirs('運営ログ', exist_ok=True)
-              with open(f'運営ログ/マーケティング_レポート_{today}.md', 'w', encoding='utf-8') as f:
+              os.makedirs('商品企画', exist_ok=True)
+              with open(f'商品企画/企画案_{today}.md', 'w', encoding='utf-8') as f:
                   f.write(report)
-              print(f"✅ マーケティングレポート生成完了")
+              print(f"✅ 商品企画案生成完了")
           else:
               print(f"❌ エラー: {response.status_code}")
           EOF
@@ -105,7 +105,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add 運営ログ/マーケティング_*.md
-          git commit -m "Daily: マーケティングレポート自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git add 商品企画/企画案_*.md
+          git commit -m "Daily: 商品企画案自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
