@@ -1,0 +1,48 @@
+name: Daily Client Management Report - 18:00 JST
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+jobs:
+  client-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - name: Generate Client Report
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          import os, requests
+          from datetime import datetime
+          api_key = os.environ.get('GEMINI_API_KEY')
+          today = datetime.now().strftime('%Y-%m-%d')
+          prompt = f"あなたはクライアント管理部です。本日（{today}）の顧客管理レポートを生成してください。\n\n# 顧客サマリーレポート（{today}）\n\n## 数値サマリー\n- 新規顧客: X人\n- 総顧客数: X人\n- 平均満足度: X.X / 5.0\n- チャーンレート: X%\n- 返金申請: X件\n\n## プラットフォーム別\n### note\n- 新規: X人\n- MRR: ¥XXXXX\n\n### BOOTH\n- 新規: X人\n- MRR: ¥XXXXX\n\n### Kindle\n- 新規: X人\n- MRR: ¥XXXXX\n\n## 顧客満足度\n- 5.0点: X人\n- 4.0点: X人\n- 3.0点: X人\n- 2.0点以下: X人\n\nレポート生成完了"
+          headers = {'Content-Type': 'application/json'}
+          payload = {'contents': [{'parts': [{'text': prompt}]}]}
+          response = requests.post(f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}', headers=headers, json=payload)
+          if response.status_code == 200:
+              result = response.json()
+              report = result['candidates'][0]['content']['parts'][0]['text']
+              os.makedirs('運営ログ', exist_ok=True)
+              with open(f'運営ログ/顧客レポート_{today}.md', 'w', encoding='utf-8') as f:
+                  f.write(report)
+              print(f"✅ 顧客レポート完了")
+          else:
+              print(f"❌ エラー: {response.status_code}")
+          EOF
+      - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add 運営ログ/顧客レポート_*.md
+          git commit -m "Daily: 顧客レポート自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git push
