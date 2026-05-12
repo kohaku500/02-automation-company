@@ -35,7 +35,32 @@ jobs:
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
 
+          # 部署間連携：当日のコンテンツ出力を読み込む
+          content_dir = f'商品パッケージ/{today}'
+          content_summary = ""
+          if os.path.exists(f'{content_dir}/complete_package.md'):
+              with open(f'{content_dir}/complete_package.md', 'r', encoding='utf-8') as f:
+                  content_summary = f.read()[:3000]
+              print(f"✅ 当日のコンテンツを読み込み: {content_dir}")
+          else:
+              print(f"⚠️ 当日のコンテンツが見つかりません: {content_dir}")
+
+          # COO判定も読み込む
+          coo_file = f'運営ログ/COO判定_{today}.md'
+          coo_judgment = ""
+          if os.path.exists(coo_file):
+              with open(coo_file, 'r', encoding='utf-8') as f:
+                  coo_judgment = f.read()
+
           prompt = f"""あなたはクライアント管理部です。本日（{today}）の顧客管理レポートを生成してください。
+
+          # 本日のコンテンツ概要（クライアント反応を予測する材料）
+          {content_summary if content_summary else "（コンテンツ未生成）"}
+
+          # COO判定からの指示
+          {coo_judgment if coo_judgment else "（COO判定なし）"}
+
+          上記の情報を踏まえて、本日のコンテンツに対する顧客反応を予測し、レポートを生成してください。
 
           # 顧客サマリーレポート（{today}）
 

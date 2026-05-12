@@ -29,13 +29,45 @@ jobs:
         run: |
           python3 << 'EOF'
           import os
-          from datetime import datetime
+          from datetime import datetime, timedelta
           import requests
 
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
+          yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+
+          # フィードバックループ：前日の全部署結果を読み込む
+          previous_data = {}
+
+          # 前日の顧客レポート
+          yesterday_client = f'運営ログ/顧客レポート_{yesterday}.md'
+          if os.path.exists(yesterday_client):
+              with open(yesterday_client, 'r', encoding='utf-8') as f:
+                  previous_data['顧客レポート'] = f.read()[:2000]
+              print(f"✅ 前日の顧客レポート読み込み")
+
+          # 前日のマーケティング企画
+          yesterday_marketing = f'商品企画/企画案_{yesterday}.md'
+          if os.path.exists(yesterday_marketing):
+              with open(yesterday_marketing, 'r', encoding='utf-8') as f:
+                  previous_data['マーケティング企画'] = f.read()[:2000]
+              print(f"✅ 前日のマーケティング企画読み込み")
+
+          # 前日の秘書日報
+          yesterday_report = f'運営ログ/日報_{yesterday}.md'
+          if os.path.exists(yesterday_report):
+              with open(yesterday_report, 'r', encoding='utf-8') as f:
+                  previous_data['秘書日報'] = f.read()[:2000]
+              print(f"✅ 前日の秘書日報読み込み")
+
+          previous_context = "\n\n".join([f"## 前日の{k}\n{v}" for k, v in previous_data.items()])
 
           prompt = f"""あなたはCOO（最高執行責任者）です。本日（{today}）の経営判定レポートを生成してください。
+
+          # 前日（{yesterday}）の各部署結果（フィードバックループ）
+          {previous_context if previous_context else "（前日のデータなし）"}
+
+          上記の前日の結果を踏まえて、改善点を反映した本日の経営判定を生成してください。
 
           # COO判定レポート（{today}）
 
