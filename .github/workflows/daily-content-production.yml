@@ -151,64 +151,13 @@ jobs:
                   with open(note_file, 'r', encoding='utf-8') as f:
                       note_content = f.read()
 
-              # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
-              pres_prompt = f"""あなたはプレゼン資料制作部です。以下の投稿文をベースに、ブラウザで動くHTMLスライドプレゼンを生成してください。
+                           # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
+              # 外部プロンプトファイルから読み込む
+              with open('.github/prompts/presentation_prompt.md', 'r', encoding='utf-8') as f:
+                  pres_template = f.read()
 
-              【投稿文】
-              {note_content if note_content else f"テーマ: {title_match}"}
+              pres_prompt = pres_template.replace('{note_content}', note_content if note_content else f"テーマ: {title_match}")
 
-              【スライド要件】
-              - 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む）
-              - HTMLのみ出力（説明文不要）
-              - 10〜15スライド構成：
-                1. タイトルスライド（テーマ・サブタイトル）
-                2. 課題・問題提起
-                3〜8. 解決策・重要ポイント（図解・箇条書き・数字）
-                9〜12. 実践方法・ステップバイステップ・事例
-                13〜14. まとめ・要点確認
-                15. 次のステップ・行動喚起
-
-              【スライド内容の制約（重要）】
-              ✓ 各スライドのテキスト：最大200文字以内
-              ✓ リスト項目：最大4個
-              ✓ グリッド説明文：最大30文字
-              ✓ h2/h3フォント：コンパクト設定
-              ✓ 全スライド：枠内に完全に収納される設計
-
-              【デザイン】
-              - プロフェッショナル（グラデーション・色使い・フォント）
-              - 操作：矢印キー または クリックで前後のスライド切り替え
-              - スマホ対応（レスポンシブ）
-              - 各スライドに適切なアイコン・色・レイアウト
-              - Font Awesomeのみ外部CDN使用可
-              - <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
-
-              プロフェッショナルなHTMLスライドコードのみを出力してください。"""
-
-              pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
-
-              pres_response = requests.post(
-                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-                  headers=headers,
-                  json=pres_payload
-              )
-
-              if pres_response.status_code == 200:
-                  pres_result = pres_response.json()
-                  pres_code = pres_result['candidates'][0]['content']['parts'][0]['text']
-
-                  # HTMLコードをクリーニング
-                  if pres_code.startswith('```html'):
-                      pres_code = pres_code[7:]
-                  if pres_code.startswith('```'):
-                      pres_code = pres_code[3:]
-                  if pres_code.endswith('```'):
-                      pres_code = pres_code[:-3]
-                  pres_code = pres_code.strip()
-
-                  # プレゼン資料をファイルとして保存
-                  with open(f'{package_dir}/presentation.html', 'w', encoding='utf-8') as f:
-                      f.write(pres_code)
 
                   print(f"✅ HTMLスライドプレゼン生成完了: {package_dir}/presentation.html")
               else:
