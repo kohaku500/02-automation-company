@@ -1,156 +1,17 @@
-name: Daily Content Production Report - 17:00 JST
-
-on:
-  schedule:
-    - cron: '0 8 * * *'
-  workflow_dispatch:
-
-jobs:
-  content-report:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Generate Content Report
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python3 << 'EOF'
-          import os
-          from datetime import datetime
-          import requests
-
-          api_key = os.environ.get('GEMINI_API_KEY')
-          today = datetime.now().strftime('%Y-%m-%d')
-
-          # マーケティング部の企画案ファイルを読む
-          marketing_file = f'商品企画/企画案_{today}.md'
-          marketing_content = ""
-          if os.path.exists(marketing_file):
-              with open(marketing_file, 'r', encoding='utf-8') as f:
-                  marketing_content = f.read()
-
-          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング部の企画案から、最も売れそうな1案を選んで、3プラットフォーム向けの商品パッケージを生成してください。
-
-          【マーケティング部からの企画案】
-          {marketing_content if marketing_content else "（企画案ファイルが見つかりません。独自にテーマを選定してください：初心者向けライフハック、副業で月5万稼ぐツール、など）"}
-
-          【販売スケジュール】
-          - 5月15日〜6月14日: 無料期間（ユーザー獲得フェーズ）
-          - 6月15日〜: 有料化（¥1,500 for note / ¥2,000 for BOOTH / ¥980 for Kindle）
-
-          ## 生成する内容（3プラットフォーム向け）
-
-          ### セクション1：共通情報
-          - 商品タイトル: （3プラットフォーム共通のタイトル）
-          - 対象読者:
-          - ジャンル:
-
-          ### セクション2：note向けパッケージ（¥1,500 / 無料→有料）
-          #### note記事本文（5000文字以上）
-          以下の構成で：
-          - はじめに（課題提示）
-          - 背景・なぜこの問題が重要か
-          - 解決方法（具体的で実行可能）
-          - ケーススタディ・事例
-          - まとめ・次のステップ
-
-          #### 3大特典
-          **特典1：ライフハック**
-          - ユーザーの作業を5分短縮するチェックリスト・テンプレート
-          （フォーマット、チェックリスト項目を含む）
-
-          **特典2：副業ツール**
-          - ユーザーが「0から1」を稼げるテンプレート・ツール
-          （実用的なシート、計算ツールの説明を含む）
-
-          **特典3：教育資料**
-          - このジャンルの本質を5分で理解できる図解ベースの資料
-          （テキスト形式で図解の説明を含む）
-
-          ### セクション3：BOOTH向けパッケージ（¥2,000 / 無料→有料）
-          #### 詳細版コンテンツ（7000文字以上）
-          note版より深掘りした内容：
-          - 理論的背景
-          - ステップバイステップガイド
-          - 実践的なワークシート（複数）
-          - よくある質問と回答
-          - トラブルシューティング
-
-          #### 補足資料
-          - 図解・表・テンプレート（テキスト形式で記述）
-          - チェックリスト
-
-          ### セクション4：Kindle向け原稿（¥980 / 無料→有料）
-          #### 電子書籍形式（10000文字以上）
-          Kindle出版に適した形式：
-          - 目次
-          - はじめに
-          - 第1章：背景・重要性
-          - 第2章：基本知識
-          - 第3章：実践方法
-          - 第4章：応用・発展
-          - 第5章：まとめ・次のステップ
-          - 付録：テンプレート・チェックリスト
-
-          パッケージ生成完了"""
-
-          headers = {'Content-Type': 'application/json'}
-          payload = {'contents': [{'parts': [{'text': prompt}]}]}
-
-          response = requests.post(
-              f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-              headers=headers,
-              json=payload
-          )
-
-          if response.status_code == 200:
-              result = response.json()
-              package_content = result['candidates'][0]['content']['parts'][0]['text']
-
-              # パッケージフォルダを作成
-              package_dir = f'商品パッケージ/{today}'
-              os.makedirs(package_dir, exist_ok=True)
-
-              # 3プラットフォーム分を1つのファイルに保存
-              with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
-                  f.write(package_content)
-
-              # 便宜上、分割版も作成（オプション）
-              # ユーザーが各プラットフォームに投稿する際に該当セクションをコピーしやすいように
-              with open(f'{package_dir}/note_package.md', 'w', encoding='utf-8') as f:
-                  f.write(f"# note向けパッケージ\n\n{package_content}\n\n※セクション2の内容をnoteにコピペしてください")
-
-              with open(f'{package_dir}/booth_package.md', 'w', encoding='utf-8') as f:
-                  f.write(f"# BOOTH向けパッケージ\n\n{package_content}\n\n※セクション3の内容をBOOTHにアップロードしてください")
-
-              with open(f'{package_dir}/kindle_manuscript.md', 'w', encoding='utf-8') as f:
-                  f.write(f"# Kindle向け原稿\n\n{package_content}\n\n※セクション4の内容をKindle出版プロセスで使用してください")
-
-              # タイトルを抽出（HTMLアプリのプロンプトで使用）
-              title_match = package_content.split("商品タイトル:")[1].split("\n")[0].strip() if "商品タイトル:" in package_content else "ツール"
-
-              print(f"✅ 3プラットフォーム向け商品パッケージ生成完了: {package_dir}")
+              # 投稿文を読み込む
+              note_file = f'{package_dir}/note_package.md'
+              note_content = ""
+              if os.path.exists(note_file):
+                  with open(note_file, 'r', encoding='utf-8') as f:
+                      note_content = f.read()
 
               # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
-              pres_prompt = f"""あなたはプレゼン資料制作部です。以下のテーマについて、ブラウザで動くHTMLスライドプレゼンを生成してください。
+              pres_prompt = f"""あなたはプレゼン資料制作部です。以下の投稿文をベースに、ブラウザで動くHTMLスライドプレゼンを生成してください。
 
-              【テーマ】
-              {title_match}
+              【投稿文】
+              {note_content if note_content else f"テーマ: {title_match}"}
 
-              【要件】
+              【スライド要件】
               - 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む）
               - HTMLのみ出力（説明文不要）
               - 10〜15スライド構成：
@@ -160,7 +21,16 @@ jobs:
                 9〜12. 実践方法・ステップバイステップ・事例
                 13〜14. まとめ・要点確認
                 15. 次のステップ・行動喚起
-              - デザイン：プロフェッショナル（グラデーション・色使い・フォント）
+
+              【スライド内容の制約（重要）】
+              ✓ 各スライドのテキスト：最大200文字以内
+              ✓ リスト項目：最大4個
+              ✓ グリッド説明文：最大30文字
+              ✓ h2/h3フォント：コンパクト設定
+              ✓ 全スライド：枠内に完全に収納される設計
+
+              【デザイン】
+              - プロフェッショナル（グラデーション・色使い・フォント）
               - 操作：矢印キー または クリックで前後のスライド切り替え
               - スマホ対応（レスポンシブ）
               - 各スライドに適切なアイコン・色・レイアウト
@@ -168,93 +38,3 @@ jobs:
               - <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
 
               プロフェッショナルなHTMLスライドコードのみを出力してください。"""
-
-              pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
-
-              pres_response = requests.post(
-                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-                  headers=headers,
-                  json=pres_payload
-              )
-
-              if pres_response.status_code == 200:
-                  pres_result = pres_response.json()
-                  pres_code = pres_result['candidates'][0]['content']['parts'][0]['text']
-
-                  # HTMLコードをクリーニング
-                  if pres_code.startswith('```html'):
-                      pres_code = pres_code[7:]
-                  if pres_code.startswith('```'):
-                      pres_code = pres_code[3:]
-                  if pres_code.endswith('```'):
-                      pres_code = pres_code[:-3]
-                  pres_code = pres_code.strip()
-
-                  # プレゼン資料をファイルとして保存
-                  with open(f'{package_dir}/presentation.html', 'w', encoding='utf-8') as f:
-                      f.write(pres_code)
-
-                  print(f"✅ HTMLスライドプレゼン生成完了: {package_dir}/presentation.html")
-              else:
-                  print(f"⚠️ プレゼン生成スキップ: API呼び出し失敗 ({pres_response.status_code})")
-
-              # 3回目のAPI呼び出し：HTMLアプリコード生成
-              app_prompt = f"""あなたはアプリ開発部です。以下のテーマに関連する、ブラウザですぐに使えるHTMLアプリを1つ生成してください。
-
-              【テーマ】
-              {title_match}
-
-              【要件】
-              - 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む、外部ファイル参照なし）
-              - HTMLのみ（不要なMarkdown説明文は含めない）
-              - スマホ対応（レスポンシブデザイン）
-              - ブラウザで開くだけで即実行可能
-              - 実用的で役立つツール（計算機・診断・チェックリスト・シミュレーター等）
-              - 外部CDNはBootstrap・Chart.jsのみ使用可能
-              - 個人情報を収集しない
-              - <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
-
-              すぐに使えるHTMLアプリコードのみを出力してください。"""
-
-              app_payload = {'contents': [{'parts': [{'text': app_prompt}]}]}
-
-              app_response = requests.post(
-                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
-                  headers=headers,
-                  json=app_payload
-              )
-
-              if app_response.status_code == 200:
-                  app_result = app_response.json()
-                  app_code = app_result['candidates'][0]['content']['parts'][0]['text']
-
-                  # HTMLコードをクリーニング（Markdownコードブロック記号を削除）
-                  if app_code.startswith('```html'):
-                      app_code = app_code[7:]
-                  if app_code.startswith('```'):
-                      app_code = app_code[3:]
-                  if app_code.endswith('```'):
-                      app_code = app_code[:-3]
-                  app_code = app_code.strip()
-
-                  # HTMLアプリをファイルとして保存
-                  with open(f'{package_dir}/app.html', 'w', encoding='utf-8') as f:
-                      f.write(app_code)
-
-                  print(f"✅ HTMLアプリ生成完了: {package_dir}/app.html")
-              else:
-                  print(f"⚠️ HTMLアプリ生成スキップ: API呼び出し失敗 ({app_response.status_code})")
-          else:
-              print(f"❌ エラー: {response.status_code}")
-          EOF
-
-      - name: Commit and Push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add 商品パッケージ/*/
-          git commit -m "Daily: 投稿文+プレゼン+アプリ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
-          git pull --rebase || true
-          git push
