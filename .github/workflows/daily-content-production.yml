@@ -42,29 +42,32 @@ jobs:
               with open(marketing_file, 'r', encoding='utf-8') as f:
                   marketing_content = f.read()
 
-          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング部の企画案から、最も売れそうな1案を選んで、完全なnote商品パッケージを生成してください。
+          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング部の企画案から、最も売れそうな1案を選んで、3プラットフォーム向けの商品パッケージを生成してください。
 
           【マーケティング部からの企画案】
           {marketing_content if marketing_content else "（企画案ファイルが見つかりません。独自にテーマを選定してください：初心者向けライフハック、副業で月5万稼ぐツール、など）"}
 
-          ## 生成する内容（note向け）
+          【販売スケジュール】
+          - 5月15日〜6月14日: 無料期間（ユーザー獲得フェーズ）
+          - 6月15日〜: 有料化（¥1,500 for note / ¥2,000 for BOOTH / ¥980 for Kindle）
 
-          ### セクション1：商品情報
-          - 商品タイトル: （note記事のタイトル）
-          - 商品説明（note用・100文字程度）:
-          - 想定価格: ¥1,500
+          ## 生成する内容（3プラットフォーム向け）
+
+          ### セクション1：共通情報
+          - 商品タイトル: （3プラットフォーム共通のタイトル）
           - 対象読者:
+          - ジャンル:
 
-          ### セクション2：記事本文（5000文字以上）
-          完全なnote記事本文を生成してください。以下の構成で：
+          ### セクション2：note向けパッケージ（¥1,500 / 無料→有料）
+          #### note記事本文（5000文字以上）
+          以下の構成で：
           - はじめに（課題提示）
           - 背景・なぜこの問題が重要か
           - 解決方法（具体的で実行可能）
           - ケーススタディ・事例
           - まとめ・次のステップ
 
-          ### セクション3：3大特典
-
+          #### 3大特典
           **特典1：ライフハック**
           - ユーザーの作業を5分短縮するチェックリスト・テンプレート
           （フォーマット、チェックリスト項目を含む）
@@ -76,6 +79,31 @@ jobs:
           **特典3：教育資料**
           - このジャンルの本質を5分で理解できる図解ベースの資料
           （テキスト形式で図解の説明を含む）
+
+          ### セクション3：BOOTH向けパッケージ（¥2,000 / 無料→有料）
+          #### 詳細版コンテンツ（7000文字以上）
+          note版より深掘りした内容：
+          - 理論的背景
+          - ステップバイステップガイド
+          - 実践的なワークシート（複数）
+          - よくある質問と回答
+          - トラブルシューティング
+
+          #### 補足資料
+          - 図解・表・テンプレート（テキスト形式で記述）
+          - チェックリスト
+
+          ### セクション4：Kindle向け原稿（¥980 / 無料→有料）
+          #### 電子書籍形式（10000文字以上）
+          Kindle出版に適した形式：
+          - 目次
+          - はじめに
+          - 第1章：背景・重要性
+          - 第2章：基本知識
+          - 第3章：実践方法
+          - 第4章：応用・発展
+          - 第5章：まとめ・次のステップ
+          - 付録：テンプレート・チェックリスト
 
           パッケージ生成完了"""
 
@@ -96,11 +124,22 @@ jobs:
               package_dir = f'商品パッケージ/{today}'
               os.makedirs(package_dir, exist_ok=True)
 
-              # パッケージ内容を保存
+              # 3プラットフォーム分を1つのファイルに保存
               with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
                   f.write(package_content)
 
-              print(f"✅ note向け商品パッケージ生成完了: {package_dir}")
+              # 便宜上、分割版も作成（オプション）
+              # ユーザーが各プラットフォームに投稿する際に該当セクションをコピーしやすいように
+              with open(f'{package_dir}/note_package.md', 'w', encoding='utf-8') as f:
+                  f.write(f"# note向けパッケージ\n\n{package_content}\n\n※セクション2の内容をnoteにコピペしてください")
+
+              with open(f'{package_dir}/booth_package.md', 'w', encoding='utf-8') as f:
+                  f.write(f"# BOOTH向けパッケージ\n\n{package_content}\n\n※セクション3の内容をBOOTHにアップロードしてください")
+
+              with open(f'{package_dir}/kindle_manuscript.md', 'w', encoding='utf-8') as f:
+                  f.write(f"# Kindle向け原稿\n\n{package_content}\n\n※セクション4の内容をKindle出版プロセスで使用してください")
+
+              print(f"✅ 3プラットフォーム向け商品パッケージ生成完了: {package_dir}")
           else:
               print(f"❌ エラー: {response.status_code}")
           EOF
@@ -112,6 +151,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add 商品パッケージ/*/
-          git commit -m "Daily: note向け商品パッケージ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git commit -m "Daily: 3プラットフォーム向け商品パッケージ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
