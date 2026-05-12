@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【2026年版】ChatGPTを超えたAIライティング術！月5万円稼ぐ自動化ワークフロー</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #6a11cb; /* Deep Purple */
+            --secondary-color: #2575fc; /* Bright Blue */
+            --accent-color: #00bcd4; /* Cyan */
+            --text-color: #333;
+            --light-text-color: #f0f0f0;
+            --background-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --slide-bg-color: rgba(255, 255, 255, 0.95);
+            --border-radius: 15px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --font-family-base: 'Noto Sans JP', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-family-heading: 'Montserrat', 'Noto Sans JP', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--background-gradient);
+            color: var(--text-color);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide {
+            background: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px 60px;
+            text-align: center;
+            position: absolute;
+            width: 90%;
+            max-width: 1000px; /* Max width for larger screens */
+            height: 80%;
+            max-height: 700px; /* Max height for larger screens */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            pointer-events: none; /* Prevent interaction with hidden slides */
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto; /* Allow interaction with active slide */
+            position: relative; /* Bring active slide to front for z-index */
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-family-heading);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        ul li {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        ul li::before {
+            content: "\f058"; /* Check-circle icon default */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900; /* Solid icon */
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+        
+        /* Specific list item styles for different slides */
+        .slide-problems ul li::before { content: "\f06a"; color: #e74c3c; } /* Exclamation triangle */
+        .slide-solutions ul li::before { content: "\f00c"; color: var(--accent-color); } /* Check mark */
+        .slide-steps ul li::before { content: "\f0a9"; color: var(--primary-color); } /* Hand point right */
+        .slide-summary ul li::before { content: "\f05a"; color: var(--secondary-color); } /* Info circle */
+        .slide-cta ul li::before { content: "\f061"; color: var(--accent-color); } /* Arrow right */
+
+
+        .icon-large {
+            font-size: 5em;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        .icon-medium {
+            font-size: 3em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 30px;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-item i {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .grid-item h4 {
+            font-size: 1.4em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            font-size: 1em;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .key-points {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .key-point-item {
+            background: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 20px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 0 10px;
+            flex: 1;
+            max-width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .key-point-item i {
+            font-size: 3em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .key-point-item h4 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--light-text-color);
+        }
+
+        .key-point-item p {
+            font-size: 1.1em;
+            color: var(--light-text-color);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Specific slide backgrounds/text for contrast */
+        .slide:nth-child(1) { /* Title slide */
+            background: var(--background-gradient);
+            color: var(--light-text-color);
+        }
+        .slide:nth-child(1) h1, .slide:nth-child(1) p {
+            color: var(--light-text-color);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        .slide:nth-child(1) .icon-large {
+            color: #fff;
+        }
+
+        /* Specific styles for Call to Action slide */
+        .slide-cta {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            color: var(--light-text-color);
+        }
+        .slide-cta h2, .slide-cta h3, .slide-cta p {
+            color: var(--light-text-color);
+        }
+        .slide-cta ul li::before {
+            color: #fff;
+        }
+        .slide-cta .icon-large {
+            color: #fff;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 30px;
+                width: 95%;
+                height: 85%;
+                max-height: unset;
+                max-width: unset;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.4em;
+            }
+            p {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            ul {
+                max-width: 95%;
+            }
+            ul li {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+            ul li::before {
+                font-size: 1em;
+                top: 3px;
+            }
+
+            .icon-large {
+                font-size: 3em;
+                margin-bottom: 20px;
+            }
+            .icon-medium {
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .grid-item {
+                padding: 20px;
+            }
+            .grid-item i {
+                font-size: 2em;
+            }
+            .grid-item h4 {
+                font-size: 1.2em;
+            }
+
+            .key-points {
+                flex-direction: column;
+                align-items: center;
+            }
+            .key-point-item {
+                margin: 10px 0;
+                max-width: 90%;
+            }
+            .key-point-item i {
+                font-size: 2.5em;
+            }
+            .key-point-item h4 {
+                font-size: 1.4em;
+            }
+            .key-point-item p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container" onclick="nextSlide()">
+        <!-- Slide 1: タイトルスライド -->
+        <div class="slide active">
+            <i class="fas fa-robot icon-large"></i>
+            <h1>【2026年版】<br>ChatGPTを超えたAIライティング術！</h1>
+            <p style="font-size: 1.8em; font-weight: bold; margin-top: 30px;">月5万円稼ぐ自動化ワークフロー</p>
+            <p style="font-size: 1.1em; margin-top: 40px;">〜次世代AIと効率化で収益を最大化する戦略〜</p>
+        </div>
+
+        <!-- Slide 2: 課題・問題提起 -->
+        <div class="slide slide-problems">
+            <i class="fas fa-exclamation-triangle icon-medium"></i>
+            <h2>現在のAIライティングの課題</h2>
+            <h3>ChatGPTだけでは「限界」を感じていませんか？</h3>
+            <ul>
+                <li><span>定型的な文章でオリジナリティが低い</span></li>
+                <li><span>情報の鮮度や正確性に不安がある</span></li>
+                <li><span>プロンプト作成に時間がかかり、効率が悪い</span></li>
+                <li><span>特定分野の専門知識が不足している</span></li>
+                <li><span>「AIが書いた」とバレるリスク</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: 解決策・重要ポイント1 - ChatGPTを超えるAIモデル -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-brain icon-medium"></i>
+            <h2>ChatGPTを超える！次世代AIモデルの活用</h2>
+            <h3>【2026年】専門特化型・マルチモーダルAIが主流に</h3>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <i class="fas fa-microchip"></i>
+                    <h4>専門特化型AI</h4>
+                    <p>SEO、医療、法律など特定の業界に特化し、高品質な専門記事を生成</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-vector-square"></i>
+                    <h4>マルチモーダルAI</h4>
+                    <p>テキストだけでなく画像や音声も理解し、より複雑なコンテンツ作成に対応</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-robot"></i>
+                    <h4>パーソナライズAI</h4>
+                    <p>ユーザーや企業のデータを学習し、独自のブランドボイスで文章を生成</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: 解決策・重要ポイント2 - 超高精度プロンプトエンジニアリング -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-keyboard icon-medium"></i>
+            <h2>超高精度プロンプトエンジニアリング</h2>
+            <h3>AIのポテンシャルを最大限に引き出す技術</h3>
+            <ul>
+                <li><span>**コンテキストリッチな指示:** 役割・目的・対象読者を明確化</span></li>
+                <li><span>**イテレーション学習:** 生成結果をAIにフィードバックし精度向上</span></li>
+                <li><span>**「思考の連鎖」プロンプト:** 複雑なタスクを段階的に分解して指示</span></li>
+                <li><span>**ペルソナ指定:** 特定の専門家やライターになりきらせる</span></li>
+            </ul>
+            <p style="font-size: 1em; color: gray;">例: 「あなたは一流の医療ジャーナリストです。最新の研究に基づき、〇〇に関する一般向けの記事を、専門用語を避けつつ、権威的な口調で執筆してください。」</p>
+        </div>
+
+        <!-- Slide 5: 解決策・重要ポイント3 - 自動化ワークフローの構築 -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-cogs icon-medium"></i>
+            <h2>AIライティングの「自動化」ワークフロー</h2>
+            <h3>API連携とノーコードツールで手間を劇的に削減</h3>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <i class="fas fa-link"></i>
+                    <h4>API連携</h4>
+                    <p>AIモデルとCMSや配信ツールを直接接続し、自動投稿・更新を実現</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-tools"></i>
+                    <h4>ノーコード/ローコード</h4>
+                    <p>Zapier, Make, bubble等でAIと他サービスを繋ぎ、プログラミング不要で自動化</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-code"></i>
+                    <h4>カスタムスクリプト</h4>
+                    <p>Pythonなどで独自の自動生成・編集・公開システムを構築</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: 解決策・重要ポイント4 - 品質管理とヒューマンチェック -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-shield-alt icon-medium"></i>
+            <h2>AI生成コンテンツの「品質」担保</h2>
+            <h3>AIを「ツール」として使いこなす人間の役割</h3>
+            <ul>
+                <li><span>**事実確認:** 誤情報・ハルシネーションの徹底的な排除</span></li>
+                <li><span>**SEO最適化:** 検索意図とキーワードをAIに正確に指示し、最終調整</span></li>
+                <li><span>**ブランドボイス統一:** 企業や個人の個性を反映した表現への修正</span></li>
+                <li><span>**法的・倫理的チェック:** 著作権、プライバシー、差別表現の確認</span></li>
+            </ul>
+            <p style="font-size: 1em; color: gray;">AIは高速生成、人間は最終的な「価値」を加える役割分担</p>
+        </div>
+
+        <!-- Slide 7: 解決策・重要ポイント5 - 高単価案件獲得戦略 -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-yen-sign icon-medium"></i>
+            <h2>月5万円を稼ぐ！高単価案件獲得戦略</h2>
+            <h3>AI活用で「質と量」を両立し、単価アップ</h3>
+            <div class="key-points">
+                <div class="key-point-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>ニッチ専門化</h4>
+                    <p>特定の分野（医療、金融、IT）に絞り、専門性と信頼性を高める</p>
+                </div>
+                <div class="key-point-item">
+                    <i class="fas fa-rocket"></i>
+                    <h4>高速納品</h4>
+                    <p>AIで大幅に時間を短縮し、他にはないスピードで差別化を図る</p>
+                </div>
+                <div class="key-point-item">
+                    <i class="fas fa-star"></i>
+                    <h4>価値提供</h4>
+                    <p>AIにしかできない分析や独自の切り口を提案し、高付加価値化</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: 解決策・重要ポイント6 - AIライターとしてのポジショニング -->
+        <div class="slide slide-solutions">
+            <i class="fas fa-user-tie icon-medium"></i>
+            <h2>AIライターとしての市場価値を高める</h2>
+            <h3>未来を見据えたスキルセットの構築</h3>
+            <ul>
+                <li><span>**AIツール選定・カスタマイズ能力:** 最新AIへの適応力</span></li>
+                <li><span>**プロンプト設計の専門性:** AIを意図通りに動かす「AI指揮官」</span></li>
+                <li><span>**データ分析・SEO知識:** AI生成コンテンツのパフォーマンスを最大化</span></li>
+                <li><span>**倫理観と法知識:** AI利用の責任ある姿勢</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: 実践方法・ステップバイステップ1 - 環境構築とツール選定 -->
+        <div class="slide slide-steps">
+            <i class="fas fa-laptop-code icon-medium"></i>
+            <h2>Step 1: AIライティング環境の構築</h2>
+            <h3>最適なツールとAPIを選定する</h3>
+            <ul>
+                <li><span>**コアAIモデル選定:** GPT-4V, Claude 3, Gemini Ultraなど最新モデル</span></li>
+                <li><span>**補助ツール:** 執筆・校正支援 (Grammarly, DeepL Write)</span></li>
+                <li><span>**自動化プラットフォーム:** Zapier, Make, n8n (連携ツール)</span></li>
+                <li><span>**データソース:** 専門データベース、API連携サービス</span></li>
+            </ul>
+            <p style="font-size: 1em; color: gray;">※有料ツールへの投資が効率化の鍵</p>
+        </div>
+
+        <!-- Slide 10: 実践方法・ステップバイステップ2 - 高度なプロンプト設計 -->
+        <div class="slide slide-steps">
+            <i class="fas fa-file-alt icon-medium"></i>
+            <h2>Step 2: 実践！高度なプロンプト設計術</h2>
+            <h3>具体的シナリオで学ぶAIへの命令方法</h3>
+            <p><strong>シナリオ例:</strong> 「特定のキーワードで月間1万PVを狙うSEO記事作成」</p>
+            <ul>
+                <li><span>**ステップ1:** ターゲット層、競合分析結果を詳細にAIに提示</span></li>
+                <li><span>**ステップ2:** 「SEOの専門家」としてペルソナを与え、構成案を生成</span></li>
+                <li><span>**ステップ3:** 各セクションごとに「〇〇の視点から300字で解説」と詳細指示</span></li>
+                <li><span>**ステップ4:** 生成された文章の論理破綻、誤情報、自然さをAIに自己評価させ修正指示</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: 実践方法・ステップバイステップ3 - 自動化スクリプト実装 -->
+        <div class="slide slide-steps">
+            <i class="fas fa-play-circle icon-medium"></i>
+            <h2>Step 3: 自動化ワークフローの実装</h2>
+            <h3>API連携とスクリプトで自動生成・公開まで</h3>
+            <ul>
+                <li><span>**Python (例):** スプレッドシートから記事テーマを読み込み、AIに記事生成APIを呼び出し、結果を整形</span></li>
+                <li><span>**Zapier/Make (例):** 新規記事テーマがスプレッドシートに追加されたら、AIに記事生成を依頼、生成された記事をCMSに自動投稿、SNSに告知を自動投稿</span></li>
+                <li><span>**RPAツール:** サイト巡回、データ収集、コンテンツの最終チェック自動化</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: 実践方法・ステップバイステップ4 - 成功事例 -->
+        <div class="slide slide-steps">
+            <i class="fas fa-award icon-medium"></i>
+            <h2>成功事例：月5万円達成ロードマップ</h2>
+            <h3>AIライティングで副収入を確立したAさんの例</h3>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h4><i class="fas fa-calendar-alt"></i> 1ヶ月目</h4>
+                    <p>ChatGPT、Claudeでブログ記事の量産を開始。<br>記事単価1000円×20本 = 2万円。</p>
+                </div>
+                <div class="grid-item">
+                    <h4><i class="fas fa-chart-line"></i> 2〜3ヶ月目</h4>
+                    <p>高精度プロンプトを習得。Zapierで自動化を開始。<br>記事単価3000円×15本 = 4.5万円。</p>
+                </div>
+                <div class="grid-item">
+                    <h4><i class="fas fa-trophy"></i> 4ヶ月目〜</h4>
+                    <p>専門特化型AIを導入、高品質SEO記事で高単価案件獲得。<br>記事単価5000円×10本 = 5万円達成。</p>
+                </div>
+            </div>
+            <p style="font-size: 1em; color: gray; margin-top: 20px;">AIと効率化で着実にステップアップ！</p>
+        </div>
+
+        <!-- Slide 13: まとめ・要点確認1 -->
+        <div class="slide slide-summary">
+            <i class="fas fa-check-circle icon-medium"></i>
+            <h2>まとめ：次世代AIライティングの核心</h2>
+            <h3>「AIを使いこなす能力」が新たな価値を生む</h3>
+            <ul>
+                <li><span>ChatGPT「超え」の専門特化・マルチモーダルAIを活用</span></li>
+                <li><span>高度なプロンプトエンジニアリングでAIの潜在能力を引き出す</span></li>
+                <li><span>API連携とノーコードツールでワークフローを自動化</span></li>
+                <li><span>最終的な品質管理は人間が行い、高付加価値化を図る</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 14: まとめ・要点確認2 -->
+        <div class="slide slide-summary">
+            <i class="fas fa-lightbulb icon-medium"></i>
+            <h2>月5万円稼ぐための3つの鍵</h2>
+            <h3>実践ロードマップの要点</h3>
+            <div class="key-points">
+                <div class="key-point-item" style="background: var(--secondary-color);">
+                    <i class="fas fa-sitemap"></i>
+                    <h4>多角的なAI活用</h4>
+                    <p>進化するAIモデル群を柔軟に使い分ける</p>
+                </div>
+                <div class="key-point-item" style="background: var(--accent-color);">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h4>人間による「味付け」</h4>
+                    <p>AI生成物に独自の付加価値と専門性を加える</p>
+                </div>
+                <div class="key-point-item" style="background: var(--primary-color);">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h4>徹底的な自動化</h4>
+                    <p>生産性を最大化し、高単価案件に対応できる体制を作る</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: 次のステップ・行動喚起 -->
+        <div class="slide slide-cta">
+            <i class="fas fa-forward icon-large"></i>
+            <h2>行動を起こしましょう！</h2>
+            <h3>今すぐ、あなたのAIライティングをアップデート！</h3>
+            <ul>
+                <li><span>最新AIモデルの情報を収集し、試用してみる</span></li>
+                <li><span>ZapierやMakeなどの自動化ツールを学び始める</span></li>
+                <li><span>特定のニッチ分野を深掘りし、専門性を高める</span></li>
+                <li><span>本プレゼンの内容を参考に、あなた自身の自動化ワークフローを設計する</span></li>
+            </ul>
+            <p style="font-size: 1.1em; font-weight: bold; margin-top: 30px;">2026年には、AIライティングは新たなフェーズへ。<br>今がその波に乗るチャンスです！</p>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initial display
+        showSlide(0);
+    </script>
+</body>
+</html>
