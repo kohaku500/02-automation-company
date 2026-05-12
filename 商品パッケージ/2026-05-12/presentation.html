@@ -50,7 +50,7 @@
             background: var(--slide-bg-color);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 40px 60px;
+            padding: 50px 80px;
             text-align: center;
             position: absolute;
             width: 90%;
@@ -91,15 +91,16 @@
         h2 {
             font-size: 2.5em;
             color: var(--secondary-color);
-            margin-top: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
         }
 
         h3 {
             font-size: 1.8em;
             color: var(--accent-color);
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
         }
 
         p {
@@ -112,16 +113,16 @@
             list-style: none;
             padding: 0;
             text-align: left;
-            margin: 20px auto;
-            max-width: 80%;
+            margin: 30px auto 20px;
+            max-width: 85%;
         }
 
         ul li {
             font-size: 1.3em;
-            margin-bottom: 15px;
-            padding-left: 40px;
+            margin-bottom: 20px;
+            padding-left: 45px;
             position: relative;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         ul li::before {
@@ -158,10 +159,11 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 40px;
             width: 100%;
             max-width: 900px;
-            margin-top: 30px;
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
 
         .grid-item {
@@ -270,7 +272,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .slide {
-                padding: 20px 30px;
+                padding: 30px 40px;
                 width: 95%;
                 height: 85%;
                 max-height: unset;
