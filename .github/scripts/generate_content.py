@@ -49,7 +49,155 @@ try:
         with open(f'{package_dir}/complete_package.md', 'w', encoding='utf-8') as f:
             f.write(package_content)
 
-        print(f"✅ パッケージ生成完了: {package_dir}")
+        # note, booth, kindle パッケージを分割保存
+        with open(f'{package_dir}/note_package.md', 'w', encoding='utf-8') as f:
+            f.write(f"# note向けパッケージ\n\n{package_content}")
+        with open(f'{package_dir}/booth_package.md', 'w', encoding='utf-8') as f:
+            f.write(f"# BOOTH向けパッケージ\n\n{package_content}")
+        with open(f'{package_dir}/kindle_manuscript.md', 'w', encoding='utf-8') as f:
+            f.write(f"# Kindle向け原稿\n\n{package_content}")
+
+        print(f"✅ 3種の神器生成完了")
+
+        # 2パス目：プレゼン資料生成
+        print("🔄 プレゼン資料を生成中...")
+        pres_prompt = f"""あなたはプレゼン資料制作部です。以下の内容をベースに、高品質なHTMLスライドプレゼンを生成してください。
+
+【内容】
+{package_content[:2000]}
+
+【要件】
+- 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む）
+- 矢印キーまたはボタンでスライド切り替え
+- 10〜15スライド構成
+- 1スライド1メッセージ（複数のテーマを混在させない）
+- テキスト量：最大180文字以内
+- リスト項目：最大3〜5個
+- ビジュアル要素：各スライドに必ず1つ以上（アイコン・グラフ・図解等）
+- スマホ対応（レスポンシブ）
+- Font Awesomeのみ外部CDN使用可
+- <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
+
+プロフェッショナルで響くプレゼンのHTMLスライドコードのみを出力してください。"""
+
+        pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
+        pres_response = requests.post(
+            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+            headers=headers,
+            json=pres_payload,
+            timeout=300
+        )
+
+        if pres_response.status_code == 200:
+            pres_result = pres_response.json()
+            pres_code = pres_result['candidates'][0]['content']['parts'][0]['text']
+
+            # HTMLコードをクリーニング
+            if pres_code.startswith('```html'):
+                pres_code = pres_code[7:]
+            if pres_code.startswith('```'):
+                pres_code = pres_code[3:]
+            if pres_code.endswith('```'):
+                pres_code = pres_code[:-3]
+            pres_code = pres_code.strip()
+
+            with open(f'{package_dir}/presentation.html', 'w', encoding='utf-8') as f:
+                f.write(pres_code)
+            print(f"✅ プレゼン資料生成完了")
+        else:
+            print(f"⚠️ プレゼン資料生成スキップ: API エラー {pres_response.status_code}")
+
+        # 3パス目：Webアプリ生成
+        print("🔄 Webアプリを生成中...")
+        app_prompt = f"""あなたはWebアプリ開発部です。以下のテーマに関する実用的なツール（計算機・診断・チェックリスト・シミュレーター等）をHTMLで生成してください。
+
+【テーマ】
+{package_content.split('【')[0] if '【' in package_content else package_content[:500]}
+
+【要件】
+- 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む、外部ファイル参照なし）
+- HTMLのみ（Markdown説明文は含めない）
+- スマホ対応（レスポンシブデザイン）
+- ブラウザで開くだけで即実行可能
+- 実用的で役立つツール（計算機・診断・チェックリスト・シミュレーター等）
+- 外部CDNはBootstrap・Chart.jsのみ使用可
+- 個人情報を収集しない
+- <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
+
+すぐに使えるHTMLアプリコードのみを出力してください。"""
+
+        app_payload = {'contents': [{'parts': [{'text': app_prompt}]}]}
+        app_response = requests.post(
+            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+            headers=headers,
+            json=app_payload,
+            timeout=300
+        )
+
+        if app_response.status_code == 200:
+            app_result = app_response.json()
+            app_code = app_result['candidates'][0]['content']['parts'][0]['text']
+
+            if app_code.startswith('```html'):
+                app_code = app_code[7:]
+            if app_code.startswith('```'):
+                app_code = app_code[3:]
+            if app_code.endswith('```'):
+                app_code = app_code[:-3]
+            app_code = app_code.strip()
+
+            with open(f'{package_dir}/app.html', 'w', encoding='utf-8') as f:
+                f.write(app_code)
+            print(f"✅ Webアプリ生成完了")
+        else:
+            print(f"⚠️ Webアプリ生成スキップ: API エラー {app_response.status_code}")
+
+        # 4パス目：使用方法生成
+        print("🔄 ユーザーガイドを生成中...")
+        guide_prompt = f"""上記のWebアプリの使用方法を、初心者向けにわかりやすく説明するHTMLドキュメントを生成してください。
+
+【内容】
+- 画面構成の説明（各要素の役割）
+- 使用手順（ステップバイステップ）
+- よくある質問と答え
+- トラブルシューティング
+- スクリーンショット説明（テキスト形式）
+
+【形式】
+- 完全自己完結型HTML
+- スマホ対応
+- 読みやすいデザイン
+- 日本語で記述
+
+<!DOCTYPE html>から</html>までの完全なHTMLコードを出力してください。"""
+
+        guide_payload = {'contents': [{'parts': [{'text': guide_prompt}]}]}
+        guide_response = requests.post(
+            f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+            headers=headers,
+            json=guide_payload,
+            timeout=300
+        )
+
+        if guide_response.status_code == 200:
+            guide_result = guide_response.json()
+            guide_code = guide_result['candidates'][0]['content']['parts'][0]['text']
+
+            if guide_code.startswith('```html'):
+                guide_code = guide_code[7:]
+            if guide_code.startswith('```'):
+                guide_code = guide_code[3:]
+            if guide_code.endswith('```'):
+                guide_code = guide_code[:-3]
+            guide_code = guide_code.strip()
+
+            with open(f'{package_dir}/user_guide.html', 'w', encoding='utf-8') as f:
+                f.write(guide_code)
+            print(f"✅ ユーザーガイド生成完了")
+        else:
+            print(f"⚠️ ユーザーガイド生成スキップ: API エラー {guide_response.status_code}")
+
+        print(f"\n✅ 全コンテンツ生成完了: {package_dir}")
     else:
         print(f"❌ API エラー: {response.status_code}")
         print(f"レスポンス: {response.text}")
