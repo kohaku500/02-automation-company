@@ -35,7 +35,22 @@ jobs:
           api_key = os.environ.get('GEMINI_API_KEY')
           today = datetime.now().strftime('%Y-%m-%d')
 
+          # COO判定レポートを読み込む（部署間連携）
+          coo_judgment_file = f'運営ログ/COO判定_{today}.md'
+          coo_judgment = ""
+          if os.path.exists(coo_judgment_file):
+              with open(coo_judgment_file, 'r', encoding='utf-8') as f:
+                  coo_judgment = f.read()
+              print(f"✅ COO判定レポートを読み込み: {coo_judgment_file}")
+          else:
+              print(f"⚠️ COO判定レポートが見つかりません: {coo_judgment_file}")
+
           prompt = f"""あなたはマーケティング部です。本日（{today}）に最も売れそうな商品企画案を10本生成してください。
+
+          # COO判定レポートからの指示（重要：必ず反映すること）
+          {coo_judgment if coo_judgment else "（COO判定がない場合は、独自にトレンドを判断）"}
+
+          上記の COO 判定の「マーケティング部への指示」を必ず反映した企画案を生成してください。
 
           # note向け商品企画案10本（{today}）
 
