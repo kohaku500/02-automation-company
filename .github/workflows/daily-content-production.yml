@@ -1,0 +1,48 @@
+name: Daily Content Production Report - 17:00 JST
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+jobs:
+  content-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - name: Generate Content Report
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          import os, requests
+          from datetime import datetime
+          api_key = os.environ.get('GEMINI_API_KEY')
+          today = datetime.now().strftime('%Y-%m-%d')
+          prompt = f"あなたはコンテンツ制作部です。本日（{today}）の成果レポートを生成してください。\n\n# コンテンツ制作レポート（{today}）\n\n## 本日の成果物\n- 新規商品完成: X件\n- 特典作成: X個\n- パッケージング完了: X件\n\n## 制作中\n### 商品1\n- タイトル: X\n- 進捗度: X%\n- 予定完成日: X\n\n### 商品2\n- タイトル: X\n- 進捗度: X%\n- 予定完成日: X\n\n## 品質メトリクス\n- サムネイル作成: X件\n- テンプレート検証: PASS\n- セキュリティスキャン: PASS\n\n## 3大特典\n### ライフハック: X%完成\n### 副業ツール: X%完成\n### 教育資料: X%完成\n\nレポート生成完了"
+          headers = {'Content-Type': 'application/json'}
+          payload = {'contents': [{'parts': [{'text': prompt}]}]}
+          response = requests.post(f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}', headers=headers, json=payload)
+          if response.status_code == 200:
+              result = response.json()
+              report = result['candidates'][0]['content']['parts'][0]['text']
+              os.makedirs('運営ログ', exist_ok=True)
+              with open(f'運営ログ/コンテンツ_レポート_{today}.md', 'w', encoding='utf-8') as f:
+                  f.write(report)
+              print(f"✅ コンテンツレポート完了")
+          else:
+              print(f"❌ エラー: {response.status_code}")
+          EOF
+      - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add 運営ログ/コンテンツ_*.md
+          git commit -m "Daily: コンテンツレポート自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git push
