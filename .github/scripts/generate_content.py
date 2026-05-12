@@ -10,13 +10,18 @@ if not api_key:
     print("❌ GEMINI_API_KEY が設定されていません")
     exit(1)
 
+print(f"✅ API キーが設定されている（長さ: {len(api_key)}文字）")
+
 def call_gemini_api(prompt, max_retries=3, retry_delay=10):
     """リトライ機能付き Gemini API 呼び出し"""
     headers = {'Content-Type': 'application/json'}
     payload = {'contents': [{'parts': [{'text': prompt}]}]}
 
+    print(f"📊 [デバッグ] プロンプト長: {len(prompt)}文字, リトライ回数: {max_retries}")
+
     for attempt in range(max_retries):
         try:
+            print(f"📊 [デバッグ] API 呼び出し試行 {attempt+1}/{max_retries}")
             response = requests.post(
                 f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
                 headers=headers,
@@ -24,7 +29,10 @@ def call_gemini_api(prompt, max_retries=3, retry_delay=10):
                 timeout=300
             )
 
+            print(f"📊 [デバッグ] ステータスコード: {response.status_code}")
+
             if response.status_code == 200:
+                print(f"✅ API 呼び出し成功")
                 return response
             elif response.status_code == 503:
                 if attempt < max_retries - 1:
@@ -32,12 +40,16 @@ def call_gemini_api(prompt, max_retries=3, retry_delay=10):
                     time.sleep(retry_delay)
                     continue
                 else:
+                    print(f"❌ 最終試行でも 503 エラー")
                     return response
             else:
+                print(f"❌ API エラー: {response.status_code}")
+                print(f"📊 [デバッグ] レスポンス: {response.text[:500]}")
                 return response
         except Exception as e:
+            print(f"❌ 例外エラー: {str(e)}")
             if attempt < max_retries - 1:
-                print(f"⚠️ エラー発生。{retry_delay}秒待機後に再試行します...（試行 {attempt+1}/{max_retries}）")
+                print(f"⚠️ {retry_delay}秒待機後に再試行します...（試行 {attempt+1}/{max_retries}）")
                 time.sleep(retry_delay)
             else:
                 raise
