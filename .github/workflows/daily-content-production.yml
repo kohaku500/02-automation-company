@@ -139,7 +139,57 @@ jobs:
               with open(f'{package_dir}/kindle_manuscript.md', 'w', encoding='utf-8') as f:
                   f.write(f"# Kindle向け原稿\n\n{package_content}\n\n※セクション4の内容をKindle出版プロセスで使用してください")
 
+              # タイトルを抽出（HTMLアプリのプロンプトで使用）
+              title_match = package_content.split("商品タイトル:")[1].split("\n")[0].strip() if "商品タイトル:" in package_content else "ツール"
+
               print(f"✅ 3プラットフォーム向け商品パッケージ生成完了: {package_dir}")
+
+              # 2回目のAPI呼び出し：HTMLアプリコード生成
+              app_prompt = f"""あなたはアプリ開発部です。以下のテーマに関連する、ブラウザですぐに使えるHTMLアプリを1つ生成してください。
+
+              【テーマ】
+              {title_match}
+
+              【要件】
+              - 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む、外部ファイル参照なし）
+              - HTMLのみ（不要なMarkdown説明文は含めない）
+              - スマホ対応（レスポンシブデザイン）
+              - ブラウザで開くだけで即実行可能
+              - 実用的で役立つツール（計算機・診断・チェックリスト・シミュレーター等）
+              - 外部CDNはBootstrap・Chart.jsのみ使用可能
+              - 個人情報を収集しない
+              - <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
+
+              すぐに使えるHTMLアプリコードのみを出力してください。"""
+
+              app_payload = {'contents': [{'parts': [{'text': app_prompt}]}]}
+
+              app_response = requests.post(
+                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                  headers=headers,
+                  json=app_payload
+              )
+
+              if app_response.status_code == 200:
+                  app_result = app_response.json()
+                  app_code = app_result['candidates'][0]['content']['parts'][0]['text']
+
+                  # HTMLコードをクリーニング（Markdownコードブロック記号を削除）
+                  if app_code.startswith('```html'):
+                      app_code = app_code[7:]
+                  if app_code.startswith('```'):
+                      app_code = app_code[3:]
+                  if app_code.endswith('```'):
+                      app_code = app_code[:-3]
+                  app_code = app_code.strip()
+
+                  # HTMLアプリをファイルとして保存
+                  with open(f'{package_dir}/app.html', 'w', encoding='utf-8') as f:
+                      f.write(app_code)
+
+                  print(f"✅ HTMLアプリ生成完了: {package_dir}/app.html")
+              else:
+                  print(f"⚠️ HTMLアプリ生成スキップ: API呼び出し失敗 ({app_response.status_code})")
           else:
               print(f"❌ エラー: {response.status_code}")
           EOF
@@ -151,6 +201,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add 商品パッケージ/*/
-          git commit -m "Daily: 3プラットフォーム向け商品パッケージ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git commit -m "Daily: 投稿文+HTMLアプリ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
