@@ -105,7 +105,9 @@ try:
                 f.write(pres_code)
             print(f"✅ プレゼン資料生成完了")
         else:
-            print(f"⚠️ プレゼン資料生成スキップ: API エラー {pres_response.status_code}")
+            print(f"❌ プレゼン資料生成失敗: API エラー {pres_response.status_code}")
+            print(f"レスポンス: {pres_response.text}")
+            exit(1)
 
         # 3パス目：Webアプリ生成
         print("🔄 Webアプリを生成中...")
@@ -150,7 +152,9 @@ try:
                 f.write(app_code)
             print(f"✅ Webアプリ生成完了")
         else:
-            print(f"⚠️ Webアプリ生成スキップ: API エラー {app_response.status_code}")
+            print(f"❌ Webアプリ生成失敗: API エラー {app_response.status_code}")
+            print(f"レスポンス: {app_response.text}")
+            exit(1)
 
         # 4パス目：使用方法生成
         print("🔄 ユーザーガイドを生成中...")
@@ -195,7 +199,9 @@ try:
                 f.write(guide_code)
             print(f"✅ ユーザーガイド生成完了")
         else:
-            print(f"⚠️ ユーザーガイド生成スキップ: API エラー {guide_response.status_code}")
+            print(f"❌ ユーザーガイド生成失敗: API エラー {guide_response.status_code}")
+            print(f"レスポンス: {guide_response.text}")
+            exit(1)
 
         print(f"\n✅ 全コンテンツ生成完了: {package_dir}")
     else:
