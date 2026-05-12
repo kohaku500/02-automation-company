@@ -1,0 +1,10 @@
+name: Daily Content Production Report - 17:00 JST
+
+on:
+  workflow_dispatch:
+
+jobs:
+  content-report:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test"
