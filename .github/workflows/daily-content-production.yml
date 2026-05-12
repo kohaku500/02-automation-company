@@ -144,7 +144,61 @@ jobs:
 
               print(f"✅ 3プラットフォーム向け商品パッケージ生成完了: {package_dir}")
 
-              # 2回目のAPI呼び出し：HTMLアプリコード生成
+              # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
+              pres_prompt = f"""あなたはプレゼン資料制作部です。以下のテーマについて、ブラウザで動くHTMLスライドプレゼンを生成してください。
+
+              【テーマ】
+              {title_match}
+
+              【要件】
+              - 完全自己完結型HTML（CSS・JavaScriptを全て埋め込む）
+              - HTMLのみ出力（説明文不要）
+              - 10〜15スライド構成：
+                1. タイトルスライド（テーマ・サブタイトル）
+                2. 課題・問題提起
+                3〜8. 解決策・重要ポイント（図解・箇条書き・数字）
+                9〜12. 実践方法・ステップバイステップ・事例
+                13〜14. まとめ・要点確認
+                15. 次のステップ・行動喚起
+              - デザイン：プロフェッショナル（グラデーション・色使い・フォント）
+              - 操作：矢印キー または クリックで前後のスライド切り替え
+              - スマホ対応（レスポンシブ）
+              - 各スライドに適切なアイコン・色・レイアウト
+              - Font Awesomeのみ外部CDN使用可
+              - <!DOCTYPE html>から</html>までの完全なHTMLコードを出力
+
+              プロフェッショナルなHTMLスライドコードのみを出力してください。"""
+
+              pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
+
+              pres_response = requests.post(
+                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                  headers=headers,
+                  json=pres_payload
+              )
+
+              if pres_response.status_code == 200:
+                  pres_result = pres_response.json()
+                  pres_code = pres_result['candidates'][0]['content']['parts'][0]['text']
+
+                  # HTMLコードをクリーニング
+                  if pres_code.startswith('```html'):
+                      pres_code = pres_code[7:]
+                  if pres_code.startswith('```'):
+                      pres_code = pres_code[3:]
+                  if pres_code.endswith('```'):
+                      pres_code = pres_code[:-3]
+                  pres_code = pres_code.strip()
+
+                  # プレゼン資料をファイルとして保存
+                  with open(f'{package_dir}/presentation.html', 'w', encoding='utf-8') as f:
+                      f.write(pres_code)
+
+                  print(f"✅ HTMLスライドプレゼン生成完了: {package_dir}/presentation.html")
+              else:
+                  print(f"⚠️ プレゼン生成スキップ: API呼び出し失敗 ({pres_response.status_code})")
+
+              # 3回目のAPI呼び出し：HTMLアプリコード生成
               app_prompt = f"""あなたはアプリ開発部です。以下のテーマに関連する、ブラウザですぐに使えるHTMLアプリを1つ生成してください。
 
               【テーマ】
@@ -201,6 +255,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add 商品パッケージ/*/
-          git commit -m "Daily: 投稿文+HTMLアプリ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git commit -m "Daily: 投稿文+プレゼン+アプリ自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
