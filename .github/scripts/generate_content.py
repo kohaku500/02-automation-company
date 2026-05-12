@@ -37,7 +37,7 @@ try:
         f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
         headers=headers,
         json=payload,
-        timeout=60
+        timeout=120
     )
 
     if response.status_code == 200:
