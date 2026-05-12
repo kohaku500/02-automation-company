@@ -129,7 +129,6 @@ jobs:
                   f.write(package_content)
 
               # 便宜上、分割版も作成（オプション）
-              # ユーザーが各プラットフォームに投稿する際に該当セクションをコピーしやすいように
               with open(f'{package_dir}/note_package.md', 'w', encoding='utf-8') as f:
                   f.write(f"# note向けパッケージ\n\n{package_content}\n\n※セクション2の内容をnoteにコピペしてください")
 
@@ -222,7 +221,6 @@ jobs:
                   if quality_response.status_code == 200:
                       quality_result = quality_response.json()
                       quality_report = quality_result['candidates'][0]['content']['parts'][0]['text']
-                      # スコアを抽出（「総合スコア: X/50点」から数字を取得）
                       import re
                       match = re.search(r'(\d+)/50', quality_report)
                       if match:
@@ -231,7 +229,6 @@ jobs:
                   else:
                       print(f"⚠️ 品質評価スキップ: API呼び出し失敗")
 
-                  # スコアが低い場合、自動リサーチを実行
                   if quality_score < 40:
                       print(f"🔍 品質改善のため、成功事例をリサーチします...")
 
@@ -273,7 +270,6 @@ jobs:
                           research_result = research_response.json()
                           research_report = research_result['candidates'][0]['content']['parts'][0]['text']
 
-                          # 改善案レポートを保存
                           improvement_report = f"""# プレゼン資料品質改善レポート ({today})
 
 ## 品質スコア
@@ -325,7 +321,6 @@ jobs:
                   app_result = app_response.json()
                   app_code = app_result['candidates'][0]['content']['parts'][0]['text']
 
-                  # HTMLコードをクリーニング（Markdownコードブロック記号を削除）
                   if app_code.startswith('```html'):
                       app_code = app_code[7:]
                   if app_code.startswith('```'):
@@ -334,7 +329,6 @@ jobs:
                       app_code = app_code[:-3]
                   app_code = app_code.strip()
 
-                  # HTMLアプリをファイルとして保存
                   with open(f'{package_dir}/app.html', 'w', encoding='utf-8') as f:
                       f.write(app_code)
 
