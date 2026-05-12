@@ -48,15 +48,7 @@ jobs:
           else:
               print(f"⚠️ 警告: {marketing_file} が見つかりません")
 
-          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング企画をベースに、3プラットフォーム向けパッケージを生成してください。
-
-【マーケティング企画】
-{marketing_content if marketing_content else "（企画案なし - デモ実行）"}
-
-以下の3種類のコンテンツを生成してください：
-1. note向け記事（5,000文字以上）
-2. BOOTH向けセールスページ（7,000文字以上）
-3. Kindle向け原稿（10,000文字以上）"""
+          prompt = f"""あなたはコンテンツ制作部です。以下のマーケティング企画をベースに、3プラットフォーム向けパッケージを生成してください。\\n\\n【マーケティング企画】\\n{marketing_content if marketing_content else "（企画案なし - デモ実行）"}\\n\\n以下の3種類のコンテンツを生成してください：\\n1. note向け記事（5,000文字以上）\\n2. BOOTH向けセールスページ（7,000文字以上）\\n3. Kindle向け原稿（10,000文字以上）"""
 
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
