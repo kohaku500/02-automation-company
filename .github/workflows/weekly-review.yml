@@ -1,0 +1,172 @@
+name: Weekly Review - 日曜 09:00 JST
+
+on:
+  schedule:
+    # 毎週日曜日 00:00 UTC = 日曜 09:00 JST
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  weekly-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate Weekly Review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          import os
+          import time
+          from datetime import datetime, timedelta
+          import requests
+
+          api_key = os.environ.get('GEMINI_API_KEY')
+          today = datetime.now().strftime('%Y-%m-%d')
+
+          # 過去7日間の全データを集約
+          weekly_data = {
+              '成功事例': "",
+              '失敗事例': "",
+              'COO判定': "",
+              '日報': "",
+          }
+
+          for i in range(1, 8):
+              past_date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+              if os.path.exists(f'成功事例/{past_date}.md'):
+                  with open(f'成功事例/{past_date}.md', 'r', encoding='utf-8') as f:
+                      weekly_data['成功事例'] += f.read()[:1000] + "\n\n"
+              if os.path.exists(f'失敗事例/{past_date}.md'):
+                  with open(f'失敗事例/{past_date}.md', 'r', encoding='utf-8') as f:
+                      weekly_data['失敗事例'] += f.read()[:1000] + "\n\n"
+              if os.path.exists(f'運営ログ/COO判定_{past_date}.md'):
+                  with open(f'運営ログ/COO判定_{past_date}.md', 'r', encoding='utf-8') as f:
+                      weekly_data['COO判定'] += f.read()[:800] + "\n\n"
+              if os.path.exists(f'運営ログ/日報_{past_date}.md'):
+                  with open(f'運営ログ/日報_{past_date}.md', 'r', encoding='utf-8') as f:
+                      weekly_data['日報'] += f.read()[:800] + "\n\n"
+
+          combined = "\n\n".join([f"## {k}\n{v}" for k, v in weekly_data.items() if v])
+
+          prompt = f"""あなたは経営戦略部です。過去1週間（{today} まで）の全データを分析して、週次振り返りレポートを生成してください。
+
+          # 過去7日間の集約データ
+          {combined if combined else "（データなし）"}
+
+          # 出力フォーマット
+
+          # 週次振り返り（{today}）
+
+          ## 1. 売上・成果サマリー
+          - 今週の総売上予測
+          - 新規顧客数
+          - 平均満足度
+          - 主な成果
+
+          ## 2. 成功パターン分析
+          ### パターン1: [タイトル]
+          - 発生頻度: X回
+          - 効果: [具体的な効果]
+          - 再現方法: [次週活用する方法]
+
+          ### パターン2: ...
+
+          ## 3. 失敗パターン分析
+          ### パターン1: [タイトル]
+          - 発生頻度: X回
+          - 損失: [具体的な損失]
+          - 回避方法: [次週避ける方法]
+
+          ### パターン2: ...
+
+          ## 4. 戦略の有効性評価
+          - 「先週のCOO戦略」が機能したか: ✅/❌
+          - 理由: [具体的な理由]
+
+          ## 5. 来週の戦略提案
+          ### 注力すべき領域（成功パターンの拡大）
+          - [具体的な施策]
+
+          ### 改善すべき領域（失敗パターンの解消）
+          - [具体的な施策]
+
+          ### 新規実験（試すべきこと）
+          - [具体的な実験案]
+
+          ## 6. 部署別評価
+          ### マーケティング部
+          - 評価: A/B/C
+          - 改善点: [具体的内容]
+
+          ### コンテンツ制作部
+          - 評価: A/B/C
+          - 改善点: [具体的内容]
+
+          ### クライアント管理部
+          - 評価: A/B/C
+          - 改善点: [具体的内容]
+
+          ### 秘書室
+          - 評価: A/B/C
+          - 改善点: [具体的内容]
+
+          振り返り完了"""
+
+          headers = {'Content-Type': 'application/json'}
+          payload = {'contents': [{'parts': [{'text': prompt}]}]}
+
+          print("🔄 週次振り返り生成中...")
+          for attempt in range(3):
+              try:
+                  response = requests.post(
+                      f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                      headers=headers,
+                      json=payload,
+                      timeout=300
+                  )
+
+                  if response.status_code == 200:
+                      result = response.json()
+                      review = result['candidates'][0]['content']['parts'][0]['text']
+                      os.makedirs('週次レビュー', exist_ok=True)
+                      with open(f'週次レビュー/振り返り_{today}.md', 'w', encoding='utf-8') as f:
+                          f.write(review)
+                      print(f"✅ 週次振り返り生成完了: 週次レビュー/振り返り_{today}.md")
+                      break
+                  elif response.status_code == 503 and attempt < 2:
+                      print(f"⚠️ API 過負荷。10秒待機後リトライ...")
+                      time.sleep(10)
+                  else:
+                      print(f"❌ API エラー: {response.status_code}")
+                      print(response.text)
+                      break
+              except Exception as e:
+                  print(f"❌ 例外: {str(e)}")
+                  if attempt < 2:
+                      time.sleep(10)
+          EOF
+
+      - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add 週次レビュー/ 2>/dev/null || true
+          git commit -m "Weekly: 週次振り返り生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git pull --rebase || true
+          git push

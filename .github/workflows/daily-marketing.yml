@@ -45,12 +45,38 @@ jobs:
           else:
               print(f"⚠️ COO判定レポートが見つかりません: {coo_judgment_file}")
 
+          # 学習データ（成功事例・失敗事例）を読み込む
+          success_cases = ""
+          failure_cases = ""
+          # 過去7日分の事例を集約
+          from datetime import timedelta as td
+          for i in range(1, 8):
+              past_date = (datetime.now() - td(days=i)).strftime('%Y-%m-%d')
+              if os.path.exists(f'成功事例/{past_date}.md'):
+                  with open(f'成功事例/{past_date}.md', 'r', encoding='utf-8') as f:
+                      success_cases += f.read()[:800] + "\n\n"
+              if os.path.exists(f'失敗事例/{past_date}.md'):
+                  with open(f'失敗事例/{past_date}.md', 'r', encoding='utf-8') as f:
+                      failure_cases += f.read()[:800] + "\n\n"
+          if success_cases:
+              print(f"✅ 過去7日の成功事例を読み込み")
+          if failure_cases:
+              print(f"✅ 過去7日の失敗事例を読み込み")
+
           prompt = f"""あなたはマーケティング部です。本日（{today}）に最も売れそうな商品企画案を10本生成してください。
 
           # COO判定レポートからの指示（重要：必ず反映すること）
           {coo_judgment if coo_judgment else "（COO判定がない場合は、独自にトレンドを判断）"}
 
-          上記の COO 判定の「マーケティング部への指示」を必ず反映した企画案を生成してください。
+          # 過去7日間の成功事例（再現すべきパターン）
+          {success_cases if success_cases else "（過去事例なし）"}
+
+          # 過去7日間の失敗事例（避けるべきパターン）
+          {failure_cases if failure_cases else "（過去事例なし）"}
+
+          上記の COO 判定 + 過去の成功・失敗事例を踏まえて、企画案を生成してください。
+          - 成功事例のパターンを活用する
+          - 失敗事例のパターンを避ける
 
           # note向け商品企画案10本（{today}）
 

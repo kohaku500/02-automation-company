@@ -64,15 +64,40 @@ if os.path.exists(marketing_file):
     with open(marketing_file, 'r', encoding='utf-8') as f:
         marketing_content = f.read()
 
+# 学習データ（過去7日間の成功・失敗事例）を読み込む
+from datetime import timedelta
+success_cases = ""
+failure_cases = ""
+for i in range(1, 8):
+    past_date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+    if os.path.exists(f'成功事例/{past_date}.md'):
+        with open(f'成功事例/{past_date}.md', 'r', encoding='utf-8') as f:
+            success_cases += f.read()[:600] + "\n\n"
+    if os.path.exists(f'失敗事例/{past_date}.md'):
+        with open(f'失敗事例/{past_date}.md', 'r', encoding='utf-8') as f:
+            failure_cases += f.read()[:600] + "\n\n"
+if success_cases:
+    print(f"✅ 過去7日の成功事例を読み込み")
+if failure_cases:
+    print(f"✅ 過去7日の失敗事例を読み込み")
+
 prompt = f"""あなたはコンテンツ制作部です。3プラットフォーム向けパッケージを生成してください。
 
 マーケティング企画:
 {marketing_content if marketing_content else "（企画案ファイルが見つかりません）"}
 
+# 過去7日間の成功事例（再現すべきパターン）
+{success_cases if success_cases else "（過去事例なし）"}
+
+# 過去7日間の失敗事例（避けるべきパターン）
+{failure_cases if failure_cases else "（過去事例なし）"}
+
 以下の3種類を生成:
 1. note向け記事（5000文字以上）
 2. BOOTH向け（7000文字以上）
-3. Kindle向け原稿（10000文字以上）"""
+3. Kindle向け原稿（10000文字以上）
+
+成功事例のパターンを活用し、失敗事例のパターンを避けてください。"""
 
 print("🔄 Gemini API を呼び出し中...")
 
