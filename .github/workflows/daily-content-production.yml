@@ -53,12 +53,16 @@ jobs:
           headers = {'Content-Type': 'application/json'}
           payload = {'contents': [{'parts': [{'text': prompt}]}]}
 
+          print("🔄 Gemini API を呼び出し中...")
+          print(f"API キー: {'*' * 20}...")
+          print(f"プロンプト長: {len(prompt)} 文字")
+
           try:
               response = requests.post(
                   f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
                   headers=headers,
                   json=payload,
-                  timeout=30
+                  timeout=60
               )
 
               if response.status_code == 200:
