@@ -1,6 +1,5 @@
 はい、承知いたしました。
-初心者向けにWebアプリの基本的な使い方を説明する、自己完結型HTMLドキュメントを生成します。
-架空の「シンプルメモアプリ」を例に説明します。
+初心者向けのWebアプリ使用説明を、スマートフォン対応で読みやすいデザインの完全自己完結型HTMLドキュメントとして生成します。
 
 ```html
 <!DOCTYPE html>
@@ -8,38 +7,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>シンプルメモアプリ 使い方ガイド - 初心者向け</title>
+    <title>Webアプリ利用ガイド：初心者でも安心！</title>
     <style>
-        /* CSSリセットと基本スタイル */
+        /* 全体スタイル */
         body {
-            font-family: 'Segoe UI', 'BIZ UDPGothic', 'メイリオ', Meiryo, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
             color: #333;
-            -webkit-text-size-adjust: 100%; /* iOSでのテキストサイズ調整を無効化 */
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0 15px; /* スマホでの両端の余白 */
         }
 
         /* コンテナ */
         .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto; /* 上下の余白と中央寄せ */
+            background-color: #ffffff;
+            padding: 25px;
             border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         /* ヘッダー */
         header {
             text-align: center;
             padding-bottom: 20px;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #e0e0e0;
             margin-bottom: 30px;
         }
 
-        header h1 {
+        h1 {
             color: #007bff;
             font-size: 2.2em;
             margin-bottom: 10px;
@@ -50,123 +48,170 @@
             color: #555;
         }
 
-        /* セクション */
-        section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
+        /* 見出し */
         h2 {
             color: #007bff;
             font-size: 1.8em;
-            margin-top: 0;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin-top: 25px;
             margin-bottom: 15px;
             border-left: 5px solid #007bff;
             padding-left: 10px;
         }
 
-        h3 {
-            color: #333;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        p, ul, ol, dl {
+        /* 段落 */
+        p {
             margin-bottom: 15px;
         }
 
+        /* リスト */
         ul, ol {
+            margin-bottom: 20px;
             padding-left: 25px;
         }
 
-        li {
-            margin-bottom: 8px;
+        ul li, ol li {
+            margin-bottom: 10px;
         }
 
         /* スクリーンショット説明 */
-        .screenshot-description {
-            background-color: #e9f5ff;
-            border-left: 5px solid #007bff;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
+        .screenshot-placeholder {
+            border: 1px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 25px 0;
+            color: #777;
             font-size: 0.95em;
+            border-radius: 5px;
         }
 
-        .screenshot-description strong {
-            color: #0056b3;
-        }
-
-        /* FAQ */
-        dl dt {
-            font-weight: bold;
-            color: #007bff;
-            margin-top: 15px;
-        }
-
-        dl dd {
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-
-        /* トラブルシューティング */
-        .troubleshooting-item {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        .troubleshooting-item h4 {
-            color: #856404;
-            margin-top: 0;
+        .screenshot-placeholder strong {
+            color: #555;
+            display: block;
             margin-bottom: 10px;
             font-size: 1.1em;
         }
-        .troubleshooting-item p {
+
+        /* よくある質問・トラブルシューティングの折りたたみ */
+        details {
+            background-color: #f0f8ff;
+            border: 1px solid #cceeff;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #0056b3;
+            font-size: 1.1em;
+            padding: 5px 0;
+            list-style: none; /* デフォルトの矢印を非表示 */
+        }
+        /* カスタム矢印 */
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: '+';
+            margin-right: 10px;
+            font-size: 1.2em;
+            color: #007bff;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        details[open] summary::before {
+            content: '-';
+            transform: rotate(0deg);
+        }
+
+        details p {
+            padding-top: 10px;
             margin-bottom: 5px;
+            border-top: 1px dotted #dee;
+            margin-top: 10px;
+            padding-left: 5px;
+        }
+
+        /* 強調表示 */
+        strong {
+            color: #d9534f;
         }
 
         /* フッター */
         footer {
             text-align: center;
+            margin-top: 40px;
             padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #e0e0e0;
             color: #777;
             font-size: 0.9em;
         }
 
-        /* スマホ対応 (メディアクエリ) */
-        @media (max-width: 768px) {
+        /* 目次スタイル */
+        .toc {
+            background-color: #e9f5ff;
+            border: 1px solid #cceeff;
+            border-radius: 5px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+        .toc h2 {
+            margin-top: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #cceeff;
+            font-size: 1.5em;
+            color: #0056b3;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        .toc li {
+            margin-bottom: 8px;
+        }
+        .toc a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .toc a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+
+        /* レスポンシブ対応 (PC向け調整) */
+        @media (min-width: 768px) {
+            body {
+                padding: 0; /* PCでは両端の余白をなくす */
+            }
             .container {
-                margin: 10px;
-                padding: 15px;
+                padding: 40px;
+                margin: 40px auto;
             }
-            header h1 {
-                font-size: 1.8em;
-            }
-            header p {
-                font-size: 1em;
+            h1 {
+                font-size: 2.8em;
             }
             h2 {
-                font-size: 1.5em;
-                padding-left: 8px;
+                font-size: 2.2em;
             }
             h3 {
-                font-size: 1.1em;
+                font-size: 1.6em;
             }
-            body {
-                font-size: 0.95em;
-            }
-            ul, ol {
-                padding-left: 20px;
+            .screenshot-placeholder {
+                padding: 30px;
             }
         }
     </style>
@@ -174,151 +219,186 @@
 <body>
     <div class="container">
         <header>
-            <h1>シンプルメモアプリ 使い方ガイド</h1>
-            <p>このガイドでは、シンプルなメモアプリの基本的な使い方を、初心者の方にも分かりやすく丁寧に説明します。アプリを初めて使う方も、このガイドを読めばすぐに使いこなせるようになります！</p>
+            <h1>「マイアプリ」利用ガイド：初心者でも安心！</h1>
+            <p>このドキュメントでは、Webアプリケーション「マイアプリ」の基本的な使い方を、わかりやすく解説します。</p>
+            <p>初めての方でも迷わず使いこなせるよう、ステップバイステップで説明していきますのでご安心ください。</p>
         </header>
 
-        <main>
-            <section id="overview">
-                <h2>1. 画面構成の説明</h2>
-                <p>アプリを開くと、主に以下の要素が表示されます。それぞれの役割を理解しましょう。</p>
+        <nav class="toc">
+            <h2>目次</h2>
+            <ul>
+                <li><a href="#screen-composition">1. 画面構成の説明</a></li>
+                <li><a href="#usage-procedure">2. 使用手順（ステップバイステップ）</a></li>
+                <li><a href="#faq">3. よくある質問と答え</a></li>
+                <li><a href="#troubleshooting">4. トラブルシューティング</a></li>
+            </ul>
+        </nav>
 
-                <h3>1.1. ヘッダーエリア</h3>
+        <section id="screen-composition">
+            <h2>1. 画面構成の説明</h2>
+            <p>「マイアプリ」は、主に以下の要素で構成されています。それぞれの役割を理解して、スムーズに操作しましょう。</p>
+
+            <h3>1.1. ヘッダー</h3>
+            <ul>
+                <li><strong>ロゴ/アプリ名:</strong> アプリケーションのアイコンと名称が表示されます。クリックするとホーム画面に戻ることが多いです。</li>
+                <li><strong>メニューアイコン/ナビゲーション:</strong> アプリの主要な機能（例: ホーム、設定、履歴）へのリンクが配置されています。スマホではハンバーガーメニューアイコン（三本線のアイコン）をタップすると展開されます。</li>
+                <li><strong>ユーザー情報/設定アイコン:</strong> ログイン中のユーザー名やプロフィール画像が表示されます。ここからログアウトやアカウント設定ができます。</li>
+            </ul>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット1: アプリのヘッダー部分]</strong>
+                <p>上部に表示されるロゴ、メニュー、ユーザーアイコンなどの配置例です。</p>
+            </div>
+
+            <h3>1.2. ナビゲーション（サイドバー/フッター）</h3>
+            <ul>
+                <li><strong>主要機能へのリンク:</strong> 「機能A」「機能B」「データ管理」など、アプリの主要な機能に素早くアクセスするためのボタンやリンクが集まっています。</li>
+                <li>表示場所はアプリによって異なりますが、画面左側の「サイドバー」や、スマホでは画面下部の「フッターメニュー」に配置されることが多いです。</li>
+            </ul>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット2: メインナビゲーション]</strong>
+                <p>サイドバーまたはフッターに表示される主要機能のボタン群です。</p>
+            </div>
+
+            <h3>1.3. メインコンテンツエリア</h3>
+            <ul>
+                <li><strong>主要な情報表示/操作スペース:</strong> 現在選択している機能の画面や、データ入力フォーム、結果などが表示される最も広いエリアです。</li>
+                <li>操作の中心となる場所なので、表示されている説明やボタンをよく確認しましょう。</li>
+            </ul>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット3: メインコンテンツエリア]</strong>
+                <p>データ入力フォームや、処理結果が表示されている画面の例です。</p>
+            </div>
+
+            <h3>1.4. フッター</h3>
+            <ul>
+                <li><strong>著作権情報/プライバシーポリシーなど:</strong> アプリケーションに関する基本的な情報（著作権、利用規約、プライバシーポリシーへのリンクなど）が表示されます。</li>
+                <li>通常、画面の一番下に小さく表示されています。</li>
+            </ul>
+        </section>
+
+        <section id="usage-procedure">
+            <h2>2. 使用手順（ステップバイステップ）</h2>
+            <p>ここでは、「マイアプリ」の一般的な使用手順を例に、基本的な操作方法を解説します。</p>
+
+            <h3>ステップ1: アプリにアクセスし、ログイン/新規登録を行う</h3>
+            <ol>
+                <li>Webブラウザ（Chrome, Safariなど）を開き、「マイアプリ」のURLを入力してアクセスします。</li>
+                <li>すでにアカウントをお持ちの場合は、<strong>[ログイン]</strong> ボタンをタップし、メールアドレスとパスワードを入力してログインします。</li>
+                <li>初めてご利用の場合は、<strong>[新規登録]</strong> ボタンをタップし、画面の指示に従ってアカウントを作成してください。</li>
+            </ol>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット4: ログイン/新規登録画面]</strong>
+                <p>メールアドレスとパスワードの入力欄、ログイン/登録ボタンが表示されています。</p>
+            </div>
+
+            <h3>ステップ2: ホーム画面で利用したい機能を選択する</h3>
+            <ol>
+                <li>ログイン後、ホーム画面（ダッシュボード）が表示されます。</li>
+                <li>画面上に表示されている<strong>「機能A」</strong>、<strong>「機能B」</strong>などのボタンや、ナビゲーションメニューから利用したい機能を選んでタップします。</li>
+            </ol>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット5: ホーム画面と機能選択]</strong>
+                <p>ホーム画面に並ぶ主要な機能のアイコンやボタンの例です。</p>
+            </div>
+
+            <h3>ステップ3: データを入力・設定する</h3>
+            <ol>
+                <li>選択した機能の画面に移動すると、入力フォームが表示されます。</li>
+                <li>画面の指示に従い、必要な情報を正確に入力してください。（例: テキスト入力、選択肢の選択、ファイルのアップロードなど）</li>
+                <li><strong>入力例:</strong> 「タイトル」「内容」「開始日」「終了日」など。</li>
+            </ol>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット6: データ入力フォーム]</strong>
+                <p>タイトル、本文、日付選択などの入力欄が並ぶフォーム画面の例です。</p>
+            </div>
+
+            <h3>ステップ4: 処理を実行・保存する</h3>
+            <ol>
+                <li>必要な情報の入力が完了したら、画面下部や右下にある<strong>[保存]</strong>、<strong>[実行]</strong>、<strong>[送信]</strong>などのボタンをタップします。</li>
+                <li>内容に間違いがないか、もう一度確認してからボタンを押しましょう。</li>
+            </ol>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット7: 保存/実行ボタン]</strong>
+                <p>入力フォームの下部にある「保存」または「実行」ボタンの例です。</p>
+            </div>
+
+            <h3>ステップ5: 結果を確認する</h3>
+            <ol>
+                <li>処理が完了すると、「保存しました」「処理が完了しました」といったメッセージが表示されるか、結果画面に遷移します。</li>
+                <li>表示された結果が意図した通りになっているか確認してください。</li>
+            </ol>
+            <div class="screenshot-placeholder">
+                <strong>[スクリーンショット8: 結果表示画面]</strong>
+                <p>処理結果が一覧で表示されたり、完了メッセージが表示されている画面の例です。</p>
+            </div>
+
+            <p>これで「マイアプリ」の基本的な操作は完了です。様々な機能を試して、活用してみてください！</p>
+        </section>
+
+        <section id="faq">
+            <h2>3. よくある質問と答え</h2>
+            <p>よくある質問とその解決策をご紹介します。</p>
+
+            <details>
+                <summary>Q. パスワードを忘れてしまいました。どうすればよいですか？</summary>
+                <p>A. ログイン画面にある「パスワードを忘れた方」のリンクをタップし、画面の指示に従って再設定を行ってください。登録メールアドレスにパスワードリセットの案内が送信されます。</p>
+            </details>
+
+            <details>
+                <summary>Q. 特定の機能がうまく動作しません。</summary>
+                <p>A. 以下の点をご確認ください。</p>
                 <ul>
-                    <li><strong>アプリ名:</strong> 画面の左上または中央に表示され、「シンプルメモアプリ」と記載されています。</li>
-                    <li><strong>「新規メモ」ボタン:</strong> 新しいメモを作成する際にクリックします。通常、ヘッダーの右側に配置されています。</li>
+                    <li>入力内容に間違いがないか、必須項目が全て入力されているか確認してください。</li>
+                    <li>インターネット接続が安定しているか確認してください。</li>
+                    <li>ブラウザのキャッシュをクリアするか、別のブラウザで試してみてください。</li>
+                    <li>それでも解決しない場合は、「トラブルシューティング」の項目もご確認ください。</li>
                 </ul>
+            </details>
 
-                <h3>1.2. 検索バー</h3>
-                <ul>
-                    <li><strong>メモを検索:</strong> 入力欄にキーワードを入力することで、既存のメモの中から目的のメモを探し出すことができます。</li>
-                </ul>
+            <details>
+                <summary>Q. アプリの利用料金はかかりますか？</summary>
+                <p>A. 「マイアプリ」は基本的な機能は無料でご利用いただけますが、一部の高度な機能は有料プランでの提供となります。詳細はアプリ内の「料金プラン」または「設定」メニューをご確認ください。</p>
+            </details>
 
-                <h3>1.3. メモ入力・編集エリア</h3>
-                <p>「新規メモ」ボタンをクリックしたり、既存のメモを編集する際に表示されます。</p>
-                <ul>
-                    <li><strong>タイトル入力欄:</strong> メモの題名を入力します。後でメモを探しやすくなるので、分かりやすいタイトルをつけましょう。</li>
-                    <li><strong>本文入力欄:</strong> メモの本文を自由に記述します。</li>
-                    <li><strong>「保存」ボタン:</strong> 入力したメモを保存します。このボタンをクリックしないと内容は保存されません。</li>
-                    <li><strong>「キャンセル」ボタン:</strong> 入力を中止し、前の画面に戻ります。保存されなかった内容は破棄されます。</li>
-                </ul>
+            <details>
+                <summary>Q. スマートフォンでも利用できますか？</summary>
+                <p>A. はい、ご安心ください。「マイアプリ」はスマートフォンやタブレットなど、様々なデバイスに対応しています。自動的に画面サイズに合わせて表示が最適化されます。</p>
+            </details>
+        </section>
 
-                <h3>1.4. メモ一覧エリア</h3>
-                <p>保存されている全てのメモがリスト形式で表示されます。</p>
-                <ul>
-                    <li><strong>メモのタイトルと本文プレビュー:</strong> 各メモのタイトルと、本文の一部が一覧表示されます。</li>
-                    <li><strong>「編集」ボタン（またはアイコン）:</strong> そのメモの内容を修正したい場合にクリックします。</li>
-                    <li><strong>「削除」ボタン（またはアイコン）:</strong> そのメモを削除したい場合にクリックします。</li>
-                </ul>
-            </section>
+        <section id="troubleshooting">
+            <h2>4. トラブルシューティング</h2>
+            <p>アプリの使用中に問題が発生した場合の対処法です。</p>
 
-            <section id="usage-steps">
-                <h2>2. 使用手順（ステップバイステップ）</h2>
-                <p>それでは、実際にアプリを使ってみましょう。</p>
+            <h3>4.1. ログインできない</h3>
+            <ul>
+                <li><strong>ユーザー名（メールアドレス）とパスワードが正しいか確認:</strong> 大文字・小文字、半角・全角の違いにも注意してください。</li>
+                <li><strong>キーボードのCaps Lockがオンになっていないか確認:</strong> 大文字入力になっていないか確認しましょう。</li>
+                <li><strong>インターネット接続を確認:</strong> ネットワークに接続されているか、Wi-Fiやモバイルデータ通信が有効か確認してください。</li>
+                <li><strong>ブラウザを更新（再読み込み）する:</strong> F5キー（Windows）またはCommand+Rキー（Mac）を押すか、ブラウザの更新ボタンをクリックします。</li>
+                <li><strong>ブラウザのキャッシュとCookieをクリアする:</strong> ブラウザの設定から「閲覧履歴データの削除」を選択し、キャッシュとCookieを削除してから再度お試しください。</li>
+            </ul>
 
-                <h3>2.1. 新しいメモを作成する</h3>
-                <ol>
-                    <li>画面上部にある<strong>「新規メモ」ボタン</strong>をクリックします。</li>
-                    <li>メモ入力・編集エリアが表示されたら、<strong>「タイトル」入力欄</strong>にメモの題名を入力します。</li>
-                    <li>続けて、<strong>「本文」入力欄</strong>にメモの内容を自由に記述します。</li>
-                    <li>入力が終わったら、画面下部にある<strong>「保存」ボタン</strong>をクリックします。</li>
-                    <li>これで新しいメモが作成され、メモ一覧に表示されます。</li>
-                </ol>
+            <h3>4.2. ページが表示されない、または動作が遅い</h3>
+            <ul>
+                <li><strong>インターネット接続を確認:</strong> 速度が低下していないか確認してください。</li>
+                <li><strong>ブラウザを更新（再読み込み）する:</strong> ページの読み込みに失敗している可能性があります。</li>
+                <li><strong>別のブラウザで試す:</strong> 現在使用しているブラウザに一時的な問題がある可能性があります。</li>
+                <li><strong>不要なタブやアプリを閉じる:</strong> 他のアプリケーションやWebページがメモリを消費している場合があります。</li>
+                <li><strong>デバイスを再起動する:</strong> スマートフォンやPCを一度再起動することで改善することがあります。</li>
+            </ul>
 
-                <h3>2.2. 既存のメモを編集する</h3>
-                <ol>
-                    <li>メモ一覧の中から、編集したいメモの右側にある<strong>「編集」ボタン（またはアイコン）</strong>をクリックします。</li>
-                    <li>メモ入力・編集エリアに現在の内容が表示されるので、修正したい箇所を編集します。</li>
-                    <li>編集が終わったら、忘れずに<strong>「保存」ボタン</strong>をクリックしてください。</li>
-                </ol>
-
-                <h3>2.3. メモを削除する</h3>
-                <ol>
-                    <li>メモ一覧の中から、削除したいメモの右側にある<strong>「削除」ボタン（またはアイコン）</strong>をクリックします。</li>
-                    <li>「本当に削除しますか？」のような確認メッセージが表示されたら、<strong>「OK」ボタン</strong>をクリックします。</li>
-                    <li>削除されたメモは元に戻せませんので、注意してください。</li>
-                </ol>
-
-                <h3>2.4. メモを検索する</h3>
-                <ol>
-                    <li>画面上部にある<strong>検索バー</strong>に、探したいメモのキーワード（タイトルや本文に含まれる単語）を入力します。</li>
-                    <li>入力すると同時に、キーワードに一致するメモだけがメモ一覧に絞り込まれて表示されます。</li>
-                    <li>検索を解除するには、検索バーのキーワードを全て削除してください。</li>
-                </ol>
-            </section>
-
-            <section id="screenshots">
-                <h2>3. スクリーンショット説明（テキスト形式）</h2>
-                <p>実際の画面をイメージしやすいように、テキストで画面構成を説明します。</p>
-
-                <div class="screenshot-description">
-                    <strong>[図1: アプリのトップ画面]</strong><br>
-                    画面上部に「シンプルメモアプリ」というアプリ名と、右側に「新規メモ」ボタンが配置されています。そのすぐ下に「メモを検索...」という検索バーがあります。メインエリアには、「今日のやること」「買い物リスト」「会議メモ」といった既存のメモが複数リスト形式で表示されており、各メモの右端には鉛筆アイコンの「編集」ボタンとゴミ箱アイコンの「削除」ボタンが見えます。
-                </div>
-
-                <div class="screenshot-description">
-                    <strong>[図2: 新規メモ作成画面]</strong><br>
-                    「新規メモ」ボタンをクリックすると表示される画面です。「新しいメモを作成」という見出しがあり、その下に「タイトル」というラベルの入力欄と、「本文」というラベルの広い入力欄があります。入力欄の下部には「保存」ボタンと「キャンセル」ボタンが並んで配置されています。
-                </div>
-
-                <div class="screenshot-description">
-                    <strong>[図3: メモ一覧と編集・削除ボタンの強調]</strong><br>
-                    既存のメモが並ぶメモ一覧の画面です。例えば「今日のやること」というメモの行の右端に、鉛筆アイコン（編集）とゴミ箱アイコン（削除）が少し大きく、分かりやすく表示されています。これらをクリックすることで、個別のメモの操作が可能です。
-                </div>
-            </section>
-
-            <section id="faq">
-                <h2>4. よくある質問 (FAQ)</h2>
-                <dl>
-                    <dt>Q: メモは自動的に保存されますか？</dt>
-                    <dd>A: いいえ、自動保存機能はありません。新しいメモを作成したり、既存のメモを編集した際は、必ず<strong>「保存」ボタン</strong>をクリックしてください。</dd>
-
-                    <dt>Q: メモのデータはどこに保存されますか？</dt>
-                    <dd>A: このアプリのメモは、お使いのウェブブラウザのローカルストレージに保存されます。そのため、同じブラウザ・同じデバイスからアクセスすれば、以前のメモを見ることができます。</dd>
-
-                    <dt>Q: 別のパソコンやスマートフォンでメモを共有できますか？</dt>
-                    <dd>A: いいえ、このシンプルメモアプリはブラウザのローカルストレージに保存されるため、別のデバイスやブラウザとの同期・共有機能はありません。各デバイスで独立して動作します。</dd>
-
-                    <dt>Q: メモに文字数制限はありますか？</dt>
-                    <dd>A: 特に厳密な文字数制限はありませんが、あまりに長いメモは動作が重くなったり、表示に時間がかかったりする場合があります。長文を扱う場合は、別のドキュメント作成ツールのご利用をお勧めします。</dd>
-                </dl>
-            </section>
-
-            <section id="troubleshooting">
-                <h2>5. トラブルシューティング</h2>
-                <p>もしアプリを使っていて困ったことがあれば、以下の解決策をお試しください。</p>
-
-                <div class="troubleshooting-item">
-                    <h4>問題1: メモが保存できない</h4>
-                    <ul>
-                        <li><strong>解決策1:</strong> まず、インターネット接続が安定しているか確認してください。</li>
-                        <li><strong>解決策2:</strong> ブラウザのストレージ容量が上限に達している可能性があります。他のウェブサイトのキャッシュなどを削除してみてください。</li>
-                        <li><strong>解決策3:</strong> 一時的な不具合の場合があります。一度ブラウザを閉じて開き直し、もう一度試してみてください。</li>
-                    </ul>
-                </div>
-
-                <div class="troubleshooting-item">
-                    <h4>問題2: 画面の表示がおかしい、ボタンが反応しない</h4>
-                    <ul>
-                        <li><strong>解決策1:</strong> ブラウザの画面を再読み込み（リロード）してみてください。（Windows: F5キー, Mac: Command + R）</li>
-                        <li><strong>解決策2:</strong> お使いのブラウザのキャッシュやCookieが原因かもしれません。ブラウザの設定からキャッシュをクリアしてみてください。</li>
-                        <li><strong>解決策3:</strong> 異なるウェブブラウザ（例: Chromeで駄目ならFirefoxやEdge）で試してみてください。</li>
-                    </ul>
-                </div>
-
-                <div class="troubleshooting-item">
-                    <h4>問題3: 以前保存したはずのメモが消えてしまった</h4>
-                    <ul>
-                        <li><strong>解決策1:</strong> ブラウザの「履歴の削除」や「閲覧データのクリア」を行った際に、ローカルストレージのデータも一緒に削除されてしまった可能性があります。このアプリは、ブラウザのデータに依存しているため、データの消去には十分ご注意ください。</li>
-                        <li><strong>解決策2:</strong> 別のデバイスやブラウザで開いていませんか？このアプリはデバイス・ブラウザごとにメモが保存されます。</li>
-                        <li><strong>解決策3:</strong> アプリの性質上、重要な長期保存メモには向きません。重要な内容は、別途ファイルに保存するなど、バックアップを取ることを強くお勧めします。</li>
-                    </ul>
-                </div>
-            </section>
-        </main>
+            <h3>4.3. エラーメッセージが表示される</h3>
+            <ul>
+                <li><strong>エラーメッセージをよく読む:</strong> メッセージに解決のヒントが書かれていることが多いです。「〇〇が未入力です」「権限がありません」など。</li>
+                <li><strong>指示に従う:</strong> 「再度お試しください」「管理者に連絡してください」などの指示があればそれに従います。</li>
+                <li><strong>入力内容を確認する:</strong> 特にフォームでエラーが出る場合、必須項目が埋まっていない、指定された形式ではない（例: 数字のみの入力欄に文字を入力した）などの可能性があります。</li>
+                <li><strong>それでも解決しない場合:</strong> エラーメッセージの全文をメモし、どのような操作をした際に発生したかを控えて、アプリのサポート窓口にお問い合わせください。</li>
+            </ul>
+        </section>
 
         <footer>
-            <p>&copy; 2023 シンプルメモアプリ ガイド. All rights reserved.</p>
+            <p>&copy; 2023 マイアプリ利用ガイド. All rights reserved.</p>
         </footer>
     </div>
 </body>

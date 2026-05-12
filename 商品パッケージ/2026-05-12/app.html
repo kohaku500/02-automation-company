@@ -3,452 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>note向けAI×副業記事 企画・執筆ロードマップアシスタント</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9Cug65" crossorigin="anonymous">
+    <title>3プラットフォーム向けAIコンテンツパッケージ生成ツール</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
         body {
-            font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+            padding-top: 20px;
         }
         .container {
             max-width: 960px;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
         }
-        .card {
-            margin-bottom: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,.05);
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
-        .card-header {
-            background-color: #0d6efd;
-            color: white;
-            font-weight: bold;
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
-            padding: 1rem 1.5rem;
+        h1 {
+            font-size: 2.2em;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-top: 30px;
         }
         .form-label {
-            font-weight: bold;
-        }
-        .output-box {
-            background-color: #e9ecef;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            min-height: 100px;
-            white-space: pre-wrap;
-            word-break: break-word;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-weight: 600;
+            color: #555;
         }
         .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            border-radius: 5px;
         }
         .btn-primary:hover {
-            background-color: #0b5ed7;
-            border-color: #0b5ed7;
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
-        h1, h2, h3 {
-            color: #343a40;
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-        .chart-container {
-            position: relative;
-            height: 250px; /* Adjust height as needed for responsiveness */
-            width: 100%;
+        .card-header {
+            background-color: #007bff; /* Bootstrap primary color */
+            color: #fff;
+            font-weight: 700;
+            padding: 15px 20px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 1.1em;
+        }
+        .card-header.bg-secondary {
+            background-color: #6c757d !important; /* Bootstrap secondary color */
+        }
+        .card-body p {
+            margin-bottom: 0.5em;
+        }
+        .card-body ul {
+            padding-left: 20px;
+            margin-bottom: 0.5em;
+        }
+        .card-body li {
+            margin-bottom: 5px;
+        }
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .btn-primary {
+                width: 100%;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mb-4 text-center">note向けAI×副業記事 企画・執筆ロードマップアシスタント</h1>
-        <p class="lead text-center mb-5">2026年5月12日の未来を見据え、AI進化と働き方の多様化に対応した、5000字以上のnote記事企画・執筆を支援します。</p>
+        <h1 class="text-center mb-4">3プラットフォーム向けAIコンテンツパッケージ生成ツール</h1>
+        <p class="alert alert-info">
+            2026年のトレンド（AIの進化、働き方の多様化、個人の生産性向上、自己実現）を考慮し、AIを核としたコンテンツ企画案を、主要な3プラットフォーム（note, YouTube, X）向けに最適化して提案します。
+        </p>
 
-        <!-- 1. 記事テーマ・キーワード入力 -->
-        <div class="card">
-            <div class="card-header">1. 記事テーマ・キーワード入力</div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="mainKeywords" class="form-label">主要キーワード（例: AI、副業、生産性向上、自己実現など）</label>
-                    <input type="text" class="form-control" id="mainKeywords" value="AI, 副業, 生産性向上, ロードマップ" placeholder="複数のキーワードをカンマ区切りで入力">
-                </div>
-                <div class="mb-3">
-                    <label for="targetAudience" class="form-label">ターゲット読者層（例: 初心者、中級者、AI活用を模索する人など）</label>
-                    <input type="text" class="form-control" id="targetAudience" value="AI活用に興味のある初心者, 副業を始めたい会社員" placeholder="ターゲット読者層を具体的に入力">
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-primary" id="generateIdeasBtn">企画案を生成</button>
-                </div>
-            </div>
+        <div class="mb-4">
+            <label for="mainTheme" class="form-label">コンテンツのメインテーマを選択してください:</label>
+            <select class="form-select" id="mainTheme">
+                <option value="AI_SIDE_JOB">AIとChatGPT5.0で始める！未経験からの月5万円副業ロードマップ2026</option>
+                <option value="AI_EFFICIENCY">仕事効率爆上げ！AI秘書ツール活用で残業ゼロを実現する実践ガイド</option>
+                <option value="AI_CAREER_SELF_REALIZATION">AI時代の未来キャリア形成＆自己実現戦略</option>
+            </select>
         </div>
 
-        <!-- 2. タイトル案生成 -->
-        <div class="card">
-            <div class="card-header">2. タイトル案生成（AIアシスタント提案）</div>
-            <div class="card-body">
-                <div class="output-box mb-3" id="titleSuggestions">
-                    企画案生成ボタンを押すと、魅力的なタイトル案が表示されます。
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-outline-primary" id="copyTitlesBtn">タイトル案をコピー</button>
-                </div>
-            </div>
+        <div class="mb-4">
+            <label for="contentPurpose" class="form-label">コンテンツの主な目的を選択してください:</label>
+            <select class="form-select" id="contentPurpose">
+                <option value="AWARENESS">認知度向上（多くの人に知ってもらう）</option>
+                <option value="LEAD_GENERATION">リード獲得（メールリスト登録や無料ウェビナー誘導など）</option>
+                <option value="MONETIZATION">直接的な収益化（有料コンテンツ販売、商品購入など）</option>
+            </select>
         </div>
 
-        <!-- 3. 記事構成案生成 -->
-        <div class="card">
-            <div class="card-header">3. 記事構成案生成（5000文字以上対応）</div>
-            <div class="card-body">
-                <div class="output-box mb-3" id="articleOutline">
-                    企画案生成ボタンを押すと、5000字以上の記事構成案が表示されます。
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-outline-primary" id="copyOutlineBtn">構成案をコピー</button>
-                </div>
-            </div>
+        <button class="btn btn-primary w-100 mb-5" onclick="generatePackage()">パッケージを生成</button>
+
+        <div id="result" class="mt-5">
+            <!-- 結果がここに表示されます -->
         </div>
-
-        <!-- 4. 執筆ロードマップシミュレーター -->
-        <div class="card">
-            <div class="card-header">4. 執筆ロードマップシミュレーター（目標5000文字）</div>
-            <div class="card-body">
-                <p>目標文字数: <strong>5000文字</strong></p>
-                <div class="mb-3">
-                    <label for="dailyWords" class="form-label">1日あたりの執筆可能文字数（目安）</label>
-                    <input type="number" class="form-control" id="dailyWords" value="1000" min="100">
-                </div>
-                <div class="mb-3">
-                    <label for="targetDays" class="form-label">目標執筆日数</label>
-                    <input type="number" class="form-control" id="targetDays" value="7" min="1">
-                </div>
-                <div class="d-grid gap-2 mb-4">
-                    <button class="btn btn-primary" id="simulateBtn">ロードマップをシミュレート</button>
-                </div>
-
-                <div class="alert alert-info mt-3" id="simulationResult" role="alert" style="display: none;">
-                    <strong>シミュレーション結果:</strong><br>
-                    <span id="requiredDays"></span><br>
-                    <span id="dailyTargetWords"></span>
-                </div>
-
-                <h5 class="mt-4">執筆進捗イメージ</h5>
-                <div class="chart-container">
-                    <canvas id="progressChart"></canvas>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Bootstrap 5 JS (Popper.js required) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYn/T0mH+BvC0hS5d9j1k2iS3a4o5p6v7j8l9k0m1n2o3p4q5r6s7t8u9v0wxyZ" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-BB1fS5S5d9j1k2iS3a4o5p6v7j8l9k0m1n2o3p4q5r6s7t8u9v0wxyZ" crossorigin="anonymous"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-
+    <!-- Bootstrap JS CDN (Popper.js bundled) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainKeywordsInput = document.getElementById('mainKeywords');
-            const targetAudienceInput = document.getElementById('targetAudience');
-            const generateIdeasBtn = document.getElementById('generateIdeasBtn');
-            const titleSuggestionsOutput = document.getElementById('titleSuggestions');
-            const articleOutlineOutput = document.getElementById('articleOutline');
-            const copyTitlesBtn = document.getElementById('copyTitlesBtn');
-            const copyOutlineBtn = document.getElementById('copyOutlineBtn');
+        function generatePackage() {
+            const mainTheme = document.getElementById('mainTheme').value;
+            const contentPurpose = document.getElementById('contentPurpose').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<h2>生成されたコンテンツパッケージ案</h2>';
 
-            const dailyWordsInput = document.getElementById('dailyWords');
-            const targetDaysInput = document.getElementById('targetDays');
-            const simulateBtn = document.getElementById('simulateBtn');
-            const simulationResultDiv = document.getElementById('simulationResult');
-            const requiredDaysSpan = document.getElementById('requiredDays');
-            const dailyTargetWordsSpan = document.getElementById('dailyTargetWords');
-            const progressChartCanvas = document.getElementById('progressChart');
-
-            const totalWordsGoal = 5000;
-            let progressChart; // Chart instance
-
-            // --- 企画案生成ロジック ---
-            generateIdeasBtn.addEventListener('click', () => {
-                const keywords = mainKeywordsInput.value.split(',').map(k => k.trim()).filter(k => k !== '');
-                const audience = targetAudienceInput.value.split(',').map(a => a.trim()).filter(a => a !== '');
-
-                // タイトル案生成
-                titleSuggestionsOutput.innerHTML = generateTitleSuggestions(keywords, audience);
-
-                // 記事構成案生成
-                articleOutlineOutput.innerHTML = generateArticleOutline(keywords, audience, totalWordsGoal);
-            });
-
-            function generateTitleSuggestions(keywords, audience) {
-                const baseTitles = [
-                    "【AI×副業】未来を拓く！月5万円を稼ぐための完全ロードマップ",
-                    "2026年を見据える！AI活用で「個人の生産性」を最大化するnote術",
-                    "自己実現を叶える！AI時代の新しい働き方と副業戦略5選",
-                    "未経験から始めるAI副業：5000文字で語る成功への最短ルート",
-                    "【未来予想】AIはあなたの副業をどう変える？実践的活用ガイド",
-                    "ChatGPTで加速！5000文字で伝える、AI時代の副業戦略と自己成長",
-                    "多様な働き方へシフト！AIを味方につける、あなたのキャリアロードマップ",
-                    "個人の生産性革命！AIツールを駆使した副業で「時間とお金」を手に入れる方法",
-                    "【実践編】AIでコンテンツ制作副業を始めるロードマップ（5000字超解説）",
-                    "AIアシスタントと一緒に！あなたのスキルを収益化するnote執筆術"
-                ];
-
-                const dynamicTitles = [];
-                if (keywords.length > 0) {
-                    keywords.forEach(kw => {
-                        audience.forEach(aud => {
-                            dynamicTitles.push(`【${kw}】で差をつける！${aud}のためのAI副業ロードマップ`);
-                            dynamicTitles.push(`${aud}必見！${kw}を極めるAI活用術で月収アップ`);
-                        });
-                    });
-                }
-
-                const suggestions = [...new Set([...baseTitles, ...dynamicTitles])].slice(0, 10); // 重複除去して最大10件
-
-                let html = '<ul>';
-                if (suggestions.length === 0) {
-                    html = '<p>キーワードとターゲット読者を入力して、企画案生成ボタンを押してください。</p>';
-                } else {
-                    suggestions.forEach(title => {
-                        html += `<li>${title}</li>`;
-                    });
-                    html += '</ul>';
-                }
-                return html;
-            }
-
-            function generateArticleOutline(keywords, audience, wordCount) {
-                const keywordStr = keywords.join(', ');
-                const audienceStr = audience.join(', ');
-
-                if (keywords.length === 0 || audience.length === 0) {
-                    return '<p>キーワードとターゲット読者を入力して、企画案生成ボタンを押してください。</p>';
-                }
-
-                return `
-**note記事構成案（目標 ${wordCount}文字以上）**
-
----
-
-**ターゲット読者:** ${audienceStr}
-**テーマ:** AI進化、働き方の多様化、個人の生産性向上、自己実現を背景としたAI×副業のロードマップ
-
----
-
-### **はじめに：2026年の働き方とAI副業の衝撃 (約500文字)**
-*   激変する社会とAIの台頭
-*   なぜ今、AIを活用した副業が求められるのか？
-*   本記事で得られるもの（再現性の高いロードマップ、具体的な成功事例）
-
-### **第1章：AI進化がもたらす「個人の生産性」革命 (約800文字)**
-*   AIツールの現状と未来予測（ChatGPT, Midjourney, その他業務効率化AIなど）
-*   AIが奪う仕事、AIが創る仕事
-*   個人がAIを「使いこなす力」の重要性
-
-### **第2章：【実践】AIを活用した副業の具体的な形 (約1500文字)**
-*   **2-1. コンテンツ制作系副業（AIライティング、画像生成、動画編集アシスタント）**
-    *   具体的なAIツールと活用事例
-    *   収益化までのステップ
-*   **2-2. データ分析・マーケティング系副業（AIデータ分析、広告運用支援）**
-    *   AIを活用した市場分析、パーソナライズ
-    *   案件獲得のコツ
-*   **2-3. プログラミング・開発系副業（AIコード生成、テスト支援）**
-    *   AIペアプログラマーとしての活用
-    *   新しいサービスの開発事例
-*   **2-4. その他、AIと既存スキルを組み合わせたニッチな副業**
-    *   （例）AI通訳・翻訳、AI教育コンテンツ作成など
-*   **AI副業を始めるための心構えと初期投資（無料ツール活用含む）**
-
-### **第3章：再現性の高い「AI副業ロードマップ」5つのステップ (約1500文字)**
-*   **ステップ1: 自己分析とAIスキルの棚卸し**
-    *   得意なこと、興味関心、AIで補完できる部分の特定
-*   **ステップ2: 目標設定と具体的なAI副業の選定**
-    *   短期目標、長期目標、収益目標
-    *   ポートフォリオ作成の重要性
-*   **ステップ3: AIツールの学習と実践**
-    *   無料学習リソース、コミュニティ活用
-    *   小さな成功体験の積み重ね方
-*   **ステップ4: 案件獲得とポートフォリオ構築**
-    *   クラウドソーシング、SNS活用、直接営業
-    *   実績の作り方
-*   **ステップ5: 継続的な学習とアップデート**
-    *   AI進化への追随、コミュニティでの情報交換
-
-### **第4章：AI副業で自己実現を果たすためのマインドセット (約500文字)**
-*   失敗を恐れない挑戦の重要性
-*   インプットとアウトプットのサイクル
-*   持続可能な働き方とワークライフバランス
-
-### **まとめ：AIと共に、あなたの未来をデザインしよう (約200文字)**
-*   本記事の要点再確認
-*   読者への行動喚起
-*   2026年、そしてその先へ向かうメッセージ
-
----
-
-**想定読後感:**
-*   AI副業の全体像が理解できた。
-*   具体的なステップが明確になり、すぐにでも行動できそうだ。
-*   未来への不安が希望に変わり、モチベーションが向上した。
-`;
-            }
-
-            // --- コピー機能 ---
-            copyTitlesBtn.addEventListener('click', () => {
-                copyToClipboard(titleSuggestionsOutput.innerText);
-                alert('タイトル案をコピーしました！');
-            });
-
-            copyOutlineBtn.addEventListener('click', () => {
-                copyToClipboard(articleOutlineOutput.innerText);
-                alert('構成案をコピーしました！');
-            });
-
-            function copyToClipboard(text) {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                // textareaを画面外に配置してユーザーに見えないようにする
-                textarea.style.position = 'fixed';
-                textarea.style.top = '-9999px';
-                textarea.style.left = '-9999px';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                } catch (err) {
-                    console.error('コピーに失敗しました', err);
-                    alert('お使いのブラウザではコピー機能がサポートされていないか、ブロックされました。手動でコピーしてください。');
-                } finally {
-                    document.body.removeChild(textarea);
-                }
-            }
-
-
-            // --- 執筆ロードマップシミュレーターロジック ---
-            simulateBtn.addEventListener('click', () => {
-                const dailyWords = parseInt(dailyWordsInput.value);
-                const targetDays = parseInt(targetDaysInput.value);
-
-                if (isNaN(dailyWords) || dailyWords <= 0) {
-                    alert('1日あたりの執筆可能文字数を正しく入力してください。');
-                    return;
-                }
-                if (isNaN(targetDays) || targetDays <= 0) {
-                    alert('目標執筆日数を正しく入力してください。');
-                    return;
-                }
-
-                // 必要な日数
-                const requiredDays = Math.ceil(totalWordsGoal / dailyWords);
-                requiredDaysSpan.innerHTML = `現在のペース（1日あたり <strong>${dailyWords.toLocaleString()}文字</strong>）だと、約 <strong>${requiredDays} 日</strong>で執筆が完了します。`;
-
-                // 目標日数で達成するための1日あたり文字数
-                const dailyWordsForTargetDays = Math.ceil(totalWordsGoal / targetDays);
-                dailyTargetWordsSpan.innerHTML = `目標 <strong>${targetDays} 日</strong>で完了するには、1日あたり <strong>${dailyWordsForTargetDays.toLocaleString()} 文字</strong>の執筆が必要です。`;
-
-                simulationResultDiv.style.display = 'block';
-
-                updateChart(dailyWords, requiredDays);
-            });
-
-            function updateChart(dailyWords, requiredDays) {
-                if (progressChart) {
-                    progressChart.destroy(); // 既存のチャートを破棄
-                }
-
-                const labels = [];
-                const data = [];
-                let currentWords = 0;
-                let displayDaysLimit = Math.max(requiredDays + 2, 7); // 最低7日、必要日数より少し多めに表示
-                displayDaysLimit = Math.min(displayDaysLimit, 30); // 最大30日に制限 (チャートの可読性のため)
-
-                for (let i = 1; i <= displayDaysLimit; i++) {
-                    labels.push(`Day ${i}`);
-                    currentWords = Math.min(totalWordsGoal, currentWords + dailyWords);
-                    data.push(currentWords);
-                    if (currentWords >= totalWordsGoal && i > requiredDays) { // 目標達成後も少しは表示
-                         // break; // 特定の条件で停止するが、今回は柔軟に表示
-                    }
-                }
-                // もし表示制限日数に達しても目標に届いていない場合、最終日に目標値をプロット
-                if (currentWords < totalWordsGoal && displayDaysLimit < requiredDays) {
-                    labels.push(`Day ${displayDaysLimit} (途中)`);
-                    data[displayDaysLimit-1] = currentWords; // 最後に到達した文字数
-                    labels.push(`Day ${requiredDays} (目標)`);
-                    data.push(totalWordsGoal);
-                } else if (currentWords < totalWordsGoal && displayDaysLimit >= requiredDays && labels.length < requiredDays) {
-                     // 必要日数より表示日数が短いことは基本ないが、もしあれば調整
-                     labels.push(`Day ${requiredDays} (目標)`);
-                     data.push(totalWordsGoal);
-                }
-
-
-                const ctx = progressChartCanvas.getContext('2d');
-                progressChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: '累計執筆文字数',
-                            data: data,
-                            backgroundColor: 'rgba(13, 110, 253, 0.2)',
-                            borderColor: 'rgba(13, 110, 253, 1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 4,
-                            pointBackgroundColor: 'rgba(13, 110, 253, 1)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: '日数'
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                max: totalWordsGoal * 1.1, // 少し余裕を持たせる
-                                title: {
-                                    display: true,
-                                    text: '累計文字数'
-                                },
-                                ticks: {
-                                    callback: function(value) {
-                                        return value.toLocaleString() + '字';
-                                    }
-                                }
-                            }
+            const themes = {
+                AI_SIDE_JOB: {
+                    title: "AIとChatGPT5.0で始める！未経験からの月5万円副業ロードマップ2026",
+                    note: {
+                        AWARENESS: {
+                            title: "【無料公開】2026年版！AIで始める月5万円副業ロードマップ入門",
+                            format: "無料公開記事",
+                            elements: ["AI副業の魅力と可能性", "ChatGPT5.0の基礎知識", "未経験者が始めるための準備ステップ", "成功事例紹介", "AIツールリスト（無料版中心）"],
+                            features: "読者のハードルを下げる内容。続きは有料マガジンで、と誘導。",
+                            promotion: "X（旧Twitter）でハッシュタグを付けて拡散、note内の関連マガジンからの流入"
                         },
-                        plugins: {
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed.y !== null) {
-                                            label += context.parsed.y.toLocaleString() + '字';
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
+                        LEAD_GENERATION: {
+                            title: "【特典付】AI副業で月5万円達成！ロードマップ徹底解説マガジン",
+                            format: "有料マガジン（一部無料公開）",
+                            elements: ["AIで稼ぐ具体的な副業アイデア10選", "ChatGPT5.0プロンプト集", "案件獲得から納品までのワークフロー", "月5万円達成ロードマップ", "メールリスト登録者限定の無料ウェビナー案内"],
+                            features: "具体的なノウハウと限定特典でリード獲得を促進。",
+                            promotion: "無料記事からの誘導、note公式おすすめ掲載、関連コミュニティでの紹介"
+                        },
+                        MONETIZATION: {
+                            title: "【完全版】AIで月5万円稼ぐ副業実践講座2026〜ChatGPT5.0活用術〜",
+                            format: "有料記事・有料マガジン",
+                            elements: ["AI副業の選び方・始め方完全ガイド", "ChatGPT5.0による企画・制作・営業実践", "案件獲得から単価交渉まで", "税金・確定申告の基礎知識", "購入者限定コミュニティへの招待"],
+                            features: "高単価で詳細な情報提供。購入後のサポートで満足度向上。",
+                            promotion: "信頼構築後の有料化、SNS広告、アフィリエイト連携"
+                        }
+                    },
+                    youtube: {
+                        AWARENESS: {
+                            title: "【爆速】AIで月5万円稼ぐロードマップ！ChatGPT5.0が最強な理由",
+                            format: "5-8分程度の解説動画",
+                            elements: ["オープニング（結論から）", "AI副業の魅力と具体的な稼ぎ方（事例）", "ChatGPT5.0のデモンストレーション", "始める上での注意点", "チャンネル登録・高評価を促すエンディング"],
+                            features: "視覚的に分かりやすく、テンポの良い編集。AIツールの画面操作を多く見せる。",
+                            promotion: "ショート動画で切り抜き投稿、関連動画からの流入、コミュニティタブでの情報発信"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【AI副業】未経験から月5万！ChatGPT5.0活用術を完全公開（無料DL特典あり）",
+                            format: "10-15分程度の詳細解説動画",
+                            elements: ["AI副業の全体像と成功へのステップ", "ChatGPT5.0の高度な活用テクニック", "案件獲得のコツと具体的なアドバイス", "概要欄からの無料テンプレート・チェックリストDL誘導", "限定ウェビナーへの招待"],
+                            features: "具体的な成果物やノウハウを提示。概要欄への導線を明確に。",
+                            promotion: "YouTube広告、関連テーマのインフルエンサーとのコラボ、SEO対策"
+                        },
+                        MONETIZATION: {
+                            title: "【実践編】AIで月5万円副業を始めるロードマップ2026〜独占教材付〜",
+                            format: "20-30分程度の有料級コンテンツ",
+                            elements: ["AI副業のビジネスモデル構築", "ChatGPT5.0を駆使したプロダクト開発", "営業・マーケティング戦略", "高単価案件の獲得術", "有料教材やコンサルティングへの誘導"],
+                            features: "限定感とプロフェッショナルな情報で付加価値を高める。",
+                            promotion: "メンバーシップ特典、Super Thanks、コメント欄での購入者交流"
+                        }
+                    },
+                    x: {
+                        AWARENESS: {
+                            title: "AIで月5万円稼ぐ副業、2026年版ロードマップ公開！",
+                            format: "スレッド形式投稿（5-10ツイート）",
+                            elements: ["導入: AI副業はもう稼げる！", "メリット3選", "具体的な始め方（超入門）", "ChatGPT5.0の活用例", "今すぐできること", "note記事へのリンク"],
+                            features: "簡潔で分かりやすく、視覚的な要素（画像、動画）も活用。共感を呼ぶ言葉を選ぶ。",
+                            promotion: "固定ポスト、ハッシュタグ活用（#AI副業 #ChatGPT5 #副業ロードマップ）、引用リポストの促し"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【限定公開】AI副業で月5万円達成する㊙︎ロードマップ！無料ガイド配布中",
+                            format: "フック投稿＋リンク誘導",
+                            elements: ["強烈なフック: 「〇〇で稼げないはもう終わり」", "AI副業の成功事例", "ChatGPT5.0の驚きの実力", "無料ガイド（メールアドレス登録）へのリンク", "リポスト＆いいねで拡散希望"],
+                            features: "簡潔な文章でインパクトを与え、行動を促す。信頼性を示す具体的な数字。",
+                            promotion: "X広告、インフルエンサーとの連携、スペース（旧Twitter Space）での質疑応答"
+                        },
+                        MONETIZATION: {
+                            title: "【超実践】AI副業で月5万円超え！プロが使うChatGPT5.0実践講座",
+                            format: "告知ポスト＋販売リンク",
+                            elements: ["高単価AI副業のチャンス", "ChatGPT5.0で効率的に稼ぐ秘訣", "限定講座の内容紹介", "購入者への特典（コンサル等）", "販売ページへの直接リンク"],
+                            features: "特典や緊急性を強調。購入者の悩みに寄り添う言葉。",
+                            promotion: "Xスペースでの購入者限定Q&A、プロモーションポスト、インプレッション広告"
                         }
                     }
-                });
+                },
+                AI_EFFICIENCY: {
+                    title: "仕事効率爆上げ！AI秘書ツール活用で残業ゼロを実現する実践ガイド",
+                    note: {
+                        AWARENESS: {
+                            title: "【残業ゼロへ】AI秘書で仕事効率化！最新ツール活用入門2026",
+                            format: "無料公開記事",
+                            elements: ["AI秘書とは？導入のメリット", "最新AI秘書ツール紹介（無料プラン中心）", "タスク管理、議事録作成、メール返信の効率化事例", "導入で変わる働き方", "無料ウェビナー告知（任意）"],
+                            features: "具体的な事例で読者の興味を引き、AI秘書ツールの導入ハードルを下げる。",
+                            promotion: "SNSでのシェア促進、note内の「仕事術」タグからの流入"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【AI秘書】残業ゼロ達成！実践ガイド＆テンプレ集（無料DL特典）",
+                            format: "有料マガジン（一部無料）",
+                            elements: ["AI秘書ツールの選び方・比較", "具体的な活用シーン別プロンプト集", "チームでのAI秘書導入術", "無料テンプレート（企画書、レポートなど）DL", "無料相談会への誘導"],
+                            features: "実践的なテンプレートや具体的な手順でリードを獲得。",
+                            promotion: "無料記事からの誘導、企業への導入事例紹介、メールマガジン登録促進"
+                        },
+                        MONETIZATION: {
+                            title: "【企業向け】AI秘書導入コンサルティング〜残業ゼロ＆生産性最大化〜",
+                            format: "有料記事・サービス紹介ページ",
+                            elements: ["AI秘書導入によるコスト削減・生産性向上効果", "最適なAIツール選定とカスタマイズ", "従業員向けトレーニングプログラム", "導入後のサポート体制", "問い合わせフォームへの誘導"],
+                            features: "BtoB向けの内容。導入事例やROI（投資対効果）を明確に提示。",
+                            promotion: "note企業アカウントでの情報発信、専門家によるレビュー記事"
+                        }
+                    },
+                    youtube: {
+                        AWARENESS: {
+                            title: "【神ツール】AI秘書で残業激減！仕事効率化がヤバい件",
+                            format: "5-8分程度の紹介動画",
+                            elements: ["オープニング（衝撃的な効果）", "AI秘書ツールの機能紹介（デモ）", "実際に効率化された事例（Before/After）", "おすすめ無料AI秘書ツール3選", "チャンネル登録を促す"],
+                            features: "視覚的なインパクトを重視。AIツールの操作画面を多く見せる。短時間で理解できるよう編集。",
+                            promotion: "関連するキーワードでのSEO、YouTubeショートでのクイック紹介"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【AI秘書完全攻略】残業ゼロ実現！実践ワークフロー（無料マニュアル付）",
+                            format: "10-15分程度のステップバイステップ動画",
+                            elements: ["AI秘書導入の失敗しないためのポイント", "具体的なワークフロー（議事録、資料作成、日程調整）", "効果的なプロンプトの作り方", "概要欄からの無料マニュアルDL誘導", "限定ウェビナーへの招待"],
+                            features: "具体的な操作画面と解説で、視聴者が実践できるようにガイド。無料特典でリード獲得。",
+                            promotion: "YouTube広告、関連動画でのクロスプロモーション"
+                        },
+                        MONETIZATION: {
+                            title: "【生産性革命】AI秘書導入で企業を変革！実践コンサル講座",
+                            format: "20-30分程度の有料級セミナー動画",
+                            elements: ["AI秘書導入の戦略的意義", "企業ごとのカスタマイズ導入事例", "セキュリティ・コンプライアンス対策", "チームへの浸透と活用促進", "有料コンサルティングサービスへの誘導"],
+                            features: "専門性の高い内容で、企業担当者向けに価値を提供する。",
+                            promotion: "メンバーシップ限定公開、企業アカウントからの配信、YouTube広告"
+                        }
+                    },
+                    x: {
+                        AWARENESS: {
+                            title: "残業ゼロはAI秘書で実現可能！2026年の新常識",
+                            format: "スレッド形式投稿（5-10ツイート）",
+                            elements: ["導入: あなたの残業はAIで減らせる！", "AI秘書が解決する3つの悩み", "無料で試せるAI秘書ツール", "導入で得られるメリット", "今日のタスクをAIに任せてみよう！", "note記事へのリンク"],
+                            features: "読者の課題に寄り添い、具体的な解決策を提示。すぐに試せるアクションを促す。",
+                            promotion: "固定ポスト、ハッシュタグ活用（#AI秘書 #仕事効率化 #残業ゼロ）、同業者アカウントとの交流"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【限定】AI秘書で仕事効率爆上げ！無料ガイドで残業ゼロを実現",
+                            format: "フック投稿＋リンク誘導",
+                            elements: ["あなたの仕事、AIに任せれば劇的に変わる", "AI秘書の驚きの活用事例", "無料ガイド（メールアドレス登録）へのリンク", "リポスト＆いいねで拡散！"],
+                            features: "具体的な数字や実績で信頼性を高め、行動を促す。登録のメリットを明確に。",
+                            promotion: "X広告、インフルエンサーとのコラボ、スペース（旧Twitter Space）での情報交換"
+                        },
+                        MONETIZATION: {
+                            title: "【プロ向け】AI秘書導入完全ガイド！組織の生産性を最大化",
+                            format: "告知ポスト＋販売リンク",
+                            elements: ["AI秘書で組織を変革する", "最新のAIツール活用ノウハウ", "導入成功事例と失敗事例", "有料コンテンツやコンサルティングサービスへの案内", "販売ページへの直接リンク"],
+                            features: "専門家や企業担当者向けに、より高度な情報を提供。",
+                            promotion: "Xスペースでの質疑応答、プロモーションポスト、インプレッション広告"
+                        }
+                    }
+                },
+                AI_CAREER_SELF_REALIZATION: {
+                    title: "AI時代の未来キャリア形成＆自己実現戦略",
+                    note: {
+                        AWARENESS: {
+                            title: "【2026年】AI時代のキャリア戦略！生き残るための自己実現ロードマップ",
+                            format: "無料公開記事",
+                            elements: ["AIで変わる仕事とキャリアの未来予測", "自己実現のためのAI活用術（学習、スキルアップ）", "AIと共に働くマインドセット", "未来に備える最初のステップ", "関連書籍やセミナー紹介"],
+                            features: "読者の不安を解消し、前向きな行動を促す。未来への期待感を高める。",
+                            promotion: "Xでのシェア促進、note内の「キャリア」「自己啓発」タグからの流入"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【AIキャリア】自己実現を加速する！未来型キャリア設計ガイド（無料DL特典）",
+                            format: "有料マガジン（一部無料）",
+                            elements: ["AIと共創する新しい仕事の形", "個人の強みをAIで最大化する方法", "AI時代に求められるスキルリスト", "無料キャリア診断テストDL", "無料キャリア相談会への誘導"],
+                            features: "具体的なツールや診断で読者の課題を解決。リード獲得を目的とした特典。",
+                            promotion: "無料記事からの誘導、メールマガジン登録促進、関連イベントとの連携"
+                        },
+                        MONETIZATION: {
+                            title: "【完全版】AI時代を生き抜く！未来型キャリア戦略＆パーソナルコーチング",
+                            format: "有料記事・個別コンサルティング紹介",
+                            elements: ["AI時代のキャリアパス設計完全ガイド", "個人の強みを活かしたニッチ戦略", "AIを活用したブランディング・マーケティング", "専門家によるパーソナルコーチング案内", "長期的な自己実現プランニング"],
+                            features: "高付加価値な情報と個別サポートで、購入者の人生設計に深く関わる。",
+                            promotion: "信頼構築後の有料化、実績者の声、紹介制度"
+                        }
+                    },
+                    youtube: {
+                        AWARENESS: {
+                            title: "【未来予測】AIが変えるキャリア！2026年、私たちはどう働くべきか？",
+                            format: "8-12分程度の解説動画",
+                            elements: ["オープニング（未来の仕事風景）", "AIによって消える仕事・生まれる仕事", "AI時代に求められる能力とは", "今日からできる自己投資", "チャンネル登録とコメントを促す"],
+                            features: "分かりやすい図解やアニメーションを活用。視聴者の興味を引くような未来予測。",
+                            promotion: "関連キーワードでのSEO、未来志向のユーザー層へのアプローチ"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【AIキャリア】自己実現ロードマップ！無料診断であなたの未来を最適化",
+                            format: "12-18分程度の詳細解説動画",
+                            elements: ["AI時代のキャリア不安を解消する方法", "自己分析とAIを活用した強み発見", "未来を逆算したスキルアップ戦略", "概要欄からの無料キャリア診断DL誘導", "限定ウェビナーへの招待"],
+                            features: "診断ツールやワークシートを提供し、視聴者が具体的な行動を起こせるように促す。リード獲得。",
+                            promotion: "YouTube広告、関連インフルエンサーとのコラボ、視聴者層を絞ったターゲティング"
+                        },
+                        MONETIZATION: {
+                            title: "【人生戦略】AI時代の自己実現！個別キャリアコーチングプログラム",
+                            format: "20-30分程度の紹介・セミナー動画",
+                            elements: ["AI時代における自己実現の重要性", "個別の課題解決に向けたアプローチ", "コーチングプログラムの内容と効果", "成功事例、顧客の声", "有料プログラムへの誘導、申し込み方法"],
+                            features: "視聴者の共感を呼び、個別の課題解決への期待感を高める。高単価サービスへの誘導。",
+                            promotion: "メンバーシップ限定特典、Super Thanks、購入者限定のQ&Aセッション"
+                        }
+                    },
+                    x: {
+                        AWARENESS: {
+                            title: "2026年のキャリアはAIと共に！自己実現を加速する新常識",
+                            format: "スレッド形式投稿（5-10ツイート）",
+                            elements: ["導入: あなたのキャリア、AIで劇的に変わる", "AIに強い人の特徴3選", "自己実現のためのAI活用ステップ", "未来を予測し、今すぐ行動！", "note記事やYouTube動画へのリンク"],
+                            features: "未来への希望と行動を促すポジティブなメッセージ。簡潔な言葉で多くの情報を伝える。",
+                            promotion: "固定ポスト、ハッシュタグ活用（#AIキャリア #自己実現 #未来の働き方）、著名人との言及"
+                        },
+                        LEAD_GENERATION: {
+                            title: "【限定】AI時代のキャリア戦略！無料診断で未来の自分を見つけよう",
+                            format: "フック投稿＋リンク誘導",
+                            elements: ["AIは敵じゃない、最強のパートナーだ！", "あなたの強みをAIで最大化", "無料キャリア診断（メールアドレス登録）へのリンク", "リポスト＆いいねで拡散！"],
+                            features: "診断ツールへの誘導で、具体的な課題解決を提示。登録のメリットを明確に。",
+                            promotion: "X広告、インフルエンサーとのコラボ、スペース（旧Twitter Space）でのキャリア相談"
+                        },
+                        MONETIZATION: {
+                            title: "【専門家監修】AI時代の自己実現キャリア構築プログラム",
+                            format: "告知ポスト＋販売リンク",
+                            elements: ["AI時代に本当に稼げる・活躍できるキャリア", "専門家によるプログラム内容紹介", "受講者の変化や成功事例", "有料プログラムへの直接リンク", "緊急性や限定性を強調"],
+                            features: "専門性、実績、限定感をアピールし、高単価商品への購買意欲を高める。",
+                            promotion: "Xスペースでのプログラム説明会、プロモーションポスト、インプレッション広告"
+                        }
+                    }
+                }
+            };
+
+            const packageData = themes[mainTheme];
+            if (!packageData) {
+                resultDiv.innerHTML = '<p class="alert alert-danger">選択されたテーマに関するデータが見つかりません。</p>';
+                return;
             }
 
-            // ページロード時にデフォルトの入力値で各セクションを初期表示
-            generateIdeasBtn.click();
-            simulateBtn.click();
-        });
+            const platforms = ['note', 'youtube', 'x'];
+            platforms.forEach(platform => {
+                const platformData = packageData[platform][contentPurpose];
+                if (platformData) {
+                    resultDiv.innerHTML += `
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h3 class="mb-0">${platform.toUpperCase()}向けパッケージ案</h3>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>コンセプト:</strong> ${platformData.title}</p>
+                                <p><strong>コンテンツ形式:</strong> ${platformData.format}</p>
+                                <p><strong>主要な構成要素:</strong></p>
+                                <ul>
+                                    ${platformData.elements.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                                <p><strong>特徴・推奨事項:</strong> ${platformData.features}</p>
+                                <p><strong>プロモーション戦略:</strong> ${platformData.promotion}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML += `
+                        <div class="card mb-4">
+                            <div class="card-header bg-secondary">
+                                <h3 class="mb-0">${platform.toUpperCase()}向けパッケージ案</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>選択された目的に対する提案は現在準備中です。</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -3,376 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新時代コンテンツパッケージのご提案</title>
-    <!-- Font Awesome CDN -->
+    <title>3プラットフォーム向けコンテンツパッケージ生成</title>
+    <!-- Font Awesome CDN (外部リソースとして許可) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --bg-color: #f8f8f8;
-            --card-bg-color: #ffffff;
-            --slide-transition-speed: 0.5s;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* スライド切り替え時のスクロールバー抑制 */
-        }
-
-        .presentation-container {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .slides-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1200px; /* PCでの最大幅 */
+        /* 全てのCSSをここに記述 */
+        html, body {
             height: 100%;
-            max-height: 800px; /* PCでの最大高さ */
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            background-color: var(--card-bg-color);
+            margin: 0;
+            overflow: hidden; /* スライド表示のためスクロール禁止 */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        #presentation-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
+            flex-grow: 1;
             width: 100%;
-            height: 100%;
-            padding: 5vh 8vw;
-            box-sizing: border-box;
-            background-color: var(--card-bg-color);
-            display: flex;
+            max-width: 1200px;
+            display: none; /* 初期は全て非表示 */
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: opacity var(--slide-transition-speed) ease-in-out, transform var(--slide-transition-speed) ease-in-out;
             text-align: center;
+            padding: 40px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out;
         }
 
         .slide.active {
+            display: flex; /* アクティブなスライドのみ表示 */
             opacity: 1;
-            transform: translateX(0);
         }
 
-        .slide.prev {
-            transform: translateX(-100%);
+        .slide-content {
+            max-width: 800px;
+            margin: auto;
         }
 
-        .slide h1, .slide h2 {
-            color: var(--primary-color);
-            margin-bottom: 2vh;
-            font-size: clamp(1.8rem, 4vw, 3.5rem);
-            line-height: 1.2;
+        .slide h1 {
+            font-size: 3.5em;
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        .slide h2 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 20px;
         }
 
         .slide h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1.5vh;
-            font-size: clamp(1.4rem, 3vw, 2.5rem);
+            font-size: 1.8em;
+            color: #007bff;
+            margin-bottom: 15px;
         }
 
         .slide p {
-            font-size: clamp(1rem, 2.2vw, 1.4rem);
+            font-size: 1.3em;
             line-height: 1.6;
-            margin-bottom: 2vh;
-            max-width: 800px;
+            margin-bottom: 15px;
         }
 
         .slide ul {
-            list-style: none;
+            list-style-type: none;
             padding: 0;
-            margin: 0;
-            max-width: 700px;
-            text-align: left;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
         }
 
-        .slide ul li {
+        .slide li {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
             position: relative;
-            padding-left: 3.5vw; /* アイコン分のスペース */
-            margin-bottom: 1.5vh;
-            font-size: clamp(1rem, 2.2vw, 1.4rem);
-            line-height: 1.5;
-            color: var(--text-color);
+            padding-left: 30px;
         }
 
-        .slide ul li::before {
-            content: "\f00c"; /* Font Awesome check icon */
+        .slide li::before {
+            content: "\f00c"; /* check-mark icon */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: var(--secondary-color);
+            color: #28a745;
             position: absolute;
             left: 0;
             top: 0;
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
         }
 
-        .slide .icon {
-            font-size: clamp(5rem, 15vw, 10rem);
-            color: var(--secondary-color);
-            margin-bottom: 3vh;
+        .visual-icon {
+            margin: 30px 0;
+            color: #007bff;
         }
 
-        .navigation {
+        .visual-icon i {
+            margin: 0 10px;
+        }
+
+        /* スライド切り替えボタン */
+        .controls {
             position: absolute;
-            bottom: 3vh;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
             z-index: 10;
         }
 
-        .nav-button {
-            background-color: var(--secondary-color);
+        .controls button {
+            background-color: #007bff;
             color: white;
             border: none;
-            padding: 1.5vh 3vw;
-            border-radius: 8px;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 1.1em;
             transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
         }
 
-        .nav-button:hover {
-            background-color: var(--primary-color);
+        .controls button:hover {
+            background-color: #0056b3;
         }
 
-        .nav-button:disabled {
-            background-color: #ccc;
+        .controls button:disabled {
+            background-color: #cccccc;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
-        /* Responsive adjustments */
+        /* レスポンシブデザイン */
+        @media (max-width: 1024px) {
+            .slide h1 { font-size: 3em; }
+            .slide h2 { font-size: 2em; }
+            .slide h3 { font-size: 1.6em; }
+            .slide p, .slide li { font-size: 1.2em; }
+            .slide { padding: 30px; }
+            .visual-icon .fa-4x { font-size: 3em !important; }
+            .visual-icon .fa-3x { font-size: 2.25em !important; }
+        }
+
         @media (max-width: 768px) {
-            .slides-wrapper {
-                max-width: 100%;
-                max-height: 100vh;
-                border-radius: 0;
-                box-shadow: none;
-            }
-            .slide {
-                padding: 4vh 6vw;
-            }
-            .slide ul li {
-                padding-left: 10vw;
-            }
+            .slide h1 { font-size: 2.5em; }
+            .slide h2 { font-size: 1.8em; }
+            .slide h3 { font-size: 1.4em; }
+            .slide p, .slide li { font-size: 1.1em; }
+            .slide { padding: 20px; }
+            .visual-icon .fa-4x { font-size: 2.5em !important; }
+            .visual-icon .fa-3x { font-size: 1.8em !important; }
+            .controls button { padding: 10px 20px; font-size: 1em; }
+            .slide li { padding-left: 25px; }
+            .slide li::before { font-size: 0.9em; }
+        }
+
+        @media (max-width: 480px) {
+            .slide h1 { font-size: 2em; margin-bottom: 15px; }
+            .slide h2 { font-size: 1.5em; margin-bottom: 15px; }
+            .slide h3 { font-size: 1.2em; margin-bottom: 10px; }
+            .slide p, .slide li { font-size: 1em; }
+            .slide { padding: 15px; border-radius: 5px; }
+            .visual-icon .fa-4x { font-size: 2em !important; }
+            .visual-icon .fa-3x { font-size: 1.5em !important; }
+            .controls { bottom: 15px; }
+            .controls button { padding: 8px 15px; font-size: 0.9em; margin: 0 5px; }
+            .slide li { padding-left: 20px; }
+            .slide li::before { font-size: 0.8em; }
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <div class="slides-wrapper">
-            <!-- Slide 1: タイトル -->
-            <div class="slide active" id="slide-1">
-                <i class="fas fa-lightbulb icon"></i>
-                <h1>新時代コンテンツパッケージのご提案</h1>
-                <h3>マーケティング部企画案に基づく戦略的選定</h3>
-            </div>
+    <div id="presentation-container">
 
-            <!-- Slide 2: 背景と目的 -->
-            <div class="slide" id="slide-2">
-                <i class="fas fa-rocket icon"></i>
-                <h2>2026年のトレンドを見据えたコンテンツ戦略</h2>
+        <!-- スライド1: タイトルスライド -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-desktop fa-4x"></i>
+                    <i class="fas fa-mobile-alt fa-4x"></i>
+                    <i class="fas fa-tablet-alt fa-4x"></i>
+                </div>
+                <h1>3プラットフォーム向け<br>コンテンツパッケージ生成</h1>
+                <p>コンテンツ制作部よりご提案</p>
+            </div>
+        </div>
+
+        <!-- スライド2: 本日のアジェンダ -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-list-alt fa-4x"></i>
+                </div>
+                <h2>本日のアジェンダ</h2>
                 <ul>
-                    <li>AI進化と働き方の多様化に対応</li>
-                    <li>個人の生産性向上・自己実現を支援</li>
-                    <li>未来を見据えた魅力的な企画を厳選</li>
-                </ul>
-            </div>
-
-            <!-- Slide 3: 企画案の選定と深化 -->
-            <div class="slide" id="slide-3">
-                <i class="fas fa-cogs icon"></i>
-                <h2>10の企画案から最適解を導き出す</h2>
-                <ul>
-                    <li>各プラットフォーム特性を徹底考慮</li>
-                    <li>統合・拡張による価値最大化を実現</li>
-                    <li>戦略的3パッケージを生成しご提案</li>
-                </ul>
-            </div>
-
-            <!-- Slide 4: 本日のテーマ：note向け記事パッケージ -->
-            <div class="slide" id="slide-4">
-                <i class="fas fa-pen-nib icon"></i>
-                <h2>本日のフォーカス：note向け記事パッケージ</h2>
-                <h3>noteの強みを活かすコンテンツ提案</h3>
-                <p>手軽に読み始められ、特定のテーマに対する深い洞察や具体的な実践ノウハウが求められるnoteプラットフォームに最適化した企画です。</p>
-            </div>
-
-            <!-- Slide 5: noteパッケージのコンセプト -->
-            <div class="slide" id="slide-5">
-                <i class="fas fa-sack-dollar icon"></i>
-                <h2>AI×副業で未来を掴むロードマップ</h2>
-                <ul>
-                    <li>トレンドテーマ「AIと副業」の掛け合わせ</li>
-                    <li>再現性の高いロードマップを提示</li>
-                    <li>読者の行動変容を促し、収益化を支援</li>
-                </ul>
-            </div>
-
-            <!-- Slide 6: 記事タイトル（発表！） -->
-            <div class="slide" id="slide-6">
-                <i class="fas fa-star icon"></i>
-                <h2>記事タイトル</h2>
-                <h1>**【2026年最新版】AI×ChatGPT5.0で実現！<br>未経験から月5万円稼ぐ副業ロードマップ：『AI副業完全ガイド』**</h1>
-                <p class="small-text">(企画案1をベースに選定・拡張)</p>
-            </div>
-
-            <!-- Slide 7: 記事概要：AI副業の可能性 -->
-            <div class="slide" id="slide-7">
-                <i class="fas fa-robot icon"></i>
-                <h2>記事概要：最新AIで未経験から月5万円を実現</h2>
-                <ul>
-                    <li>ChatGPT5.0相当の最新AIが強力サポート</li>
-                    <li>アイデア出しからコンテンツ作成、営業まで活用</li>
-                    <li>未経験から月5万円を目指せる具体的なロードマップを解説</li>
-                </ul>
-            </div>
-
-            <!-- Slide 8: 記事のターゲット層 -->
-            <div class="slide" id="slide-8">
-                <i class="fas fa-users icon"></i>
-                <h2>ターゲット層：AI副業に関心のある全ての人へ</h2>
-                <ul>
-                    <li>副業を始めたい会社員、主婦、フリーランス志望者</li>
-                    <li>AIツールの可能性を収益化に繋げたいビジネスパーソン</li>
-                    <li>「何から手をつければ良いか分からない」読者に最適</li>
-                </ul>
-            </div>
-
-            <!-- Slide 9: ロードマップの価値 -->
-            <div class="slide" id="slide-9">
-                <i class="fas fa-map-marked-alt icon"></i>
-                <h2>ロードマップの価値：実践的な行動を促す</h2>
-                <ul>
-                    <li>AIと人間が協力する具体的なワークフロー</li>
-                    <li>案件獲得術、効率的な作業フロー</li>
-                    <li>継続的な収益化の秘訣まで網羅</li>
-                </ul>
-            </div>
-
-            <!-- Slide 10: ステップ0：マインドセットの重要性 -->
-            <div class="slide" id="slide-10">
-                <i class="fas fa-brain icon"></i>
-                <h2>ステップ0：AI副業成功への第一歩は「心の準備」</h2>
-                <p>AIを最大限に活用し、副業で成功するためには、まず「AIとどう向き合うか」というマインドセットが重要です。</p>
-                <ul>
-                    <li>AIを「最高の相棒」と捉える視点</li>
-                    <li>適切な指示（プロンプト）の重要性</li>
-                </ul>
-            </div>
-
-            <!-- Slide 11: AIをどう活用するか？ -->
-            <div class="slide" id="slide-11">
-                <i class="fas fa-handshake icon"></i>
-                <h2>AIは「代替品」ではなく「最高の相棒」</h2>
-                <ul>
-                    <li>面倒な作業や単純なタスクをAIが代行</li>
-                    <li>あなたが「人間にしかできない価値」に集中</li>
-                    <li>生産性・創造性を最大化し、自己実現へ</li>
-                </ul>
-            </div>
-
-            <!-- Slide 12: 次のステップ -->
-            <div class="slide" id="slide-12">
-                <i class="fas fa-check-circle icon"></i>
-                <h2>次のステップ：マーケティング部との連携で成功へ</h2>
-                <ul>
-                    <li>本企画へのご意見・ご要望を歓迎します</li>
-                    <li>他の2つのパッケージも順次ご提案予定です</li>
-                    <li>共に未来のコンテンツを創造していきましょう！</li>
+                    <li>プレゼンの背景と目的</li>
+                    <li>パッケージ生成の核となる考え方</li>
+                    <li>note向け記事の詳細解説</li>
+                    <li>まとめと展望</li>
                 </ul>
             </div>
         </div>
 
-        <div class="navigation">
-            <button class="nav-button" id="prevBtn" disabled>
-                <i class="fas fa-chevron-left"></i> 前へ
-            </button>
-            <button class="nav-button" id="nextBtn">
-                次へ <i class="fas fa-chevron-right"></i>
-            </button>
+        <!-- スライド3: 背景：2026年のトレンドとチャンス -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-rocket fa-4x"></i>
+                </div>
+                <h2>2026年のトレンドとチャンス</h2>
+                <ul>
+                    <li>AI進化：ChatGPT5.0が牽引</li>
+                    <li>働き方の多様化：副業・フリーランスの台頭</li>
+                    <li>個人の生産性向上・自己実現への強いニーズ</li>
+                </ul>
+                <p>私たちはこの変化の波を「チャンス」と捉えます。</p>
+            </div>
         </div>
+
+        <!-- スライド4: 提案の出発点：マーケティング部との連携 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-lightbulb fa-4x"></i>
+                    <i class="fas fa-users fa-3x"></i>
+                </div>
+                <h2>提案の出発点：マーケティング部との連携</h2>
+                <p>マーケティング部からの「note向け商品企画案10本」を基に、現代のニーズと未来のトレンドを深く分析し、最適化されたコンテンツを企画しました。</p>
+            </div>
+        </div>
+
+        <!-- スライド5: パッケージ生成の核：AIと未来志向 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-brain fa-4x"></i>
+                </div>
+                <h2>パッケージ生成の核：AIと未来志向</h2>
+                <ul>
+                    <li>**AI（ChatGPT5.0相当）を核に**</li>
+                    <li>副業・マネタイズ</li>
+                    <li>仕事効率化</li>
+                    <li>未来のキャリア形成・自己実現</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド6: 選定企画案の統合・発展 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-compress-alt fa-4x"></i>
+                </div>
+                <h2>選定企画案の統合・発展</h2>
+                <p>厳選した6つの企画案（企画案1, 2, 3, 4, 7, 9）を統合。企画案5, 6, 8, 10の要素も適宜盛り込み、内容の網羅性と深掘りを図ります。現代に最も合致する価値を提供します。</p>
+            </div>
+        </div>
+
+        <!-- スライド7: 【発表】3プラットフォーム向けパッケージ -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fab fa-note-sticky fa-3x"></i>
+                    <i class="fab fa-tiktok fa-3x"></i>
+                    <i class="fab fa-youtube fa-3x"></i>
+                </div>
+                <h2>3プラットフォーム向けパッケージ</h2>
+                <ul>
+                    <li>**note向け記事（詳細を後述）**</li>
+                    <li>AIで短尺動画を量産：TikTok/YouTubeショート戦略</li>
+                    <li>AIライターとして稼ぐ：高品質記事量産術</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド8: （本日の詳細）note向け記事の概要 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-map-marked-alt fa-4x"></i>
+                </div>
+                <h2>note向け記事の概要</h2>
+                <h3>タイトル:</h3>
+                <p>AIとChatGPT5.0で拓く！<br>未経験からの月5万円副業＆仕事効率化ロードマップ2026</p>
+                <p>AIをパートナーとし、副収入と業務効率化を両立する具体的な道筋を提示します。</p>
+            </div>
+        </div>
+
+        <!-- スライド9: note記事：ターゲット層 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-user-tie fa-3x"></i>
+                    <i class="fas fa-user-friends fa-3x"></i>
+                </div>
+                <h2>note記事：ターゲット層</h2>
+                <ul>
+                    <li>副業を始めたい会社員・主婦（何から手をつければ良いか不明な方）</li>
+                    <li>業務効率化に悩み、最新テクノロジーに関心があるビジネスパーソン</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド10: note記事：コンテンツの狙い -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-dollar-sign fa-3x"></i>
+                    <i class="fas fa-clock fa-3x"></i>
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <h2>note記事：コンテンツの狙い</h2>
+                <ul>
+                    <li>AI活用で未経験から月5万円の副収入実現</li>
+                    <li>日々の業務を劇的に効率化し、残業ゼロへ</li>
+                    <li>AIを「秘書」「共同パートナー」として活用する具体策</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド11: 2026年のAI社会：新たなチャンス -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-chart-line fa-4x"></i>
+                </div>
+                <h2>2026年のAI社会：新たなチャンス</h2>
+                <p>2026年、AI（ChatGPT5.0相当）は働き方、生き方、稼ぎ方を根本から変えています。</p>
+                <p>この変化の波を捉え、「個人の生産性向上」「働き方の多様化」「自己実現」を実現するチャンスです。</p>
+            </div>
+        </div>
+
+        <!-- スライド12: ChatGPT5.0の驚異的な能力 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-magic fa-4x"></i>
+                </div>
+                <h2>ChatGPT5.0の驚異的な能力</h2>
+                <ul>
+                    <li>情報の生成、要約、翻訳、アイデア出し</li>
+                    <li>プログラミング支援、文脈理解</li>
+                    <li>人間らしい、創造的なアウトプット</li>
+                </ul>
+                <p>これまで時間と労力を要したタスクを一瞬でこなします。</p>
+            </div>
+        </div>
+
+        <!-- スライド13: AIはあなたの強力なパートナー -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-handshake fa-4x"></i>
+                </div>
+                <h2>AIはあなたの強力なパートナー</h2>
+                <p>AIを「優秀な秘書」「強力なアシスタント」「無限のアイデアマン」として活用。</p>
+                <p>時間と労力を要するタスクを任せ、私たちはより創造的・戦略的な業務に集中できます。</p>
+            </div>
+        </div>
+
+        <!-- スライド14: まとめ：未来を切り拓くAI活用 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-seedling fa-4x"></i>
+                </div>
+                <h2>まとめ：未来を切り拓くAI活用</h2>
+                <p>AIは脅威ではなく、大きな可能性の波です。この波に乗り、時間と収入の自由、そして自己実現を手に入れましょう。</p>
+                <p>今日から、未来を切り拓く一歩を踏み出してください。</p>
+            </div>
+        </div>
+
+        <!-- スライド15: ご清聴ありがとうございました -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="visual-icon">
+                    <i class="fas fa-comments fa-4x"></i>
+                </div>
+                <h1>ご清聴ありがとうございました</h1>
+                <p>質疑応答</p>
+                <p>ご意見、ご感想をお待ちしております</p>
+            </div>
+        </div>
+
+        <!-- スライド切り替えボタン -->
+        <div class="controls">
+            <button onclick="prevSlide()" id="prevBtn"><i class="fas fa-arrow-left"></i> 前へ</button>
+            <button onclick="nextSlide()" id="nextBtn">次へ <i class="fas fa-arrow-right"></i></button>
+        </div>
+
     </div>
 
     <script>
+        // 全てのJavaScriptをここに記述
+        let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
         function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'prev');
-                if (i === index) {
-                    slide.classList.add('active');
-                } else if (i < index) {
-                    // 以前のスライドは左に移動
-                    slide.classList.add('prev');
-                }
+            // 現在表示中のスライドを非表示にする
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
             });
-            updateNavButtons();
+
+            // 新しいスライドを表示する
+            if (index >= 0 && index < slides.length) {
+                slides[index].classList.add('active');
+                currentSlideIndex = index;
+            }
+
+            // ボタンの有効/無効を更新
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === slides.length - 1;
         }
 
         function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                showSlide(currentSlide);
+            if (currentSlideIndex < slides.length - 1) {
+                showSlide(currentSlideIndex + 1);
             }
         }
 
         function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                showSlide(currentSlide);
+            if (currentSlideIndex > 0) {
+                showSlide(currentSlideIndex - 1);
             }
         }
 
-        function updateNavButtons() {
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === totalSlides - 1;
-        }
-
-        // イベントリスナー
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
+        // キーボード操作でスライドを切り替える
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
                 nextSlide();
-            } else if (e.key === 'ArrowLeft') {
+            } else if (event.key === 'ArrowLeft') {
                 prevSlide();
             }
         });
 
-        // 初期表示
-        showSlide(currentSlide);
+        // ページロード時に最初のスライドを表示
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(0);
+        });
     </script>
 </body>
 </html>
