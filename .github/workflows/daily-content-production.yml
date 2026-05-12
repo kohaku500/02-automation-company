@@ -151,15 +151,147 @@ jobs:
                   with open(note_file, 'r', encoding='utf-8') as f:
                       note_content = f.read()
 
-                           # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
+              # 2回目のAPI呼び出し：HTMLスライドプレゼンテーション生成
               # 外部プロンプトファイルから読み込む
               with open('.github/prompts/presentation_prompt.md', 'r', encoding='utf-8') as f:
                   pres_template = f.read()
 
               pres_prompt = pres_template.replace('{note_content}', note_content if note_content else f"テーマ: {title_match}")
 
+              pres_payload = {'contents': [{'parts': [{'text': pres_prompt}]}]}
+
+              pres_response = requests.post(
+                  f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                  headers=headers,
+                  json=pres_payload
+              )
+
+              if pres_response.status_code == 200:
+                  pres_result = pres_response.json()
+                  pres_code = pres_result['candidates'][0]['content']['parts'][0]['text']
+
+                  # HTMLコードをクリーニング
+                  if pres_code.startswith('```html'):
+                      pres_code = pres_code[7:]
+                  if pres_code.startswith('```'):
+                      pres_code = pres_code[3:]
+                  if pres_code.endswith('```'):
+                      pres_code = pres_code[:-3]
+                  pres_code = pres_code.strip()
+
+                  # プレゼン資料をファイルとして保存
+                  with open(f'{package_dir}/presentation.html', 'w', encoding='utf-8') as f:
+                      f.write(pres_code)
 
                   print(f"✅ HTMLスライドプレゼン生成完了: {package_dir}/presentation.html")
+
+                  # 品質チェック: プレゼン資料の品質スコア評価
+                  quality_check_prompt = f"""以下のHTMLプレゼン資料を評価してください。
+
+                  【HTML】
+                  {pres_code[:1000]}...（省略）
+
+                  【評価項目】
+                  1. ビジュアル要素（グラフ・アイコン・グリッド等）の充実度: 0-10点
+                  2. テキスト量（適切か、多すぎないか）: 0-10点
+                  3. スライド構成の流れ（説得力・ストーリー性）: 0-10点
+                  4. エンゲージメント要素（色使い・CTA・レイアウト）: 0-10点
+                  5. スマホ対応性・レスポンシブ設計: 0-10点
+
+                  【出力形式】
+                  総合スコア: X/50点
+                  評価理由: （各項目のスコアと改善提案）
+
+                  【基準】
+                  40点以上: 良好
+                  30-39点: 改善推奨
+                  30点未満: 大幅改善必要
+
+                  評価を実施してください。"""
+
+                  quality_payload = {'contents': [{'parts': [{'text': quality_check_prompt}]}]}
+
+                  quality_response = requests.post(
+                      f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                      headers=headers,
+                      json=quality_payload
+                  )
+
+                  quality_score = 0
+                  quality_report = ""
+                  if quality_response.status_code == 200:
+                      quality_result = quality_response.json()
+                      quality_report = quality_result['candidates'][0]['content']['parts'][0]['text']
+                      # スコアを抽出（「総合スコア: X/50点」から数字を取得）
+                      import re
+                      match = re.search(r'(\d+)/50', quality_report)
+                      if match:
+                          quality_score = int(match.group(1))
+                      print(f"📊 プレゼン資料品質スコア: {quality_score}/50点")
+                  else:
+                      print(f"⚠️ 品質評価スキップ: API呼び出し失敗")
+
+                  # スコアが低い場合、自動リサーチを実行
+                  if quality_score < 40:
+                      print(f"🔍 品質改善のため、成功事例をリサーチします...")
+
+                      research_prompt = f"""【タスク】AIエージェント×プレゼン資料自動生成で成功している企業・実装例をリサーチしてください。
+
+                      【調査項目】
+                      1. 企業名・プロダクト名
+                      2. 実装方法（何を使っているか：API・ノーコード・カスタム等）
+                      3. 成功ポイント（何がうまくいっているか）
+                      4. 品質向上の工夫（ビジュアル・ユーザー体験等）
+                      5. 私たちへの改善提案
+
+                      【現在の課題】
+                      - プレゼン資料の品質スコア: {quality_score}/50点
+                      - 具体的な問題: ビジュアル要素が不足、エンゲージメント弱い
+
+                      【出力形式】
+                      ## 成功事例1: 企業名
+                      - 実装方法: X
+                      - 成功ポイント: X
+                      - 品質向上の工夫: X
+
+                      ## 私たちへの改善提案
+                      1. X
+                      2. X
+                      3. X
+
+                      リサーチ結果を提示してください。"""
+
+                      research_payload = {'contents': [{'parts': [{'text': research_prompt}]}]}
+
+                      research_response = requests.post(
+                          f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+                          headers=headers,
+                          json=research_payload
+                      )
+
+                      if research_response.status_code == 200:
+                          research_result = research_response.json()
+                          research_report = research_result['candidates'][0]['content']['parts'][0]['text']
+
+                          # 改善案レポートを保存
+                          improvement_report = f"""# プレゼン資料品質改善レポート ({today})
+
+## 品質スコア
+{quality_report}
+
+## 成功事例リサーチ結果
+{research_report}
+
+---
+自動生成日時: {today}
+"""
+                          os.makedirs('運営ログ', exist_ok=True)
+                          with open(f'運営ログ/改善提案_{today}.md', 'w', encoding='utf-8') as f:
+                              f.write(improvement_report)
+
+                          print(f"✅ 改善提案レポート生成完了: 運営ログ/改善提案_{today}.md")
+                      else:
+                          print(f"⚠️ リサーチスキップ: API呼び出し失敗")
               else:
                   print(f"⚠️ プレゼン生成スキップ: API呼び出し失敗 ({pres_response.status_code})")
 
