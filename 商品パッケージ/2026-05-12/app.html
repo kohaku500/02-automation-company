@@ -3,360 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【2026年版】AIライティング収益シミュレーター</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>習慣トラッカー</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
-            color: #343a40;
             padding-top: 20px;
             padding-bottom: 20px;
         }
         .container {
-            max-width: 960px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-top: 20px;
+            max-width: 768px; /* For mobile-first approach */
         }
-        h1, h2, h3 {
-            color: #0056b3;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .form-label {
-            font-weight: bold;
-            color: #495057;
-        }
-        .input-group-text {
-            background-color: #e9ecef;
-            color: #495057;
-        }
-        .result-card {
-            background-color: #eaf4ff;
-            border-left: 5px solid #007bff;
-            border-radius: 8px;
-            padding: 20px;
+        .card {
             margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
         }
-        .result-card h4 {
-            color: #0056b3;
-            margin-bottom: 15px;
-        }
-        .result-value {
-            font-size: 1.5em;
+        .card-header {
+            background-color: #007bff;
+            color: white;
             font-weight: bold;
-            color: #28a745;
+            border-radius: calc(0.5rem - 1px) calc(0.5rem - 1px) 0 0;
+            padding: 1rem 1.25rem;
+            font-size: 1.25rem;
         }
-        .alert-info-custom {
-            background-color: #d1ecf1;
-            border-color: #bee5eb;
-            color: #0c5460;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+        }
+        .list-group-item input[type="checkbox"] {
+            transform: scale(1.5); /* Make checkbox larger */
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+            border-color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-danger {
+            padding: .375rem .75rem; /* Bootstrap default size */
+            font-size: .875rem;
         }
         .chart-container {
-            margin-top: 30px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            height: 250px;
+            width: 100%;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+        #habitList .list-group-item:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        #habitList .list-group-item:last-child {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .card-header {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem;
+            }
+            .list-group-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+            .list-group-item span {
+                flex-grow: 1;
+                margin-right: 10px;
+                word-break: break-all;
+            }
+            .list-group-item input[type="checkbox"] {
+                 transform: scale(1.2);
+            }
+            .btn-danger {
+                padding: .25rem .5rem;
+                font-size: .75rem;
             }
             h1 {
-                font-size: 1.8em;
-            }
-            .result-value {
-                font-size: 1.2em;
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>【2026年版】AIライティング収益シミュレーター</h1>
-        <p class="lead text-center mb-4">
-            AIライティングで月5万円稼ぐための自動化ワークフローを計画・最適化しましょう。<br>
-            目標設定と現状分析で、あなたのライティングビジネスを加速させます。
-        </p>
+        <h1 class="text-center mb-4 text-primary">習慣トラッカー</h1>
 
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <h3 class="text-center mb-3">目標と現状の設定</h3>
-                <div class="mb-3">
-                    <label for="targetMonthlyRevenue" class="form-label">目標月間純収益（税引前）</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="targetMonthlyRevenue" value="50000" min="0" step="1000">
-                        <span class="input-group-text">円</span>
-                    </div>
-                    <small class="form-text text-muted">AIツール費用を差し引いた、あなたの手元に残る目標金額。</small>
-                </div>
-                <div class="mb-3">
-                    <label for="revenuePerArticle" class="form-label">1記事あたりの平均収益</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="revenuePerArticle" value="1000" min="0" step="100">
-                        <span class="input-group-text">円</span>
-                    </div>
-                    <small class="form-text text-muted">アフィリエイト報酬、広告収益、記事買取単価など、1記事から得られる平均金額。</small>
-                </div>
-                <div class="mb-3">
-                    <label for="timePerArticleMinutes" class="form-label">1記事作成にかかる平均時間</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="timePerArticleMinutes" value="60" min="1" step="5">
-                        <span class="input-group-text">分</span>
-                    </div>
-                    <small class="form-text text-muted">AIツール使用による調査・執筆・校正・投稿までの一連の時間。</small>
-                </div>
-                <div class="mb-3">
-                    <label for="dailyWorkHours" class="form-label">1日あたりのAIライティング作業可能時間</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="dailyWorkHours" value="2" min="0" max="24" step="0.5">
-                        <span class="input-group-text">時間</span>
-                    </div>
-                    <small class="form-text text-muted">AIライティングに実際に費やせる時間。</small>
-                </div>
-                <div class="mb-3">
-                    <label for="workingDaysPerMonth" class="form-label">月に稼働する日数</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="workingDaysPerMonth" value="20" min="1" max="31" step="1">
-                        <span class="input-group-text">日</span>
-                    </div>
-                    <small class="form-text text-muted">週5日稼働なら20日、週7日なら28日など。</small>
-                </div>
-                <div class="mb-3">
-                    <label for="aiToolCost" class="form-label">AIツール月額費用</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="aiToolCost" value="3000" min="0" step="100">
-                        <span class="input-group-text">円</span>
-                    </div>
-                    <small class="form-text text-muted">ChatGPT Plus、Claude Pro、Notion AIなどの月額利用料の合計。</small>
-                </div>
-            </div>
-
-            <div class="col-lg-6 mb-4">
-                <h3 class="text-center mb-3">シミュレーション結果</h3>
-                <div class="result-card">
-                    <h4>現在の計画での月間収益</h4>
-                    <p class="mb-0">総収益: <span id="estimatedGrossRevenue" class="result-value">0円</span></p>
-                    <p class="mb-0">純収益: <span id="estimatedNetRevenue" class="result-value">0円</span></p>
-                </div>
-                <div class="result-card">
-                    <h4>目標達成のための指標</h4>
-                    <p class="mb-0">月間必要記事数: <span id="requiredArticlesMonthly" class="result-value">0</span> 記事</p>
-                    <p class="mb-0">1日あたり必要記事数: <span id="requiredArticlesDaily" class="result-value">0</span> 記事</p>
-                    <p class="mb-0">目標達成に必要な1記事あたり収益: <span id="requiredRevenuePerArticle" class="result-value">0円</span></p>
-                </div>
-                 <div class="result-card">
-                    <h4>現在の計画で可能なこと</h4>
-                    <p class="mb-0">月間作成可能記事数: <span id="possibleArticlesMonthly" class="result-value">0</span> 記事</p>
-                    <p class="mb-0">1日あたり作成可能記事数: <span id="possibleArticlesDaily" class="result-value">0</span> 記事</p>
-                </div>
-                <div class="alert alert-info-custom" role="alert">
-                    <p class="mb-1"><strong>アドバイス:</strong></p>
-                    <p id="adviceText" class="mb-0">入力値を変更して、最適なワークフローを見つけましょう！</p>
+        <!-- 習慣追加 -->
+        <div class="card">
+            <div class="card-header">新しい習慣を追加</div>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" id="newHabitInput" class="form-control" placeholder="例: 毎日読書15分">
+                    <button class="btn btn-primary" id="addHabitBtn">追加</button>
                 </div>
             </div>
         </div>
 
-        <div class="chart-container">
-            <h3 class="text-center mb-4">収益目標達成状況</h3>
-            <canvas id="revenueChart"></canvas>
+        <!-- 今日の習慣リスト -->
+        <div class="card">
+            <div class="card-header">今日の習慣 (<span id="currentDate"></span>)</div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="habitList">
+                    <!-- 習慣がここに動的に追加される -->
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <input type="checkbox" class="form-check-input me-3" id="dummyCheckbox1">
+                            <label for="dummyCheckbox1" class="mb-0">サンプル習慣1</label>
+                        </div>
+                        <button class="btn btn-danger btn-sm">削除</button>
+                    </li> -->
+                </ul>
+                <p id="noHabitsMessage" class="text-muted text-center py-3 m-0" style="display: none;">まだ習慣がありません。追加してみましょう！</p>
+            </div>
+        </div>
+
+        <!-- 達成率グラフ -->
+        <div class="card">
+            <div class="card-header">過去7日間の達成状況</div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="habitChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Bootstrap JS CDN (Popper.js bundled) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eRj03hSmwA7SMEU" crossorigin="anonymous"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" integrity="sha384-Fp6r/uFf+d/D3q8L0x1B6pB+C8+gB+Qj+N/M2rJ3n5t0zT6tV2F9t0+g+W/g+Z/Z" crossorigin="anonymous"></script>
+
     <script>
         // DOM要素の取得
-        const targetMonthlyRevenueInput = document.getElementById('targetMonthlyRevenue');
-        const revenuePerArticleInput = document.getElementById('revenuePerArticle');
-        const timePerArticleMinutesInput = document.getElementById('timePerArticleMinutes');
-        const dailyWorkHoursInput = document.getElementById('dailyWorkHours');
-        const workingDaysPerMonthInput = document.getElementById('workingDaysPerMonth');
-        const aiToolCostInput = document.getElementById('aiToolCost');
+        const newHabitInput = document.getElementById('newHabitInput');
+        const addHabitBtn = document.getElementById('addHabitBtn');
+        const habitList = document.getElementById('habitList');
+        const currentDateSpan = document.getElementById('currentDate');
+        const noHabitsMessage = document.getElementById('noHabitsMessage');
+        const habitChartCanvas = document.getElementById('habitChart');
 
-        const estimatedGrossRevenueSpan = document.getElementById('estimatedGrossRevenue');
-        const estimatedNetRevenueSpan = document.getElementById('estimatedNetRevenue');
-        const requiredArticlesMonthlySpan = document.getElementById('requiredArticlesMonthly');
-        const requiredArticlesDailySpan = document.getElementById('requiredArticlesDaily');
-        const requiredRevenuePerArticleSpan = document.getElementById('requiredRevenuePerArticle');
-        const possibleArticlesMonthlySpan = document.getElementById('possibleArticlesMonthly');
-        const possibleArticlesDailySpan = document.getElementById('possibleArticlesDaily');
-        const adviceTextP = document.getElementById('adviceText');
+        // 定数
+        const HABITS_STORAGE_KEY = 'habitTracker_habits';
+        const LOGS_STORAGE_KEY = 'habitTracker_logs';
 
-        let revenueChart; // Chart.jsインスタンス
+        // データ構造
+        let habits = []; // [{ id: 'uuid', name: '習慣名', createdAt: 'timestamp' }]
+        let habitLogs = {}; // { 'YYYY-MM-DD': { 'habitId': true/false, ... }, ... }
 
-        // 計算と表示の更新関数
-        function updateCalculations() {
-            // 入力値を取得し、数値に変換（NaNの場合は0とする）
-            const targetMonthlyRevenue = parseFloat(targetMonthlyRevenueInput.value) || 0;
-            const revenuePerArticle = parseFloat(revenuePerArticleInput.value) || 0;
-            const timePerArticleMinutes = parseFloat(timePerArticleMinutesInput.value) || 0;
-            const dailyWorkHours = parseFloat(dailyWorkHoursInput.value) || 0;
-            const workingDaysPerMonth = parseFloat(workingDaysPerMonthInput.value) || 0;
-            const aiToolCost = parseFloat(aiToolCostInput.value) || 0;
+        // 現在の日付を取得 (YYYY-MM-DD形式)
+        const getFormattedDate = (date = new Date()) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
 
-            // 各種計算
-            const dailyWorkMinutes = dailyWorkHours * 60;
-            
-            // 月間作成可能記事数
-            let possibleArticlesDaily = 0;
-            if (timePerArticleMinutes > 0) {
-                possibleArticlesDaily = dailyWorkMinutes / timePerArticleMinutes;
+        const today = getFormattedDate();
+        currentDateSpan.textContent = today; // 今日の日付を表示
+
+        // UUID生成関数 (シンプル版)
+        const generateUUID = () => {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+        };
+
+        // LocalStorageからデータをロード
+        const loadData = () => {
+            try {
+                const storedHabits = localStorage.getItem(HABITS_STORAGE_KEY);
+                if (storedHabits) {
+                    habits = JSON.parse(storedHabits);
+                }
+                const storedLogs = localStorage.getItem(LOGS_STORAGE_KEY);
+                if (storedLogs) {
+                    habitLogs = JSON.parse(storedLogs);
+                }
+            } catch (e) {
+                console.error("Failed to load data from localStorage", e);
+                // データが壊れている場合は初期化
+                habits = [];
+                habitLogs = {};
+                saveData(); // 空のデータを保存
+                alert("データの読み込みに失敗しました。データを初期化しました。");
             }
-            const possibleArticlesMonthly = possibleArticlesDaily * workingDaysPerMonth;
+        };
 
-            // 月間予想総収益
-            const estimatedGrossRevenue = possibleArticlesMonthly * revenuePerArticle;
-            // 月間予想純収益
-            const estimatedNetRevenue = estimatedGrossRevenue - aiToolCost;
+        // LocalStorageにデータを保存
+        const saveData = () => {
+            try {
+                localStorage.setItem(HABITS_STORAGE_KEY, JSON.stringify(habits));
+                localStorage.setItem(LOGS_STORAGE_KEY, JSON.stringify(habitLogs));
+            } catch (e) {
+                console.error("Failed to save data to localStorage", e);
+                alert("データの保存に失敗しました。ストレージがいっぱいか、問題が発生しています。");
+            }
+        };
 
-            // 目標達成に必要な指標
-            const requiredTotalRevenueForTarget = targetMonthlyRevenue + aiToolCost; // 純収益目標 + AIツール費用
-
-            let requiredArticlesMonthly = 0;
-            if (revenuePerArticle > 0) {
-                requiredArticlesMonthly = requiredTotalRevenueForTarget / revenuePerArticle;
+        // 習慣リストをレンダリング
+        const renderHabits = () => {
+            habitList.innerHTML = ''; // リストをクリア
+            if (habits.length === 0) {
+                noHabitsMessage.style.display = 'block';
+                return;
+            } else {
+                noHabitsMessage.style.display = 'none';
             }
 
-            let requiredArticlesDaily = 0;
-            if (workingDaysPerMonth > 0) {
-                 requiredArticlesDaily = requiredArticlesMonthly / workingDaysPerMonth;
+            habits.forEach(habit => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+                const isCompleted = habitLogs[today] && habitLogs[today][habit.id] === true;
+
+                listItem.innerHTML = `
+                    <div>
+                        <input type="checkbox" class="form-check-input me-3" id="habit-${habit.id}" ${isCompleted ? 'checked' : ''}>
+                        <label for="habit-${habit.id}" class="mb-0">${habit.name}</label>
+                    </div>
+                    <button class="btn btn-danger btn-sm" data-habit-id="${habit.id}">削除</button>
+                `;
+
+                // チェックボックスのイベントリスナー
+                const checkbox = listItem.querySelector(`#habit-${habit.id}`);
+                checkbox.addEventListener('change', (event) => {
+                    if (!habitLogs[today]) {
+                        habitLogs[today] = {};
+                    }
+                    habitLogs[today][habit.id] = event.target.checked;
+                    saveData();
+                    updateChart(); // グラフを更新
+                });
+
+                // 削除ボタンのイベントリスナー
+                const deleteButton = listItem.querySelector('button');
+                deleteButton.addEventListener('click', (event) => {
+                    const habitIdToDelete = event.target.dataset.habitId;
+                    habits = habits.filter(h => h.id !== habitIdToDelete);
+                    // 関連するログも削除（オプションだが、今回はしない。残しておいても問題ないため）
+                    saveData();
+                    renderHabits();
+                    updateChart(); // グラフを更新
+                });
+
+                habitList.appendChild(listItem);
+            });
+        };
+
+        // 新しい習慣を追加
+        addHabitBtn.addEventListener('click', () => {
+            const habitName = newHabitInput.value.trim();
+            if (habitName) {
+                habits.push({
+                    id: generateUUID(),
+                    name: habitName,
+                    createdAt: Date.now()
+                });
+                newHabitInput.value = ''; // 入力フィールドをクリア
+                saveData();
+                renderHabits();
+                updateChart(); // グラフを更新
+            } else {
+                alert("習慣名を入力してください。");
             }
-            
-            let requiredRevenuePerArticle = 0;
-            // 0除算を避けるため、可能な記事数が0の場合は0と設定
-            if (possibleArticlesMonthly > 0) {
-                requiredRevenuePerArticle = requiredTotalRevenueForTarget / possibleArticlesMonthly;
+        });
+
+        // Enterキーで習慣を追加
+        newHabitInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addHabitBtn.click();
+            }
+        });
+
+        // Chart.js インスタンス
+        let habitChart;
+
+        // グラフを更新する関数
+        const updateChart = () => {
+            if (habitChart) {
+                habitChart.destroy(); // 既存のグラフを破棄
             }
 
-            // 結果をHTMLに表示
-            estimatedGrossRevenueSpan.textContent = formatCurrency(estimatedGrossRevenue);
-            estimatedNetRevenueSpan.textContent = formatCurrency(estimatedNetRevenue);
-            requiredArticlesMonthlySpan.textContent = formatNumber(requiredArticlesMonthly);
-            requiredArticlesDailySpan.textContent = formatNumber(requiredArticlesDaily);
-            requiredRevenuePerArticleSpan.textContent = formatCurrency(requiredRevenuePerArticle);
-            possibleArticlesMonthlySpan.textContent = formatNumber(possibleArticlesMonthly);
-            possibleArticlesDailySpan.textContent = formatNumber(possibleArticlesDaily);
+            const labels = [];
+            const data = [];
+            const todayDate = new Date();
 
-            // アドバイスの生成
-            generateAdvice(targetMonthlyRevenue, estimatedNetRevenue, requiredArticlesMonthly, possibleArticlesMonthly);
-
-            // グラフの更新
-            updateChart(targetMonthlyRevenue, estimatedNetRevenue);
-        }
-
-        // 数値フォーマット関数（小数点以下を適切に処理）
-        function formatNumber(num) {
-            if (isNaN(num) || !isFinite(num)) return '計算不能';
-            // 小数点第1位で丸める (例: 10.5 -> 10.5, 10.0 -> 10, 10.9 -> 10.9)
-            return Math.round(num * 10) / 10;
-        }
-
-        // 通貨フォーマット関数
-        function formatCurrency(num) {
-            if (isNaN(num) || !isFinite(num)) return '計算不能';
-            return Math.round(num).toLocaleString() + '円';
-        }
-
-        // アドバイスを生成する関数
-        function generateAdvice(target, current, reqArticles, possibleArticles) {
-            let advice = "";
-            if (current >= target && target > 0) {
-                advice = `<strong class="text-success">現在の計画で月間${formatCurrency(target)}の目標を達成可能です！</strong><br>さらに上を目指すか、作業時間を短縮できないか検討しましょう。`;
-                adviceTextP.className = 'mb-0';
-            } else if (target === 0) {
-                advice = `目標純収益を0円に設定しています。まずは具体的な目標額を設定しましょう！`;
-                adviceTextP.className = 'mb-0';
+            // 過去7日間のデータを集計
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(todayDate);
+                date.setDate(todayDate.getDate() - i);
+                const formattedDate = getFormattedDate(date);
+                
+                labels.push(formattedDate.substring(5)); // 'MM-DD' 形式
+                
+                let completedCount = 0;
+                if (habitLogs[formattedDate]) {
+                    completedCount = Object.values(habitLogs[formattedDate]).filter(status => status === true).length;
+                }
+                data.push(completedCount);
             }
-             else {
-                const diff = target - current;
-                advice = `<strong class="text-danger">目標達成まで月間${formatCurrency(diff)}足りません。</strong>以下の点を改善してみましょう：<br>`;
-                advice += `・1記事あたりの収益を増やす（高単価案件への挑戦、SEO最適化、付加価値向上）<br>`;
-                advice += `・1記事作成にかかる時間を短縮する（プロンプト改善、AIツール活用、テンプレート化）<br>`;
-                advice += `・1日あたりの作業時間や月に稼働する日数を増やす`;
-                adviceTextP.className = 'mb-0';
-            }
-            adviceTextP.innerHTML = advice;
-        }
 
-        // グラフの初期化と更新
-        function initChart(target, current) {
-            const ctx = document.getElementById('revenueChart').getContext('2d');
-            revenueChart = new Chart(ctx, {
-                type: 'bar',
+            habitChart = new Chart(habitChartCanvas, {
+                type: 'bar', // 棒グラフに変更
                 data: {
-                    labels: ['目標純収益', '現在の予想純収益'],
+                    labels: labels,
                     datasets: [{
-                        label: '月間純収益',
-                        data: [target, current],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)', // 目標
-                            'rgba(75, 192, 192, 0.7)'  // 現在
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
+                        label: '達成習慣数',
+                        data: data,
+                        backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // 凡例を非表示
+                        },
+                        title: {
+                            display: true,
+                            text: '過去7日間の達成習慣数',
+                            font: {
+                                size: 16
+                            },
+                            color: '#333'
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: '金額 (円)'
+                                text: '達成数',
+                                font: {
+                                    size: 14
+                                },
+                                color: '#555'
                             },
                             ticks: {
-                                callback: function(value) {
-                                    return value.toLocaleString() + '円';
-                                }
+                                stepSize: 1, // 軸の目盛りを整数にする
+                                callback: function(value) {if (value % 1 === 0) {return value;}}, // 整数のみ表示
+                                color: '#555'
                             }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + formatCurrency(context.raw);
-                                }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '日付',
+                                font: {
+                                    size: 14
+                                },
+                                color: '#555'
+                            },
+                            ticks: {
+                                color: '#555'
                             }
                         }
                     }
                 }
             });
-        }
+        };
 
-        function updateChart(target, current) {
-            if (revenueChart) {
-                revenueChart.data.datasets[0].data = [target, current];
-                revenueChart.update();
-            } else {
-                initChart(target, current);
-            }
-        }
-
-        // すべての入力フィールドに変更があったら再計算
-        const inputs = document.querySelectorAll('input[type="number"]');
-        inputs.forEach(input => {
-            input.addEventListener('input', updateCalculations);
-        });
-
-        // 初期表示
-        updateCalculations();
+        // 初期化
+        loadData();
+        renderHabits();
+        updateChart();
     </script>
 </body>
 </html>
