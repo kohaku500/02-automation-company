@@ -114,6 +114,28 @@ for label, url in pages_links:
     links_section += f"- 🔗 **[{label}]({url})**\n"
 links_section += "\n---\n\n"
 
+# ---- Kindle 販売 CTA ----
+kindle_cta = ""
+kindle_url_file = '運営ログ/kindle_url.md'
+if os.path.exists(kindle_url_file):
+    with open(kindle_url_file, 'r', encoding='utf-8') as f:
+        kindle_data = f.read()
+    url_match = re.search(r'URL:\s*(https://www\.amazon\.co\.jp/\S+)', kindle_data)
+    title_match = re.search(r'タイトル:\s*(.+)', kindle_data)
+    if url_match:
+        kindle_book_url = url_match.group(1).strip()
+        kindle_book_title = title_match.group(1).strip() if title_match else "Kindle本"
+        kindle_cta = f"""\n\n---\n\n## 📚 さらに詳しく学びたい方へ\n\n
+本記事の内容を体系的にまとめた電子書籍を Amazon Kindle で販売中です：\n
+**[{kindle_book_title}]({kindle_book_url})**\n
+- 全章にわたる体系的な解説
+- 実践テンプレート・ワークシート付き
+- Kindle Unlimited 対象\n
+👉 **[Amazon Kindleで詳細を見る]({kindle_book_url})**\n\n---\n\n"""
+        print(f"  📚 Kindle CTA 追加: {kindle_book_title}")
+    else:
+        print(f"  ℹ️ Kindle URLが未設定です（運営ログ/kindle_url.md）")
+
 # ---- Zenn frontmatter ----
 topics_str = '", "'.join(topics[:5])
 frontmatter = f'''---
@@ -131,7 +153,7 @@ body = content
 body = re.sub(r'^#\s+note向け.*\n', '', body, flags=re.MULTILINE)
 body = re.sub(r'^【最適化されたコンテンツ】\n?', '', body, flags=re.MULTILINE)
 
-zenn_article = frontmatter + links_section + body.strip()
+zenn_article = frontmatter + links_section + body.strip() + kindle_cta
 
 output_path = f'articles/{slug}.md'
 with open(output_path, 'w', encoding='utf-8') as f:
