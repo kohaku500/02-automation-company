@@ -88,26 +88,43 @@ def get_note_analytics():
             page.wait_for_load_state('networkidle', timeout=20000)
             print(f"  現在URL: {page.url}")
 
-            # ダッシュボード統計ページへ
+            # ダッシュボードへ
             print("📈 ダッシュボード取得中...")
-            page.goto('https://note.com/dashboard/stats', wait_until='networkidle', timeout=30000)
-
-            # スクリーンショット（デバッグ用）
-            os.makedirs('運営ログ', exist_ok=True)
+            page.goto('https://note.com/dashboard', wait_until='networkidle', timeout=30000)
+            page.wait_for_timeout(2000)
             page.screenshot(path=f'運営ログ/note_screenshot_{today}.png')
             print("  📸 スクリーンショット保存")
-
-            # テキスト全体を取得してデータ抽出
-            body_text = page.inner_text('body')
-
-            # フォロワー数ページも確認
-            page.goto('https://note.com/dashboard', wait_until='networkidle', timeout=30000)
             dashboard_text = page.inner_text('body')
+
+            # 記事一覧ページ
+            print("📄 記事一覧取得中...")
+            page.goto('https://note.com/dashboard/articles', wait_until='networkidle', timeout=30000)
+            page.wait_for_timeout(2000)
+            articles_text = page.inner_text('body')
+
+            # アナリティクスページ（URL候補を順に試す）
+            stats_text = ""
+            stats_urls = [
+                'https://note.com/dashboard/analytics',
+                'https://note.com/dashboard/stats',
+                'https://note.com/analytics',
+            ]
+            for url in stats_urls:
+                page.goto(url, wait_until='domcontentloaded', timeout=20000)
+                page.wait_for_timeout(2000)
+                if '見つかりません' not in page.inner_text('body')[:100]:
+                    stats_text = page.inner_text('body')
+                    print(f"  ✅ アナリティクスURL: {url}")
+                    break
+            if not stats_text:
+                stats_text = "（アナリティクスページのURLが見つかりませんでした）"
+                print("  ⚠️ アナリティクスURL未確認")
 
             analytics = {
                 'date': today,
                 'dashboard_text': dashboard_text[:3000],
-                'stats_text': body_text[:3000],
+                'articles_text': articles_text[:2000],
+                'stats_text': stats_text[:3000],
                 'url': page.url
             }
 
@@ -131,7 +148,9 @@ if analytics:
     report = f"# note.com アナリティクスレポート {today}\n\n"
     report += f"## ダッシュボード情報\n\n"
     report += f"```\n{analytics['dashboard_text'][:2000]}\n```\n\n"
-    report += f"## 統計ページ情報\n\n"
+    report += f"## 記事一覧\n\n"
+    report += f"```\n{analytics['articles_text'][:2000]}\n```\n\n"
+    report += f"## アナリティクス\n\n"
     report += f"```\n{analytics['stats_text'][:2000]}\n```\n"
 
     report_path = f'運営ログ/note_アナリティクス_{today}.md'
