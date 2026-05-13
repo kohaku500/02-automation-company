@@ -1,27 +1,30 @@
-name: Daily Content Base - 17:00 JST
+name: Daily Content Booth Assets - 17:30 JST
+
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '30 8 * * *'
   workflow_dispatch:
 
 jobs:
-  content-report:
+  booth-assets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - run: pip install requests
-      - name: Generate Content
+      - name: Generate Booth Assets
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 .github/scripts/generate_content.py
+        run: python3 .github/scripts/generate_booth_assets.py
       - name: Commit and Push
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git add 商品パッケージ/ || true
-          git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)" || true
+          git commit -m "Daily: BOOTH向けアセット生成 $(date +%Y-%m-%d)" || true
           git pull --rebase || true
           git push || true

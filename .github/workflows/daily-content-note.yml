@@ -1,27 +1,30 @@
-name: Daily Content Base - 17:00 JST
+name: Daily Content Note Assets - 17:30 JST
+
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '30 8 * * *'
   workflow_dispatch:
 
 jobs:
-  content-report:
+  note-assets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - run: pip install requests
-      - name: Generate Content
+      - name: Generate Note Assets
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 .github/scripts/generate_content.py
+        run: python3 .github/scripts/generate_note_assets.py
       - name: Commit and Push
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git add 商品パッケージ/ || true
-          git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)" || true
+          git commit -m "Daily: note向けアセット生成 $(date +%Y-%m-%d)" || true
           git pull --rebase || true
           git push || true
