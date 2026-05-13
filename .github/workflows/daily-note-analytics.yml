@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add 運営ログ/note_アナリティクス_*.md 運営ログ/note_screenshot_*.png 2>/dev/null || true
+          git add 運営ログ/note_アナリティクス_*.md 運営ログ/note_*.png 2>/dev/null || true
           git commit -m "Daily: note アナリティクス取得 $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
