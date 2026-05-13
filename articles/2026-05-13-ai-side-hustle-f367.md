@@ -6,6 +6,20 @@ topics: ["ChatGPT", "プロンプト", "副業", "AI活用"]
 published: true
 ---
 
+
+
+---
+
+## 📦 付属ツール・資料
+
+この記事には以下の付属コンテンツが含まれています：
+
+- 🔗 **[アプリ（プロンプト生成ツール）](https://kohaku500.github.io/02-automation-company/2026-05-13/note_app.html)**
+- 🔗 **[プレゼン資料](https://kohaku500.github.io/02-automation-company/2026-05-13/note_presentation.html)**
+- 🔗 **[使用方法ガイド](https://kohaku500.github.io/02-automation-company/2026-05-13/note_guide.html)**
+
+---
+
 はい、承知いたしました。元の統合パッケージの情報を元に、noteプラットフォーム向けに最適化されたコンテンツを生成します。
 
 ---
