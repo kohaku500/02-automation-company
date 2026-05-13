@@ -23,4 +23,5 @@ jobs:
           git config user.name "GitHub Action"
           git add 商品パッケージ/ || true
           git commit -m "Daily: 自動生成 $(date +%Y-%m-%d)" || true
+          git pull --rebase || true
           git push || true
