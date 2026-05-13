@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kindle書籍紹介スライド - ChatGPT×爆速コンテンツ術</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #007bff; /* 青 */
+            --accent-color: #28a745; /* 緑 */
+            --bg-light: #f8f9fa;
+            --bg-dark: #343a40;
+            --text-dark: #212529;
+            --text-light: #ffffff;
+            --slide-bg-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* スライド以外のコンテンツがはみ出さないように */
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 960px; /* スライドの最大幅 */
+            aspect-ratio: 16 / 9; /* 16:9のアスペクト比 */
+            background-color: var(--slide-bg-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%; /* 各スライドがコンテナの100%幅を占める */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5%;
+            position: relative;
+        }
+
+        .slide:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .slide h1 {
+            font-size: 2.8em;
+            margin-bottom: 0.5em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.2em;
+            margin-bottom: 0.4em;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .slide h3 {
+            font-size: 1.8em;
+            margin-bottom: 0.3em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .slide p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            color: var(--text-dark);
+            max-width: 80%;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+            max-width: 70%;
+            margin: 0 auto 1.5em auto;
+            text-align: left;
+        }
+
+        .slide ul li {
+            font-size: 1.1em;
+            margin-bottom: 0.8em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        .slide ul li::before {
+            content: "\f00c"; /* Font Awesome check icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            top: 0.1em;
+        }
+
+        .slide .icon-large {
+            font-size: 5em;
+            color: var(--primary-color);
+            margin-bottom: 0.3em;
+        }
+
+        .slide .icon-list i {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-right: 0.5em;
+        }
+
+        /* Title Slide specific styles */
+        .slide-title h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            padding: 0.3em 0.5em;
+            border-radius: 8px;
+            margin-bottom: 0.5em;
+        }
+        .slide-title p.subtitle {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
+        .slide-title p.message {
+            font-size: 1.4em;
+            color: var(--text-dark);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        .slide-title.cover {
+            background: linear-gradient(45deg, var(--primary-color) 0%, #0056b3 100%);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide-title.cover h1 {
+            color: var(--text-light);
+            background: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.2em;
+        }
+        .slide-title.cover p.subtitle {
+            color: var(--text-light);
+            font-size: 1.6em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .slide-title.cover .author {
+            margin-top: 2em;
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        /* Navigation Buttons */
+        .navigation-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            pointer-events: none; /* ボタン以外のスライドコンテンツをクリック可能にする */
+        }
+
+        .nav-button {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            pointer-events: all; /* ボタンはクリック可能にする */
+        }
+
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Pagination */
+        .pagination {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .pagination span {
+            font-weight: 700;
+        }
+
+        /* Specific slide contents */
+        .slide.chapter-intro {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+        .slide.chapter-intro h2,
+        .slide.chapter-intro h3 {
+            color: var(--text-light);
+        }
+        .slide.chapter-intro ul li::before {
+            color: var(--text-light);
+        }
+        .slide.chapter-intro .icon-large {
+            color: var(--text-light);
+        }
+
+        .slide.summary-slide ul {
+            max-width: 85%;
+            list-style: disc; /* Summaries can use discs */
+            text-align: left;
+            padding-left: 20px;
+        }
+        .slide.summary-slide ul li::before {
+            content: none;
+        }
+
+        .slide .call-to-action {
+            margin-top: 2em;
+            font-size: 1.4em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        .slide .purchase-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.3em;
+            margin-top: 1.5em;
+            transition: background-color 0.3s ease;
+        }
+        .slide .purchase-button:hover {
+            background-color: #218838;
+        }
+
+        /* For small screens */
+        @media (max-width: 768px) {
+            .slider-container {
+                max-width: 100%;
+                height: auto; /* 高さはコンテンツに合わせる */
+                border-radius: 0;
+                aspect-ratio: auto;
+            }
+            body {
+                padding: 0;
+            }
+            .slide {
+                padding: 8% 5%;
+            }
+            .slide h1 {
+                font-size: 2em;
+            }
+            .slide h2 {
+                font-size: 1.6em;
+            }
+            .slide h3 {
+                font-size: 1.3em;
+            }
+            .slide p {
+                font-size: 1em;
+            }
+            .slide ul li {
+                font-size: 0.9em;
+            }
+            .slide .icon-large {
+                font-size: 3em;
+            }
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 1.2em;
+            }
+            .slide-title.cover h1 {
+                font-size: 2.5em;
+            }
+            .slide-title.cover p.subtitle {
+                font-size: 1.2em;
+            }
+            .slide .purchase-button {
+                font-size: 1.1em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slides">
+            <!-- スライド1: 表紙 -->
+            <div class="slide slide-title cover">
+                <h1>ChatGPT×爆速コンテンツ術</h1>
+                <p class="subtitle">AI時代のクリエイターが知るべき生成・企画・執筆・編集の全技術</p>
+                <p class="message">時間、アイデア、クオリティの壁を乗り越えるAI時代の最強コンテンツ戦略</p>
+                <p class="author">AIと共に、爆速で高品質コンテンツを生み出す新時代を拓く！</p>
+            </div>
+
+            <!-- スライド2: はじめに - 現代の課題 -->
+            <div class="slide">
+                <i class="fas fa-exclamation-triangle icon-large"></i>
+                <h2>コンテンツ制作、こんな悩みはありませんか？</h2>
+                <ul>
+                    <li>「もっと効率よく、質の高いコンテンツを作りたい」</li>
+                    <li>「アイデアが枯渇して、次の企画が進まない」</li>
+                    <li>「文章を書くのに時間がかかりすぎる」</li>
+                    <li>現代は「コンテンツ飽和時代」高品質コンテンツが必須</li>
+                </ul>
+            </div>
+
+            <!-- スライド3: はじめに - ChatGPTの登場 -->
+            <div class="slide">
+                <i class="fas fa-robot icon-large"></i>
+                <h2>コンテンツ制作の未来はAIと共に</h2>
+                <p>そこで登場したのが、生成AI「ChatGPT」です。</p>
+                <p>もはやAIは単なる「補助ツール」ではなく、<br><strong>「あなたのクリエイティブパートナー」</strong>となります。</p>
+                <p>時間と労力を大幅に削減し、あらゆるフェーズで力を発揮します。</p>
+            </div>
+
+            <!-- スライド4: 本書の目的 -->
+            <div class="slide chapter-intro">
+                <i class="fas fa-lightbulb icon-large"></i>
+                <h2>本書で得られること</h2>
+                <h3>AIを「最高の相棒」として使いこなす！</h3>
+                <ul>
+                    <li>AI初心者が今日から実践できるChatGPT活用術</li>
+                    <li>クリエイティブを覚醒させ、ビジネスを加速</li>
+                    <li>コンテンツ制作の新たな常識を学ぶ</li>
+                    <li>爆速で高品質なコンテンツを生み出す新時代へ</li>
+                </ul>
+            </div>
+
+            <!-- スライド5: 本書の構成（目次概要） -->
+            <div class="slide summary-slide">
+                <h2>本書の構成</h2>
+                <h3>AI時代のコンテンツ戦略、全貌公開</h3>
+                <ul>
+                    <li><i class="fas fa-brain icon-list"></i> **第1章: AIクリエイター時代の幕開け**<br>  ChatGPTの基礎と可能性</li>
+                    <li><i class="fas fa-pencil-ruler icon-list"></i> **第2章: アイデア枯渇を過去にする！**<br>  ChatGPTを駆使した企画・構成術</li>
+                    <li><i class="fas fa-feather-alt icon-list"></i> **第3章: 執筆はAIにお任せ！**<br>  ChatGPTで爆速ライティング＆編集術</li>
+                </ul>
+            </div>
+
+            <!-- スライド6: 第1章概要 -->
+            <div class="slide chapter-intro">
+                <i class="fas fa-cogs icon-large"></i>
+                <h2>第1章: AIクリエイター時代の幕開け</h2>
+                <h3>ChatGPTの基礎と可能性</h3>
+                <ul>
+                    <li>コンテンツ制作の現代的課題とAIの必然性</li>
+                    <li>ChatGPT（LLM・生成AI）の基本メカニズムを理解</li>
+                    <li>無料版 vs 有料版の比較と最適な選択</li>
+                    <li><strong>「プロンプト」こそがAIの力を引き出す最強の鍵</strong></li>
+                </ul>
+            </div>
+
+            <!-- スライド7: 第1章ハイライト - プロンプト -->
+            <div class="slide">
+                <i class="fas fa-key icon-large"></i>
+                <h2>プロンプトこそ、AIの力を引き出す鍵</h2>
+                <p>適切な「プロンプト」が、AIのパフォーマンスを最大化します。</p>
+                <h3>良いプロンプトの4つの基本原則</h3>
+                <ul>
+                    <li>明確な指示：AIに何をさせたいか具体的に</li>
+                    <li>背景情報の提供：AIが状況を理解できるように</li>
+                    <li>役割の付与：AIに特定のペルソナを与える</li>
+                    <li>出力形式の指定：期待する形式を明示</li>
+                </ul>
+            </div>
+
+            <!-- スライド8: 第2章概要 -->
+            <div class="slide chapter-intro">
+                <i class="fas fa-lightbulb icon-large"></i>
+                <h2>第2章: アイデア枯渇を過去にする！</h2>
+                <h3>ChatGPTを駆使した企画・構成術</h3>
+                <ul>
+                    <li>ターゲットとニーズの特定をAIで効率化</li>
+                    <li>無限のアイデアを生み出すAIブレインストーミング</li>
+                    <li>読者に深く響く詳細なペルソナ生成</li>
+                    <li>ブログ、SNS、動画、プレゼン資料の構成案を爆速生成</li>
+                </ul>
+            </div>
+
+            <!-- スライド9: 第2章ハイライト - 企画・構成 -->
+            <div class="slide">
+                <i class="fas fa-bullseye icon-large"></i>
+                <h2>AIで実現する、卓越した企画力</h2>
+                <h3>具体例</h3>
+                <ul>
+                    <li><strong>ターゲットニーズの深掘り:</strong> AIが市場調査とトレンド分析を効率化</li>
+                    <li><strong>無限のアイデア創出:</strong> 複数の視点を取り入れたブレストプロンプト</li>
+                    <li><strong>読者理解の深化:</strong> AIが詳細なペルソナ像を構築</li>
+                    <li><strong>爆速構成案作成:</strong> あらゆるコンテンツの骨格をAIが瞬時に生成</li>
+                </ul>
+            </div>
+
+            <!-- スライド10: 第3章概要 -->
+            <div class="slide chapter-intro">
+                <i class="fas fa-pen-nib icon-large"></i>
+                <h2>第3章: 執筆はAIにお任せ！</h2>
+                <h3>ChatGPTで爆速ライティング＆編集術</h3>
+                <ul>
+                    <li>下書き作成の常識を覆すAIライティング術</li>
+                    <li>誤字脱字から表現改善まで、精度の高い校正・推敲</li>
+                    <li>要約、リライト、言い換えで表現力を無限に拡張</li>
+                    <li>ターゲットに響くトーン＆マナーの自動調整</li>
+                </ul>
+            </div>
+
+            <!-- スライド11: 第3章ハイライト - 執筆・編集 -->
+            <div class="slide">
+                <i class="fas fa-magic icon-large"></i>
+                <h2>AIがあなたの執筆・編集作業を革新</h2>
+                <h3>高品質な文章を、より速く、より正確に</h3>
+                <ul>
+                    <li><strong>効率的な下書き:</strong> 論理的でスムーズな文章をAIが生成</li>
+                    <li><strong>完璧な推敲:</strong> 誤字脱字修正から表現改善まで瞬時に実行</li>
+                    <li><strong>豊かな表現力:</strong> 長文要約、多角的なリライト、言い換えでバリエーション向上</li>
+                    <li><strong>ターゲットに最適化:</strong> ブランドボイスや読者感情に合わせたトーン調整</li>
+                </ul>
+            </div>
+
+            <!-- スライド12: まとめ -->
+            <div class="slide summary-slide">
+                <i class="fas fa-award icon-large"></i>
+                <h2>AIはもはや必須の「最高の相棒」</h2>
+                <h3>本書で得られるAI活用術の集大成</h3>
+                <ul>
+                    <li>コンテンツ制作の「時間」を劇的に短縮</li>
+                    <li>「アイデア枯渇」の悩みを解消し、創造性を最大化</li>
+                    <li>「クオリティの壁」を乗り越え、高品質コンテンツを量産</li>
+                    <li>あなたのクリエイティブ活動が次のステージへ進化する</li>
+                </ul>
+            </div>
+
+            <!-- スライド13: 行動喚起 -->
+            <div class="slide chapter-intro">
+                <i class="fas fa-rocket icon-large"></i>
+                <h2>AI時代の新常識を習得しよう！</h2>
+                <p>本書を読み終える頃には、あなたはAIを単なるツールとしてではなく、<br><strong>自身のクリエイティブを覚醒させ、ビジネスを加速させる「最高の相棒」</strong>として使いこなせるようになっているはずです。</p>
+                <p class="call-to-action">さあ、AIと共に、爆速で高品質なコンテンツを生み出す新時代を切り拓きましょう。</p>
+            </div>
+
+            <!-- スライド14: 裏表紙（購入誘導） -->
+            <div class="slide slide-title cover">
+                <h1>ChatGPT×爆速コンテンツ術</h1>
+                <p class="subtitle">AI時代のクリエイターが知るべき生成・企画・執筆・編集の全技術</p>
+                <a href="#" class="purchase-button"><i class="fas fa-book-open"></i> Kindleで今すぐ読む！</a>
+                <p class="author" style="margin-top:1em; opacity:0.9;">あなたのクリエイティブを覚醒させる一冊。</p>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-button prev-button"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-button next-button"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="pagination">
+            <span id="current-slide">1</span> / <span id="total-slides">14</span>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const slideElements = document.querySelectorAll('.slide');
+        const totalSlides = slideElements.length;
+        let currentSlide = 0;
+
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const currentSlideSpan = document.getElementById('current-slide');
+        const totalSlidesSpan = document.getElementById('total-slides');
+
+        totalSlidesSpan.textContent = totalSlides;
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                currentSlide = 0;
+            } else {
+                currentSlide = index;
+            }
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            currentSlideSpan.textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>
