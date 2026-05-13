@@ -29,7 +29,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add articles/*.md
-          git commit -m "Publish: Zenn記事自動生成 $(date +%Y-%m-%d)" || echo "No changes to commit"
+          git add articles/*.md docs/
+          git commit -m "Publish: Zenn記事 + GitHub Pages HTML $(date +%Y-%m-%d)" || echo "No changes to commit"
           git pull --rebase || true
           git push
