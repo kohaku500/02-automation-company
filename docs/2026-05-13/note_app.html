@@ -1,277 +1,436 @@
+はい、承知いたしました。
+ChatGPTを活用して「稼ぐ」ための実践ロードマップをテーマとしたnote記事の読者が、記事を読んだ後すぐに使える実用ツールとして、「**AI相棒化プロンプト構築アシスタント**」を生成します。
+
+このツールは、ユーザーが目的や役割、出力形式などをステップバイステップで入力するだけで、ChatGPT向けの高品質なプロンプトを自動で生成します。これにより、ユーザーはAIを「最高のビジネスパートナー」として活用する感覚をすぐに掴むことができるでしょう。
+
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クリエイターのためのChatGPTプロンプト生成アシスタント</title>
+    <title>AI相棒化プロンプト構築アシスタント - ChatGPT完全攻略ツール</title>
     <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        /* カスタムCSS */
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background-color: #f8f9fa;
-            color: #333;
+            color: #343a40;
             line-height: 1.6;
         }
         .container {
-            max-width: 800px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            max-width: 900px;
+            margin-top: 30px;
+            margin-bottom: 30px;
             padding: 20px;
             background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        h1 {
+        h1, h2 {
             color: #007bff;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+            font-weight: 700;
+            margin-bottom: 20px;
             text-align: center;
-            font-weight: bold;
         }
         .form-label {
-            font-weight: bold;
+            font-weight: 600;
             color: #495057;
             margin-bottom: 8px;
         }
-        .form-control, .form-select, .btn {
-            border-radius: 5px;
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            padding: 10px 15px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
         }
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         .btn-primary:hover {
             background-color: #0056b3;
             border-color: #0056b3;
         }
-        .output-area {
-            background-color: #e9ecef;
-            border: 1px solid #ced4da;
-            padding: 15px;
-            border-radius: 5px;
-            min-height: 150px;
-            white-space: pre-wrap; /* 改行を保持 */
-            word-wrap: break-word; /* 長い単語の折り返し */
-            font-family: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
-            color: #212529;
-            font-size: 0.9rem;
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
-        .copy-button {
-            margin-top: 10px;
+        .btn-secondary:hover {
+            background-color: #545b62;
+            border-color: #545b62;
         }
         textarea.form-control {
-            min-height: 80px;
-            resize: vertical; /* ユーザーがリサイズ可能にする */
+            min-height: 200px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f1f3f5;
+            color: #212529;
+            padding: 15px;
         }
-        .text-muted small {
-            font-size: 0.85rem;
+        .card {
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-
-        /* スマートフォン向け調整 */
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 1.6rem;
-                margin-bottom: 20px;
-            }
-            .container {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                padding: 15px;
-            }
-            .form-label {
-                font-size: 0.95rem;
-            }
-            .form-control, .form-select, .btn {
-                font-size: 0.9rem;
-            }
-            .output-area {
-                font-size: 0.85rem;
-                min-height: 120px;
-            }
+        .card-header {
+            background-color: #f1f7fe;
+            border-bottom: 1px solid #dee2e6;
+            padding: 15px 20px;
+            font-weight: 600;
+            color: #007bff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .alert-info {
+            background-color: #e0f2f7;
+            border-color: #a7d9eb;
+            color: #0c5460;
+            border-radius: 8px;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .step-indicator .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .step-indicator .step.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .step-indicator .step.completed {
+            background-color: #28a745;
+            color: white;
+        }
+        .step-indicator .line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: #e9ecef;
+            align-self: center;
+            margin: 0 5px;
+        }
+        .step-indicator .line.completed {
+            background-color: #28a745;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>クリエイターのためのChatGPTプロンプト生成アシスタント</h1>
-        <p class="text-muted mb-4 text-center">
-            コンテンツ制作の目的やターゲットに合わせて、効果的なChatGPTプロンプトのひな形を自動生成します。<br>
-            この記事で得た知識を活かし、このツールであなたのアイデア出しや文章作成を劇的に効率化しましょう！
+    <main class="container">
+        <h1 class="mb-4">AI相棒化プロンプト構築アシスタント</h1>
+        <p class="lead text-center mb-5">
+            あなたのクリエイター・副業を加速させる、ChatGPT向けプロンプトを自動生成します。<br>
+            AIを「最高の相棒」に変え、生産性と収益を最大化しましょう！
         </p>
 
-        <form id="promptGeneratorForm">
-            <!-- コンテンツの目的 -->
-            <div class="mb-3">
-                <label for="contentPurpose" class="form-label">1. コンテンツの目的 <span class="text-danger">*</span></label>
-                <select class="form-select" id="contentPurpose" required>
-                    <option value="">選択してください</option>
-                    <option value="ブログ記事執筆">ブログ記事執筆</option>
-                    <option value="SNS投稿作成">SNS投稿作成</option>
-                    <option value="コンテンツアイデア出し">コンテンツアイデア出し</option>
-                    <option value="記事構成作成">記事構成作成</option>
-                    <option value="文章の要約">文章の要約</option>
-                    <option value="文章の翻訳">文章の翻訳</option>
-                    <option value="キャッチコピー作成">キャッチコピー作成</option>
-                    <option value="企画書の下書き">企画書の下書き</option>
-                    <option value="メール作成">メール作成</option>
-                    <option value="その他">その他（具体的なタスクで記述）</option>
-                </select>
+        <div id="promptGeneratorForm">
+            <div class="step-indicator">
+                <div class="step active" id="step1">1</div>
+                <div class="line" id="line1"></div>
+                <div class="step" id="step2">2</div>
+                <div class="line" id="line2"></div>
+                <div class="step" id="step3">3</div>
+                <div class="line" id="line3"></div>
+                <div class="step" id="step4">4</div>
+                <div class="line" id="line4"></div>
+                <div class="step" id="step5">5</div>
             </div>
 
-            <!-- ターゲット読者/ユーザー -->
-            <div class="mb-3">
-                <label for="targetAudience" class="form-label">2. ターゲット読者/ユーザー <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="targetAudience" placeholder="例：ChatGPT初心者クリエイター、Webマーケター、新しい趣味を探している20代女性" required>
+            <div class="card mb-4" id="stepCard1">
+                <div class="card-header">STEP 1: タスクの目的とAIの役割設定</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="taskPurpose" class="form-label">1. あなたのタスクの主な目的は何ですか？</label>
+                        <select class="form-select" id="taskPurpose" required>
+                            <option value="">選択してください</option>
+                            <option value="記事作成・ブログ執筆">記事作成・ブログ執筆</option>
+                            <option value="アイデア出し・ブレインストーミング">アイデア出し・ブレインストーミング</option>
+                            <option value="リサーチ・情報収集">リサーチ・情報収集</option>
+                            <option value="SNS投稿・マーケティング文案作成">SNS投稿・マーケティング文案作成</option>
+                            <option value="メール・ビジネス文書作成">メール・ビジネス文書作成</option>
+                            <option value="コード生成・デバッグ">コード生成・デバッグ</option>
+                            <option value="翻訳・要約">翻訳・要約</option>
+                            <option value="学習・教育コンテンツ作成">学習・教育コンテンツ作成</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="aiRole" class="form-label">2. ChatGPTにどのような専門家として振る舞ってほしいですか？</label>
+                        <input type="text" class="form-control" id="aiRole" placeholder="例: 経験豊富なコピーライター、敏腕マーケター、ベテラン開発者" value="経験豊富なプロンプトエンジニア" required>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">次へ</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- トーン&スタイル -->
-            <div class="mb-3">
-                <label for="toneStyle" class="form-label">3. トーン＆スタイル <span class="text-danger">*</span></label>
-                <select class="form-select" id="toneStyle" required>
-                    <option value="">選択してください</option>
-                    <option value="丁寧でプロフェッショナル">丁寧でプロフェッショナル</option>
-                    <option value="カジュアルで親しみやすい">カジュアルで親しみやすい</option>
-                    <option value="専門的で権威的">専門的で権威的</option>
-                    <option value="ユーモラスで面白い">ユーモラスで面白い</option>
-                    <option value="インスピレーションを与える">インスピレーションを与える</option>
-                    <option value="実践的で具体例が多い">実践的で具体例が多い</option>
-                    <option value="簡潔で分かりやすい">簡潔で分かりやすい</option>
-                    <option value="感動的で感情に訴える">感動的で感情に訴える</option>
-                </select>
+            <div class="card mb-4 d-none" id="stepCard2">
+                <div class="card-header">STEP 2: 具体的な内容とターゲット設定</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="contentTheme" class="form-label">3. 生成したいコンテンツの具体的なテーマや内容は？</label>
+                        <textarea class="form-control" id="contentTheme" rows="3" placeholder="例: ChatGPTプロンプト完全攻略のnote記事、AIを活用した副業アイデア10選、PythonでのWebスクレイピングコード"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="targetAudience" class="form-label">4. そのコンテンツの対象となる読者・ユーザーは誰ですか？</label>
+                        <textarea class="form-control" id="targetAudience" rows="2" placeholder="例: AI初心者で副業で稼ぎたい人、Webサイト開発を始めたばかりの学生"></textarea>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="prevStep(1)">戻る</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">次へ</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- 出力形式 -->
-            <div class="mb-3">
-                <label for="outputFormat" class="form-label">4. 出力形式 <span class="text-danger">*</span></label>
-                <select class="form-select" id="outputFormat" required>
-                    <option value="">選択してください</option>
-                    <option value="箇条書きリスト">箇条書きリスト</option>
-                    <option value="段落形式の文章">段落形式の文章</option>
-                    <option value="テーブル（表形式）">テーブル（表形式）</option>
-                    <option value="Markdown形式">Markdown形式</option>
-                    <option value="HTMLコード">HTMLコード</option>
-                    <option value="会話形式のスクリプト">会話形式のスクリプト</option>
-                    <option value="SNS投稿（複数案）">SNS投稿（複数案）</option>
-                    <option value="見出しと本文">見出しと本文</option>
-                    <option value="表形式のデータ">表形式のデータ</option>
-                </select>
+            <div class="card mb-4 d-none" id="stepCard3">
+                <div class="card-header">STEP 3: 出力に関する詳細設定</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="includeKeywords" class="form-label">5. 出力に含めてほしいキーワードやアイデアはありますか？（複数行可）</label>
+                        <textarea class="form-control" id="includeKeywords" rows="3" placeholder="例:&#10;- プロンプトエンジニアリングの基本&#10;- 副業での月5万円達成&#10;- 具体的なプロンプト例"></textarea>
+                        <div class="form-text">改行区切りで複数指定できます。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="excludeKeywords" class="form-label">6. 出力から除外してほしいキーワードやアイデアはありますか？（複数行可）</label>
+                        <textarea class="form-control" id="excludeKeywords" rows="3" placeholder="例:&#10;- 専門用語の多用&#10;- AIのネガティブな側面&#10;- 短すぎる回答"></textarea>
+                        <div class="form-text">改行区切りで複数指定できます。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="outputTone" class="form-label">7. 出力のトーン＆マナーは？</label>
+                        <select class="form-select" id="outputTone">
+                            <option value="">選択してください</option>
+                            <option value="丁寧で分かりやすい">丁寧で分かりやすい</option>
+                            <option value="フレンドリーで親しみやすい">フレンドリーで親しみやすい</option>
+                            <option value="専門的で権威的">専門的で権威的</option>
+                            <option value="ユーモラスで創造的">ユーモラスで創造的</option>
+                            <option value="簡潔で効率的">簡潔で効率的</option>
+                            <option value="情熱的で鼓舞する">情熱的で鼓舞する</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="outputFormat" class="form-label">8. 希望する出力形式は？</label>
+                        <select class="form-select" id="outputFormat">
+                            <option value="">選択してください</option>
+                            <option value="Markdown形式">Markdown形式</option>
+                            <option value="箇条書きリスト">箇条書きリスト</option>
+                            <option value="表形式">表形式</option>
+                            <option value="短い段落形式">短い段落形式</option>
+                            <option value="JSON形式">JSON形式</option>
+                            <option value="スクリプト形式（コード）">スクリプト形式（コード）</option>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="prevStep(2)">戻る</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(4)">次へ</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- 具体的なタスク/テーマ -->
-            <div class="mb-3">
-                <label for="specificTask" class="form-label">5. 具体的なタスク/テーマ (メインコンテンツ) <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="specificTask" rows="4" placeholder="例：ChatGPTを使ったコンテンツ作成の具体的な手順とメリット。または、新商品のユーザー獲得戦略" required></textarea>
+            <div class="card mb-4 d-none" id="stepCard4">
+                <div class="card-header">STEP 4: その他の指示と最終確認</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="otherInstructions" class="form-label">9. その他、具体的な制約や指示があれば教えてください。</label>
+                        <textarea class="form-control" id="otherInstructions" rows="4" placeholder="例:&#10;- 全体の文字数は3000字程度にしてください。&#10;- 必ず導入、本論、結論の三部構成でお願いします。&#10;- 各セクションの最後に、読者への問いかけを入れてください。"></textarea>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="prevStep(3)">戻る</button>
+                        <button type="button" class="btn btn-primary" onclick="generatePrompt()">プロンプトを生成する</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- 含めたいキーワード (オプション) -->
-            <div class="mb-3">
-                <label for="includeKeywords" class="form-label">6. 含めたいキーワード (オプション)</label>
-                <input type="text" class="form-control" id="includeKeywords" placeholder="例：生産性向上、SEO、プロンプトエンジニアリング（カンマ区切り）">
+            <div class="card mb-4 d-none" id="stepCard5">
+                <div class="card-header">STEP 5: 生成されたプロンプト</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="generatedPrompt" class="form-label">コピーしてChatGPTに貼り付けてください！</label>
+                        <textarea class="form-control" id="generatedPrompt" rows="10" readonly></textarea>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="resetForm()">最初からやり直す</button>
+                        <button type="button" class="btn btn-primary" onclick="copyPrompt()">プロンプトをコピー</button>
+                    </div>
+                </div>
             </div>
-
-            <!-- 除外したいキーワード (オプション) -->
-            <div class="mb-3">
-                <label for="excludeKeywords" class="form-label">7. 除外したいキーワード (オプション)</label>
-                <input type="text" class="form-control" id="excludeKeywords" placeholder="例：プログラミング、専門知識不要、競合他社名（カンマ区切り）">
-            </div>
-
-            <!-- 文字数/量 (オプション) -->
-            <div class="mb-3">
-                <label for="wordCount" class="form-label">8. 文字数/量 (オプション)</label>
-                <input type="text" class="form-control" id="wordCount" placeholder="例：500字程度、見出し5つと各200字の本文、3つのツイート案、A4用紙1枚程度">
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100 mt-4 py-2">プロンプトを生成</button>
-        </form>
-
-        <h2 class="mt-5 mb-3 text-center" style="font-size: 1.5rem; color: #007bff;">生成されたプロンプト</h2>
-        <div class="output-area" id="generatedPrompt">
-            <!-- ここに生成されたプロンプトが表示されます -->
-            <p class="text-muted text-center mt-3 mb-0">上記のフォームに情報を入力し、「プロンプトを生成」ボタンを押してください。</p>
         </div>
-        <button id="copyPromptBtn" class="btn btn-secondary copy-button w-100 py-2" disabled>プロンプトをコピー</button>
 
-        <p class="text-muted mt-4 text-center">
-            <small>このツールは個人情報を収集しません。生成されたプロンプトは自由にコピーしてご利用ください。</small>
-        </p>
-    </div>
+        <div class="text-center mt-5 p-3 alert alert-info">
+            <p class="mb-0">このツールは、AI活用で稼ぐための強力なプロンプト構築をサポートします。</p>
+            <p class="mb-0">生成されたプロンプトはあくまで骨子です。必要に応じて微調整し、あなたの「相棒AI」を育ててください！</p>
+        </div>
 
-    <!-- Bootstrap JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </main>
+
+    <!-- Bootstrap JS CDN (Popper.jsも含む) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdGIdKuePbft1MiY/C" crossorigin="anonymous"></script>
+
     <script>
-        document.getElementById('promptGeneratorForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // フォームのデフォルト送信を防止
+        let currentStep = 1;
+        const totalSteps = 5;
 
-            const contentPurpose = document.getElementById('contentPurpose').value;
-            const targetAudience = document.getElementById('targetAudience').value.trim();
-            const toneStyle = document.getElementById('toneStyle').value;
+        function updateStepUI() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepElement = document.getElementById(`step${i}`);
+                const lineElement = document.getElementById(`line${i-1}`);
+                const cardElement = document.getElementById(`stepCard${i}`);
+
+                if (i === currentStep) {
+                    stepElement.classList.add('active');
+                    stepElement.classList.remove('completed');
+                    cardElement.classList.remove('d-none');
+                } else if (i < currentStep) {
+                    stepElement.classList.remove('active');
+                    stepElement.classList.add('completed');
+                    cardElement.classList.add('d-none');
+                    if (lineElement) lineElement.classList.add('completed');
+                } else {
+                    stepElement.classList.remove('active', 'completed');
+                    cardElement.classList.add('d-none');
+                    if (lineElement) lineElement.classList.remove('completed');
+                }
+            }
+        }
+
+        function validateStep(step) {
+            let isValid = true;
+            if (step === 1) {
+                const taskPurpose = document.getElementById('taskPurpose').value;
+                const aiRole = document.getElementById('aiRole').value;
+                if (!taskPurpose || !aiRole) {
+                    alert('STEP 1: 必須項目を入力してください。');
+                    isValid = false;
+                }
+            }
+            // 他のステップにも同様のバリデーションを追加可能
+            return isValid;
+        }
+
+        function nextStep(step) {
+            if (!validateStep(currentStep)) return;
+            currentStep = step;
+            updateStepUI();
+        }
+
+        function prevStep(step) {
+            currentStep = step;
+            updateStepUI();
+        }
+
+        function generatePrompt() {
+            if (!validateStep(currentStep)) return;
+
+            const taskPurpose = document.getElementById('taskPurpose').value;
+            const aiRole = document.getElementById('aiRole').value;
+            const contentTheme = document.getElementById('contentTheme').value;
+            const targetAudience = document.getElementById('targetAudience').value;
+            const includeKeywords = document.getElementById('includeKeywords').value;
+            const excludeKeywords = document.getElementById('excludeKeywords').value;
+            const outputTone = document.getElementById('outputTone').value;
             const outputFormat = document.getElementById('outputFormat').value;
-            const specificTask = document.getElementById('specificTask').value.trim();
-            const includeKeywords = document.getElementById('includeKeywords').value.trim();
-            const excludeKeywords = document.getElementById('excludeKeywords').value.trim();
-            const wordCount = document.getElementById('wordCount').value.trim();
+            const otherInstructions = document.getElementById('otherInstructions').value;
 
-            // 必須項目チェック
-            if (!contentPurpose || !targetAudience || !toneStyle || !outputFormat || !specificTask) {
-                alert('全ての必須項目を入力してください。');
-                return;
+            let prompt = `あなたは「${aiRole}」です。\n`;
+
+            if (taskPurpose) {
+                prompt += `以下の目的を達成するために、タスクを実行してください。\n`;
+                prompt += `## 目的\n`;
+                prompt += `- ${taskPurpose}\n\n`;
             }
 
-            let prompt = `あなたは最高のコンテンツクリエイターであり、指定された目的とターゲットに合致する、魅力的で高品質なコンテンツを作成する専門家です。
-
-以下の【指示】と【条件】に従い、コンテンツを生成してください。
-
----
-【指示】
-1.  **コンテンツの目的**: ${contentPurpose}
-2.  **ターゲット読者/ユーザー**: ${targetAudience}
-3.  **トーン＆スタイル**: ${toneStyle}
-4.  **具体的なタスク/テーマ**: ${specificTask}
-
-【条件】
-1.  **出力形式**: ${outputFormat}`;
+            prompt += `## タスク\n`;
+            if (contentTheme) {
+                prompt += `- テーマ・内容: ${contentTheme}\n`;
+            }
+            if (targetAudience) {
+                prompt += `- ターゲット読者・ユーザー: ${targetAudience}\n`;
+            }
 
             if (includeKeywords) {
-                prompt += `\n2.  **含めるキーワード**: ${includeKeywords}
-    ※これらのキーワードは自然な形で文章に組み込んでください。`;
+                prompt += `- 含めるべきキーワード・アイデア:\n`;
+                includeKeywords.split('\n').forEach(keyword => {
+                    const trimmed = keyword.trim();
+                    if (trimmed) prompt += `  - ${trimmed}\n`;
+                });
             }
+
             if (excludeKeywords) {
-                // 含めるキーワードがある場合は番号を調整
-                const num = includeKeywords ? 3 : 2;
-                prompt += `\n${num}.  **除外するキーワード**: ${excludeKeywords}
-    ※これらのキーワードや概念は一切含めないでください。`;
-            }
-            if (wordCount) {
-                // 含める、除外するキーワードがあるかで番号を調整
-                let num = 2;
-                if (includeKeywords) num++;
-                if (excludeKeywords) num++;
-                prompt += `\n${num}.  **文字数/量**: ${wordCount}
-    ※指定された範囲内で調整してください。`;
+                prompt += `- 除外すべきキーワード・アイデア:\n`;
+                excludeKeywords.split('\n').forEach(keyword => {
+                    const trimmed = keyword.trim();
+                    if (trimmed) prompt += `  - ${trimmed}\n`;
+                });
             }
 
-            prompt += `
+            if (outputTone) {
+                prompt += `- トーン＆マナー: ${outputTone}\n`;
+            }
+            if (outputFormat) {
+                prompt += `- 出力形式: ${outputFormat}\n`;
+            }
+            if (otherInstructions) {
+                prompt += `- その他指示・制約:\n`;
+                otherInstructions.split('\n').forEach(instruction => {
+                    const trimmed = instruction.trim();
+                    if (trimmed) prompt += `  - ${trimmed}\n`;
+                });
+            }
 
-【期待する効果】
-読者がすぐに実践できる具体的なアドバイスや、役立つ情報、魅力を感じられる表現を盛り込み、分かりやすく魅力的な内容にしてください。
----`;
+            prompt += `\nタスクを開始してください。`;
 
-            document.getElementById('generatedPrompt').textContent = prompt;
-            document.getElementById('copyPromptBtn').disabled = false; // コピーボタンを有効化
-        });
+            document.getElementById('generatedPrompt').value = prompt;
+            currentStep = 5;
+            updateStepUI();
+        }
 
-        document.getElementById('copyPromptBtn').addEventListener('click', function() {
-            const promptText = document.getElementById('generatedPrompt').textContent;
-            navigator.clipboard.writeText(promptText).then(function() {
-                alert('プロンプトがクリップボードにコピーされました！');
-            }).catch(function(err) {
-                console.error('コピーに失敗しました: ', err);
-                alert('プロンプトのコピーに失敗しました。手動でコピーしてください。');
-            });
-        });
+        function copyPrompt() {
+            const promptTextarea = document.getElementById('generatedPrompt');
+            promptTextarea.select();
+            promptTextarea.setSelectionRange(0, 99999); // モバイル対応
+            document.execCommand('copy');
+            alert('プロンプトがクリップボードにコピーされました！');
+        }
+
+        function resetForm() {
+            document.getElementById('taskPurpose').value = '';
+            document.getElementById('aiRole').value = '経験豊富なプロンプトエンジニア'; // 初期値に戻す
+            document.getElementById('contentTheme').value = '';
+            document.getElementById('targetAudience').value = '';
+            document.getElementById('includeKeywords').value = '';
+            document.getElementById('excludeKeywords').value = '';
+            document.getElementById('outputTone').value = '';
+            document.getElementById('outputFormat').value = '';
+            document.getElementById('otherInstructions').value = '';
+            document.getElementById('generatedPrompt').value = '';
+            currentStep = 1;
+            updateStepUI();
+        }
+
+        // 初期表示
+        document.addEventListener('DOMContentLoaded', updateStepUI);
     </script>
 </body>
 </html>
