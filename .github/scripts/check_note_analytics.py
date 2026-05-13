@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """note.com アナリティクス取得スクリプト（Playwright使用）"""
 import os
-import json
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
@@ -13,6 +12,7 @@ if not NOTE_EMAIL or not NOTE_PASSWORD:
     exit(1)
 
 today = datetime.now().strftime('%Y-%m-%d')
+os.makedirs('運営ログ', exist_ok=True)
 print(f"📊 note.com アナリティクス取得開始: {today}")
 
 def get_note_analytics():
@@ -24,132 +24,94 @@ def get_note_analytics():
         page = context.new_page()
 
         try:
-            # ログインページを開いてスクショ（デバッグ用）
+            # ---- ログイン ----
             print("🔑 ログイン中...")
-            os.makedirs('運営ログ', exist_ok=True)
-            page.goto('https://note.com/login', wait_until='domcontentloaded', timeout=60000)
-            page.wait_for_timeout(3000)
-            page.screenshot(path=f'運営ログ/note_login_{today}.png')
-            print("  📸 ログインページのスクリーンショット保存")
+            page.goto('https://note.com/login', wait_until='domcontentloaded', timeout=30000)
+            page.wait_for_timeout(2000)
 
-            # セレクタを複数試す
-            email_selectors = [
-                'input[type="email"]',
-                'input[name="email"]',
-                'input[placeholder*="メール"]',
-                'input[placeholder*="mail"]',
-                'input[autocomplete="email"]',
-            ]
-            email_filled = False
-            for sel in email_selectors:
+            # メール入力
+            for sel in ['input[placeholder*="mail"]', 'input[type="email"]']:
                 try:
                     page.wait_for_selector(sel, timeout=5000)
                     page.fill(sel, NOTE_EMAIL)
-                    print(f"  ✅ メール入力: {sel}")
-                    email_filled = True
+                    print(f"  メール: {sel}")
                     break
                 except Exception:
                     continue
 
-            if not email_filled:
-                # 全inputタグを列挙してデバッグ
-                inputs = page.query_selector_all('input')
-                print(f"  ⚠️ inputタグ一覧({len(inputs)}個):")
-                for inp in inputs:
-                    print(f"    type={inp.get_attribute('type')} name={inp.get_attribute('name')} placeholder={inp.get_attribute('placeholder')}")
-                raise Exception("メール入力フィールドが見つかりません")
+            # パスワード入力
+            page.fill('input[type="password"]', NOTE_PASSWORD)
+            print("  パスワード: input[type=password]")
 
-            password_selectors = [
-                'input[type="password"]',
-                'input[name="password"]',
-            ]
-            for sel in password_selectors:
-                try:
-                    page.fill(sel, NOTE_PASSWORD)
-                    print(f"  ✅ パスワード入力: {sel}")
-                    break
-                except Exception:
-                    continue
+            # ログインボタン → URL変化を待つ
+            page.click('button:has-text("ログイン")')
+            try:
+                page.wait_for_url(lambda url: 'login' not in url, timeout=15000)
+                print(f"  ✅ ログイン成功: {page.url}")
+            except Exception:
+                print(f"  ⚠️ URLが変わりませんでした: {page.url}")
+                page.screenshot(path=f'運営ログ/note_login_fail_{today}.png')
 
-            # ログインボタンをクリック
-            submit_selectors = [
-                'button[type="submit"]',
-                'button:has-text("ログイン")',
-                'input[type="submit"]',
-            ]
-            for sel in submit_selectors:
-                try:
-                    page.click(sel)
-                    print(f"  ✅ ログインボタン: {sel}")
-                    break
-                except Exception:
-                    continue
+            page.wait_for_timeout(2000)
 
-            page.wait_for_load_state('networkidle', timeout=20000)
-            print(f"  現在URL: {page.url}")
-
-            # ホームに遷移してダッシュボードリンクを探す
-            print("📈 ホームページ取得中...")
-            page.goto('https://note.com/', wait_until='networkidle', timeout=30000)
+            # ---- ホーム ----
+            print("🏠 ホームページ...")
+            page.goto('https://note.com/', wait_until='domcontentloaded', timeout=30000)
             page.wait_for_timeout(3000)
             page.screenshot(path=f'運営ログ/note_home_{today}.png')
-            print("  📸 ホームスクリーンショット保存")
+            print("  📸 ホーム保存")
 
-            # クリエイタースタジオ・ダッシュボードのリンクを探してクリック
-            dashboard_text = ""
-            dashboard_clicked = False
-            dashboard_selectors = [
-                'a[href*="dashboard"]',
-                'a[href*="creator"]',
-                'a:has-text("ダッシュボード")',
-                'a:has-text("クリエイター")',
-                'a:has-text("管理")',
-            ]
-            for sel in dashboard_selectors:
-                try:
-                    el = page.query_selector(sel)
-                    if el:
-                        href = el.get_attribute('href')
-                        print(f"  ✅ ダッシュボードリンク発見: {href}")
-                        el.click()
-                        page.wait_for_load_state('networkidle', timeout=20000)
-                        page.wait_for_timeout(3000)
-                        page.screenshot(path=f'運営ログ/note_dashboard_{today}.png')
-                        dashboard_text = page.inner_text('body')
-                        dashboard_clicked = True
-                        print(f"  📸 ダッシュボードスクリーンショット保存: {page.url}")
-                        break
-                except Exception:
-                    continue
+            # 自分のユーザー名を取得（プロフィールリンクから）
+            username = ""
+            try:
+                profile_link = page.query_selector('a[href^="/"][href$="/"]')
+                if profile_link:
+                    href = profile_link.get_attribute('href')
+                    username = href.strip('/')
+                    print(f"  ユーザー名候補: {username}")
+            except Exception:
+                pass
 
-            if not dashboard_clicked:
-                print("  ⚠️ ダッシュボードリンクが見つかりません。ホームの全リンクを列挙:")
-                links = page.query_selector_all('a[href]')
-                for link in links[:30]:
-                    print(f"    {link.get_attribute('href')}")
-                dashboard_text = page.inner_text('body')
+            # ---- ダッシュボード（SPAなのでhrefが/dashboardのリンクを探す）----
+            print("📊 ダッシュボード...")
+            dashboard_url = None
+            links = page.query_selector_all('a[href]')
+            for link in links:
+                href = link.get_attribute('href') or ''
+                if href == '/dashboard' or href.startswith('/dashboard/') or 'dashboard' == href.lstrip('/'):
+                    dashboard_url = f'https://note.com{href}' if href.startswith('/') else href
+                    print(f"  ✅ ダッシュボードリンク: {dashboard_url}")
+                    break
 
-            # アナリティクス（スタッツ）ページを試す
-            stats_text = ""
-            page.goto('https://note.com/stats', wait_until='networkidle', timeout=20000)
-            page.wait_for_timeout(3000)
-            page.screenshot(path=f'運営ログ/note_stats_{today}.png')
-            stats_body = page.inner_text('body')
-            if '見つかりません' not in stats_body[:200]:
-                stats_text = stats_body
-                print(f"  ✅ /stats ページ取得成功")
+            if dashboard_url:
+                page.goto(dashboard_url, wait_until='domcontentloaded', timeout=30000)
+                page.wait_for_timeout(3000)
             else:
-                stats_text = "（/stats ページが見つかりませんでした）"
-                print(f"  ⚠️ /stats は 404")
+                # フォールバック: /dashboard を直接開く
+                page.goto('https://note.com/dashboard', wait_until='domcontentloaded', timeout=30000)
+                page.wait_for_timeout(3000)
+                print(f"  フォールバック: {page.url}")
 
-            analytics = {
+            page.screenshot(path=f'運営ログ/note_dashboard_{today}.png')
+            dashboard_text = page.inner_text('body')
+            print(f"  📸 ダッシュボード保存: {page.url}")
+
+            # ---- 自分のプロフィールページ（記事・スキ数確認）----
+            if username:
+                print(f"👤 プロフィールページ ({username})...")
+                page.goto(f'https://note.com/{username}', wait_until='domcontentloaded', timeout=30000)
+                page.wait_for_timeout(3000)
+                page.screenshot(path=f'運営ログ/note_profile_{today}.png')
+                profile_text = page.inner_text('body')
+                print("  📸 プロフィール保存")
+            else:
+                profile_text = "（ユーザー名取得失敗）"
+
+            return {
                 'date': today,
                 'dashboard_text': dashboard_text[:3000],
-                'stats_text': stats_text[:3000],
-                'url': page.url
+                'profile_text': profile_text[:3000],
             }
-
-            return analytics
 
         except Exception as e:
             print(f"❌ エラー: {str(e)}")
@@ -165,23 +127,18 @@ def get_note_analytics():
 analytics = get_note_analytics()
 
 if analytics:
-    # マークダウンレポート生成
     report = f"# note.com アナリティクスレポート {today}\n\n"
-    report += f"## ダッシュボード情報\n\n"
-    report += f"```\n{analytics['dashboard_text'][:2000]}\n```\n\n"
-    report += f"## アナリティクス\n\n"
-    report += f"```\n{analytics['stats_text'][:2000]}\n```\n\n"
+    report += f"## ダッシュボード\n\n```\n{analytics['dashboard_text']}\n```\n\n"
+    report += f"## プロフィール\n\n```\n{analytics['profile_text']}\n```\n\n"
     report += f"## スクリーンショット\n\n"
-    report += f"- `note_home_{today}.png` — ホーム\n"
-    report += f"- `note_dashboard_{today}.png` — ダッシュボード\n"
-    report += f"- `note_stats_{today}.png` — スタッツページ\n"
+    report += f"- `note_home_{today}.png`\n"
+    report += f"- `note_dashboard_{today}.png`\n"
+    report += f"- `note_profile_{today}.png`\n"
 
-    report_path = f'運営ログ/note_アナリティクス_{today}.md'
-    with open(report_path, 'w', encoding='utf-8') as f:
+    path = f'運営ログ/note_アナリティクス_{today}.md'
+    with open(path, 'w', encoding='utf-8') as f:
         f.write(report)
-
-    print(f"✅ レポート保存: {report_path}")
-    print("ℹ️ スクリーンショットも 運営ログ/ に保存されています")
+    print(f"✅ レポート保存: {path}")
 else:
     print("❌ アナリティクス取得失敗")
     exit(1)
