@@ -8,11 +8,17 @@ from PIL import Image, ImageDraw, ImageFont
 
 today = datetime.now().strftime('%Y-%m-%d')
 
-# 原稿からタイトル抽出
+# 原稿からタイトル抽出（今日→直近の日付の順で探す）
 manuscript_path = f'商品パッケージ/{today}/kindle_manuscript.md'
 if not os.path.exists(manuscript_path):
-    print(f"❌ 原稿が見つかりません: {manuscript_path}")
-    exit(1)
+    import glob
+    candidates = sorted(glob.glob('商品パッケージ/*/kindle_manuscript.md'), reverse=True)
+    if candidates:
+        manuscript_path = candidates[0]
+        print(f"⚠️ 今日の原稿なし。最新を使用: {manuscript_path}")
+    else:
+        print("❌ 原稿が見つかりません")
+        exit(1)
 
 with open(manuscript_path, 'r', encoding='utf-8') as f:
     manuscript = f.read()
