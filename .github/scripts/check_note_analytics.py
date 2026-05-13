@@ -24,23 +24,68 @@ def get_note_analytics():
         page = context.new_page()
 
         try:
-            # ログイン
+            # ログインページを開いてスクショ（デバッグ用）
             print("🔑 ログイン中...")
-            page.goto('https://note.com/login', wait_until='networkidle', timeout=30000)
+            os.makedirs('運営ログ', exist_ok=True)
+            page.goto('https://note.com/login', wait_until='domcontentloaded', timeout=60000)
+            page.wait_for_timeout(3000)
+            page.screenshot(path=f'運営ログ/note_login_{today}.png')
+            print("  📸 ログインページのスクリーンショット保存")
 
-            page.fill('input[name="email"]', NOTE_EMAIL)
-            page.fill('input[name="password"]', NOTE_PASSWORD)
-            page.click('button[type="submit"]')
-            page.wait_for_load_state('networkidle', timeout=15000)
-
-            if 'login' in page.url:
-                # 別のセレクタで試みる
+            # セレクタを複数試す
+            email_selectors = [
+                'input[type="email"]',
+                'input[name="email"]',
+                'input[placeholder*="メール"]',
+                'input[placeholder*="mail"]',
+                'input[autocomplete="email"]',
+            ]
+            email_filled = False
+            for sel in email_selectors:
                 try:
-                    page.click('button:has-text("ログイン")')
-                    page.wait_for_load_state('networkidle', timeout=15000)
+                    page.wait_for_selector(sel, timeout=5000)
+                    page.fill(sel, NOTE_EMAIL)
+                    print(f"  ✅ メール入力: {sel}")
+                    email_filled = True
+                    break
                 except Exception:
-                    pass
+                    continue
 
+            if not email_filled:
+                # 全inputタグを列挙してデバッグ
+                inputs = page.query_selector_all('input')
+                print(f"  ⚠️ inputタグ一覧({len(inputs)}個):")
+                for inp in inputs:
+                    print(f"    type={inp.get_attribute('type')} name={inp.get_attribute('name')} placeholder={inp.get_attribute('placeholder')}")
+                raise Exception("メール入力フィールドが見つかりません")
+
+            password_selectors = [
+                'input[type="password"]',
+                'input[name="password"]',
+            ]
+            for sel in password_selectors:
+                try:
+                    page.fill(sel, NOTE_PASSWORD)
+                    print(f"  ✅ パスワード入力: {sel}")
+                    break
+                except Exception:
+                    continue
+
+            # ログインボタンをクリック
+            submit_selectors = [
+                'button[type="submit"]',
+                'button:has-text("ログイン")',
+                'input[type="submit"]',
+            ]
+            for sel in submit_selectors:
+                try:
+                    page.click(sel)
+                    print(f"  ✅ ログインボタン: {sel}")
+                    break
+                except Exception:
+                    continue
+
+            page.wait_for_load_state('networkidle', timeout=20000)
             print(f"  現在URL: {page.url}")
 
             # ダッシュボード統計ページへ
