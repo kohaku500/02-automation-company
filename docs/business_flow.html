@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ビジネスフロー図</title>
+<style>
+  body {
+    font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 30px;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+  }
+  .flow-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .layer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .box {
+    padding: 20px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    min-width: 200px;
+  }
+  .tool {
+    background: #ecf0f1;
+    color: #34495e;
+    border: 2px solid #bdc3c7;
+  }
+  .channel {
+    background: #fff8dc;
+    color: #b7791f;
+    border: 2px solid #f6c23e;
+  }
+  .revenue {
+    background: #e8f8f5;
+    color: #1abc9c;
+    border: 3px solid #16a085;
+    font-weight: bold;
+  }
+  .user {
+    background: #ebf4ff;
+    color: #3b82f6;
+    border: 2px solid #60a5fa;
+  }
+  .label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  .name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .arrow {
+    font-size: 32px;
+    color: #95a5a6;
+    margin: 0;
+  }
+  .layer-label {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin: 10px 0 5px 0;
+    letter-spacing: 2px;
+  }
+  .money {
+    font-size: 24px;
+  }
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .small {
+    padding: 12px 15px;
+    min-width: 140px;
+  }
+  .legend {
+    margin-top: 50px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<h1>📊 ビジネスフロー：道具から収益まで</h1>
+
+<div class="flow-container">
+
+  <div class="layer-label">━━ 裏方（道具・インフラ）━━</div>
+
+  <div class="layer">
+    <div class="box tool small">
+      <div class="label">AI</div>
+      <div class="name">🤖 Gemini API</div>
+      <div class="label" style="margin-top:6px">記事・原稿を生成</div>
+    </div>
+    <div class="box tool small">
+      <div class="label">自動化</div>
+      <div class="name">⚙️ GitHub Actions</div>
+      <div class="label" style="margin-top:6px">毎日定時実行</div>
+    </div>
+    <div class="box tool small">
+      <div class="label">画像</div>
+      <div class="name">🎨 Pillow</div>
+      <div class="label" style="margin-top:6px">表紙を自動生成</div>
+    </div>
+    <div class="box tool small">
+      <div class="label">公開</div>
+      <div class="name">🌐 GitHub Pages</div>
+      <div class="label" style="margin-top:6px">アプリ・資料を公開</div>
+    </div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <div class="layer-label">━━ 集客（読者を集める）━━</div>
+
+  <div class="layer">
+    <div class="box channel">
+      <div class="label">無料公開</div>
+      <div class="name">📝 Zenn 記事</div>
+      <div class="label" style="margin-top:6px">毎日18:00 自動公開<br>→ Kindleへ誘導CTA付き</div>
+    </div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <div class="layer-label">━━ 読者の動線 ━━</div>
+
+  <div class="layer">
+    <div class="box user">
+      <div class="label">読者</div>
+      <div class="name">👀 Zennで記事を読む</div>
+      <div class="label" style="margin-top:6px">「もっと詳しく知りたい」</div>
+    </div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <div class="layer">
+    <div class="box user">
+      <div class="label">クリック</div>
+      <div class="name">🔗 Kindle CTA</div>
+      <div class="label" style="margin-top:6px">「Kindleで購入する」</div>
+    </div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <div class="layer-label">━━ 収益発生 ━━</div>
+
+  <div class="layer">
+    <div class="box revenue">
+      <div class="label">💰 販売</div>
+      <div class="name money">📚 Kindle 購入</div>
+      <div class="label" style="margin-top:8px; color:#16a085">印税70% 入金</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend">
+  <h3 style="margin-top:0">凡例</h3>
+  <div class="legend-item">
+    <div class="legend-color" style="background:#ecf0f1; border:2px solid #bdc3c7"></div>
+    <span><strong>道具・インフラ</strong>：裏で動く仕組み（売上には直接関係しない）</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background:#fff8dc; border:2px solid #f6c23e"></div>
+    <span><strong>集客チャネル</strong>：読者を集める入り口（無料）</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background:#ebf4ff; border:2px solid #60a5fa"></div>
+    <span><strong>読者の動き</strong>：購入までのステップ</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background:#e8f8f5; border:3px solid #16a085"></div>
+    <span><strong>収益源</strong>：実際にお金が入る場所</span>
+  </div>
+</div>
+
+</body>
+</html>
