@@ -3,371 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kindle電子書籍 読書補助ツールの活用ガイド</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Kindle読書を深める補助ツール活用ガイド</title>
     <style>
-        :root {
-            --primary-bg: #fdfdfd;
-            --secondary-bg: #ffffff;
-            --text-color: #333333;
-            --heading-color: #1a1a1a;
-            --accent-color: #007bff; /* 知的な青 */
-            --light-accent-color: #e6f2ff;
-            --border-color: #e0e0e0;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --font-family-base: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Meiryo', 'メイリオ', sans-serif;
-            --font-family-heading: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Meiryo', 'メイリオ', sans-serif;
-        }
+        /* Google Fonts - Noto Sans JP を想定 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+        /* 基本設定 */
         body {
-            font-family: var(--font-family-base);
+            font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
             line-height: 1.7;
-            color: var(--text-color);
-            background-color: var(--primary-bg);
+            color: #333;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
         }
-
-        header {
-            background-color: var(--secondary-bg);
-            color: var(--heading-color);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 4px var(--shadow-color);
-        }
-
-        header h1 {
-            font-family: var(--font-family-heading);
-            font-size: 2.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent-color);
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--text-color);
-        }
-
-        main {
+        .container {
             max-width: 960px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        section {
-            background-color: var(--secondary-bg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            border: 1px solid var(--border-color);
+        h1, h2, h3 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
         }
-
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            color: #34495e;
+            line-height: 1.3;
+        }
         h2 {
-            font-family: var(--font-family-heading);
-            font-size: 2rem;
-            color: var(--heading-color);
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--light-accent-color);
-            padding-bottom: 0.8rem;
-            font-weight: 600;
+            font-size: 1.8em;
+            border-left: 5px solid #3498db;
+            padding-left: 10px;
+            margin-top: 2em;
+            color: #34495e;
         }
-
         h3 {
-            font-family: var(--font-family-heading);
-            font-size: 1.4rem;
-            color: var(--accent-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
+            font-size: 1.4em;
+            color: #3498db;
+            margin-top: 1.5em;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 5px;
         }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
+        p {
+            margin-bottom: 1em;
         }
-
-        ul li {
-            position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        ul li::before {
-            content: "✓";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        ol {
-            padding-left: 1.5rem;
-        }
-
-        ol li {
-            margin-bottom: 0.8rem;
-        }
-
         a {
-            color: var(--accent-color);
+            color: #3498db;
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.8rem 1.5rem;
+        ul {
+            list-style: disc;
+            margin-left: 25px;
+            margin-bottom: 1em;
+            padding: 0;
+        }
+        ol {
+            list-style: decimal;
+            margin-left: 25px;
+            margin-bottom: 1em;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .card {
+            background-color: #fff;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 1.5rem;
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3498db; /* アクセントカラー */
         }
-
-        .cta-button:hover {
-            background-color: #0056b3;
-            text-decoration: none;
+        .card-inner {
+            border-left: 3px solid #eee;
+            padding-left: 15px;
+            margin-left: 10px;
         }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px dotted var(--border-color);
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-item:last-child {
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
             border-bottom: none;
-            margin-bottom: 0;
             padding-bottom: 0;
         }
-
-        .faq-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-            color: var(--heading-color);
+        .highlight-box {
+            background-color: #f0f8ff; /* Light blue background for highlights */
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 1.5em 0;
+            border-radius: 4px;
+        }
+        .info-box {
+            background-color: #e8f5e9; /* Light green for tips */
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 1.5em 0;
+            border-radius: 4px;
+        }
+        .emoji {
+            margin-right: 8px;
         }
 
-        footer {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            margin-top: 3rem;
-            background-color: var(--secondary-bg);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-size: 0.9rem;
-            box-shadow: 0 -2px 4px var(--shadow-color);
+        /* ナビゲーション */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+            background-color: #ecf0f1;
+            padding: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        nav li {
+            margin: 5px 15px;
+        }
+        nav a {
+            font-weight: bold;
+            color: #34495e;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+        nav a:hover, nav a:focus {
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* FAQアコーディオン */
+        .faq-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #34495e;
+            background-color: #ecf0f1;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #e0e6e7;
+        }
+        .faq-answer {
+            padding: 15px 20px;
+            background-color: #fff;
+            display: none;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-question .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 1.2em;
+        }
+        .faq-question.active .arrow {
+            transform: rotate(180deg);
         }
 
         /* レスポンシブデザイン */
-        @media screen and (max-width: 768px) {
-            header {
-                padding: 2rem 1rem;
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
             }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            header p {
-                font-size: 1rem;
-            }
-
-            main {
-                margin: 2rem auto;
-                padding: 0 1rem;
-            }
-
-            section {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
             h2 {
-                font-size: 1.6rem;
-                margin-bottom: 1rem;
+                font-size: 1.5em;
             }
-
             h3 {
-                font-size: 1.2rem;
-                margin-top: 1.5rem;
+                font-size: 1.2em;
             }
-
-            ul li {
-                padding-left: 1.5rem;
+            .container {
+                padding: 15px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            nav a {
+                padding: 10px 0;
+                border-radius: 0;
+            }
+            .card, .highlight-box, .info-box, .faq-item {
+                padding: 15px;
+            }
+            .faq-question {
+                padding: 12px 15px;
+            }
+            .faq-answer {
+                padding: 12px 15px;
             }
         }
-
-        @media screen and (max-width: 480px) {
-            header h1 {
-                font-size: 1.8rem;
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
             }
-
             h2 {
-                font-size: 1.4rem;
+                font-size: 1.3em;
             }
-
             h3 {
-                font-size: 1.1rem;
+                font-size: 1.1em;
             }
-
-            section {
-                padding: 1rem;
+            ul, ol {
+                margin-left: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Kindle電子書籍 読書補助ツールの活用ガイド</h1>
-        <p>Kindleの電子書籍を読む体験を、さらに深く、より効果的に。内蔵された様々な補助ツールを使いこなすことで、あなたの読書学習効果を最大限に引き出しましょう。</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Kindle読書を深める<br>補助ツール活用ガイド</h1>
+            <p style="text-align: center; font-size: 1.1em; color: #555;">Kindleの隠れた力を引き出し、読書体験を最大限に豊かにするためのヒントとテクニックをご紹介します。</p>
+        </header>
 
-    <main>
-        <section>
-            <h2>1. ツールの概要と書籍との連携方法</h2>
-            <p>Kindle電子書籍リーダーやアプリには、読書体験を豊かにし、学習効果を高めるための多くの補助ツールが搭載されています。これらを活用することで、ただ読むだけでなく、「学び」「考える」読書へとステップアップできます。</p>
-            <h3>Kindle補助ツールの基本機能</h3>
+        <nav>
             <ul>
-                <li><strong>ハイライト:</strong> 重要な文章や心に残ったフレーズを色付けしてマークします。</li>
-                <li><strong>メモ:</strong> ハイライトした箇所や特定の文章に対して、自分の考えや疑問を書き残せます。</li>
-                <li><strong>辞書・翻訳:</strong> 不明な単語をタップするだけで、内蔵辞書で意味を調べたり、他の言語に翻訳したりできます。</li>
-                <li><strong>検索:</strong> 書籍内だけでなく、Wikipediaやウェブ全体で関連情報を検索できます。</li>
-                <li><strong>しおり:</strong> 読書を中断した場所をマークしたり、後で参照したい特定のページを保存したりできます。</li>
-                <li><strong>X-Ray機能:</strong> 書籍内の主要な登場人物、キーワード、トピックの関連情報を一覧で確認できます。</li>
-                <li><strong>読書の進捗状況:</strong> 読んだページ数、残りの時間、章の進行度などを視覚的に確認できます。</li>
+                <li><a href="#overview">ツールの概要と連携</a></li>
+                <li><a href="#how-to-use">機能別ツールの使い方</a></li>
+                <li><a href="#effective-learning">学習効果を高める活用法</a></li>
+                <li><a href="#faq">よくある質問</a></li>
             </ul>
-            <h3>書籍との連携</h3>
-            <p>これらのツールは、Kindleアプリ（スマートフォン、タブレット、PC）やKindleデバイス（Paperwhite, Oasisなど）間でシームレスに同期されます。自宅でデバイスでハイライトした内容を、外出先のスマホアプリで確認・編集することも可能です。</p>
+        </nav>
+
+        <section id="overview">
+            <h2><span class="emoji">💡</span> Kindle補助ツールの概要と書籍との連携</h2>
+            <div class="card">
+                <p>Kindle電子書籍リーダーやKindleアプリには、単に文字を読むだけでなく、読書体験を格段に向上させるための様々な補助ツールが備わっています。これらを活用することで、理解を深め、知識を定着させ、読書をより有意義なものに変えることができます。</p>
+                <h3>主な補助ツール</h3>
+                <ul>
+                    <li><strong>ハイライト:</strong> 重要な箇所や心に残った文章に色付けし、後から簡単に見返せるようにします。</li>
+                    <li><strong>メモ:</strong> 読書中に浮かんだ疑問、感想、関連情報などを特定の箇所に直接書き込みます。</li>
+                    <li><strong>辞書/Wikipedia連携:</strong> 不明な単語をタップするだけで、その場で意味を調べたり、関連情報を参照したりできます。</li>
+                    <li><strong>X-Ray:</strong> 書籍内の主要な人物、トピック、用語などを一覧で確認し、関連する箇所にジャンプできます（対応書籍のみ）。</li>
+                    <li><strong>目次/検索機能:</strong> 特定の章やキーワードを素早く見つけ出し、効率的な読書をサポートします。</li>
+                </ul>
+                <div class="info-box">
+                    <p><strong><span class="emoji">📚</span> Kindleは「単なる本」を超えて：</strong> これらのツールは、紙の本では得られないデジタルの利点です。能動的に読書に取り組むことで、受動的な情報摂取から一歩進んだ学習体験へと変わります。</p>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>2. 各機能に対応したツールの使い方</h2>
-            <p>Kindleの各機能は、目的意識を持って使うことで、その真価を発揮します。</p>
+        <section id="how-to-use">
+            <h2><span class="emoji">🚀</span> 機能別ツールの使い方</h2>
+            <p>各ツールを具体的にどのように使うかを見ていきましょう。読書のフェーズや目的に合わせて使い分けることが重要です。</p>
 
-            <h3>2-1. ハイライト機能</h3>
-            <ol>
-                <li><strong>操作:</strong> 強調したい文章の先頭を長押しし、指を離さずに終点までドラッグして選択します。</li>
-                <li><strong>活用法:</strong>
-                    <ul>
-                        <li>重要な情報や後で振り返りたい箇所を視覚的にマーク。</li>
-                        <li>複数の色を使い分け、テーマ別にハイライトを分類（例: 重要事項は黄色、疑問点は青色など）。</li>
-                        <li>読書後にハイライトだけを読み返し、書籍の要点を効率的に復習。</li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h3>2-2. メモ機能</h3>
-            <ol>
-                <li><strong>操作:</strong> ハイライトした文章を選択後、表示されるメニューから「メモ」アイコンをタップし、テキストを入力します。または、ページ上の任意の場所を長押ししてメモを追加することも可能です。</li>
-                <li><strong>活用法:</strong>
-                    <ul>
-                        <li>読んでいる最中に浮かんだ疑問、考察、連想した事柄をその場で記録。</li>
-                        <li>章やセクションの要約を自分の言葉で書き留める。</li>
-                        <li>他の書籍や外部情報との関連性をメモとして残す。</li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h3>2-3. 辞書・翻訳・検索機能</h3>
-            <ol>
-                <li><strong>操作:</strong> 知りたい単語を長押しすると、自動的に辞書が起動し、意味が表示されます。「翻訳」タブで他言語翻訳、「検索」タブで書籍内やウェブ検索が可能です。</li>
-                <li><strong>活用法:</strong>
-                    <ul>
-                        <li>知らない単語や専門用語を即座に調べ、理解度を深める。</li>
-                        <li>語学学習において、辞書機能を積極的に利用し、語彙力を向上させる。</li>
-                        <li>書籍内で言及された人物名や地名などをウェブで検索し、背景知識を広げる。</li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h3>2-4. しおり・読書の進捗管理</h3>
-            <ol>
-                <li><strong>操作:</strong> 画面上部をタップし、メニューから「しおり」アイコンをタップすると、そのページにマークが付きます。メニューからは、目次やメモ・ハイライトの一覧にもアクセスできます。</li>
-                <li><strong>活用法:</strong>
-                    <ul>
-                        <li>読書を中断する際に「しおり」でマークし、再開時に素早く場所に戻る。</li>
-                        <li>特定の章やページに後で戻りたい場合に、複数のしおりを設定しておく。</li>
-                        <li>表示される読書進捗（例: 「残り〇分」）をモチベーションにして、読書を継続する。</li>
-                    </ul>
-                </li>
-            </ol>
-        </section>
-
-        <section>
-            <h2>3. 学習効果を高めるための活用法</h2>
-            <p>単なる読書から一歩進んで、「能動的な学習」へと繋げるための具体的な方法をご紹介します。</p>
-
-            <h3>3-1. 能動的読書の実践</h3>
-            <ul>
-                <li><strong>ハイライトとメモの組み合わせ:</strong> 重要な箇所をハイライトし、それに対して自分の意見や疑問をメモとして残すことで、思考を深めます。これにより、受動的な読書から能動的な読書へと転換できます。</li>
-                <li><strong>要約・アウトプット:</strong> 各章を読み終えるごとに、メモ機能を使ってその章の要約を作成します。読書後に全体の要約をブログやSNSで発信することも効果的です。</li>
-            </ul>
-
-            <h3>3-2. 復習と定着の習慣化</h3>
-            <ul>
-                <li><strong>ハイライト・メモの見直し:</strong> 読書を終えた後や、しばらく時間を置いてから、Kindleの「メモとハイライト」機能で一覧表示された内容を見返しましょう。これにより、内容の定着を促します。</li>
-                <li><strong>定期的な復習スケジュール:</strong> 例えば、読み終えて1週間後、1ヶ月後、3ヶ月後というように、計画的にハイライトやメモを見直す日を設定します。</li>
-            </ul>
-
-            <h3>3-3. 関連情報との連携</h3>
-            <ul>
-                <li><strong>「読書ノート」の作成:</strong> Kindleのメモを元に、NotionやEvernoteなどの外部ツールで自分専用の読書ノートを作成します。KindleのメモはPCからも管理・エクスポートできるため、整理が容易です。</li>
-                <li><strong>他の書籍との比較:</strong> 読んでいる書籍の内容を、以前読んだ関連書籍の内容と比較するメモを残すことで、知識のネットワークを構築します。</li>
-            </ul>
-
-            <p>Kindleの補助ツールは、あなたの知的探求を強力にサポートします。ぜひ、これらの機能を最大限に活用し、読書体験を次のレベルへと引き上げてください。</p>
-            <p><a href="https://www.amazon.co.jp/kindle-store/b?ie=UTF8&node=2250739051" target="_blank" class="cta-button">Kindleストアで書籍を探す</a></p>
-        </section>
-
-        <section>
-            <h2>4. よくある質問 (FAQ)</h2>
-
-            <div class="faq-item">
-                <strong>Q: ハイライトやメモはどこで確認できますか？</strong>
-                <p>A: Kindleデバイスやアプリの読書画面で、画面上部をタップしてメニューを表示し、「ノート」または「メモとハイライト」を選択すると、一覧で確認できます。また、PCブラウザから <a href="https://read.amazon.co.jp/notebook" target="_blank">Kindle Personal Document Service</a> にアクセスすることでも確認・管理が可能です。</p>
+            <div class="card">
+                <h3>1. ハイライト（マーカー）機能</h3>
+                <p>重要な情報や感動した文章を見逃さないための最も基本的なツールです。</p>
+                <ol>
+                    <li><strong>使い方:</strong> 指で強調したい箇所を長押しし、ドラッグして範囲を選択。表示されるポップアップメニューから「ハイライト」を選択します。色を選択できる場合もあります。</li>
+                    <li><strong>効果的な活用:</strong>
+                        <ul>
+                            <li><strong>多色使い:</strong> 例えば、「重要ポイント」は黄色、「疑問点」は青、「後で調べたい」は緑、のように色分けすると、後から見返したときに整理しやすくなります。</li>
+                            <li><strong>読み返し用:</strong> 後で要約したい、人に説明したい箇所にハイライトを入れる。</li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
 
-            <div class="faq-item">
-                <strong>Q: Kindle以外のアプリやPCにメモをエクスポートできますか？</strong>
-                <p>A: はい、可能です。前述のKindle Personal Document Serviceのウェブサイトで、書籍ごとのハイライトやメモをテキスト形式でコピーしたり、一部のツールではエクスポート機能を利用できる場合があります。</p>
+            <div class="card">
+                <h3>2. メモ機能</h3>
+                <p>自分の思考を記録し、書籍の内容と結びつけることで、理解を深めます。</p>
+                <ol>
+                    <li><strong>使い方:</strong> ハイライトと同じく、テキストを選択した後に表示されるメニューから「メモ」を選択。キーボードで入力します。</li>
+                    <li><strong>効果的な活用:</strong>
+                        <ul>
+                            <li><strong>疑問を書き出す:</strong> 「これはどういう意味だろう？」「著者はなぜこの主張をするのか？」</li>
+                            <li><strong>関連情報を追記:</strong> 読書中に頭に浮かんだ関連知識や、後で調べた情報を追記します。</li>
+                            <li><strong>自分の言葉で要約:</strong> その箇所の内容を自分の言葉で簡潔にまとめます。</li>
+                            <li><strong>感情を記録:</strong> 「感動した」「これは納得がいかない」といった感情も記録することで、後から見返した際にその時の思考プロセスを再現できます。</li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
 
-            <div class="faq-item">
-                <strong>Q: 辞書機能がうまく動作しません。どうすれば良いですか？</strong>
-                <p>A: まず、KindleデバイスがWi-Fiに接続されているか確認してください。次に、辞書がダウンロードされているかを確認します。設定メニューから「言語と辞書」の項目を確認し、必要な辞書がダウンロードされていることを確認してください。もし問題が解決しない場合は、Kindleの再起動を試みてください。</p>
+            <div class="card">
+                <h3>3. 辞書・Wikipedia連携</h3>
+                <p>語彙力向上と知識拡張に役立つ強力なツールです。</p>
+                <ol>
+                    <li><strong>使い方:</strong> 知らない単語を長押しするだけで、内蔵辞書の意味が表示されます。さらに「Wikipedia」や「翻訳」のオプションが利用できる場合もあります。</li>
+                    <li><strong>効果的な活用:</strong>
+                        <ul>
+                            <li><strong>即座に確認:</strong> 読書の流れを止めずに、不明な単語や概念をその場で解決します。</li>
+                            <li><strong>専門用語の習得:</strong> 専門書を読む際に、用語の意味をその都度確認することで、スムーズに理解を進められます。</li>
+                            <li><strong>概念の広がり:</strong> Wikipediaで関連情報を参照し、知識のネットワークを広げます。</li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
 
-            <div class="faq-item">
-                <strong>Q: 読み放題サービス（Kindle Unlimited）でも補助ツールは使えますか？</strong>
-                <p>A: はい、Kindle Unlimitedで読んでいる書籍でも、ハイライト、メモ、辞書、検索などの全ての補助ツールを通常通り利用することができます。</p>
+            <div class="card">
+                <h3>4. X-Ray機能（対応書籍のみ）</h3>
+                <p>書籍の全体像を把握し、主要な要素を深掘りするのに役立ちます。</p>
+                <ol>
+                    <li><strong>使い方:</strong> 読書画面上部をタップし、メニューアイコン（通常は虫眼鏡または三本線）をタップ。「X-Ray」を選択します。</li>
+                    <li><strong>効果的な活用:</strong>
+                        <ul>
+                            <li><strong>事前確認:</strong> 読書を始める前に、主要人物や用語、トピックをざっと確認し、予備知識を得る。</li>
+                            <li><strong>復習時:</strong> 特定の人物がいつ、どの章で登場したかなどを素早く確認する。</li>
+                            <li><strong>複雑な物語の理解:</strong> 登場人物が多い小説などで、人物間の関係性を整理するのに役立ちます。</li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
-
-            <div class="faq-item">
-                <strong>Q: 目に優しい画面設定はありますか？</strong>
-                <p>A: Kindleデバイスには「フロントライト」の調整機能があり、Kindleアプリには「背景色」や「フォントサイズ」の変更機能があります。特にKindle PaperwhiteやOasisなどのEインクディスプレイは目に優しく設計されています。アプリでは背景色を「セピア」や「ダークモード」に設定することで、目の負担を軽減できます。</p>
+            <div class="highlight-box">
+                <p><strong><span class="emoji">✨</span> ヒント：</strong> これらのハイライトやメモは、Kindleアプリやウェブブラウザ（<a href="https://read.amazon.com/notebook" target="_blank">read.amazon.com/notebook</a>）から一元管理できます。読書後にまとめて見返したり、エクスポートしたりすることも可能です。</p>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2023 Kindle読書補助ツール活用ガイド. All rights reserved.</p>
-    </footer>
+        <section id="effective-learning">
+            <h2><span class="emoji">🧠</span> 学習効果を高めるための活用法</h2>
+            <p>単にツールを使うだけでなく、読書プロセス全体に組み込むことで、学習効果を最大化できます。</p>
+
+            <div class="card">
+                <h3>1. 読書前の準備</h3>
+                <div class="card-inner">
+                    <ul>
+                        <li><strong>目的設定:</strong> 何を知りたいか、何を学びたいかを明確にする。</li>
+                        <li><strong>目次とX-Rayの活用:</strong> 全体の構成や主要なテーマを事前に把握し、どこに重点を置いて読むべきか見当をつける。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>2. 読書中の能動的な取り組み</h3>
+                <div class="card-inner">
+                    <ul>
+                        <li><strong>「なぜ？」を常に問う:</strong> 著者の主張に対して、「なぜそう言えるのか？」「他に選択肢はないか？」と自問自答し、メモに残す。</li>
+                        <li><strong>自分の言葉で再構成:</strong> 難しい概念や重要な定義は、ハイライトしつつ、自分の言葉でメモに要約する。</li>
+                        <li><strong>疑問点の即時解消:</strong> 知らない単語や概念が出てきたら、その場で辞書やWikipediaで確認し、理解を深める。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>3. 読書後の振り返り</h3>
+                <div class="card-inner">
+                    <ul>
+                        <li><strong>ハイライトとメモのレビュー:</strong> 読み終えた後に、すべてのハイライトとメモをまとめて見返し、書籍全体の要点や自分の学びを整理します。</li>
+                        <li><strong>要約・アウトプット:</strong> Kindleのハイライト・メモ機能を使って得た情報を基に、自分なりの要約を作成したり、ブログ記事やSNSで感想を共有したりする。</li>
+                        <li><strong>関連書籍への接続:</strong> 読書中に生まれた疑問や興味を深掘りするために、関連する別の書籍を探す。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong><span class="emoji">💡</span> 学びを定着させる秘訣:</strong> 読書は一度きりで終わらせず、繰り返し見返し、アウトプットするプロセスまで含めて初めて「学習」となります。Kindleの補助ツールはそのプロセスを強力にサポートします。</p>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2><span class="emoji">❓</span> よくある質問 (FAQ)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: ハイライトやメモは他の端末でも同期されますか？ <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A: はい、KindleのハイライトやメモはAmazonアカウントに紐付けられ、インターネット接続がある環境であれば、すべてのKindle端末やKindleアプリ（スマートフォン、タブレット、PC）で自動的に同期されます。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: ハイライトやメモはエクスポートできますか？ <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A: はい、可能です。ウェブブラウザで <a href="https://read.amazon.com/notebook" target="_blank">read.amazon.com/notebook</a> にアクセスすると、すべてのハイライトとメモが書籍ごとに表示され、コピー＆ペーストでエクスポートしたり、一部のツールではCSV形式で出力したりすることができます。また、Kindle端末をUSBでPCに接続し、ドキュメントフォルダ内の「My Clippings.txt」ファイルから直接取得することもできます。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: X-Ray機能はどの書籍でも使えますか？ <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A: いいえ、X-Ray機能は全ての書籍で利用できるわけではありません。出版社の提供する情報に基づいているため、対応している書籍とそうでない書籍があります。通常、Kindleストアの書籍詳細ページでX-Ray対応の有無が記載されています。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: 読書中の画面設定（フォントサイズ、行間など）も学習効果に影響しますか？ <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A: はい、大いに影響します。自分にとって最も読みやすい設定に調整することで、目の疲れを軽減し、集中力を維持しやすくなります。フォント、文字サイズ、行間、余白、画面の明るさなどを最適化しましょう。快適な読書環境は、理解度と持続力に直結します。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: Kindle Unlimitedの書籍でも補助ツールは使えますか？ <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A: はい、Kindle Unlimitedで借りた書籍でも、通常の購入書籍と同様にハイライト、メモ、辞書などの補助ツールを利用することができます。ただし、レンタル期間が終了し書籍が返却されると、ハイライトやメモへのアクセスはできなくなりますが、返却前にウェブサイト (read.amazon.com/notebook) から確認・エクスポートしておくことをお勧めします。</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #777;">
+                このガイドがあなたのKindle読書体験をより豊かにする一助となれば幸いです。
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // FAQのアコーディオン機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const arrow = this.querySelector('.arrow');
+
+                    // クリックされたFAQを開閉
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        this.classList.remove('active');
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        // 他の開いているFAQを閉じる（任意）
+                        faqQuestions.forEach(otherQuestion => {
+                            if (otherQuestion.classList.contains('active')) {
+                                otherQuestion.nextElementSibling.style.display = 'none';
+                                otherQuestion.classList.remove('active');
+                                otherQuestion.querySelector('.arrow').style.transform = 'rotate(0deg)';
+                            }
+                        });
+
+                        answer.style.display = 'block';
+                        this.classList.add('active');
+                        arrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

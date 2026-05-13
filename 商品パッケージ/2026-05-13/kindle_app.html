@@ -1,41 +1,53 @@
+はい、承知いたしました。Kindle電子書籍「ChatGPTプロンプト完全攻略」のテーマに基づき、読者の学習・実践をサポートするためのHTMLツールを生成します。
+
+このツールは、以下の機能を提供します。
+
+1.  **学習進捗チェックリスト:** 書籍の重要ポイントをチェックし、学習の達成度を可視化します。
+2.  **プロンプト作成ワークシート:** 書籍で学ぶ「良いプロンプトの原則」と「主要な7つの要素」を実践し、具体的なプロンプトを作成するためのガイド付きツールです。
+3.  **実践記録・振り返りジャーナル:** 作成したプロンプトを実際に使ってみた結果を記録し、改善点や気づきを蓄積することで、継続的なスキルアップを促します。
+
+すべてのデータはブラウザのローカルストレージに保存されるため、個人情報が外部に送信されることはありません。また、スマートフォンでの利用にも対応しています。
+
+---
+
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIコンテンツ加速ワークショップ | ChatGPT×爆速コンテンツ術</title>
+    <title>ChatGPTプロンプト実践ロードマップ 補助ツール</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Chart.js CDN (今回は直接使用しないが、将来的な拡張のため読み込み) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <style>
         body {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f8f9fa;
             color: #343a40;
         }
         .container {
             max-width: 960px;
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 30px;
         }
         h1, h2, h3 {
-            color: #007bff;
+            color: #007bff; /* Primary color */
             margin-bottom: 20px;
+            font-weight: 600;
         }
-        .card {
-            margin-bottom: 25px;
-            border: none;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-            font-size: 1.25rem;
-            border-bottom: none;
-            padding: 1rem 1.25rem;
-        }
-        .form-label {
+        .nav-link {
             font-weight: 500;
+            color: #6c757d;
+        }
+        .nav-link.active {
+            color: #007bff;
+            border-color: #007bff !important;
         }
         .btn-primary {
             background-color: #007bff;
@@ -45,521 +57,468 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #c82333;
-        }
-        .table th, .table td {
-            vertical-align: middle;
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 5px;
         }
         .progress-bar {
-            background-color: #28a745; /* Green for success */
+            background-color: #28a745; /* Success color for progress */
         }
-        #totalTimeSavedDisplay {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #28a745;
-            margin-bottom: 20px;
+        .card {
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-        #projectLogTable td {
-            word-break: break-word; /* For long prompts */
-            max-width: 200px; /* Limit width to avoid excessive stretching */
+        .record-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
         }
-        .chart-container {
-            position: relative;
-            height: 250px; /* Adjust height as needed */
-            width: 100%;
+        .record-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
-        @media (max-width: 767.98px) {
-            .table-responsive {
-                border: 1px solid #dee2e6;
-                border-radius: .25rem;
-            }
-            .table th, .table td {
-                font-size: 0.8em; /* Smaller font on mobile */
-                padding: 0.4rem; /* Smaller padding on mobile */
-            }
-            #projectLogTable td {
-                max-width: 100px; /* Further limit width on smaller screens */
-            }
-            .chart-container {
-                height: 200px;
-            }
+        .prompts-generated-area {
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            min-height: 100px;
+            word-break: break-all; /* 長いプロンプトの折り返し */
+        }
+        .input-group-text {
+            background-color: #e9ecef;
+        }
+        .form-check-input {
+            margin-top: 0.3em;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            text-align: center;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="text-center my-4">
-            <h1 class="display-4">AIコンテンツ加速ワークショップ</h1>
-            <p class="lead">『ChatGPT×爆速コンテンツ術』読者のための実践サポートツール</p>
-        </header>
+        <h1 class="text-center mb-4">ChatGPTプロンプト実践ロードマップ 補助ツール</h1>
+        <p class="text-center lead">書籍「ChatGPTプロンプト完全攻略」の学習・実践をサポートします。</p>
 
-        <!-- ChatGPT活用度チェックリスト -->
-        <div class="card">
-            <div class="card-header">
-                ChatGPT活用度チェックリスト
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="learning-tab" data-bs-toggle="tab" data-bs-target="#learning" type="button" role="tab" aria-controls="learning" aria-selected="true">
+                    学習進捗チェックリスト
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="prompt-creation-tab" data-bs-toggle="tab" data-bs-target="#prompt-creation" type="button" role="tab" aria-controls="prompt-creation" aria-selected="false">
+                    プロンプト作成ワークシート
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="practice-record-tab" data-bs-toggle="tab" data-bs-target="#practice-record" type="button" role="tab" aria-controls="practice-record" aria-selected="false">
+                    実践記録・振り返り
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- 学習進捗チェックリスト -->
+            <div class="tab-pane fade show active" id="learning" role="tabpanel" aria-labelledby="learning-tab">
+                <h3 class="mb-3">学習進捗チェックリスト</h3>
+                <p>書籍の内容を理解し、実践した項目にチェックを入れましょう。進捗度が可視化されます。</p>
+                <div class="progress mb-3" style="height: 25px;">
+                    <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+
+                <div id="learning-checklist">
+                    <!-- 項目はJavaScriptで生成 -->
+                </div>
             </div>
-            <div class="card-body">
-                <p>あなたのChatGPT活用スキルをセルフチェック！進捗バーで達成度を確認しましょう。</p>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist1">
-                    <label class="form-check-label" for="checklist1">
-                        コンテンツテーマのアイデア出しにAIを活用した
-                    </label>
+
+            <!-- プロンプト作成ワークシート -->
+            <div class="tab-pane fade" id="prompt-creation" role="tabpanel" aria-labelledby="prompt-creation-tab">
+                <h3 class="mb-3">プロンプト作成ワークシート</h3>
+                <p>書籍で学んだ「良いプロンプトの3原則」と「主要な7つの要素」に基づき、高品質なプロンプトを作成しましょう。</p>
+
+                <div class="mb-3">
+                    <label for="promptRole" class="form-label">役（Role）：ChatGPTにどのような役割を演じさせますか？</label>
+                    <input type="text" class="form-control" id="promptRole" placeholder="例: 優秀なコピーライター、プログラミング講師、SEO専門家">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist2">
-                    <label class="form-check-label" for="checklist2">
-                        コンテンツのアウトライン/構成作成にAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptTask" class="form-label">タスク（Task）：具体的に何をしてもらいたいですか？</label>
+                    <textarea class="form-control" id="promptTask" rows="3" placeholder="例: ターゲット層に響くキャッチフレーズを10案生成してください。Pythonのリスト操作について初心者にもわかるように説明してください。"></textarea>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist3">
-                    <label class="form-check-label" for="checklist3">
-                        本文のドラフト作成にAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptContext" class="form-label">背景情報・文脈（Context）：タスクの背景や目的、なぜそれを行うのか？</label>
+                    <textarea class="form-control" id="promptContext" rows="3" placeholder="例: 30代女性向けの美容サプリメントのLP用キャッチフレーズです。ユーザーはプログラミング未経験者です。"></textarea>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist4">
-                    <label class="form-check-label" for="checklist4">
-                        SEOキーワードの提案・選定にAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptConstraint" class="form-label">制約・条件（Constraint）：文字数、トーン、使用禁止ワード、フォーマットなど</label>
+                    <textarea class="form-control" id="promptConstraint" rows="3" placeholder="例: 30文字以内、親しみやすいトーンで、誇大表現は避けてください。マークダウン形式でコード例を交えてください。"></textarea>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist5">
-                    <label class="form-check-label" for="checklist5">
-                        既存コンテンツの表現改善/校正にAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptOutputFormat" class="form-label">出力形式（Output Format）：リスト、表、JSONなど、どのような形式で出力してほしいですか？</label>
+                    <input type="text" class="form-control" id="promptOutputFormat" placeholder="例: 番号付きリストで、各案に簡単な説明も添えてください。箇条書きで分かりやすく。">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist6">
-                    <label class="form-check-label" for="checklist6">
-                        多言語翻訳・ローカライズにAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptExamples" class="form-label">具体例（Examples）：参考になる良い例や悪い例を提示しますか？ (任意)</label>
+                    <textarea class="form-control" id="promptExamples" rows="3" placeholder="例: 良い例: 「輝く私、今日から始める美習慣」 悪い例: 「今すぐ痩せる奇跡のサプリ」"></textarea>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist7">
-                    <label class="form-check-label" for="checklist7">
-                        異なるターゲット層へのリコンテンツにAIを活用した
-                    </label>
+                <div class="mb-3">
+                    <label for="promptTargetAudience" class="form-label">ターゲットオーディエンス（Target Audience）：誰に向けた出力ですか？ (任意)</label>
+                    <input type="text" class="form-control" id="promptTargetAudience" placeholder="例: 30代女性、プログラミング初心者、中小企業の経営者">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input checklist-item" type="checkbox" id="checklist8">
-                    <label class="form-check-label" for="checklist8">
-                        タイトルや見出しのA/Bテスト案作成にAIを活用した
-                    </label>
+
+                <button type="button" class="btn btn-primary mb-3" id="generatePromptBtn">プロンプトを生成</button>
+                <button type="button" class="btn btn-outline-secondary mb-3 ms-2" id="clearPromptFormBtn">フォームをクリア</button>
+
+                <div class="mt-4">
+                    <label for="generatedPrompt" class="form-label">生成されたプロンプト</label>
+                    <div class="input-group">
+                        <textarea class="form-control prompts-generated-area" id="generatedPrompt" rows="8" readonly placeholder="上記フォームに入力して「プロンプトを生成」ボタンを押すとここに表示されます。"></textarea>
+                        <button class="btn btn-outline-secondary" type="button" id="copyPromptBtn">コピー</button>
+                    </div>
                 </div>
-                <div class="progress mt-3">
-                    <div class="progress-bar" role="progressbar" id="checklistProgressBar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+
+            <!-- 実践記録・振り返り -->
+            <div class="tab-pane fade" id="practice-record" role="tabpanel" aria-labelledby="practice-record-tab">
+                <h3 class="mb-3">実践記録・振り返りジャーナル</h3>
+                <p>実際にChatGPTを使ってプロンプトを試した結果を記録し、次の改善に活かしましょう。</p>
+
+                <div class="mb-3">
+                    <label for="recordDate" class="form-label">日付</label>
+                    <input type="date" class="form-control" id="recordDate" value="">
+                </div>
+                <div class="mb-3">
+                    <label for="recordPrompt" class="form-label">使用したプロンプト</label>
+                    <textarea class="form-control" id="recordPrompt" rows="4" placeholder="実際にChatGPTに入力したプロンプトを貼り付けてください。"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="recordResult" class="form-label">結果・得られたアウトプットの評価、気づき</label>
+                    <textarea class="form-control" id="recordResult" rows="5" placeholder="どのようなアウトプットが得られましたか？期待通りでしたか？何が良かったですか？"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="recordNextAction" class="form-label">次のアクション・改善点</label>
+                    <textarea class="form-control" id="recordNextAction" rows="3" placeholder="この経験を元に、次に何を改善しますか？別のプロンプトを試しますか？"></textarea>
+                </div>
+
+                <button type="button" class="btn btn-primary mb-4" id="addRecordBtn">記録を追加</button>
+
+                <h4 class="mt-5 mb-3">これまでの実践記録</h4>
+                <div id="practiceRecordsList">
+                    <p class="text-muted" id="noRecordsMessage">まだ記録がありません。</p>
                 </div>
             </div>
         </div>
-
-        <!-- コンテンツプロジェクト計画 & 実行ログ -->
-        <div class="card">
-            <div class="card-header">
-                コンテンツプロジェクト計画 & 実行ログ
-            </div>
-            <div class="card-body">
-                <p>ChatGPTを活用したプロジェクトを記録し、その効果を可視化しましょう。</p>
-                <form id="projectLogForm" class="mb-4">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="projectName" class="form-label">プロジェクト名</label>
-                            <input type="text" class="form-control" id="projectName" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="contentType" class="form-label">コンテンツの種類</label>
-                            <select class="form-select" id="contentType" required>
-                                <option value="">選択してください</option>
-                                <option value="ブログ記事">ブログ記事</option>
-                                <option value="SNS投稿">SNS投稿</option>
-                                <option value="YouTubeスクリプト">YouTubeスクリプト</option>
-                                <option value="メールマガジン">メールマガジン</option>
-                                <option value="商品紹介文">商品紹介文</option>
-                                <option value="広告コピー">広告コピー</option>
-                                <option value="その他">その他</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <label for="projectGoal" class="form-label">プロジェクト目標</label>
-                            <input type="text" class="form-control" id="projectGoal" placeholder="例: SEO改善、読者エンゲージメント向上">
-                        </div>
-                        <div class="col-12">
-                            <label for="chatgptPhase" class="form-label">ChatGPTの主な活用フェーズ</label>
-                            <input type="text" class="form-control" id="chatgptPhase" placeholder="例: 企画・アイデア出し、ドラフト作成、推敲・校正">
-                        </div>
-                        <div class="col-12">
-                            <label for="mainPrompt" class="form-label">使用した主要プロンプト (テンプレート)</label>
-                            <textarea class="form-control" id="mainPrompt" rows="3" placeholder="AIに与えた具体的な指示や質問を記録。後で役立ちます！"></textarea>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="manualTime" class="form-label">手動での見積もり時間 (分)</label>
-                            <input type="number" class="form-control" id="manualTime" min="0" value="0" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="aiTime" class="form-label">AI活用での見積もり時間 (分)</label>
-                            <input type="number" class="form-control" id="aiTime" min="0" value="0" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="completionDate" class="form-label">完了日</label>
-                            <input type="date" class="form-control" id="completionDate" value="">
-                        </div>
-                        <div class="col-12">
-                            <label for="projectLearnings" class="form-label">結果・学び</label>
-                            <textarea class="form-control" id="projectLearnings" rows="3" placeholder="AI活用の効果、課題、次の改善点などを記入"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">プロジェクトを記録</button>
-                        </div>
-                    </div>
-                </form>
-
-                <h3 class="mb-3">記録されたプロジェクト</h3>
-                <div id="totalTimeSavedDisplay" class="text-center">合計削減時間: <span>0</span> 分</div>
-                <div class="chart-container mb-4">
-                    <canvas id="timeSavingsChart"></canvas>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">プロジェクト名</th>
-                                <th scope="col">種類</th>
-                                <th scope="col">活用フェーズ</th>
-                                <th scope="col">主要プロンプト</th>
-                                <th scope="col">手動(分)</th>
-                                <th scope="col">AI(分)</th>
-                                <th scope="col">削減(分)</th>
-                                <th scope="col">削減率(%)</th>
-                                <th scope="col">完了日</th>
-                                <th scope="col">結果・学び</th>
-                                <th scope="col">アクション</th>
-                            </tr>
-                        </thead>
-                        <tbody id="projectLogTable">
-                            <tr><td colspan="12" class="text-center text-muted">記録されたプロジェクトはありません。</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- 振り返り & 次のアクション -->
-        <div class="card">
-            <div class="card-header">
-                振り返り & 次のアクション
-            </div>
-            <div class="card-body">
-                <p>日々の学びや気づきを記録し、今後のアクションプランを立てましょう。</p>
-                <form id="reflectionForm" class="mb-4">
-                    <div class="mb-3">
-                        <label for="reflectionDate" class="form-label">日付</label>
-                        <input type="date" class="form-control" id="reflectionDate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="todaysLearning" class="form-label">今日の学び・気づき</label>
-                        <textarea class="form-control" id="todaysLearning" rows="4" placeholder="AI活用で得た新しい知見や成功体験、失敗から学んだことなど"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nextAction" class="form-label">次に試したいこと・改善点</label>
-                        <textarea class="form-control" id="nextAction" rows="3" placeholder="今後挑戦したいプロンプト、効率化したい作業、改善したい点など"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">振り返りを記録</button>
-                </form>
-
-                <h3 class="mb-3">これまでの振り返り</h3>
-                <div id="reflectionList" class="list-group">
-                    <p class="text-center text-muted">記録された振り返りはありません。</p>
-                </div>
-            </div>
-        </div>
-
-        <footer class="text-center mt-5 mb-3 text-muted">
-            <p>&copy; AIコンテンツ加速ワークショップ - あなたのAIクリエイティブパートナー</p>
-        </footer>
     </div>
+
+    <footer>
+        <p>&copy; 2026 ChatGPTプロンプト完全攻略 補助ツール. All rights reserved.</p>
+        <p>※本ツールはブラウザのローカルストレージを使用しており、個人情報を収集することはありません。</p>
+    </footer>
 
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Global Data Storage Keys ---
-            const CHECKLIST_KEY = 'aiContentTool_checklist';
-            const PROJECTS_KEY = 'aiContentTool_projects';
-            const REFLECTIONS_KEY = 'aiContentTool_reflections';
+            // --- グローバル変数と定数 ---
+            const LS_PREFIX = 'chatgpt_prompt_tool_';
 
-            // --- ChatGPT活用度チェックリスト ---
-            const checklistItems = document.querySelectorAll('.checklist-item');
-            const checklistProgressBar = document.getElementById('checklistProgressBar');
+            // --- 学習進捗チェックリスト関連 ---
+            const learningChecklistEl = document.getElementById('learning-checklist');
+            const progressBarEl = document.getElementById('progress-bar');
+            const learningItems = [
+                { id: 'item1-1-0', text: 'AI時代の働き方革命とプロンプトエンジニアリングの重要性を理解した' },
+                { id: 'item1-1-1', text: 'ChatGPT5.0がもたらす「思考の拡張」と「生産性の爆発」について理解した' },
+                { id: 'item1-1-2', text: 'アイデアの枯渇からの解放と創造性の増幅について理解した' },
+                { id: 'item1-2-1', text: '「プロンプトエンジニアリング」の定義と重要性を理解した' },
+                { id: 'item2-1-0', text: '良いプロンプトの3原則（明確性・具体性・目的性）を理解し、説明できる' },
+                { id: 'item2-1-1', text: '明確性（Clarity）の重要性を理解し、曖昧さを排除する意識を持つ' },
+                { id: 'item2-1-2', text: '具体性（Specificity）の重要性を理解し、詳細な情報と条件を与える意識を持つ' },
+                { id: 'item2-1-3', text: '目的性（Purposefulness）の重要性を理解し、最終目標と文脈を共有する意識を持つ' },
+                { id: 'item2-2-0', text: 'プロンプトに含めるべき主要な7つの要素の概念を理解した' },
+                { id: 'item2-2-1', text: '役（Role）を設定することの重要性を理解し、実践できる' },
+                // 他の書籍内容に合わせて項目を追加してください
+            ];
 
-            function loadChecklistState() {
-                const state = JSON.parse(localStorage.getItem(CHECKLIST_KEY)) || {};
-                checklistItems.forEach(item => {
-                    item.checked = state[item.id] || false;
-                });
-                updateChecklistProgress();
-            }
+            // --- プロンプト作成ワークシート関連 ---
+            const promptRoleEl = document.getElementById('promptRole');
+            const promptTaskEl = document.getElementById('promptTask');
+            const promptContextEl = document.getElementById('promptContext');
+            const promptConstraintEl = document.getElementById('promptConstraint');
+            const promptOutputFormatEl = document.getElementById('promptOutputFormat');
+            const promptExamplesEl = document.getElementById('promptExamples');
+            const promptTargetAudienceEl = document.getElementById('promptTargetAudience');
+            const generatePromptBtn = document.getElementById('generatePromptBtn');
+            const clearPromptFormBtn = document.getElementById('clearPromptFormBtn');
+            const generatedPromptEl = document.getElementById('generatedPrompt');
+            const copyPromptBtn = document.getElementById('copyPromptBtn');
 
-            function saveChecklistState() {
-                const state = {};
-                checklistItems.forEach(item => {
-                    state[item.id] = item.checked;
-                });
-                localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state));
-            }
+            // --- 実践記録・振り返り関連 ---
+            const recordDateEl = document.getElementById('recordDate');
+            const recordPromptEl = document.getElementById('recordPrompt');
+            const recordResultEl = document.getElementById('recordResult');
+            const recordNextActionEl = document.getElementById('recordNextAction');
+            const addRecordBtn = document.getElementById('addRecordBtn');
+            const practiceRecordsListEl = document.getElementById('practiceRecordsList');
+            const noRecordsMessageEl = document.getElementById('noRecordsMessage');
 
-            function updateChecklistProgress() {
-                const checkedCount = Array.from(checklistItems).filter(item => item.checked).length;
-                const totalCount = checklistItems.length;
-                const percentage = totalCount > 0 ? (checkedCount / totalCount) * 100 : 0;
-                checklistProgressBar.style.width = `${percentage}%`;
-                checklistProgressBar.setAttribute('aria-valuenow', percentage);
-                checklistProgressBar.textContent = `${Math.round(percentage)}%`;
-            }
+            // --- 初期化処理 ---
+            loadAllData();
+            renderLearningChecklist();
+            renderPracticeRecords();
+            updateTodayDate();
 
-            checklistItems.forEach(item => {
-                item.addEventListener('change', () => {
-                    saveChecklistState();
-                    updateChecklistProgress();
-                });
-            });
+            // --- 関数定義 ---
 
-            // --- コンテンツプロジェクト計画 & 実行ログ ---
-            const projectLogForm = document.getElementById('projectLogForm');
-            const projectLogTableBody = document.getElementById('projectLogTable');
-            const totalTimeSavedDisplay = document.querySelector('#totalTimeSavedDisplay span');
-            let timeSavingsChart; // Chart.js instance
-
-            function loadProjects() {
-                return JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
-            }
-
-            function saveProjects(projects) {
-                localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
-            }
-
-            function renderProjects() {
-                const projects = loadProjects();
-                projectLogTableBody.innerHTML = ''; // Clear existing rows
-                let totalSavedMinutes = 0;
-                const projectNames = [];
-                const savedTimes = [];
-
-                if (projects.length === 0) {
-                    projectLogTableBody.innerHTML = '<tr><td colspan="12" class="text-center text-muted">記録されたプロジェクトはありません。</td></tr>';
-                    totalTimeSavedDisplay.textContent = '0';
-                    updateTimeSavingsChart([], []);
-                    return;
-                }
-
-                projects.forEach((project, index) => {
-                    const manualTime = parseInt(project.manualTime) || 0;
-                    const aiTime = parseInt(project.aiTime) || 0;
-                    const timeSaved = manualTime - aiTime;
-                    const percentageSaved = manualTime > 0 ? ((timeSaved / manualTime) * 100).toFixed(1) : 0;
-                    totalSavedMinutes += timeSaved;
-
-                    projectNames.push(project.projectName);
-                    savedTimes.push(timeSaved);
-
-                    const row = `
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${project.projectName}</td>
-                            <td>${project.contentType}</td>
-                            <td>${project.chatgptPhase}</td>
-                            <td><div style="max-height: 100px; overflow-y: auto;">${project.mainPrompt}</div></td>
-                            <td>${manualTime}</td>
-                            <td>${aiTime}</td>
-                            <td>${timeSaved}</td>
-                            <td>${percentageSaved}%</td>
-                            <td>${project.completionDate}</td>
-                            <td><div style="max-height: 100px; overflow-y: auto;">${project.projectLearnings}</div></td>
-                            <td><button class="btn btn-danger btn-sm" onclick="deleteProject(${index})">削除</button></td>
-                        </tr>
-                    `;
-                    projectLogTableBody.innerHTML += row;
-                });
-                totalTimeSavedDisplay.textContent = totalSavedMinutes;
-                updateTimeSavingsChart(projectNames, savedTimes);
-            }
-
-            // Global function for deletion, callable from onclick attributes
-            window.deleteProject = (index) => {
-                let projects = loadProjects();
-                if (confirm(`${projects[index].projectName} を削除しますか？`)) {
-                    projects.splice(index, 1);
-                    saveProjects(projects);
-                    renderProjects();
-                }
-            };
-
-            projectLogForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newProject = {
-                    projectName: document.getElementById('projectName').value,
-                    contentType: document.getElementById('contentType').value,
-                    projectGoal: document.getElementById('projectGoal').value,
-                    chatgptPhase: document.getElementById('chatgptPhase').value,
-                    mainPrompt: document.getElementById('mainPrompt').value,
-                    manualTime: document.getElementById('manualTime').value,
-                    aiTime: document.getElementById('aiTime').value,
-                    completionDate: document.getElementById('completionDate').value,
-                    projectLearnings: document.getElementById('projectLearnings').value
-                };
-
-                let projects = loadProjects();
-                projects.push(newProject);
-                saveProjects(projects);
-                renderProjects();
-                projectLogForm.reset(); // Clear form
-                document.getElementById('manualTime').value = 0; // Reset number inputs
-                document.getElementById('aiTime').value = 0;
-                document.getElementById('completionDate').valueAsDate = new Date(); // Reset date to today
-            });
-
-            function updateTimeSavingsChart(labels, data) {
-                const ctx = document.getElementById('timeSavingsChart').getContext('2d');
-
-                if (timeSavingsChart) {
-                    timeSavingsChart.destroy(); // Destroy previous chart instance to avoid duplicates
-                }
-
-                timeSavingsChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: '削減時間 (分)',
-                            data: data,
-                            backgroundColor: 'rgba(40, 167, 69, 0.7)', // Green
-                            borderColor: 'rgba(40, 167, 69, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            title: {
-                                display: true,
-                                text: 'プロジェクトごとの時間削減効果',
-                                font: {
-                                    size: 16
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: '削減時間 (分)'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'プロジェクト'
-                                },
-                                ticks: {
-                                    maxRotation: 45,
-                                    minRotation: 45
-                                }
-                            }
-                        }
+            // 学習進捗チェックリストのレンダリング
+            function renderLearningChecklist() {
+                learningChecklistEl.innerHTML = '';
+                let checkedCount = 0;
+                learningItems.forEach(item => {
+                    const savedChecked = localStorage.getItem(`${LS_PREFIX}learning_${item.id}`) === 'true';
+                    if (savedChecked) {
+                        checkedCount++;
                     }
+
+                    const div = document.createElement('div');
+                    div.className = 'form-check mb-2';
+                    div.innerHTML = `
+                        <input class="form-check-input" type="checkbox" value="" id="${item.id}" ${savedChecked ? 'checked' : ''}>
+                        <label class="form-check-label" for="${item.id}">
+                            ${item.text}
+                        </label>
+                    `;
+                    learningChecklistEl.appendChild(div);
+
+                    div.querySelector('input').addEventListener('change', (e) => {
+                        localStorage.setItem(`${LS_PREFIX}learning_${item.id}`, e.target.checked);
+                        updateProgressBar();
+                    });
                 });
+                updateProgressBar();
             }
 
-
-            // --- 振り返り & 次のアクション ---
-            const reflectionForm = document.getElementById('reflectionForm');
-            const reflectionListDiv = document.getElementById('reflectionList');
-
-            function loadReflections() {
-                return JSON.parse(localStorage.getItem(REFLECTIONS_KEY)) || [];
+            // 進捗バーの更新
+            function updateProgressBar() {
+                const totalItems = learningItems.length;
+                const checkedItems = learningItems.filter(item => localStorage.getItem(`${LS_PREFIX}learning_${item.id}`) === 'true').length;
+                const percentage = totalItems > 0 ? (checkedItems / totalItems) * 100 : 0;
+                progressBarEl.style.width = `${percentage}%`;
+                progressBarEl.setAttribute('aria-valuenow', percentage);
+                progressBarEl.textContent = `${Math.round(percentage)}%`;
             }
 
-            function saveReflections(reflections) {
-                localStorage.setItem(REFLECTIONS_KEY, JSON.stringify(reflections));
+            // プロンプト生成
+            function generatePrompt() {
+                const role = promptRoleEl.value.trim();
+                const task = promptTaskEl.value.trim();
+                const context = promptContextEl.value.trim();
+                const constraint = promptConstraintEl.value.trim();
+                const outputFormat = promptOutputFormatEl.value.trim();
+                const examples = promptExamplesEl.value.trim();
+                const targetAudience = promptTargetAudienceEl.value.trim();
+
+                let promptParts = [];
+
+                if (role) promptParts.push(`あなたは「${role}」として振る舞います。`);
+                if (targetAudience) promptParts.push(`ターゲットは「${targetAudience}」です。`);
+                if (context) promptParts.push(`【背景・目的】\n${context}`);
+                if (task) promptParts.push(`【タスク】\n${task}`);
+                if (constraint) promptParts.push(`【条件・制約】\n${constraint}`);
+                if (outputFormat) promptParts.push(`【出力形式】\n${outputFormat}`);
+                if (examples) promptParts.push(`【参考例】\n${examples}`);
+
+                generatedPromptEl.value = promptParts.join('\n\n');
+                savePromptFormState();
             }
 
-            function renderReflections() {
-                const reflections = loadReflections();
-                reflectionListDiv.innerHTML = ''; // Clear existing
-                if (reflections.length === 0) {
-                    reflectionListDiv.innerHTML = '<p class="text-center text-muted">記録された振り返りはありません。</p>';
+            // プロンプト作成フォームのクリア
+            function clearPromptForm() {
+                promptRoleEl.value = '';
+                promptTaskEl.value = '';
+                promptContextEl.value = '';
+                promptConstraintEl.value = '';
+                promptOutputFormatEl.value = '';
+                promptExamplesEl.value = '';
+                promptTargetAudienceEl.value = '';
+                generatedPromptEl.value = '';
+                savePromptFormState(); // クリア状態も保存
+            }
+
+            // プロンプトをクリップボードにコピー
+            function copyPrompt() {
+                generatedPromptEl.select();
+                navigator.clipboard.writeText(generatedPromptEl.value)
+                    .then(() => {
+                        alert('プロンプトをコピーしました！');
+                    })
+                    .catch(err => {
+                        console.error('プロンプトのコピーに失敗しました: ', err);
+                        alert('プロンプトのコピーに失敗しました。手動でコピーしてください。');
+                    });
+            }
+
+            // 実践記録のレンダリング
+            function renderPracticeRecords() {
+                const records = JSON.parse(localStorage.getItem(`${LS_PREFIX}practice_records`) || '[]');
+                practiceRecordsListEl.innerHTML = '';
+
+                if (records.length === 0) {
+                    noRecordsMessageEl.style.display = 'block';
+                } else {
+                    noRecordsMessageEl.style.display = 'none';
+                    records.sort((a, b) => new Date(b.date) - new Date(a.date)); // 日付で降順ソート
+                    records.forEach((record, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'card mb-3 record-item';
+                        div.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${record.date} の記録</h5>
+                                <p class="card-text"><strong>使用プロンプト:</strong> <pre>${escapeHtml(record.prompt)}</pre></p>
+                                <p class="card-text"><strong>結果・評価:</strong> <pre>${escapeHtml(record.result)}</pre></p>
+                                <p class="card-text"><strong>次のアクション:</strong> <pre>${escapeHtml(record.nextAction)}</pre></p>
+                                <button type="button" class="btn btn-danger btn-sm" data-index="${index}">削除</button>
+                            </div>
+                        `;
+                        practiceRecordsListEl.appendChild(div);
+                    });
+
+                    practiceRecordsListEl.querySelectorAll('.btn-danger').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            const indexToDelete = parseInt(e.target.dataset.index);
+                            deletePracticeRecord(indexToDelete);
+                        });
+                    });
+                }
+            }
+
+            // HTMLエスケープ（preタグ内で安全に表示するため）
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.appendChild(document.createTextNode(text));
+                return div.innerHTML;
+            }
+
+            // 実践記録の追加
+            function addPracticeRecord() {
+                const date = recordDateEl.value;
+                const prompt = recordPromptEl.value.trim();
+                const result = recordResultEl.value.trim();
+                const nextAction = recordNextActionEl.value.trim();
+
+                if (!date || !prompt || !result) {
+                    alert('日付、使用プロンプト、結果・評価は必須項目です。');
                     return;
                 }
 
-                // Sort by date, newest first
-                reflections.sort((a, b) => new Date(b.reflectionDate) - new Date(a.reflectionDate));
+                const records = JSON.parse(localStorage.getItem(`${LS_PREFIX}practice_records`) || '[]');
+                records.push({ date, prompt, result, nextAction });
+                localStorage.setItem(`${LS_PREFIX}practice_records`, JSON.stringify(records));
 
-                reflections.forEach((reflection) => {
-                    const item = `
-                        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">${reflection.reflectionDate} の振り返り</h5>
-                                <button class="btn btn-danger btn-sm" onclick="deleteReflection(${reflection.id})">削除</button>
-                            </div>
-                            <p class="mb-1"><strong>学び・気づき:</strong> ${reflection.todaysLearning || 'なし'}</p>
-                            <small><strong>次に試したいこと:</strong> ${reflection.nextAction || 'なし'}</small>
-                        </div>
-                    `;
-                    reflectionListDiv.innerHTML += item;
-                });
+                // フォームをクリア
+                recordPromptEl.value = '';
+                recordResultEl.value = '';
+                recordNextActionEl.value = '';
+                updateTodayDate(); // 日付は今日の日付にリセット
+
+                renderPracticeRecords();
             }
 
-            // Global function for deletion, callable from onclick attributes
-            window.deleteReflection = (idToDelete) => {
-                let reflections = loadReflections();
-                if (confirm(`この振り返りを削除しますか？`)) {
-                    reflections = reflections.filter(r => r.id !== idToDelete);
-                    saveReflections(reflections);
-                    renderReflections();
+            // 実践記録の削除
+            function deletePracticeRecord(index) {
+                if (!confirm('この記録を削除してもよろしいですか？')) {
+                    return;
                 }
-            };
+                let records = JSON.parse(localStorage.getItem(`${LS_PREFIX}practice_records`) || '[]');
+                records.splice(index, 1);
+                localStorage.setItem(`${LS_PREFIX}practice_records`, JSON.stringify(records));
+                renderPracticeRecords();
+            }
 
-            reflectionForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newReflection = {
-                    id: Date.now(), // Unique ID for deletion
-                    reflectionDate: document.getElementById('reflectionDate').value,
-                    todaysLearning: document.getElementById('todaysLearning').value,
-                    nextAction: document.getElementById('nextAction').value
-                };
+            // 今日の日付をセット
+            function updateTodayDate() {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                recordDateEl.value = `${year}-${month}-${day}`;
+            }
 
-                let reflections = loadReflections();
-                reflections.push(newReflection);
-                saveReflections(reflections);
-                renderReflections();
-                reflectionForm.reset(); // Clear form
-                document.getElementById('reflectionDate').valueAsDate = new Date(); // Set default date for next entry to today
+            // プロンプト作成フォームの状態を保存
+            function savePromptFormState() {
+                localStorage.setItem(`${LS_PREFIX}prompt_form_role`, promptRoleEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_task`, promptTaskEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_context`, promptContextEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_constraint`, promptConstraintEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_output_format`, promptOutputFormatEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_examples`, promptExamplesEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_target_audience`, promptTargetAudienceEl.value);
+                localStorage.setItem(`${LS_PREFIX}prompt_form_generated_prompt`, generatedPromptEl.value);
+            }
+
+            // プロンプト作成フォームの状態を読み込み
+            function loadPromptFormState() {
+                promptRoleEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_role`) || '';
+                promptTaskEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_task`) || '';
+                promptContextEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_context`) || '';
+                promptConstraintEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_constraint`) || '';
+                promptOutputFormatEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_output_format`) || '';
+                promptExamplesEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_examples`) || '';
+                promptTargetAudienceEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_target_audience`) || '';
+                generatedPromptEl.value = localStorage.getItem(`${LS_PREFIX}prompt_form_generated_prompt`) || '';
+            }
+
+            // 全てのデータをローカルストレージから読み込む
+            function loadAllData() {
+                loadPromptFormState();
+            }
+
+
+            // --- イベントリスナー ---
+            generatePromptBtn.addEventListener('click', generatePrompt);
+            clearPromptFormBtn.addEventListener('click', clearPromptForm);
+            copyPromptBtn.addEventListener('click', copyPrompt);
+            addRecordBtn.addEventListener('click', addPracticeRecord);
+
+            // プロンプト作成フォームの入力内容変更時に保存
+            [promptRoleEl, promptTaskEl, promptContextEl, promptConstraintEl, promptOutputFormatEl, promptExamplesEl, promptTargetAudienceEl].forEach(el => {
+                el.addEventListener('input', savePromptFormState);
             });
 
-            // --- Initial Load & Setup ---
-            loadChecklistState();
-            renderProjects();
-            renderReflections();
+            // タブ切り替え時に各タブの内容を再レンダリング/更新
+            const myTab = document.getElementById('myTab');
+            myTab.addEventListener('shown.bs.tab', event => {
+                const activeTabId = event.target.id;
+                if (activeTabId === 'learning-tab') {
+                    renderLearningChecklist(); // 再計算・再描画
+                } else if (activeTabId === 'practice-record-tab') {
+                    renderPracticeRecords(); // 最新のデータで再描画
+                    updateTodayDate(); // 今日をデフォルトに
+                }
+            });
 
-            // Set default date for new project and reflection forms to today
-            document.getElementById('completionDate').valueAsDate = new Date();
-            document.getElementById('reflectionDate').valueAsDate = new Date();
+            // 現在のタブを記憶して、再アクセス時にそのタブを開く
+            const navLinks = document.querySelectorAll('.nav-link');
+            const storedTabId = localStorage.getItem(`${LS_PREFIX}active_tab_id`);
+            if (storedTabId) {
+                const storedTab = document.getElementById(storedTabId);
+                if (storedTab) {
+                    new bootstrap.Tab(storedTab).show();
+                }
+            }
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    localStorage.setItem(`${LS_PREFIX}active_tab_id`, e.target.id);
+                });
+            });
+
         });
     </script>
 </body>
