@@ -57,15 +57,42 @@ def call_gemini_api(prompt, max_retries=3, retry_delay=10):
     return response
 
 today = datetime.now().strftime('%Y-%m-%d')
+from datetime import timedelta
+
+# COO選定テーマを読み込む
+theme_file = '運営ログ/現在テーマ.md'
+current_theme = ""
+current_version = "v1.0"
+if os.path.exists(theme_file):
+    with open(theme_file, 'r', encoding='utf-8') as f:
+        theme_data = f.read()
+    import re
+    name_match = re.search(r'テーマ名\n(.+)', theme_data)
+    ver_match = re.search(r'バージョン\n(v[\d.]+)', theme_data)
+    if name_match:
+        current_theme = name_match.group(1).strip()
+    if ver_match:
+        current_version = ver_match.group(1).strip()
+    print(f"✅ COOテーマ読み込み: {current_theme} {current_version}")
+else:
+    print(f"⚠️ テーマファイルなし。マーケティング企画から生成")
+
+# 前日の商品パッケージを読み込む（改善版生成のため）
+yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+prev_package = ""
+prev_package_file = f'商品パッケージ/{yesterday}/complete_package.md'
+if os.path.exists(prev_package_file):
+    with open(prev_package_file, 'r', encoding='utf-8') as f:
+        prev_package = f.read()[:3000]
+    print(f"✅ 前日の商品パッケージ読み込み（改善版生成に活用）")
+
 marketing_file = f'商品企画/企画案_{today}.md'
 marketing_content = ""
-
 if os.path.exists(marketing_file):
     with open(marketing_file, 'r', encoding='utf-8') as f:
         marketing_content = f.read()
 
 # 学習データ（過去7日間の成功・失敗事例）を読み込む
-from datetime import timedelta
 success_cases = ""
 failure_cases = ""
 for i in range(1, 8):
@@ -81,8 +108,24 @@ if success_cases:
 if failure_cases:
     print(f"✅ 過去7日の失敗事例を読み込み")
 
-prompt = f"""あなたはコンテンツ制作部です。3プラットフォーム向けパッケージを生成してください。
+# テーマ指定プロンプト
+theme_instruction = ""
+if current_theme:
+    theme_instruction = f"""
+# COO選定テーマ（必須）
+テーマ: {current_theme}
+バージョン: {current_version}
+このテーマに沿ったコンテンツを生成してください。
+"""
+    if prev_package:
+        theme_instruction += f"""
+# 前日の商品パッケージ（改善の参考）
+以下の前日版を参考に、さらに品質を高めた改善版を生成してください：
+{prev_package}
+"""
 
+prompt = f"""あなたはコンテンツ制作部です。3プラットフォーム向けパッケージを生成してください。
+{theme_instruction}
 マーケティング企画:
 {marketing_content if marketing_content else "（企画案ファイルが見つかりません）"}
 
@@ -97,7 +140,7 @@ prompt = f"""あなたはコンテンツ制作部です。3プラットフォー
 2. BOOTH向け（7000文字以上）
 3. Kindle向け原稿（10000文字以上）
 
-成功事例のパターンを活用し、失敗事例のパターンを避けてください。"""
+成功事例のパターンを活用し、失敗事例のパターンを避け、前日版より品質を高めてください。"""
 
 print("🔄 Gemini API を呼び出し中...")
 
