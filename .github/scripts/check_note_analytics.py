@@ -43,14 +43,37 @@ def get_note_analytics():
             page.fill('input[type="password"]', NOTE_PASSWORD)
             print("  パスワード: input[type=password]")
 
-            # ログインボタン → URL変化を待つ
-            page.click('button:has-text("ログイン")')
+            # ログインボタンクリック
+            page.screenshot(path=f'運営ログ/note_before_submit_{today}.png')
             try:
-                page.wait_for_url(lambda url: 'login' not in url, timeout=15000)
-                print(f"  ✅ ログイン成功: {page.url}")
+                page.click('button:has-text("ログイン")')
+            except Exception as e:
+                print(f"  ⚠️ ボタンクリック失敗: {e}")
+
+            page.wait_for_timeout(3000)
+            page.screenshot(path=f'運営ログ/note_after_submit_{today}.png')
+            print(f"  クリック後URL: {page.url}")
+
+            # まだloginページなら Enter キーでも試す
+            if 'login' in page.url:
+                print("  → Enter キーで再試行...")
+                page.keyboard.press('Enter')
+                page.wait_for_timeout(3000)
+                print(f"  Enter後URL: {page.url}")
+                page.screenshot(path=f'運営ログ/note_after_enter_{today}.png')
+
+            # エラーメッセージがあれば表示
+            try:
+                error_el = page.query_selector('[class*="error"], [class*="Error"], [role="alert"]')
+                if error_el:
+                    print(f"  ⚠️ エラーメッセージ: {error_el.inner_text()}")
             except Exception:
-                print(f"  ⚠️ URLが変わりませんでした: {page.url}")
-                page.screenshot(path=f'運営ログ/note_login_fail_{today}.png')
+                pass
+
+            if 'login' not in page.url:
+                print(f"  ✅ ログイン成功: {page.url}")
+            else:
+                print(f"  ❌ ログイン失敗（URLが変わらず）: {page.url}")
 
             page.wait_for_timeout(2000)
 
