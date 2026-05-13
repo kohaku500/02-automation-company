@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用術：ChatGPTで仕事とプライベートを劇的に効率化</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #1a73e8; /* Google Blue */
+            --secondary-color: #e0f2f7; /* Light Blue */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.5s ease-in-out;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9; /* Typical presentation aspect ratio */
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 5%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+            background-color: var(--background-color);
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide h1 {
+            font-size: 3.2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: 2.2em;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .slide p {
+            font-size: 1.4em;
+            line-height: 1.6;
+            max-width: 800px;
+            color: var(--light-text-color);
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            max-width: 700px;
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .slide ul li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .slide ul li::before {
+            content: "\f00c"; /* Font Awesome check icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9em;
+        }
+
+        .slide .icon-large {
+            font-size: 8em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .slide .icon-medium {
+            font-size: 5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .slide .icon-group {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .slide .icon-group i {
+            font-size: 4em;
+            color: var(--primary-color);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.8em;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 10;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .nav-button#prevBtn {
+            left: 20px;
+        }
+
+        .nav-button#nextBtn {
+            right: 20px;
+        }
+
+        /* Slide specific styles */
+        .slide-0 h1 {
+            font-size: 3.8em;
+        }
+        .slide-0 .icon-group i {
+            font-size: 6em;
+        }
+
+        .slide-2 ul li::before, .slide-4 ul li::before, .slide-7 ul li::before, .slide-11 ul li::before {
+            content: "\f058"; /* Check circle icon */
+        }
+        .slide-12 .icon-group i {
+            font-size: 5em;
+            margin-top: 20px;
+            color: var(--text-color);
+        }
+        .slide-12 .icon-group .fa-note-sticky {
+            color: #ffcc00; /* Yellow */
+        }
+        .slide-12 .icon-group .fa-store {
+            color: #007bff; /* Blue */
+        }
+        .slide-12 .icon-group .fa-book {
+            color: #ff9900; /* Orange */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slider-container {
+                aspect-ratio: 4 / 3; /* More portrait-like on mobile */
+                width: 95%;
+                height: auto;
+            }
+
+            .slide {
+                padding: 8%;
+            }
+
+            .slide h1 {
+                font-size: 2.2em;
+            }
+
+            .slide h2 {
+                font-size: 1.6em;
+            }
+
+            .slide p, .slide ul {
+                font-size: 1em;
+            }
+
+            .slide ul li {
+                padding-left: 25px;
+            }
+
+            .slide ul li::before {
+                font-size: 0.8em;
+                top: 2px;
+            }
+
+            .slide .icon-large {
+                font-size: 5em;
+                margin-bottom: 20px;
+            }
+
+            .slide .icon-medium {
+                font-size: 3.5em;
+                margin-bottom: 15px;
+            }
+
+            .slide .icon-group {
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .slide .icon-group i {
+                font-size: 3em;
+            }
+
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 1.2em;
+            }
+
+            .nav-button#prevBtn {
+                left: 10px;
+            }
+
+            .nav-button#nextBtn {
+                right: 10px;
+            }
+
+            .slide-0 h1 {
+                font-size: 2.5em;
+            }
+            .slide-0 .icon-group i {
+                font-size: 4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <!-- Slide 1: タイトル -->
+        <div class="slide slide-0 active">
+            <h1>AI活用術</h1>
+            <h2>ChatGPTを最大限に活用し、<br>仕事とプライベートを劇的に効率化する方法</h2>
+            <div class="icon-group">
+                <i class="fa-solid fa-robot"></i>
+                <i class="fa-solid fa-brain"></i>
+                <i class="fa-solid fa-business-time"></i>
+            </div>
+        </div>
+
+        <!-- Slide 2: はじめに/問題提起 -->
+        <div class="slide slide-1">
+            <i class="fa-solid fa-question-circle icon-large"></i>
+            <h2>ChatGPT、使いこなせていますか？</h2>
+            <p>「すごいらしいけど、結局何に使えばいいの？」<br>その疑問を、このプレゼンで解決します。</p>
+            <ul>
+                <li>AIの可能性を実感したい方へ</li>
+                <li>具体的な活用法を知りたい方へ</li>
+                <li>仕事も生活も効率化したい方へ</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: 本プレゼンの目的 -->
+        <div class="slide slide-2">
+            <i class="fa-solid fa-lightbulb icon-large"></i>
+            <h2>本プレゼンで得られること</h2>
+            <p>明日からすぐに実践できる、ChatGPTの具体的な活用術をご紹介。</p>
+            <ul>
+                <li>プロンプト活用の基本と応用</li>
+                <li>ビジネスシーンでの生産性向上</li>
+                <li>プライベートのタスク自動化</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: ChatGPTがもたらす変革 -->
+        <div class="slide slide-3">
+            <h2>ChatGPTがもたらす3つの変革</h2>
+            <div class="icon-group">
+                <div><i class="fa-solid fa-stopwatch"></i><p style="font-size: 1em;">時間創出</p></div>
+                <div><i class="fa-solid fa-chart-line"></i><p style="font-size: 1em;">生産性向上</p></div>
+                <div><i class="fa-solid fa-lightbulb"></i><p style="font-size: 1em;">創造性開花</p></div>
+            </div>
+            <p style="margin-top: 30px;">面倒なタスクから解放され、本当に大切なことに集中できる時間を作り出します。</p>
+        </div>
+
+        <!-- Slide 5: 仕事効率化編の概要 -->
+        <div class="slide slide-4">
+            <i class="fa-solid fa-briefcase icon-large"></i>
+            <h2>【仕事効率化】<br>ビジネスシーンでのAI活用術</h2>
+            <p>日々の業務に潜む「面倒」をChatGPTで一掃！<br>あなたの生産性を飛躍的に向上させます。</p>
+            <ul>
+                <li>企画・提案書のアウトライン作成</li>
+                <li>メール・レポートの作成支援</li>
+                <li>会議の議事録要約とタスク抽出</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: [仕事] 企画書・提案書作成支援 -->
+        <div class="slide slide-5">
+            <i class="fa-solid fa-file-invoice icon-large"></i>
+            <h2>企画書・提案書作成支援</h2>
+            <p>目的とターゲットを伝えるだけで、企画書の骨子を瞬時に生成。<br>思考整理と執筆の第一歩を強力にサポートします。</p>
+            <p style="font-size: 1.1em; color: var(--text-color); margin-top: 30px;">
+                例：「新規事業企画書。ターゲットは〇〇、提供価値は△△。アウトラインを作成してください。」
+            </p>
+        </div>
+
+        <!-- Slide 7: [仕事] メール・レポート作成支援 -->
+        <div class="slide slide-6">
+            <i class="fa-solid fa-envelope-open-text icon-large"></i>
+            <h2>メール・レポート作成支援</h2>
+            <p>ビジネスメールや報告書の作成時間を大幅に短縮。<br>構成、丁寧な表現、要点のまとめまでをAIがサポートします。</p>
+            <p style="font-size: 1.1em; color: var(--text-color); margin-top: 30px;">
+                例：「件名：〇〇について。△△への依頼内容で、丁寧なビジネスメールを作成してください。」
+            </p>
+        </div>
+
+        <!-- Slide 8: プライベート効率化編の概要 -->
+        <div class="slide slide-7">
+            <i class="fa-solid fa-house-chimney icon-large"></i>
+            <h2>【プライベート効率化】<br>日常生活でのAI活用術</h2>
+            <p>家事、学習、趣味…AIでスマートな毎日を。<br>あなたの時間を節約し、QOLを向上させます。</p>
+            <ul>
+                <li>献立・旅行プランの作成</li>
+                <li>学習・情報収集のアシスト</li>
+                <li>趣味やイベント計画のサポート</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: [プライベート] 献立・旅行プラン作成 -->
+        <div class="slide slide-8">
+            <i class="fa-solid fa-utensils icon-large"></i>
+            <h2>献立・旅行プラン作成</h2>
+            <p>「冷蔵庫にある食材で3日分の献立」や「〇〇旅行のおすすめプラン」など、<br>具体的な指示でパーソナルな計画を提案します。</p>
+            <div class="icon-group">
+                <i class="fa-solid fa-burger"></i>
+                <i class="fa-solid fa-plane"></i>
+                <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+        </div>
+
+        <!-- Slide 10: [プライベート] 学習・情報収集アシスタント -->
+        <div class="slide slide-9">
+            <i class="fa-solid fa-book-open icon-large"></i>
+            <h2>学習・情報収集アシスタント</h2>
+            <p>未経験分野の学習、専門用語の解説、長文の要約など、<br>知識習得や情報整理を効率的にサポートします。</p>
+            <div class="icon-group">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        </div>
+
+        <!-- Slide 11: 成功の鍵は「プロンプト」 -->
+        <div class="slide slide-10">
+            <i class="fa-solid fa-key icon-large"></i>
+            <h2>成功の鍵は「プロンプト」</h2>
+            <p>ChatGPTの真価を引き出すには、適切な「問いかけ」が不可欠です。<br>質問の質が、回答の質を左右します。</p>
+            <ul>
+                <li>具体性を持たせる</li>
+                <li>役割を与える</li>
+                <li>制約条件を設ける</li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: さらなる活用へ！コンテンツパッケージ -->
+        <div class="slide slide-11">
+            <h2>さらなる深掘りへ：<br>コンテンツパッケージのご紹介</h2>
+            <p>より深くAI活用を学びたい方へ、ステップアップできるコンテンツをご用意しています。</p>
+            <div class="icon-group">
+                <div><i class="fa-solid fa-note-sticky"></i><p style="font-size: 1em; color: var(--light-text-color);">note記事</p></div>
+                <div><i class="fa-solid fa-store"></i><p style="font-size: 1em; color: var(--light-text-color);">BOOTHコンテンツ</p></div>
+                <div><i class="fa-solid fa-book"></i><p style="font-size: 1em; color: var(--light-text-color);">Kindle原稿</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 13: まずは今日から一歩を！ -->
+        <div class="slide slide-12">
+            <i class="fa-solid fa-person-running icon-large"></i>
+            <h2>まずは今日から一歩を！</h2>
+            <p>この記事でご紹介したプロンプトを試すことから始めましょう。<br>小さな成功体験が、AI活用の扉を開きます。</p>
+            <ul>
+                <li>具体的なプロンプトを試す</li>
+                <li>AIとの対話を楽しむ</li>
+                <li>日常のタスクに適用する</li>
+            </ul>
+        </div>
+
+        <!-- Slide 14: まとめ -->
+        <div class="slide slide-13">
+            <i class="fa-solid fa-handshake-angle icon-large"></i>
+            <h2>まとめ：<br>ChatGPTはあなたの強力なパートナー</h2>
+            <p>AIは私たちの働き方、生き方を豊かにするツールです。<br>最大限に活用し、未来を効率化しましょう。</p>
+            <ul>
+                <li>時間と労力の節約</li>
+                <li>生産性と創造性の向上</li>
+                <li>新しい可能性の発見</li>
+            </ul>
+        </div>
+
+        <!-- Slide 15: ご清聴ありがとうございました -->
+        <div class="slide slide-14">
+            <i class="fa-solid fa-face-smile icon-large"></i>
+            <h2>ご清聴ありがとうございました！</h2>
+            <p>ぜひAI活用を始めてみてください。<br>ご質問があればお気軽にどうぞ。</p>
+            <div class="icon-group">
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-solid fa-share-nodes"></i>
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
+        </div>
+
+        <button id="prevBtn" class="nav-button"><i class="fas fa-chevron-left"></i></button>
+        <button id="nextBtn" class="nav-button"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initialize first slide
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

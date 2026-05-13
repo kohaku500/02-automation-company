@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT活用度診断＆レベルアップガイド</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        /* 全体的なスタイル */
+        body {
+            font-family: 'Segoe UI', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .lead {
+            font-size: 1.15rem;
+            color: #555;
+        }
+
+        /* 質問カードのスタイル */
+        .question-card {
+            background-color: #f0f8ff; /* 薄い青 */
+            border: 1px solid #cceeff; /* 明るい青のボーダー */
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .question-card p {
+            font-weight: bold;
+            color: #0056b3; /* 濃い青 */
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .form-check {
+            margin-bottom: 8px;
+        }
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        /* ボタンのスタイル */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            background-color: #28a745; /* 緑色 */
+            border-color: #28a745;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* 結果表示エリアのスタイル */
+        #resultArea {
+            margin-top: 40px;
+            padding: 25px;
+            border-top: 2px solid #007bff; /* 青色のトップボーダー */
+            background-color: #e9f7ff; /* 薄い青の背景 */
+            border-radius: 8px;
+            display: none; /* 初期状態では非表示 */
+        }
+        #resultArea h3 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #resultArea .alert {
+            font-size: 1.1rem;
+            padding: 15px;
+            text-align: center;
+        }
+        .level-description {
+            margin-top: 20px;
+            border-left: 5px solid #007bff; /* 左側の強調ボーダー */
+            padding-left: 15px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .level-description h4 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        .level-description h5 {
+            color: #007bff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #cceeff;
+            padding-bottom: 5px;
+        }
+        .level-description ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .level-description li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+        .level-description pre {
+            background-color: #f4f4f4; /* コードブロックの背景 */
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap; /* コードの折り返しを有効に */
+            word-break: break-all; /* 長い単語でも折り返す */
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.9em;
+            color: #333;
+            overflow-x: auto; /* 必要に応じて横スクロール */
+        }
+        .level-description h6 {
+            color: #0056b3;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .level-description .text-muted {
+            font-size: 0.9em;
+            color: #6c757d !important;
+        }
+
+        /* フッターのスタイル */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ChatGPT活用度診断＆レベルアップガイド</h1>
+        <p class="lead text-center mb-4">
+            あなたのChatGPT活用レベルを診断し、さらに効率化するための具体的なヒントとプロンプト例を提案します。
+            仕事やプライベートでのAI活用度をチェックしてみましょう！
+        </p>
+
+        <form id="diagnosisForm">
+            <h2 class="mb-4">診断項目</h2>
+
+            <!-- Question 1 -->
+            <div class="question-card">
+                <p>1. ChatGPTをどのくらいの頻度で利用していますか？</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1_a" value="3" required>
+                    <label class="form-check-label" for="q1_a">ほぼ毎日、情報収集や作業補助に使っている</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1_b" value="2">
+                    <label class="form-check-label" for="q1_b">週に数回、必要な時に利用している</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1_c" value="1">
+                    <label class="form-check-label" for="q1_c">月に数回、簡単な質問や試用程度</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1_d" value="0">
+                    <label class="form-check-label" for="q1_d">ほとんど使わない、または使ったことがない</label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <p>2. ChatGPTで最もよく行うことは何ですか？</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2_a" value="0" required>
+                    <label class="form-check-label" for="q2_a">情報検索や簡単な質問、雑談</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2_b" value="1">
+                    <label class="form-check-label" for="q2_b">文章の要約・添削、メールや報告書の生成補助</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2_c" value="2">
+                    <label class="form-check-label" for="q2_c">アイデア出し・ブレインストーミング、企画の骨子作成</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2_d" value="3">
+                    <label class="form-check-label" for="q2_d">プログラミング補助・データ分析、複雑な問題解決の壁打ち</label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <p>3. プロンプトを作成する際、どのような点を意識していますか？</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3_a" value="0" required>
+                    <label class="form-check-label" for="q3_a">特に意識せず、聞きたいことをそのまま入力している</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3_b" value="1">
+                    <label class="form-check-label" for="q3_b">具体的に質問する、条件を明確にするよう心がけている</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3_c" value="2">
+                    <label class="form-check-label" for="q3_c">ChatGPTに「役割」を与えたり、出力形式（箇条書き、表など）を指定している</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3_d" value="3">
+                    <label class="form-check-label" for="q3_d">思考プロセスを分割し、複数のプロンプトで段階的に指示を出す「チェインプロンプティング」を活用している</label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card">
+                <p>4. ChatGPTの出力に満足できない場合、どうしますか？</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4_a" value="0" required>
+                    <label class="form-check-label" for="q4_a">そのまま使うか、別の質問をする</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4_b" value="1">
+                    <label class="form-check-label" for="q4_b">プロンプトを少し修正して再試行する</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4_c" value="2">
+                    <label class="form-check-label" for="q4_c">出力の「どこが不満か」を具体的に指摘し、修正を依頼する</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4_d" value="3">
+                    <label class="form-check-label" for="q4_d">プロンプトの前提条件や制約を根本から見直し、より適切な指示を設計し直す</label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card">
+                <p>5. 仕事や学業でChatGPTを活用していますか？</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5_a" value="0" required>
+                    <label class="form-check-label" for="q5_a">全く活用していない</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5_b" value="1">
+                    <label class="form-check-label" for="q5_b">たまに簡単な情報収集や調べ物に使う程度</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5_c" value="2">
+                    <label class="form-check-label" for="q5_c">資料作成、メール作成、アイデア出しなど、部分的に作業補助に使う</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5_d" value="3">
+                    <label class="form-check-label" for="q5_d">プロジェクト計画、戦略立案、データ分析など、業務の中心的な部分に組み込んでいる</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">診断する</button>
+        </form>
+
+        <div id="resultArea" class="mt-5">
+            <h3>あなたのChatGPT活用レベル診断結果</h3>
+            <div id="resultText" class="alert alert-info" role="alert"></div>
+
+            <div id="levelDetails" class="level-description">
+                <!-- 診断結果に応じて詳細が表示されます -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 AI活用術 Webアプリ開発部. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS CDN (Popper.js bundled) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('diagnosisForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルト送信を防止
+
+            let totalScore = 0;
+            const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+            let allAnswered = true;
+
+            // 全てのラジオボタンが選択されているかチェックし、スコアを計算
+            questions.forEach(qName => {
+                const selected = document.querySelector(`input[name="${qName}"]:checked`);
+                if (selected) {
+                    totalScore += parseInt(selected.value);
+                } else {
+                    allAnswered = false;
+                }
+            });
+
+            if (!allAnswered) {
+                alert('全ての質問にお答えください。');
+                return;
+            }
+
+            let level = '';
+            let levelTitle = '';
+            let levelDescription = '';
+            let suggestions = [];
+            let promptExamples = [];
+
+            // スコアに基づいてレベルと提案内容を決定
+            if (totalScore <= 3) {
+                level = 'レベル1';
+                levelTitle = 'ChatGPT超初心者：はじめの一歩を踏み出そう！';
+                levelDescription = 'まだChatGPTの魅力に気づき始めたばかりか、ほとんど使ったことがない段階です。基本的な機能を知ることで、日常のちょっとした困り事を解決する強力な味方になります。';
+                suggestions = [
+                    'まずは毎日ChatGPTに話しかけてみましょう。天気予報を聞いたり、今日のニュースを要約してもらったり、気軽に利用するのがおすすめです。',
+                    '簡単な質問からスタートし、ChatGPTがどのように回答するかを体験してみましょう。',
+                    '「〜とは？」のような情報検索から始めて、ChatGPTの応答に慣れていくのが効果的です。',
+                    '具体的な目的を一つ決めて、その達成のためにChatGPTを使ってみましょう（例：献立のアイデア出し、旅行先の情報収集）。'
+                ];
+                promptExamples = [
+                    {
+                        title: '記事の要約',
+                        description: '長い記事を読む時間がない時、ChatGPTに要点をまとめてもらいましょう。',
+                        prompt: '以下の記事を300字程度で要約してください。\n\n[記事の全文またはURL]'
+                    },
+                    {
+                        title: 'アイデア出し',
+                        description: '何か新しいことを始めたいけどアイデアが浮かばない時に。',
+                        prompt: '「休日の過ごし方」について、斬新なアイデアを5つ提案してください。'
+                    }
+                ];
+            } else if (totalScore <= 7) {
+                level = 'レベル2';
+                levelTitle = 'ChatGPT初級者：もっと便利に使いこなすコツを掴もう！';
+                levelDescription = 'ChatGPTを情報検索や簡単な文章作成に利用し始めている段階です。もう少し工夫することで、出力の質が向上し、より多くのタスクを効率化できるようになります。';
+                suggestions = [
+                    'プロンプトに「役割」を与えてみましょう。（例：「あなたは熟練のマーケターです」）これにより、ChatGPTは専門家として回答してくれます。',
+                    '出力形式を指定することで、欲しい情報を整理された形で得られます。（例：「箇条書きで教えて」「表形式でまとめて」）',
+                    '具体的な指示を心がけましょう。漠然とした質問よりも、「〇〇について、3つのメリットとデメリットを教えてください」のように具体的に質問すると良いでしょう。',
+                    'ChatGPTを「壁打ち相手」として活用し、自分の考えを深めるツールとして使ってみましょう。'
+                ];
+                promptExamples = [
+                    {
+                        title: '役割指定でのメール作成',
+                        description: 'ビジネスメールをプロのトーンで素早く作成。',
+                        prompt: 'あなたはビジネスコミュニケーションの専門家です。クライアントへの製品アップデート告知メールを、丁寧語かつ明確に作成してください。件名も提案してください。\n\n[伝えたい内容の概要]'
+                    },
+                    {
+                        title: '企画書の構成案作成',
+                        description: '企画書作成の最初のステップで構成案を効率的に。',
+                        prompt: '「新規Webサービス立ち上げ企画」について、以下の項目を含む企画書の構成案を提案してください。\n・目的\n・ターゲット\n・サービス概要\n・市場分析\n・競合優位性\n・ビジネスモデル\n・ロードマップ'
+                    }
+                ];
+            } else if (totalScore <= 11) {
+                level = 'レベル3';
+                levelTitle = 'ChatGPT中級者：業務効率を劇的に向上させるプロンプト術！';
+                levelDescription = 'ChatGPTを日常的に活用し、業務やプライベートでの効率化を実感している段階です。さらにプロンプトの質を高めることで、より複雑なタスクや専門的な作業にも対応できるようになります。';
+                suggestions = [
+                    '一つのプロンプトで全てを解決しようとせず、複数のプロンプトで段階的に指示を出す「チェインプロンプティング」を試しましょう。',
+                    '具体的な「制約条件」や「期待する出力の例」をプロンプトに含めることで、より意図に沿った回答を引き出せます。',
+                    '「思考プロセス」を指示することで、ChatGPTがどのように回答を導き出すか制御できます。（例：「まず[X]を分析し、次に[Y]を考慮して、最後に結論を出してください」）',
+                    'ChatGPTのプラグインやAPI連携にも目を向け、他のツールとの組み合わせでさらに活用範囲を広げましょう。'
+                ];
+                promptExamples = [
+                    {
+                        title: '複雑な問題解決のステップ提示',
+                        description: '問題解決の思考プロセスをChatGPTと共有。',
+                        prompt: 'あなたはコンサルタントです。以下の状況における問題解決のためのステップを、具体的なタスクとChatGPTの活用法を交えて提案してください。\n\n[具体的な問題の状況]'
+                    },
+                    {
+                        title: 'ブログ記事の構造化と内容生成',
+                        description: 'ブログ記事の全体構成から各セクションの骨子まで一貫して作成。',
+                        prompt: 'あなたはSEOライティングの専門家です。[キーワード]に関するブログ記事を作成します。まず、読者の検索意図とニーズを考慮した見出し構成（H1, H2, H3）を提案してください。その後、各見出しの下に、そのセクションで書くべき内容の要点を箇条書きで示してください。ターゲット読者は[ターゲット読者]です。'
+                    }
+                ];
+            } else { // totalScore <= 15
+                level = 'レベル4';
+                levelTitle = 'ChatGPT上級者：AIを戦略的に活用し、新たな価値を創造！';
+                levelDescription = 'ChatGPTをビジネス戦略や個人プロジェクトの中核に据え、最大限に活用しているエキスパートです。AIの可能性を深く理解し、革新的な活用法を常に模索しています。';
+                suggestions = [
+                    'プロンプトエンジニアリングの高度なテクニック（Few-shot learning, Chain-of-Thought promptingなど）を習得し、応用しましょう。',
+                    '業務フロー全体にChatGPTを組み込み、自動化・半自動化を進めましょう。',
+                    'ChatGPTのAPIを利用して独自のツールやサービスを開発することを検討しましょう。',
+                    '常に最新のAIトレンドを追いかけ、ChatGPTの進化に合わせて自身の活用法をアップデートし続けましょう。'
+                ];
+                promptExamples = [
+                    {
+                        title: '新しいビジネスモデルのブレインストーミング',
+                        description: '市場のトレンドと自社の強みを踏まえた新ビジネスの創出。',
+                        prompt: 'あなたはイノベーションコンサルタントです。現在の市場トレンド（例：[トレンド1], [トレンド2]）と、当社の強み（例：[強み1], [強み2]）を考慮し、[特定の業界]における、ChatGPTを活用した全く新しいビジネスモデルを3つ提案してください。各ビジネスモデルについて、ターゲット顧客、提供価値、収益モデル、ChatGPTの具体的な活用シーンを詳しく説明してください。'
+                    },
+                    {
+                        title: '複雑なデータ分析とレポート生成',
+                        description: '複数データソースからの情報統合と分析レポートの自動生成。',
+                        prompt: 'あなたはデータサイエンティストです。以下の[データセット1の概要]と[データセット2の概要]を統合し、[分析目的]に関する洞察を抽出してください。まず、分析の仮説を3つ提案し、次にそれぞれの仮説を検証するためのアプローチを説明してください。最後に、これらのデータから導き出される主要な結論と、それに基づくビジネス上の推奨事項を、経営層向けのレポート形式でまとめてください。レポートには、数値データがあれば架空のデータを補完し、視覚的な表現（グラフの種類など）の提案も含めてください。'
+                    }
+                ];
+            }
+
+            // 結果をDOMに反映
+            document.getElementById('resultText').innerHTML = `
+                <p>あなたのChatGPT活用レベルは、<strong>${levelTitle}</strong>です！</p>
+                <p>診断合計点: ${totalScore}点</p>
+            `;
+
+            let detailsHtml = `<h4>${levelTitle}</h4><p>${levelDescription}</p>`;
+            detailsHtml += '<h5>【レベルアップのためのヒント】</h5><ul>';
+            suggestions.forEach(s => {
+                detailsHtml += `<li>${s}</li>`;
+            });
+            detailsHtml += '</ul>';
+
+            detailsHtml += '<h5>【おすすめのプロンプト例】</h5>';
+            promptExamples.forEach(pe => {
+                detailsHtml += `<div class="mb-3"><h6>${pe.title}</h6><p class="text-muted">${pe.description}</p><pre>${pe.prompt}</pre></div>`;
+            });
+
+            document.getElementById('levelDetails').innerHTML = detailsHtml;
+            document.getElementById('resultArea').style.display = 'block';
+
+            // 結果エリアまでスムーズにスクロール
+            document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

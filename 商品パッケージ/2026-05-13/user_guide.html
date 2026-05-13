@@ -1,0 +1,401 @@
+はい、承知いたしました。架空のシンプルなテキスト処理Webアプリを想定し、その使用方法を初心者向けに説明する、完全自己完結型のHTMLドキュメントを生成します。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「テキスト魔法ツール」使い方ガイド</title>
+    <style>
+        /* 基本リセットとグローバルスタイル */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ ProN', 'Meiryo', 'メイリオ', 'Yu Gothic', '游ゴシック', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+            font-size: 16px; /* 基本フォントサイズ */
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        header h1 {
+            color: #0056b3;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        /* セクション */
+        section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        section h2 {
+            color: #007bff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+
+        section h3 {
+            color: #0056b3;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        /* リスト */
+        ul {
+            list-style: disc;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        ol {
+            list-style: decimal;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* 画像説明 */
+        .screenshot-description {
+            background-color: #f0faff;
+            border: 1px solid #d0eaff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .screenshot-description p {
+            margin-bottom: 10px;
+        }
+        .screenshot-description strong {
+            color: #0056b3;
+        }
+
+        /* 注意書き、ヒント */
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .alert {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #721c24;
+        }
+
+        /* よくある質問 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-item h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            padding-bottom: 0;
+            border-bottom: none;
+            color: #333; /* FAQのQは通常の色に */
+        }
+        .faq-item h3::before {
+            content: "Q. ";
+            color: #007bff;
+            font-weight: bold;
+        }
+        .faq-item p::before {
+            content: "A. ";
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                font-size: 15px;
+            }
+            .container {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            section h2 {
+                font-size: 1.5em;
+            }
+            section h3 {
+                font-size: 1.2em;
+            }
+            ul, ol {
+                margin-left: 20px;
+            }
+            .screenshot-description {
+                padding: 10px;
+            }
+            .note, .alert {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .container {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.6em;
+            }
+            section h2 {
+                font-size: 1.3em;
+            }
+            section h3 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>「テキスト魔法ツール」使い方ガイド</h1>
+            <p>このガイドでは、あなたのテキストを便利に加工するWebアプリ「テキスト魔法ツール」の基本的な使い方から、困ったときの対処法までを分かりやすく解説します。</p>
+            <p><strong>初めての方でもご安心ください！</strong></p>
+        </header>
+
+        <main>
+            <section>
+                <h2>1. 画面構成の説明（各要素の役割）</h2>
+                <p>「テキスト魔法ツール」の画面は、主に以下の4つの部分で構成されています。それぞれの役割を見ていきましょう。</p>
+
+                <h3>1.1. アプリケーションタイトルとナビゲーション</h3>
+                <ul>
+                    <li><strong>画面上部中央：「テキスト魔法ツール」</strong>: アプリケーションのタイトルが表示されています。</li>
+                    <li><strong>（オプション）画面右上：「設定」/「ヘルプ」ボタン</strong>: 詳細設定やこのヘルプページへのリンクがある場合があります。</li>
+                </ul>
+                <div class="screenshot-description">
+                    <p><strong>[スクリーンショット1：アプリのトップ画面全体像]</strong></p>
+                    <p>アプリを開いた直後の画面です。画面上部にアプリのタイトル「テキスト魔法ツール」が表示されており、その下に大きくテキスト入力欄、その横に処理選択ドロップダウン、さらに右側に「処理実行」ボタン、そして画面下半分に結果表示エリアが配置されています。</p>
+                </div>
+
+                <h3>1.2. テキスト入力エリア</h3>
+                <ul>
+                    <li><strong>役割</strong>: あなたが処理したいテキストをここに入力します。</li>
+                    <li><strong>特徴</strong>:
+                        <ul>
+                            <li>大きな白い四角いボックスです。</li>
+                            <li>「ここにテキストを入力してください...」といった案内文が表示されていることがあります。</li>
+                            <li>改行や複数の段落も入力可能です。</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="screenshot-description">
+                    <p><strong>[スクリーンショット2：テキスト入力エリアのクローズアップ]</strong></p>
+                    <p>「ここにテキストを入力してください...」と表示された、アプリ画面中央にある大きなテキストボックスです。ユーザーがカーソルを合わせると点滅し、入力可能な状態であることを示します。</p>
+                </div>
+
+                <h3>1.3. 処理選択と実行ボタン</h3>
+                <ul>
+                    <li><strong>処理選択ドロップダウン（例：「大文字化」「小文字化」「単語数カウント」など）</strong>: テキスト入力エリアの横または下にあります。ここから適用したいテキスト処理の種類を選びます。</li>
+                    <li><strong>「処理を実行」ボタン</strong>: テキスト入力エリアの下、または処理選択ドロップダウンの右側に配置された、青や緑などの目立つボタンです。入力したテキストに対し、選択した処理を実行するためにクリックします。</li>
+                </ul>
+                <div class="screenshot-description">
+                    <p><strong>[スクリーンショット3：処理選択ドロップダウンと実行ボタン]</strong></p>
+                    <p>「処理を選択...」と書かれたドロップダウンメニューと、その右隣に位置する「処理を実行」と書かれたボタンです。ドロップダウンをクリックすると、「大文字変換」「小文字変換」「文字数カウント」などの選択肢が表示されます。</p>
+                </div>
+
+                <h3>1.4. 結果表示エリア</h3>
+                <ul>
+                    <li><strong>役割</strong>: 「処理を実行」ボタンをクリックした結果がここに表示されます。</li>
+                    <li><strong>特徴</strong>:
+                        <ul>
+                            <li>通常はテキスト入力エリアの下、または右側に配置された白いボックスです。</li>
+                            <li>処理が成功すると、加工されたテキストや分析結果が表示されます。</li>
+                            <li>「結果はここに表示されます」といった案内文が表示されていることがあります。</li>
+                            <li><strong>（オプション）「結果をコピー」ボタン</strong>: 表示された結果を簡単にクリップボードにコピーできるボタンが設置されていることがあります。</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="screenshot-description">
+                    <p><strong>[スクリーンショット4：結果表示エリアに結果が表示された状態]</strong></p>
+                    <p>テキスト入力欄に「Hello World」と入力し、「大文字変換」を選択して「処理を実行」ボタンを押した後です。画面下半分の結果表示エリアに「HELLO WORLD」と表示されています。その下には「結果をコピー」ボタンが見えます。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>2. 使用手順（ステップバイステップ）</h2>
+                <p>「テキスト魔法ツール」を使ってテキストを加工する基本的な手順を説明します。</p>
+
+                <ol>
+                    <li>
+                        <h3>Webアプリを開く</h3>
+                        <p>お使いのブラウザ（Chrome, Firefox, Safariなど）で「テキスト魔法ツール」のURLを開きます。</p>
+                    </li>
+                    <li>
+                        <h3>加工したいテキストを入力する</h3>
+                        <p>画面中央にある<strong>「テキスト入力エリア」</strong>に、処理したいテキストを直接入力します。コピー＆ペーストでも構いません。</p>
+                        <div class="note">
+                            <strong>ヒント:</strong> 長文でも短文でも入力できますが、あまりにも長いテキストは処理に時間がかかる場合があります。
+                        </div>
+                    </li>
+                    <li>
+                        <h3>実行したい処理を選択する</h3>
+                        <p>テキスト入力エリアの横または下にある<strong>「処理選択ドロップダウン」</strong>をクリックし、実行したい処理（例: 「大文字化」「小文字化」「単語数カウント」など）を選びます。</p>
+                        <div class="screenshot-description">
+                            <p><strong>[スクリーンショット5：ドロップダウンメニューから処理を選択する様子]</strong></p>
+                            <p>「処理を選択...」というドロップダウンメニューが展開され、「大文字変換」「小文字変換」「文字数カウント」「空白削除」などの選択肢がリスト表示されています。ユーザーが「大文字変換」にカーソルを合わせている状態です。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>「処理を実行」ボタンをクリックする</h3>
+                        <p>入力したテキストと選択した処理を確認したら、<strong>「処理を実行」ボタン</strong>をクリックします。</p>
+                    </li>
+                    <li>
+                        <h3>結果を確認する</h3>
+                        <p>ボタンをクリックすると、<strong>「結果表示エリア」</strong>に加工されたテキストや処理結果が表示されます。</p>
+                        <div class="note">
+                            <strong>ヒント:</strong> 結果を他の場所で使いたい場合は、「結果をコピー」ボタンがあればクリックすると便利です。
+                        </div>
+                    </li>
+                    <li>
+                        <h3>（繰り返し）別のテキストや処理を試す</h3>
+                        <p>必要であれば、テキスト入力エリアの内容を消去して新しいテキストを入力したり、別の処理を選択したりして、繰り返し利用することができます。</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>3. よくある質問と答え (FAQ)</h2>
+
+                <div class="faq-item">
+                    <h3>このアプリは何ができますか？</h3>
+                    <p>入力されたテキストに対して、「大文字変換」「小文字変換」「文字数カウント」など、様々なテキスト加工処理を簡単に行うことができます。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>アカウント登録やログインは必要ですか？</h3>
+                    <p>いいえ、この「テキスト魔法ツール」はアカウント登録やログインなしで、誰でもすぐに使い始めることができます。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>入力できる文字数に制限はありますか？</h3>
+                    <p>基本的な制限はありませんが、非常に長いテキスト（例: 数万文字以上）を入力すると、処理に時間がかかったり、ブラウザの動作が重くなる場合があります。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>処理したデータは保存されますか？</h3>
+                    <p>いいえ、このツールは入力されたテキストや処理結果をサーバーに保存することはありません。ブラウザを閉じるとデータは消去されますので、必要な結果はご自身でコピーして保存してください。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>スマートフォンやタブレットでも使えますか？</h3>
+                    <p>はい、このアプリはスマートフォンやタブレットでも快適に利用できるように設計されています。画面サイズに合わせて表示が自動で最適化されます。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>4. トラブルシューティング</h2>
+                <p>もしアプリの使用中に困ったことがあれば、以下の解決策をお試しください。</p>
+
+                <h3>4.1. 画面が正しく表示されない・ボタンが反応しない</h3>
+                <ul>
+                    <li><strong>ブラウザのリロード（更新）</strong>: キーボードの「F5」キーを押すか、ブラウザのアドレスバーの横にある更新ボタンをクリックしてください。一時的な問題が解決することがあります。</li>
+                    <li><strong>ブラウザのキャッシュをクリアする</strong>: 古い情報が残っていると正しく表示されない場合があります。ブラウザの設定からキャッシュをクリアしてみてください。</li>
+                    <li><strong>別のブラウザで試す</strong>: お使いのブラウザに固有の問題かもしれません。Chrome、Firefox、Safari、Edgeなど、別のブラウザで試してみてください。</li>
+                    <li><strong>インターネット接続を確認する</strong>: インターネットに接続されているか確認してください。Wi-Fiやモバイルデータ通信が有効になっているかチェックします。</li>
+                </ul>
+
+                <h3>4.2. 「処理を実行」ボタンを押しても結果が表示されない・エラーが出る</h3>
+                <ul>
+                    <li><strong>入力テキストを確認する</strong>: テキスト入力エリアに何も入力されていない、または不正な文字が含まれていないか確認してください。</li>
+                    <li><strong>選択した処理を確認する</strong>: 処理選択ドロップダウンで、適切な処理が選択されているか再確認してください。</li>
+                    <li><strong>エラーメッセージを確認する</strong>: 何らかのエラーメッセージが表示されている場合は、その内容をよく読んでみてください。入力規則に反している場合など、ヒントが書かれていることがあります。</li>
+                    <li><strong>長文の場合は分割して試す</strong>: 入力テキストが非常に長い場合、処理に失敗することがあります。テキストを分割して試してみてください。</li>
+                </ul>
+
+                <h3>4.3. 期待通りの結果が得られない</h3>
+                <ul>
+                    <li><strong>入力テキストを再確認する</strong>: 入力したテキストに誤字脱字がないか、全角半角、スペースなどの表記が適切か確認してください。</li>
+                    <li><strong>選択した処理を再確認する</strong>: 意図した処理とは別の処理を選択していないか、もう一度確認してください。</li>
+                    <li><strong>このガイドを再度確認する</strong>: 各処理がどのような結果を出すのか、もう一度「使用手順」や他のヘルプ情報を確認してください。</li>
+                </ul>
+
+                <div class="alert">
+                    <strong>それでも解決しない場合:</strong><br>
+                    上記の方法を試しても問題が解決しない場合は、お手数ですがアプリの開発元にお問い合わせいただくか、より詳しいヘルプドキュメントをご確認ください。その際は、どのブラウザで、どのような操作をした際に、どのような問題が発生したのかを詳しく伝えると、解決が早まります。
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 テキスト魔法ツール. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
