@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【購入者限定】特典ツールの使い方と商品活用ガイド</title>
+    <style>
+        /*
+         * 完全自己完結型HTMLのため、外部ファイル（CSS, JS）や外部フォントへのリンクは使用していません。
+         * 画像はデモンストレーションのためプレースホルダーを使用していますが、
+         * 最終的にはbase64エンコードしてimgタグのsrcに直接記述するか、
+         * 同一サーバー内の相対パスで指定し、HTMLファイルと一緒にアップロードしてください。
+         */
+
+        /* General Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            -webkit-text-size-adjust: 100%; /* Prevent font size adjustment on mobile */
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1em;
+        }
+
+        h1 { font-size: 2.5em; text-align: center; margin-bottom: 1.5em; color: #0056b3; }
+        h2 { font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-top: 2em; margin-bottom: 1em; }
+        h3 { font-size: 1.5em; margin-top: 1.5em; margin-bottom: 0.8em; color: #0056b3; }
+        h4 { font-size: 1.2em; margin-top: 1.2em; margin-bottom: 0.6em; }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            margin-bottom: 1em;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        header .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        header .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .highlight-box {
+            background-color: #e9f7ff;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .step-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #007bff;
+            background-color: #e9f7ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .roadmap-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 24px; /* Center of the circle */
+            top: 50px; /* Below the circle */
+            bottom: -20px; /* Extend downwards */
+            width: 2px;
+            background-color: #ddd;
+            z-index: 0;
+        }
+
+        .roadmap-icon {
+            font-size: 1.8em;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1; /* Ensure icon is above line */
+        }
+
+        .roadmap-content {
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+        .roadmap-content h4 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 15px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: #0056b3;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            padding-right: 30px; /* Space for indicator */
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.2em;
+            color: #007bff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(0deg); /* No rotation for minus */
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #e9f7ff;
+        }
+
+        .support-info {
+            background-color: #f0f8ff;
+            border: 1px solid #add8e6;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .support-info h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.3em; }
+            .container {
+                padding: 15px;
+            }
+            .step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .roadmap-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .roadmap-item:not(:last-child)::before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 50px;
+                bottom: -20px;
+            }
+            .roadmap-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .roadmap-content {
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            h3 { font-size: 1.2em; }
+            section {
+                padding: 20px;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <!-- ロゴ画像は、必要に応じてbase64エンコードしてここに直接記述するか、相対パスで配置してください。
+                     例: <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...略..." alt="会社ロゴ"> -->
+                <img src="https://via.placeholder.com/150x50?text=YOUR_LOGO" alt="会社ロゴ">
+            </div>
+            <h1>【購入者限定】特典ツールの使い方と商品活用ガイド</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>この度はご購入ありがとうございます！</h2>
+            <p>このページでは、ご購入いただいた商品（サービス名）を最大限に活用していただくための、<strong>特典ツール「〇〇（ツール名）」</strong>の使い方と、商品全体の活用ロードマップをご紹介します。</p>
+            <p>このガイドを活用し、あなたの目標達成にお役立てください！</p>
+        </section>
+
+        <section>
+            <h2>特典ツール「〇〇（ツール名）」の概要と活用シーン</h2>
+            <h3>特典ツールの特徴とメリット</h3>
+            <div class="highlight-box">
+                <p><strong>ツール名：</strong> 〇〇（例：AIアシスタント、テンプレート集、分析シート）</p>
+                <p><strong>一言で言うと：</strong> 商品の核となる「△△（商品機能・目的）」を効率化・加速させるための強力な補助ツールです。</p>
+                <ul>
+                    <li><strong>時間短縮：</strong> 手作業で数時間かかっていた作業を数分に短縮します。</li>
+                    <li><strong>品質向上：</strong> プロフェッショナルな成果物を簡単に作成できます。</li>
+                    <li><strong>意思決定支援：</strong> データに基づいた正確な判断をサポートします。</li>
+                    <li><strong>学習効率アップ：</strong> 商品の重要な概念を実践的に理解する手助けをします。</li>
+                </ul>
+            </div>
+
+            <h3>こんな時に活用してください</h3>
+            <ul>
+                <li><strong>商品学習の初期段階：</strong> 基本的な操作を覚える際の実践演習として。</li>
+                <li><strong>特定の課題解決：</strong> 「〜ができない」「〜を効率化したい」といった具体的な問題に直面した時。</li>
+                <li><strong>応用・発展：</strong> 商品で学んだ知識をさらに深め、オリジナルの成果物を作成する時。</li>
+                <li><strong>繰り返し作業の自動化：</strong> 定期的に行う必要があるタスクの手間を減らしたい時。</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>ステップバイステップ：特典ツールの使用手順</h2>
+            <p>特典ツール「〇〇」を今すぐ使い始めるための簡単な手順です。画面の指示に従いながら進めてください。</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>ツールのダウンロードまたはアクセス</h3>
+                    <p>購入者ページにログイン後、「特典ツールダウンロード」セクションからツールをダウンロードしてください。<br>（Webツールの場合：「〇〇ツールへアクセス」ボタンをクリックしてください。）</p>
+                    <p>
+                        <!-- スクリーンショット画像は必要に応じてbase64エンコードするか、相対パスで配置してください。 -->
+                        <img src="https://via.placeholder.com/600x300?text=Step+1+Screenshot+-+Download/Access+Page" alt="特典ツールのダウンロードまたはアクセス画面のスクリーンショット">
+                    </p>
+                    <p><a href="#download-link" class="button">特典ツールへアクセスする</a></p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>初期設定とアカウント連携（必要であれば）</h3>
+                    <p>ツールを開いたら、案内に従って初期設定を行います。既存のアカウントとの連携や、最低限の情報を入力する必要がある場合があります。</p>
+                    <ul>
+                        <li>[例] ユーザー名の設定</li>
+                        <li>[例] 連携したい外部サービス（Google, Slackなど）の認証</li>
+                        <li>[例] 基本的なテーマや言語設定</li>
+                    </ul>
+                    <p>
+                        <!-- スクリーンショット画像は必要に応じてbase64エンコードするか、相対パスで配置してください。 -->
+                        <img src="https://via.placeholder.com/600x300?text=Step+2+Screenshot+-+Initial+Setup" alt="ツールの初期設定画面のスクリーンショット">
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>基本的な操作を試す</h3>
+                    <p>ツールの主要な機能を試してみましょう。まずは簡単な入力や操作から始めて、感触を掴んでください。</p>
+                    <ul>
+                        <li>[例] テキストボックスにキーワードを入力し、「生成」ボタンをクリック。</li>
+                        <li>[例] テンプレートを一つ選択し、データを流し込んでみる。</li>
+                        <li>[例] サンプルデータを読み込み、グラフ表示を試す。</li>
+                    </ul>
+                    <p>
+                        <!-- スクリーンショット画像は必要に応じてbase64エンコードするか、相対パスで配置してください。 -->
+                        <img src="https://via.placeholder.com/600x300?text=Step+3+Screenshot+-+First+Operation" alt="ツールの基本操作画面のスクリーンショット">
+                    </p>
+                    <p class="highlight-box">
+                        <strong>ヒント：</strong> 焦らず、まずは一つずつ機能を試してみてください。不明な点があれば、このページのFAQやサポート情報をご確認ください。
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>実践的な活用とカスタマイズ</h3>
+                    <p>基本操作に慣れてきたら、あなたの具体的な目標に合わせてツールを本格的に活用しましょう。設定をカスタマイズしたり、商品の他の部分と連携させたりすることで、より大きな効果を得られます。</p>
+                    <ul>
+                        <li>[例] 生成されたコンテンツを商品内の他のモジュールで活用。</li>
+                        <li>[例] 複数のテンプレートを組み合わせてオリジナルワークフローを構築。</li>
+                        <li>[例] 分析結果をもとに、商品で学んだ戦略を実践。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>商品全体の活用ロードマップ：成功への道筋</h2>
+            <p>特典ツールは商品全体の強力な一部です。以下のロードマップに従って進めることで、商品の価値を最大限に引き出し、目標達成へと確実に近づけます。</p>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">1</div>
+                <div class="roadmap-content">
+                    <h4>フェーズ1: 基礎学習と理解（1週目）</h4>
+                    <p>商品のメインコンテンツ（動画講座、テキストモジュールなど）を通じて、基本的な概念と理論を学びます。特典ツールは、学習内容を補強する実践的な演習として活用。</p>
+                    <ul>
+                        <li>商品メインコンテンツ：<strong>モジュール1〜3を完了</strong></li>
+                        <li>特典ツール活用：<strong>基本的な操作とサンプル演習</strong></li>
+                        <li>目標：商品の全体像と主要な機能・概念を把握する</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">2</div>
+                <div class="roadmap-content">
+                    <h4>フェーズ2: 実践と応用（2〜4週目）</h4>
+                    <p>学んだ知識を具体的な課題に適用し始めます。特典ツールを積極的に活用し、自身のプロジェクトや業務に応用することで、学習効果を飛躍的に高めます。</p>
+                    <ul>
+                        <li>商品メインコンテンツ：<strong>モジュール4〜6を完了</strong></li>
+                        <li>特典ツール活用：<strong>あなたの具体的なプロジェクトで実際に使用開始</strong></li>
+                        <li>目標：学んだ知識を実践レベルで使いこなし、成果の一部を創出する</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">3</div>
+                <div class="roadmap-content">
+                    <h4>フェーズ3: 最適化と発展（5週目以降）</h4>
+                    <p>経験を通じて得られた知見を元に、商品の機能をさらに深く掘り下げ、自身のニーズに合わせて最適化します。特典ツールもカスタマイズや高度な使い方を探求し、継続的な成長を促します。</p>
+                    <ul>
+                        <li>商品メインコンテンツ：<strong>全モジュール完了、応用テクニックを学習</strong></li>
+                        <li>特典ツール活用：<strong>独自のテンプレート作成、他ツールとの連携、効率化の追求</strong></li>
+                        <li>目標：商品の専門家として、継続的に成果を生み出し続ける</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="highlight-box">
+                <strong>重要：</strong> ロードマップはあくまで目安です。ご自身のペースに合わせて進めてください。途中で行き詰まったら、FAQやサポートをご利用ください。
+            </p>
+        </section>
+
+        <section>
+            <h2>よくある質問 (FAQ)</h2>
+            <div class="faq-item">
+                <div class="faq-question">Q: 特典ツールがダウンロードできません/アクセスできません。</div>
+                <div class="faq-answer">
+                    <p>A: 以下の点をご確認ください。</p>
+                    <ul>
+                        <li>購入者ページにログインしていますか？</li>
+                        <li>インターネット接続は正常ですか？</li>
+                        <li>ブラウザのキャッシュをクリアするか、別のブラウザでお試しください。</li>
+                        <li>特定のOSや環境で問題が発生する場合、サポートまでご連絡ください。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: ツールの使い方がよくわかりません。</div>
+                <div class="faq-answer">
+                    <p>A: このページに記載されている「ステップバイステップの使用手順」を再度ご確認ください。それでも解決しない場合は、サポートまで具体的な状況をお知らせください。</p>
+                    <p>可能であれば、エラーメッセージや操作している画面のスクリーンショットを添付いただけますと、よりスムーズな対応が可能です。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 特典ツールはどのくらいの期間使えますか？</div>
+                <div class="faq-answer">
+                    <p>A: 特典ツールの利用期間は、ご購入いただいた商品プランによって異なります。通常は商品のアクセス期間と連動していますが、詳細は商品購入時の規約または商品詳細ページをご確認ください。</p>
+                    <p>無期限利用可能な場合と、期間限定の場合がございます。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 複数のデバイスで利用できますか？</div>
+                <div class="faq-answer">
+                    <p>A: はい、ほとんどの特典ツールは複数のデバイス（PC、タブレット、スマートフォンなど）でご利用いただけます。ただし、同時にログインできるデバイス数に制限がある場合があります。詳細については、ツールの利用規約をご確認ください。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-info">
+            <h2>サポート情報</h2>
+            <h3>ご不明な点がございましたら、お気軽にお問い合わせください</h3>
+            <p>上記FAQで解決しない場合や、さらに詳細な情報が必要な場合は、下記のサポート窓口までご連絡ください。専門スタッフが丁寧に対応させていただきます。</p>
+            <p><strong>お問い合わせフォーム：</strong> <a href="https://your-support-url.com/contact" class="button">お問い合わせはこちら</a></p>
+            <p><strong>メールアドレス：</strong> <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
+            <p><strong>営業時間：</strong> 平日 10:00 - 17:00 (土日祝日を除く)</p>
+            <p>お問い合わせの際は、お名前、ご購入いただいた商品名、具体的なお問い合わせ内容を明記いただけますとスムーズです。</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Your Company Name All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+
+                    // 他の開いているFAQを閉じる
+                    faqQuestions.forEach(q => {
+                        if (q !== this && q.classList.contains('active')) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.style.display = 'none';
+                        }
+                    });
+
+                    // 現在のFAQの表示を切り替える
+                    if (isActive) {
+                        this.classList.remove('active');
+                        answer.style.display = 'none';
+                    } else {
+                        this.classList.add('active');
+                        answer.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
