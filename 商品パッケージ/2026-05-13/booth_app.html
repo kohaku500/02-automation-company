@@ -1,334 +1,611 @@
-はい、承知いたしました。
-BOOTH購入者様向けの特典ツールとして、AIによるコンテンツ制作を加速させる「AIプロンプト自動生成アシスタント」をHTMLで生成します。
-
-このツールは、ChatGPTに最適なプロンプトを簡単に作成できるように設計されており、ご購入いただいた「【究極のAI活用術】ChatGPTで爆速・高品質コンテンツを生み出す完全ガイド」で学んだ知識を即座に実践できる強力なサポートとなります。
-
----
-
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>特典ツール：AIプロンプト自動生成アシスタント</title>
+    <title>【購入者限定特典】AI×副業 収益化ロードマップシミュレーター</title>
     <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
             line-height: 1.6;
         }
         .container {
             max-width: 960px;
             margin-top: 30px;
             margin-bottom: 30px;
-            padding: 20px;
             background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
         }
         h1, h2, h3 {
-            color: #007bff;
+            color: #2c3e50; /* Darker blue-grey for headings */
+            font-weight: 700;
+        }
+        .header-bg {
+            background-color: #4a00e0; /* Deep purple */
+            background-image: linear-gradient(45deg, #8e2de2 0%, #4a00e0 100%); /* Purple gradient */
+            color: #ffffff;
+            padding: 25px 0;
+            border-radius: 12px 12px 0 0;
+            margin: -30px -30px 30px -30px; /* Adjust to cover container top */
+            text-align: center;
+        }
+        .header-bg h1 {
+            color: #ffffff;
+            margin-bottom: 0;
+            font-size: 2.2rem;
+        }
+        .header-bg p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
         }
-        h1 {
-            font-size: 2.2rem;
-            text-align: center;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
+        .card-header {
+            background-color: #e8f0fe; /* Light blue for card headers */
+            color: #2c3e50;
+            font-weight: 600;
+            border-bottom: 1px solid #d0d7e7;
+            border-radius: 10px 10px 0 0;
         }
-        h2 {
-            font-size: 1.8rem;
-            color: #28a745; /* ツールセクションの見出し色 */
-            margin-top: 30px;
-            border-left: 5px solid #28a745;
-            padding-left: 10px;
+        .btn-primary, .btn-primary:hover, .btn-primary:focus {
+            background-color: #6a1bb6; /* Medium purple */
+            border-color: #6a1bb6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        h3 {
-            font-size: 1.4rem;
-            color: #343a40;
-            margin-top: 25px;
+        .btn-outline-primary {
+            color: #6a1bb6;
+            border-color: #6a1bb6;
+        }
+        .btn-outline-primary:hover {
+            background-color: #6a1bb6;
+            color: #ffffff;
         }
         .form-label {
-            font-weight: bold;
+            font-weight: 500;
             color: #495057;
-        }
-        .form-control, .form-select {
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-            padding: 10px 12px;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .form-control:focus, .form-select:focus {
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+            border-color: #9f86cf; /* Lighter purple focus */
+            box-shadow: 0 0 0 0.25rem rgba(106, 27, 182, 0.25);
         }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            padding: 10px 25px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-            padding: 8px 20px;
-            border-radius: 5px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-        #outputPrompt {
+        .input-group-text {
             background-color: #e9ecef;
-            border: 1px dashed #ced4da;
-            padding: 15px;
-            min-height: 150px;
-            font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border-radius: 5px;
-            font-size: 0.95rem;
             color: #495057;
         }
-        .alert-info {
-            background-color: #d1ecf1;
-            border-color: #bee5eb;
-            color: #0c5460;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+        .range-value {
+            font-weight: bold;
+            color: #6a1bb6;
         }
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            font-size: 0.85rem;
+        #results-area strong {
+            color: #6a1bb6;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px; /* Adjust as needed */
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background-color: #eaf6ff;
+            border: 1px solid #cceeff;
+            color: #004085;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+        .info-box strong {
+            color: #002752;
+        }
+        .small-text {
+            font-size: 0.85em;
             color: #6c757d;
-            border-top: 1px solid #e9ecef;
+        }
+        /* Mobile adjustments */
+        @media (max-width: 767.98px) {
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .header-bg {
+                margin: -20px -20px 20px -20px;
+                padding: 20px 0;
+            }
+            .header-bg h1 {
+                font-size: 1.8rem;
+            }
+            .header-bg p {
+                font-size: 1rem;
+            }
+            .chart-container {
+                height: 300px; /* Smaller height for mobile charts */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>【購入者特典】AIプロンプト自動生成アシスタント</h1>
-        <p class="lead text-center mb-4">
-            「ChatGPTで爆速・高品質コンテンツを生み出す完全ガイド」をご購入いただきありがとうございます！<br>
-            このツールは、ChatGPTに最適なプロンプトを簡単に作成するためのアシスタントです。<br>
-            あなたのコンテンツ制作をさらに加速させるためにご活用ください！
-        </p>
+        <div class="header-bg">
+            <h1>【購入者限定特典】AI×副業 収益化ロードマップシミュレーター</h1>
+            <p class="mb-0">あなたの目標を数値化し、AIで月5万円以上「稼ぐ」ための実践ロードマップを可視化します。</p>
+        </div>
 
-        <hr class="my-4">
+        <div class="alert alert-info small-text" role="alert">
+            <strong>重要:</strong> このツールはブラウザ内で動作し、入力された個人情報や計算結果は一切外部に送信されません。安心してご利用ください。
+        </div>
 
-        <section id="prompt-generator">
-            <h2>AIプロンプト生成ツール</h2>
-            <p>
-                以下の項目を選択・入力するだけで、ChatGPTに貼り付けるだけで使えるプロンプトを自動生成します。<br>
-                商品で学んだプロンプト作成のコツを、このツールで実践してみましょう！
-            </p>
-
-            <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                    <label for="purpose" class="form-label">1. プロンプトの目的 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="purpose" required>
-                        <option value="">選択してください</option>
-                        <option value="ブログ記事作成">ブログ記事作成</option>
-                        <option value="SNS投稿作成（X, Instagramなど）">SNS投稿作成（X, Instagramなど）</option>
-                        <option value="メール作成（メルマガ、営業メールなど）">メール作成（メルマガ、営業メールなど）</option>
-                        <option value="アイデア出し/ブレインストーミング">アイデア出し/ブレインストーミング</option>
-                        <option value="要約/情報整理">要約/情報整理</option>
-                        <option value="スクリプト作成（動画、プレゼンなど）">スクリプト作成（動画、プレゼンなど）</option>
-                        <option value="見出し/タイトル案生成">見出し/タイトル案生成</option>
-                        <option value="商品説明文作成">商品説明文作成</option>
-                        <option value="その他">その他</option>
-                    </select>
+        <section class="mb-5">
+            <h2 class="h4 mb-3">目標設定</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="monthlyGoal" class="form-label">月間目標収益額 <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text">¥</span>
+                            <input type="number" class="form-control" id="monthlyGoal" value="50000" min="0" required>
+                            <span class="input-group-text">円</span>
+                        </div>
+                        <div class="form-text small-text">AI活用で達成したい月間の副業収益目標額を入力してください。（例: 50000）</div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="topic" class="form-label">2. テーマ・キーワード <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="topic" placeholder="例：AIを活用したコンテンツ制作のメリット" required>
-                    <small class="form-text text-muted">具体的に、何をテーマにしたいか入力してください。</small>
-                </div>
-            </div>
-
-            <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                    <label for="targetAudience" class="form-label">3. ターゲット層 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="targetAudience" required>
-                        <option value="">選択してください</option>
-                        <option value="コンテンツ制作に悩む初心者クリエイター">コンテンツ制作に悩む初心者クリエイター</option>
-                        <option value="Webマーケター">Webマーケター</option>
-                        <option value="中小企業経営者">中小企業経営者</option>
-                        <option value="副業を始めたばかりの個人">副業を始めたばかりの個人</option>
-                        <option value="20代のビジネスパーソン">20代のビジネスパーソン</option>
-                        <option value="幅広い一般層">幅広い一般層</option>
-                        <option value="その他">その他</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="tone" class="form-label">4. トーン＆マナー <span class="text-danger">*</span></label>
-                    <select class="form-select" id="tone" required>
-                        <option value="">選択してください</option>
-                        <option value="丁寧、フォーマル">丁寧、フォーマル</option>
-                        <option value="親しみやすい、フレンドリー">親しみやすい、フレンドリー</option>
-                        <option value="専門的、権威的">専門的、権威的</option>
-                        <option value="ユーモラス、面白い">ユーモラス、面白い</option>
-                        <option value="簡潔、ビジネスライク">簡潔、ビジネスライク</option>
-                        <option value="熱意のある、情熱的">熱意のある、情熱的</option>
-                        <option value="インスピレーションを与える">インスピレーションを与える</option>
-                        <option value="共感を呼ぶ">共感を呼ぶ</option>
-                        <option value="その他">その他</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <label for="format" class="form-label">5. 出力形式 <span class="text-danger">*</span></label>
-                <select class="form-select" id="format" required>
-                    <option value="">選択してください</option>
-                    <option value="段落形式で詳細に">段落形式で詳細に</option>
-                    <option value="箇条書きで簡潔に">箇条書きで簡潔に</option>
-                    <option value="テーブル形式で比較できるように">テーブル形式で比較できるように</option>
-                    <option value="マークダウン形式で構造的に">マークダウン形式で構造的に</option>
-                    <option value="Q&A形式で疑問に答えるように">Q&A形式で疑問に答えるように</option>
-                    <option value="ストーリーテリング形式で魅力的に">ストーリーテリング形式で魅力的に</option>
-                    <option value="スクリプト形式で会話風に">スクリプト形式で会話風に</option>
-                    <option value="その他">その他</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="additionalInstructions" class="form-label">6. 追加指示・制約（任意）</label>
-                <textarea class="form-control" id="additionalInstructions" rows="4" placeholder="例：文字数は1000字程度で。SEOキーワード「ChatGPT活用術」を3回以上含めてください。"></textarea>
-                <small class="form-text text-muted">より具体的な指示や、含めてほしい要素、含めたくない要素などがあれば記述してください。</small>
-            </div>
-
-            <div class="d-grid gap-2 mb-5">
-                <button type="button" class="btn btn-primary btn-lg" id="generatePromptBtn">プロンプトを生成する！</button>
-            </div>
-
-            <h3>✨ 生成されたプロンプト ✨</h3>
-            <div id="outputPrompt" class="p-3 mb-3 border bg-light">
-                <!-- 生成されたプロンプトがここに表示されます -->
-                <p class="text-muted mb-0">上記で項目を選択・入力し、「プロンプトを生成する！」ボタンを押してください。</p>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="button" class="btn btn-success" id="copyPromptBtn" style="display: none;">生成されたプロンプトをコピー</button>
-            </div>
-            <div id="copySuccessAlert" class="alert alert-info mt-3" role="alert" style="display: none;">
-                プロンプトがクリップボードにコピーされました！ChatGPTに貼り付けて活用しましょう。
             </div>
         </section>
 
-        <hr class="my-4">
+        <section class="mb-5">
+            <h2 class="h4 mb-3">収益源の設定</h2>
+            <div id="revenueStreams" class="mb-4">
+                <!-- Initial Revenue Stream Item -->
+                <div class="card mb-3 revenue-stream-item" data-id="1">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        収益源 #1
+                        <button type="button" class="btn-close remove-stream-btn" aria-label="Close"></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="streamName-1" class="form-label">収益源の名前 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control stream-name" id="streamName-1" value="ブログ記事作成" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamTargetAmount-1" class="form-label">この収益源の目標収益額</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input type="number" class="form-control stream-target-amount" id="streamTargetAmount-1" value="25000" min="0">
+                                    <span class="input-group-text">円</span>
+                                </div>
+                                <div class="form-text small-text">全体の目標収益額に対して、この収益源でいくら稼ぎたいか。</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamUnitPrice-1" class="form-label">サービス提供の想定単価 (1件あたり) <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input type="number" class="form-control stream-unit-price" id="streamUnitPrice-1" value="5000" min="1" required>
+                                    <span class="input-group-text">円</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamStdTime-1" class="form-label">1件あたりの標準作業時間 (AIなし) <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control stream-std-time" id="streamStdTime-1" value="2" min="0.1" step="0.1" required>
+                                    <span class="input-group-text">時間</span>
+                                </div>
+                                <div class="form-text small-text">例: ブログ記事1本に2時間かかる場合「2」と入力</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="streamAiEfficiency-1" class="form-label">AI活用による時間短縮率: <span class="range-value" id="streamAiEfficiencyValue-1">50%</span></label>
+                                <input type="range" class="form-range stream-ai-efficiency" id="streamAiEfficiency-1" min="0" max="100" value="50">
+                                <div class="form-text small-text">AI活用によって、この作業の時間がどれくらい短縮できるか？ (例: 半分になるなら50%)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary" id="addStreamBtn">
+                <i class="bi bi-plus-circle"></i> 収益源を追加する
+            </button>
+        </section>
 
-        <div class="alert alert-info" role="alert">
-            <h4>💡 AI活用ワンポイントアドバイス</h4>
-            <p>生成されたプロンプトはあくまでたたき台です。ChatGPTに実際に投入してみて、期待通りの出力が得られない場合は、以下の点を調整して再試行しましょう。</p>
+        <section class="mb-5">
+            <h2 class="h4 mb-3">シミュレーション結果</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div id="results-area">
+                        <p class="lead text-center mb-4">上の入力項目を設定すると、ここに結果が表示されます。</p>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3 text-center">各収益源の目標収益割合</h3>
+                            <div class="chart-container">
+                                <canvas id="revenueShareChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3 text-center">AI活用による月間時間削減効果</h3>
+                            <div class="chart-container">
+                                <canvas id="timeSavingChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-box mt-5">
+            <h3 class="h5 mb-3">💡 この特典を最大限に活用するために</h3>
+            <p>このシミュレーションで設定した「各収益源の目標収益額」と「必要な作業量」を達成するためには、効率的なプロンプトの活用が不可欠です。</p>
+            <p>BOOTH商品本体「<strong>ChatGPTプロンプト完全攻略！クリエイター・副業で月5万以上「稼ぐ」実践ロードマップ＆超実践プロンプト集2026</strong>」には、以下のような具体的なプロンプトが豊富に収録されています。</p>
             <ul>
-                <li><strong>具体性:</strong> 目的やテーマをより具体的に記述する。</li>
-                <li><strong>役割設定:</strong> ChatGPTに「あなたは〇〇の専門家です」のように役割を与える。</li>
-                <li><strong>例示:</strong> 「このような形式で出力してほしい」という具体的な例を示す。</li>
-                <li><strong>段階的な指示:</strong> 一度に全てを求めるのではなく、ステップバイステップで指示を出す。</li>
+                <li><strong>ブログ記事作成の効率化:</strong> 第2章「コンテンツ生成プロンプト大全」で、アイデア出しから構成、執筆、校正までを劇的に短縮するプロンプト群。</li>
+                <li><strong>SNS投稿文案の量産:</strong> 第3章「SNS運用・マーケティングプロンプト集」で、ターゲットに刺さる投稿を量産し、エンゲージメントを高めるプロンプト。</li>
+                <li><strong>動画スクリプト作成:</strong> 第4章「企画・アイデア出しプロンプト」と連携し、構成からセリフまでをAIと共創するプロンプト。</li>
+                <li><strong>その他ビジネス効率化:</strong> 第5章以降の「案件獲得」「ビジネス戦略」関連プロンプトで、シミュレーションで生まれた時間をさらなる収益拡大に繋げられます。</li>
             </ul>
-            <p>これらのヒントは、ご購入いただいた「【究極のAI活用術】ChatGPTで爆速・高品質コンテンツを生み出す完全ガイド」の各章で詳しく解説しています。ぜひ本編も合わせてご活用ください！</p>
-        </div>
-
-        <p class="text-center mt-4">
-            このツールが、あなたのコンテンツ制作の生産性向上に貢献することを願っています。
-        </p>
+            <p class="mb-0">このシミュレーターで描いたロードマップを、商品本体の「超実践プロンプト集」で確実に実行し、あなたのAI副業・クリエイターとしての成功を加速させてください！</p>
+        </section>
 
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2023 [販売者名またはブランド名]. All Rights Reserved.</p>
-        <p>※本ツールは購入者様限定の特典です。再配布はご遠慮ください。</p>
-    </footer>
+    <!-- Bootstrap JS CDN (Bundle with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap JS CDN (Popper.jsも含む) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const generateBtn = document.getElementById('generatePromptBtn');
-            const copyBtn = document.getElementById('copyPromptBtn');
-            const outputPrompt = document.getElementById('outputPrompt');
-            const copySuccessAlert = document.getElementById('copySuccessAlert');
+        let streamCounter = 1; // Used for unique IDs for dynamically added elements
+        const revenueStreamsContainer = document.getElementById('revenueStreams');
+        const addStreamBtn = document.getElementById('addStreamBtn');
+        const monthlyGoalInput = document.getElementById('monthlyGoal');
+        const resultsArea = document.getElementById('results-area');
 
-            generateBtn.addEventListener('click', generatePrompt);
-            copyBtn.addEventListener('click', copyPrompt);
+        let revenueShareChart;
+        let timeSavingChart;
 
-            function generatePrompt() {
-                const purpose = document.getElementById('purpose').value;
-                const topic = document.getElementById('topic').value.trim();
-                const targetAudience = document.getElementById('targetAudience').value;
-                const tone = document.getElementById('tone').value;
-                const format = document.getElementById('format').value;
-                const additionalInstructions = document.getElementById('additionalInstructions').value.trim();
-
-                // 必須項目のチェック
-                if (!purpose || !topic || !targetAudience || !tone || !format) {
-                    alert('必須項目が入力されていません。すべての項目を選択・入力してください。');
-                    return;
+        // Function to initialize Chart.js graphs
+        const setupCharts = () => {
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    // Format as currency for revenue share chart
+                                    if (context.chart.id === revenueShareChart.id) {
+                                        label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed);
+                                    } else {
+                                        label += `${context.parsed.toFixed(1)} 時間`;
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    }
                 }
+            };
 
-                let prompt = `あなたはプロのコンテンツクリエイターです。以下の指示に従ってコンテンツを作成してください。\n\n`;
+            // Revenue Share Chart (Doughnut)
+            revenueShareChart = new Chart(document.getElementById('revenueShareChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#8e2de2', '#4a00e0', '#673ab7', '#9c27b0', '#ab47bc',
+                            '#c0ca33', '#7cb342', '#009688', '#00bcd4', '#03a9f4'
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: chartOptions
+            });
 
-                prompt += `【目的】${purpose}\n`;
-                prompt += `【テーマ】${topic}\n`;
-                prompt += `【ターゲット層】${targetAudience}\n`;
-                prompt += `【トーン＆マナー】${tone}\n`;
-                prompt += `【出力形式】${format}\n`;
-                
-                if (additionalInstructions) {
-                    prompt += `【追加指示・制約】${additionalInstructions}\n`;
+            // Time Saving Chart (Bar)
+            timeSavingChart = new Chart(document.getElementById('timeSavingChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '時間削減効果 (時間/月)',
+                        data: [],
+                        backgroundColor: '#4a00e0',
+                        borderColor: '#4a00e0',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '削減時間 (時間/月)'
+                            }
+                        }
+                    }
                 }
+            });
+        };
 
-                prompt += `\n上記の情報を基に、読者に価値を提供する高品質なコンテンツを作成してください。`;
+        // Function to add a new revenue stream item to the DOM
+        const addRevenueStream = (name = '', targetAmount = '', unitPrice = '', stdTime = '', aiEfficiency = 50) => {
+            streamCounter++;
+            const newItemHtml = `
+                <div class="card mb-3 revenue-stream-item" data-id="${streamCounter}">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        収益源 #${streamCounter}
+                        <button type="button" class="btn-close remove-stream-btn" aria-label="Close"></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="streamName-${streamCounter}" class="form-label">収益源の名前 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control stream-name" id="streamName-${streamCounter}" value="${name}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamTargetAmount-${streamCounter}" class="form-label">この収益源の目標収益額</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input type="number" class="form-control stream-target-amount" id="streamTargetAmount-${streamCounter}" value="${targetAmount}" min="0">
+                                    <span class="input-group-text">円</span>
+                                </div>
+                                <div class="form-text small-text">全体の目標収益額に対して、この収益源でいくら稼ぎたいか。</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamUnitPrice-${streamCounter}" class="form-label">サービス提供の想定単価 (1件あたり) <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input type="number" class="form-control stream-unit-price" id="streamUnitPrice-${streamCounter}" value="${unitPrice}" min="1" required>
+                                    <span class="input-group-text">円</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="streamStdTime-${streamCounter}" class="form-label">1件あたりの標準作業時間 (AIなし) <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control stream-std-time" id="streamStdTime-${streamCounter}" value="${stdTime}" min="0.1" step="0.1" required>
+                                    <span class="input-group-text">時間</span>
+                                </div>
+                                <div class="form-text small-text">例: ブログ記事1本に2時間かかる場合「2」と入力</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="streamAiEfficiency-${streamCounter}" class="form-label">AI活用による時間短縮率: <span class="range-value" id="streamAiEfficiencyValue-${streamCounter}">${aiEfficiency}%</span></label>
+                                <input type="range" class="form-range stream-ai-efficiency" id="streamAiEfficiency-${streamCounter}" min="0" max="100" value="${aiEfficiency}">
+                                <div class="form-text small-text">AI活用によって、この作業の時間がどれくらい短縮できるか？ (例: 半分になるなら50%)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            revenueStreamsContainer.insertAdjacentHTML('beforeend', newItemHtml);
+            attachEventListeners(streamCounter); // Attach listeners to the new item
+            calculate(); // Recalculate everything
+        };
 
-                outputPrompt.innerHTML = `<pre class="mb-0">${escapeHtml(prompt)}</pre>`;
-                copyBtn.style.display = 'block'; // 生成後にコピーボタンを表示
-                copySuccessAlert.style.display = 'none'; // コピー成功メッセージを非表示
-            }
+        // Function to attach event listeners to input fields of a specific stream item
+        const attachEventListeners = (id) => {
+            const streamItem = revenueStreamsContainer.querySelector(`[data-id="${id}"]`);
+            if (!streamItem) return;
 
-            function copyPrompt() {
-                const promptText = outputPrompt.textContent || outputPrompt.innerText;
-                if (promptText.trim() === '' || promptText.includes('上記で項目を選択・入力し')) {
-                    alert('まだプロンプトが生成されていません。');
-                    return;
-                }
-                
-                navigator.clipboard.writeText(promptText).then(function() {
-                    copySuccessAlert.style.display = 'block';
-                    // 3秒後にメッセージを非表示にする
-                    setTimeout(() => {
-                        copySuccessAlert.style.display = 'none';
-                    }, 3000);
-                }).catch(function(err) {
-                    alert('プロンプトのコピーに失敗しました。お手数ですが手動でコピーしてください。\n' + err);
+            streamItem.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('input', calculate);
+            });
+
+            // Update range value display dynamically
+            const efficiencyRange = streamItem.querySelector(`#streamAiEfficiency-${id}`);
+            const efficiencyValueSpan = streamItem.querySelector(`#streamAiEfficiencyValue-${id}`);
+            if (efficiencyRange && efficiencyValueSpan) {
+                efficiencyRange.addEventListener('input', () => {
+                    efficiencyValueSpan.textContent = `${efficiencyRange.value}%`;
+                    calculate();
                 });
             }
 
-            // HTMLエスケープ関数 (XSS対策)
-            function escapeHtml(text) {
-                var map = {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                };
-                return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+            // Remove button functionality
+            const removeBtn = streamItem.querySelector('.remove-stream-btn');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    streamItem.remove();
+                    calculate(); // Recalculate after removing an item
+                });
             }
+        };
+
+        // Main calculation logic
+        const calculate = () => {
+            const monthlyGoal = parseFloat(monthlyGoalInput.value) || 0;
+            let totalActualTargetAmount = 0; // Sum of target amounts defined by user for each stream
+
+            const streamData = [];
+            let totalStandardHours = 0;
+            let totalAIHours = 0;
+            let totalSavedHours = 0;
+
+            document.querySelectorAll('.revenue-stream-item').forEach(item => {
+                const id = item.dataset.id;
+                const name = item.querySelector(`#streamName-${id}`).value;
+                const targetAmount = parseFloat(item.querySelector(`#streamTargetAmount-${id}`).value) || 0;
+                const unitPrice = parseFloat(item.querySelector(`#streamUnitPrice-${id}`).value) || 1; // Avoid division by zero
+                const stdTime = parseFloat(item.querySelector(`#streamStdTime-${id}`).value) || 0.1; // Avoid division by zero
+                const aiEfficiency = parseFloat(item.querySelector(`#streamAiEfficiency-${id}`).value) / 100; // Convert percentage to decimal
+
+                // Skip entries with invalid or missing critical values
+                if (!name || unitPrice <= 0 || stdTime <= 0) {
+                    return;
+                }
+
+                totalActualTargetAmount += targetAmount;
+
+                const requiredItems = targetAmount / unitPrice;
+                const standardHoursPerItem = stdTime;
+                const aiHoursPerItem = standardHoursPerItem * (1 - aiEfficiency);
+                const savedHoursPerItem = standardHoursPerItem * aiEfficiency;
+
+                totalStandardHours += requiredItems * standardHoursPerItem;
+                totalAIHours += requiredItems * aiHoursPerItem;
+                totalSavedHours += requiredItems * savedHoursPerItem;
+
+                streamData.push({
+                    name: name,
+                    targetAmount: targetAmount,
+                    unitPrice: unitPrice,
+                    stdTime: stdTime,
+                    aiEfficiency: aiEfficiency,
+                    requiredItems: requiredItems,
+                    standardHours: requiredItems * standardHoursPerItem,
+                    aiHours: requiredItems * aiHoursPerItem,
+                    savedHours: requiredItems * savedHoursPerItem
+                });
+            });
+
+            // Calculate overall goal achievement percentage
+            const goalAchievement = (monthlyGoal > 0) ? (totalActualTargetAmount / monthlyGoal) * 100 : 0;
+
+            displayResults(monthlyGoal, totalActualTargetAmount, goalAchievement, totalStandardHours, totalAIHours, totalSavedHours, streamData);
+            updateCharts(streamData);
+        };
+
+        // Function to display the calculation results in the DOM
+        const displayResults = (monthlyGoal, actualTotal, goalAchievement, standardHours, aiHours, savedHours, streamData) => {
+            let html = '';
+
+            // Handle initial state or missing goal/streams
+            if (monthlyGoal === 0) {
+                resultsArea.innerHTML = `<p class="lead text-center mb-4 text-warning">目標月間収益額を入力してください。</p>`;
+                return;
+            }
+            if (streamData.length === 0) {
+                resultsArea.innerHTML = `<p class="lead text-center mb-4">少なくとも1つの収益源を設定してください。</p>`;
+                return;
+            }
+            
+            html += `
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">目標達成率</h5>
+                                <p class="card-text fs-2 text-primary"><strong>${goalAchievement.toFixed(1)}%</strong></p>
+                                <p class="card-text small-text">（目標: ¥${monthlyGoal.toLocaleString()} / 設定済: ¥${actualTotal.toLocaleString()}）</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">AI活用による月間時間削減効果</h5>
+                                <p class="card-text fs-2 text-success"><strong>${savedHours.toFixed(1)}時間</strong></p>
+                                <p class="card-text small-text">AIを活用しない場合と比較して、これだけの時間を節約できます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="h5 mt-4 mb-3">各収益源の詳細ロードマップ</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>収益源</th>
+                                <th class="text-end">目標収益額</th>
+                                <th class="text-end">想定単価</th>
+                                <th class="text-end">必要な作業量 (件)</th>
+                                <th class="text-end">AIなし作業時間 (時間/月)</th>
+                                <th class="text-end">AI活用後作業時間 (時間/月)</th>
+                                <th class="text-end">時間削減効果 (時間/月)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            streamData.forEach(s => {
+                html += `
+                    <tr>
+                        <td>${s.name}</td>
+                        <td class="text-end">¥${s.targetAmount.toLocaleString()}</td>
+                        <td class="text-end">¥${s.unitPrice.toLocaleString()}</td>
+                        <td class="text-end">${s.requiredItems.toFixed(1)}件</td>
+                        <td class="text-end">${s.standardHours.toFixed(1)}時間</td>
+                        <td class="text-end">${s.aiHours.toFixed(1)}時間</td>
+                        <td class="text-end text-success"><strong>${s.savedHours.toFixed(1)}時間</strong></td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>合計</strong></td>
+                                <td class="text-end"><strong>¥${actualTotal.toLocaleString()}</strong></td>
+                                <td class="text-end"></td>
+                                <td class="text-end"></td>
+                                <td class="text-end"><strong>${standardHours.toFixed(1)}時間</strong></td>
+                                <td class="text-end"><strong>${aiHours.toFixed(1)}時間</strong></td>
+                                <td class="text-end text-success"><strong>${savedHours.toFixed(1)}時間</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            `;
+            resultsArea.innerHTML = html;
+        };
+
+        // Function to update Chart.js graphs
+        const updateCharts = (streamData) => {
+            // Update Revenue Share Chart
+            revenueShareChart.data.labels = streamData.map(s => s.name);
+            revenueShareChart.data.datasets[0].data = streamData.map(s => s.targetAmount);
+            revenueShareChart.update();
+
+            // Update Time Saving Chart
+            timeSavingChart.data.labels = streamData.map(s => s.name);
+            timeSavingChart.data.datasets[0].data = streamData.map(s => s.savedHours);
+            timeSavingChart.update();
+        };
+
+        // Event Listeners for main goal and add stream button
+        monthlyGoalInput.addEventListener('input', calculate);
+        addStreamBtn.addEventListener('click', () => addRevenueStream('', '', '', '', 50));
+
+        // Initial setup on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCharts();
+            // Attach event listeners for the initially existing stream item (id=1)
+            attachEventListeners(1);
+            // Add a few more default streams for better initial experience
+            addRevenueStream('SNS投稿文案作成', '15000', '1500', '0.5', 70);
+            addRevenueStream('動画スクリプト作成', '10000', '10000', '3', 40);
+            calculate(); // Perform initial calculation
         });
     </script>
 </body>

@@ -3,579 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【究極のAI活用術】ChatGPT完全ガイド - 購入者向け価値提案</title>
-    <!-- Font Awesome (外部CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0Xj+twtFZGlhWAeEYNTopKhhW6/PdLTMzNGBBGzQY+8XjYgSLh7D5xY9oYw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ChatGPTプロンプト完全攻略！購入者向け価値提案</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Base styles */
+        /* 全体設定 */
         body {
-            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Meiryo', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6; /* Light grey background */
-            color: #333; /* Dark grey text */
+            background-color: #f4f7f6; /* 優しい背景色 */
+            color: #333;
+            overflow: hidden; /* スライドショーのため */
+        }
+        .slide-container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* Hide scrollbars to keep it a clean presentation */
-        }
-
-        .slides-container {
+            width: 100vw;
             position: relative;
-            width: 90%;
-            max-width: 960px; /* Max width for desktop */
-            height: 60vh; /* Responsive height */
-            min-height: 400px; /* Minimum height for better readability on small screens */
-            background-color: #ffffff; /* White slide background */
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
         }
-
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 40px;
-            box-sizing: border-box;
-            display: none; /* Hidden by default */
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px 60px;
+            max-width: 900px; /* PCでの最大幅 */
+            width: 90%; /* レスポンシブ対応 */
+            min-height: 500px;
+            display: none; /* 初期は非表示 */
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out; /* Fade transition */
+            animation: fadeIn 0.8s ease-out forwards;
+            box-sizing: border-box;
+            position: relative; /* スライド番号の配置のため */
         }
-
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .slide.active {
             display: flex;
-            opacity: 1;
         }
 
-        .slide h1 {
-            font-size: 2.8em;
-            color: #1a73e8; /* Accent color: Google blue-like */
+        /* スライドコンテンツ */
+        h1, h2, h3 {
+            color: #2c3e50;
             margin-bottom: 20px;
-            line-height: 1.3;
+            font-weight: 700;
         }
-
-        .slide h2 {
-            font-size: 2.2em;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .slide h3 {
-            font-size: 1.8em;
-            color: #1a73e8; /* Accent color */
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        .slide p {
+        h1 { font-size: 2.8em; line-height: 1.3; }
+        h2 { font-size: 2.2em; line-height: 1.4; }
+        h3 { font-size: 1.8em; line-height: 1.5; color: #34495e; }
+        p {
             font-size: 1.1em;
-            line-height: 1.6;
+            line-height: 1.8;
             margin-bottom: 15px;
-            max-width: 700px;
+            color: #555;
         }
-
-        .slide ul {
+        ul {
             list-style: none;
             padding: 0;
             margin: 20px 0;
             text-align: left;
-            max-width: 700px;
+            width: 100%;
         }
-
-        .slide ul li {
-            font-size: 1.2em;
+        ul li {
+            font-size: 1.1em;
+            line-height: 2;
             margin-bottom: 10px;
             position: relative;
-            padding-left: 35px; /* Space for icon */
+            padding-left: 35px;
+            color: #444;
         }
-
-        .slide ul li::before {
-            content: "\f058"; /* Check-circle icon from Font Awesome */
-            font-family: "Font Awesome 6 Free";
+        ul li::before {
+            font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            color: #28a745; /* Green for success */
+            color: #28a745; /* 緑色のチェックマーク */
             position: absolute;
             left: 0;
             top: 0;
         }
-
-        .slide .icon-list {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            justify-content: center;
-            gap: 30px; /* Space between items */
-            margin-top: 30px;
+        .highlight {
+            color: #e67e22; /* オレンジ色 */
+            font-weight: bold;
         }
-
-        .slide .icon-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 180px;
-            text-align: center;
+        .emphasis {
+            color: #2980b9; /* 青色 */
+            font-weight: bold;
         }
-
-        .slide .icon-item i {
-            font-size: 3.5em;
-            color: #1a73e8; /* Accent color for icons */
-            margin-bottom: 15px;
-        }
-
-        .slide .icon-item p {
-            font-size: 1.1em;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        .slide .problem-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            max-width: 800px;
-        }
-
-        .slide .problem-item {
-            background-color: #fff3e0; /* Light orange background for problems */
-            border-left: 5px solid #ff9800; /* Orange border */
-            padding: 15px 20px;
+        .action-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
             border-radius: 8px;
-            text-align: left;
-            width: calc(50% - 30px); /* Two columns on larger screens */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .action-button:hover {
+            background-color: #218838;
         }
 
-        .slide .problem-item i {
-            color: #ff9800; /* Orange icon */
-            font-size: 1.5em;
-            flex-shrink: 0; /* Prevent icon from shrinking */
-            margin-top: 2px; /* Align icon better */
-        }
-        
-        .slide .problem-item p {
-            font-size: 1em;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Navigation Buttons */
-        .navigation-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(26, 115, 232, 0.7); /* Slightly transparent blue */
+        /* ナビゲーションボタン */
+        .nav-button {
+            background-color: rgba(44, 62, 80, 0.7); /* 少し透明な濃い色 */
             color: white;
             border: none;
             padding: 15px 20px;
-            font-size: 1.5em;
+            font-size: 1.8em;
             cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            z-index: 1000;
-            display: flex; /* For icon alignment */
-            align-items: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-
-        .navigation-button:hover {
-            background-color: rgba(26, 115, 232, 0.9);
+        .nav-button:hover {
+            background-color: rgba(44, 62, 80, 0.9);
+            transform: translateY(-50%) scale(1.1);
         }
-
-        .prev {
+        .prev-button {
             left: 20px;
         }
-
-        .next {
+        .next-button {
             right: 20px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .slides-container {
-                width: 95%;
-                height: auto;
-                min-height: 80vh; /* Allow more vertical space on mobile */
-                margin: 20px auto;
-            }
-
-            .slide {
-                padding: 20px 15px;
-            }
-
-            .slide h1 {
-                font-size: 1.8em;
-            }
-
-            .slide h2 {
-                font-size: 1.5em;
-            }
-
-            .slide h3 {
-                font-size: 1.3em;
-            }
-
-            .slide p {
-                font-size: 0.95em;
-            }
-
-            .slide ul li {
-                font-size: 1em;
-                padding-left: 25px;
-            }
-            
-            .slide ul li::before {
-                font-size: 0.9em;
-                left: 0;
-                top: 2px;
-            }
-
-            .slide .icon-list {
-                gap: 20px;
-            }
-
-            .slide .icon-item {
-                max-width: 120px;
-            }
-
-            .slide .icon-item i {
-                font-size: 2.5em;
-                margin-bottom: 10px;
-            }
-
-            .slide .icon-item p {
-                font-size: 0.9em;
-            }
-
-            .slide .problem-list {
-                flex-direction: column; /* Stack problem items vertically on mobile */
-                align-items: center;
-                gap: 15px;
-            }
-            .slide .problem-item {
-                width: 90%; /* Full width on mobile */
-                padding: 12px 15px;
-            }
-
-            .navigation-button {
-                padding: 10px 15px;
-                font-size: 1.2em;
-            }
-
-            .prev {
-                left: 10px;
-            }
-
-            .next {
-                right: 10px;
-            }
+        /* スライド番号 */
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 1em;
+            color: #777;
         }
 
-        @media (max-width: 480px) {
-            .slide h1 {
-                font-size: 1.5em;
+        /* 特定スライドの調整とアイコン設定 */
+        .slide:nth-child(1) h1 {
+            color: #e67e22;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+        .slide:nth-child(1) p {
+            font-size: 1.5em;
+            color: #34495e;
+            font-weight: 500;
+        }
+        .slide:nth-child(2) ul li::before { content: "\f059"; color: #e74c3c; } /* question circle */
+        .slide:nth-child(3) ul li::before { content: "\f0ad"; color: #f39c12; } /* wrench (スキル) */
+        .slide:nth-child(4) ul li::before { content: "\f0d1"; color: #28a745; } /* truck-ramp (ロードマップ) */
+        .slide:nth-child(5) ul li::before,
+        .slide:nth-child(6) ul li::before { content: "\f00c"; color: #28a745; } /* checkmark */
+        .slide:nth-child(7) ul li::before { content: "\f007"; color: #3498db; } /* user */
+        .slide:nth-child(8) ul li::before,
+        .slide:nth-child(9) ul li::before { content: "\f0e7"; color: #f1c40f; } /* lightning */
+        .slide:nth-child(10) ul li::before { content: "\f02d"; color: #9b59b6; } /* book */
+        .slide:nth-child(11) ul li::before { content: "\f046"; color: #1abc9c; } /* check-square */
+        .slide:nth-child(12) .action-button {
+            background-color: #e67e22;
+        }
+        .slide:nth-child(12) .action-button:hover {
+            background-color: #d35400;
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                min-height: 70vh; /* 縦長になるように調整 */
+                width: 95%;
             }
-            .slide h2 {
-                font-size: 1.3em;
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.5em; }
+            p, ul li { font-size: 1em; }
+            ul li { padding-left: 30px; }
+            ul li::before { top: 3px; }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4em;
+                padding: 10px 15px;
             }
-            .slide h3 {
-                font-size: 1.1em;
+            .prev-button { left: 10px; }
+            .next-button { right: 10px; }
+            .slide-number {
+                bottom: 10px;
+                right: 15px;
+                font-size: 0.8em;
             }
-            .slide p {
-                font-size: 0.85em;
+            .action-button {
+                padding: 12px 25px;
+                font-size: 1em;
+                margin-top: 20px;
             }
-            .slide ul li {
-                font-size: 0.9em;
-            }
-            .slide .icon-list {
-                flex-direction: column; /* Stack icons vertically on very small screens */
-                gap: 15px;
-            }
-            .slide .icon-item {
-                flex-direction: row; /* Icon and text side-by-side */
-                align-items: center;
-                max-width: 90%;
-                text-align: left;
-                gap: 15px;
-            }
-            .slide .icon-item i {
-                font-size: 2em;
-                margin-bottom: 0;
-            }
-            .slide .icon-item p {
-                font-size: 0.9em;
-                margin: 0;
-            }
+            .slide:nth-child(1) h1 { font-size: 2.5em; }
+            .slide:nth-child(1) p { font-size: 1.2em; }
         }
     </style>
 </head>
 <body>
+    <div class="slide-container">
+        <!-- ナビゲーションボタン -->
+        <button class="nav-button prev-button" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+        <button class="nav-button next-button" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
 
-    <div class="slides-container">
-        <!-- Slide 1: タイトルスライド -->
-        <div class="slide">
-            <h1>ご購入ありがとうございます！<br>コンテンツ制作の未来がここに。</h1>
-            <h2>【究極のAI活用術】ChatGPTで爆速・高品質コンテンツを生み出す完全ガイド</h2>
-            <p>このガイドで、あなたのクリエイティブを次のレベルへ引き上げましょう。</p>
+        <!-- スライド1: タイトル -->
+        <div class="slide active">
+            <h1>【BOOTH限定】ChatGPTプロンプト完全攻略！</h1>
+            <p>クリエイター・副業で<span class="highlight">月5万以上「稼ぐ」</span>実践ロードマップ＆超実践プロンプト集2026</p>
+            <p>✨ AI時代を生き抜くクリエイター・副業家のあなたへ ✨</p>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 2: はじめに / ご購入ありがとうございます -->
+        <!-- スライド2: 顧客の悩み -->
         <div class="slide">
-            <h2>🎉 BOOTHでのご購入、心より感謝申し上げます！</h2>
-            <p>このスライドでは、あなたが手に入れたこの商品の「真の価値」を余すことなくお伝えします。<br>
-            AIを「知っている」から「使いこなす」プロへの道を、一緒に歩んでいきましょう。</p>
-            <h3><i class="fas fa-hand-sparkles" style="color: #ffc107;"></i> あなたのコンテンツ制作を劇的に変える！</h3>
-        </div>
-
-        <!-- Slide 3: こんなお悩みありませんか？ (課題提起) -->
-        <div class="slide">
-            <h2>💡 こんなお悩みありませんか？</h2>
-            <div class="problem-list">
-                <div class="problem-item">
-                    <i class="far fa-hourglass-half"></i> <p>「コンテンツ制作、いつも時間に追われている…」</p>
-                </div>
-                <div class="problem-item">
-                    <i class="far fa-lightbulb"></i> <p>「新しいアイデアが浮かばず、ネタ切れ状態に…」</p>
-                </div>
-                <div class="problem-item">
-                    <i class="fas fa-pen-fancy"></i> <p>「文章を書くのが苦手で、質を上げるのに苦労している…」</p>
-                </div>
-                <div class="problem-item">
-                    <i class="fas fa-robot"></i> <p>「AI（ChatGPT）って便利らしいけど、どう使えばいいか分からない…」</p>
-                </div>
-            </div>
-            <p style="margin-top: 30px;">もし上記の一つでも心当たりがあるなら、この商品はまさにあなたのためのものです。</p>
-        </div>
-
-        <!-- Slide 4: この商品が、あなたのコンテンツ制作を劇的に変えます！ -->
-        <div class="slide">
-            <h2>✨ この商品が、あなたのコンテンツ制作を劇的に変えます！</h2>
-            <p>ChatGPTは、もはやクリエイターにとって「使いこなすべき相棒」です。</p>
-            <p>適切な知識と具体的な活用法を知れば、あなたの生産性と創造性は飛躍的に向上します。</p>
-            <h3><i class="fas fa-rocket" style="color: #e040fb;"></i> AIでクリエイティブの限界を突破！</h3>
-        </div>
-
-        <!-- Slide 5: この商品で得られる具体的なメリット1 (時間短縮、アイデア枯渇解消) -->
-        <div class="slide">
-            <h2>🚀 この商品で得られる具体的なメリット</h2>
-            <div class="icon-list">
-                <div class="icon-item">
-                    <i class="far fa-clock"></i>
-                    <p><strong>時間短縮</strong><br>制作プロセスを最大80%効率化！</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <p><strong>アイデア枯渇解消</strong><br>AIが無限のアイデアを提案！</p>
-                </div>
-            </div>
-            <p style="margin-top: 40px;">もう「時間がない」「ネタがない」とは言わせません。</p>
-        </div>
-
-        <!-- Slide 6: この商品で得られる具体的なメリット2 (文章力向上、プロンプト迷子からの卒業) -->
-        <div class="slide">
-            <h2>🚀 この商品で得られる具体的なメリット</h2>
-            <div class="icon-list">
-                <div class="icon-item">
-                    <i class="fas fa-pen-nib"></i>
-                    <p><strong>文章力向上</strong><br>魅力的で読みやすい文章をスラスラ！</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-terminal"></i>
-                    <p><strong>プロンプト迷子卒業</strong><br>具体的で効果的なプロンプトの「型」を提供！</p>
-                </div>
-            </div>
-            <p style="margin-top: 40px;">AIがあなたの文章表現力を引き上げ、指示に迷う時間をゼロに。</p>
-        </div>
-
-        <!-- Slide 7: この商品で得られる具体的なメリット3 (高品質コンテンツ量産、AIを相棒に、収益化の加速) -->
-        <div class="slide">
-            <h2>🚀 この商品で得られる具体的なメリット</h2>
-            <div class="icon-list">
-                <div class="icon-item">
-                    <i class="fas fa-gem"></i>
-                    <p><strong>高品質コンテンツ量産</strong><br>効率と品質を両立し、次のレベルへ！</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-handshake"></i>
-                    <p><strong>AIを「相棒」に</strong><br>あなたの最強のクリエイティブパートナー！</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-dollar-sign"></i>
-                    <p><strong>収益化の加速</strong><br>効率的な制作で、収益化も夢ではない！</p>
-                </div>
-            </div>
-            <p style="margin-top: 40px;">AIと共に、あなたのクリエイティブ活動とビジネスを加速させましょう。</p>
-        </div>
-
-        <!-- Slide 8: なぜ今、このAI活用ガイドが必要なのか？【理論的背景】 -->
-        <div class="slide">
-            <h2>🎯 なぜ今、このAI活用ガイドが必要なのか？</h2>
-            <p>現代は「コンテンツ飽和時代」。読者の目に留まるには、効率と品質が不可欠です。</p>
-            <p>ChatGPTは、単なる文章生成ツールではありません。<br>
-            「AIを知っている」から「AIを使いこなす」ことへ、クリエイターの最重要スキルがシフトしています。</p>
-            <h3><i class="fas fa-map-marked-alt" style="color: #6a1b9a;"></i> AI時代を生き抜くための「地図」と「羅針盤」</h3>
-        </div>
-
-        <!-- Slide 9: AIが解決する具体的なタスク -->
-        <div class="slide">
-            <h2>⚙️ AIが解決する具体的なクリエイティブタスク</h2>
+            <h2>✨ AI時代、こんなお悩みありませんか？ ✨</h2>
             <ul>
-                <li><i class="fas fa-brain" style="color: #4CAF50;"></i> アイデアのブレインストーミング</li>
-                <li><i class="fas fa-compress-alt" style="color: #2196F3;"></i> 複雑な情報の要約</li>
-                <li><i class="fas fa-adjust" style="color: #FFC107;"></i> ターゲットに合わせたトーン＆マナーの調整</li>
-                <li><i class="fas fa-search" style="color: #F44336;"></i> 多角的な視点からの情報収集</li>
-                <li><i class="fas fa-share-alt" style="color: #9C27B0;"></i> 異なるプラットフォームへのコンテンツ最適化</li>
+                <li>「ChatGPTを触ってみたけど、<span class="emphasis">いまいち使いこなせない…</span>」</li>
+                <li>「もっと効率的に、<span class="emphasis">質の高いコンテンツを作りたい…</span>」</li>
+                <li>「AIを活用して、<span class="emphasis">副業で月5万円以上の収入UP</span>を目指したい！」</li>
+                <li>「AIに仕事を奪われるのでは、と<span class="emphasis">不安を感じている…</span>」</li>
             </ul>
-            <p>このガイドは、これらのタスクをAIと共に行うための具体的な方法を提供します。</p>
+            <p>もし一つでも当てはまるなら、この教材はあなたのためのものです。</p>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 10: 商品内容：メインガイド -->
+        <!-- スライド3: AI活用の必要性 -->
         <div class="slide">
-            <h2>📘 商品内容：あなたの「困った」を解決する3つの強力なツール</h2>
-            <h3>1. 【メインガイド】ChatGPTで爆速・高品質コンテンツを生み出す完全ガイド</h3>
-            <div class="icon-list" style="margin-top: 20px;">
-                <div class="icon-item">
-                    <i class="fas fa-book-open"></i>
-                    <p><strong>基礎から応用まで</strong><br>AIの基本原理から具体的な活用事例まで、ステップバイステップで解説。</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-flask"></i>
-                    <p><strong>実践的ノウハウ</strong><br>「なぜ有効なのか」という理論的背景と、「どう使うか」という実践知が凝縮。</p>
-                </div>
-            </div>
-            <p style="margin-top: 30px;">約7000文字以上の大ボリュームで、あなたの疑問を徹底解消します。</p>
+            <h2>💡 AI活用は「必須スキル」に 💡</h2>
+            <p>2026年、AI技術は私たちの働き方と稼ぎ方を根本から変えています。</p>
+            <ul>
+                <li>AIはもはや「選択肢」ではなく、<span class="highlight">「必須スキル」</span>となりました。</li>
+                <li>特にChatGPT5.0のような次世代LLMは、<span class="emphasis">適切な「プロンプト」一つ</span>で強力なビジネスパートナーに。</li>
+                <li>AIを使いこなせるかどうかで、<span class="highlight">「稼ぐ力」に圧倒的な差</span>が生まれます。</li>
+            </ul>
+            <p>あなたはAIに仕事を奪われる側になりますか？それともAIを操る側になりますか？</p>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 11: 商品内容：プロンプト集＆実践ワークシート -->
+        <!-- スライド4: 商品の核心 -->
         <div class="slide">
-            <h2>📘 商品内容：あなたの「困った」を解決する3つの強力なツール</h2>
-            <h3>2. 実践プロンプト集（PDFファイル）</h3>
-            <div class="icon-list" style="margin-top: 20px;">
-                <div class="icon-item">
-                    <i class="fas fa-scroll"></i>
-                    <p><strong>すぐに使える型</strong><br>コンテンツ制作のあらゆる場面で活用できる、厳選プロンプトを多数収録。</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-code"></i>
-                    <p><strong>応用力UP</strong><br>プロンプトの構成方法や思考プロセスも解説。自分で生み出す力が身につきます。</p>
-                </div>
-            </div>
-            <h3 style="margin-top: 40px;">3. 実践ワークシート（PDFファイル）</h3>
-            <div class="icon-list" style="margin-top: 20px;">
-                <div class="icon-item">
-                    <i class="fas fa-pencil-ruler"></i>
-                    <p><strong>手を動かして学ぶ</strong><br>実際にAIを操作しながら、スキルを定着させるための実践的な課題を提供。</p>
-                </div>
-            </div>
+            <h2>🚀 本商品の核心：AIで「稼ぐ」に特化 🚀</h2>
+            <h3>単なる操作解説ではありません。</h3>
+            <p>この商品は、<span class="highlight">「ChatGPTをあなたのビジネス成長にどう繋げ、具体的な収益に結びつけるか」</span>に特化しています。</p>
+            <ul>
+                <li>アイデア出しからコンテンツ制作、さらには案件獲得・収益化までを劇的に効率化。</li>
+                <li><span class="emphasis">「稼ぐ」ための具体的なロードマップ</span>を提供。</li>
+                <li>即実践可能な<span class="emphasis">超具体的なプロンプト例を豊富に</span>詰め込みました。</li>
+            </ul>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 12: 使い方の流れ / 実践へのステップ -->
+        <!-- スライド5: 手に入る未来 1/2 -->
         <div class="slide">
-            <h2>✅ AI活用へのシンプルな3ステップ</h2>
-            <div class="icon-list" style="max-width: 800px;">
-                <div class="icon-item">
-                    <i class="fas fa-book" style="color: #607D8B;"></i>
-                    <p><strong>ステップ1: メインガイドを読む</strong><br>AIの基礎と活用戦略を理解。</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-magic" style="color: #00BCD4;"></i>
-                    <p><strong>ステップ2: プロンプト集を活用</strong><br>実践的なプロンプトでAIを動かす。</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-hand-holding-usd" style="color: #8BC34A;"></i>
-                    <p><strong>ステップ3: ワークシートで実践</strong><br>手を動かし、あなたのコンテンツを爆速生成！</p>
-                </div>
-            </div>
-            <p style="margin-top: 40px;">このロードマップで、あなたは着実にAIマスターへの道を歩めます。</p>
+            <h2>🌈 この商品で手に入る未来 (1/2) 🌈</h2>
+            <ul>
+                <li><span class="highlight">月5万円以上の副収入をAIで実現するロードマップ</span>が明確になります。</li>
+                <li>コンテンツ制作（ブログ、SNS、動画脚本など）の<span class="emphasis">時間が最大1/10に短縮</span>され、質が飛躍的に向上します。</li>
+                <li>「何を質問すれば良いか分からない」という<span class="emphasis">ChatGPT初心者から、プロ級のAI活用者へ</span>とステップアップできます。</li>
+            </ul>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 13: さあ、あなたのコンテンツ制作を次のレベルへ！ -->
+        <!-- スライド6: 手に入る未来 2/2 -->
         <div class="slide">
-            <h1>🚀 さあ、あなたのコンテンツ制作を次のレベルへ！</h1>
-            <p>このガイドは、あなたのクリエイティブな才能を最大限に引き出し、<br>
-            時間と労力から解放されるための「最強の武器」です。</p>
-            <p>AIと共に、無限の可能性を秘めたコンテンツ制作の世界へ飛び込みましょう！</p>
-            <h3><i class="fas fa-star" style="color: #FFD700;"></i> あなたのコンテンツは、もっと輝ける！</h3>
+            <h2>🌈 この商品で手に入る未来 (2/2) 🌈</h2>
+            <ul>
+                <li>AIに仕事を奪われる不安から解放され、<span class="highlight">AIを「最高の相棒」として迎え入れる自信</span>が手に入ります。</li>
+                <li><span class="emphasis">高品質なプロンプトテンプレート集</span>を手に入れ、今日からあなたのスキルと収入を向上させる第一歩を踏み出せます。</li>
+            </ul>
+            <p>未来はあなたがAIをどう活用するかで決まります。</p>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 14: サポート・お問い合わせ -->
+        <!-- スライド7: ターゲット層 -->
         <div class="slide">
-            <h2>🤝 ご不明な点、ご質問はございませんか？</h2>
-            <p>ご購入者様が安心してコンテンツを活用できるよう、サポート体制を整えております。</p>
-            <p>商品に関するご質問や、AI活用についてのご相談など、お気軽にお問い合わせください。</p>
-            <p style="margin-top: 20px;"><i class="fas fa-envelope" style="margin-right: 10px; color: #1a73e8;"></i> BOOTHのメッセージ機能よりご連絡ください。</p>
-            <h3><i class="fas fa-heart" style="color: #e91e63;"></i> あなたの成功を心から応援しています！</h3>
+            <h2>🎯 この商品をおすすめしたい方 🎯</h2>
+            <ul>
+                <li><span class="highlight">ChatGPTを副業に活用したいが、具体的な方法が分からない初心者</span>の方。</li>
+                <li><span class="highlight">コンテンツ制作の効率化と品質向上を目指すクリエイター</span>の方。</li>
+                <li><span class="highlight">AI時代の新しい働き方や収入源に関心があるビジネスパーソン・主婦</span>の方。</li>
+                <li>「プロンプトエンジニアリング」に興味があるが、どこから学べば良いか分からない方。</li>
+                <li>AIの進化に不安を感じているが、<span class="emphasis">AIを味方につけてビジネスチャンスを掴みたい</span>方。</li>
+            </ul>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Slide 15: 最終メッセージ / ありがとうございました -->
+        <!-- スライド8: なぜプロンプトが必須か 1/2 -->
         <div class="slide">
-            <h1>心からの感謝を込めて。</h1>
-            <h2>この度はお買い上げいただき、誠にありがとうございました！</h2>
-            <p>AIの力で、あなたのクリエイティブ活動がますます豊かになることを願っています。</p>
-            <p style="margin-top: 30px;">最高のAI活用体験をお楽しみください！</p>
-            <i class="fas fa-smile-beam" style="font-size: 3em; color: #ffc107; margin-top: 20px;"></i>
+            <h2>💡 なぜ今「プロンプト活用」が必須なのか？ (1/2) 💡</h2>
+            <h3>1. ChatGPT5.0がもたらす「思考の拡張」と「生産性の爆発」</h3>
+            <ul>
+                <li>AIはもはや単なる文章生成ツールではない。あなたの脳を拡張する「思考の拡張装置」です。</li>
+                <li><span class="emphasis">アイデアの枯渇からの解放</span>：無限のアイデアをAIから引き出す。</li>
+                <li><span class="emphasis">作業時間の劇的短縮</span>：リサーチ、下書きをAIに任せ、創造性に集中。</li>
+                <li><span class="emphasis">スキルの補完</span>：デザイン、プログラミング知識がなくてもAIがサポート。</li>
+            </ul>
+            <p>これらの恩恵を最大限に受けるには、<span class="highlight">AIに「何を」「どのように」指示するか（プロンプト）の質</span>が決定的に重要です。</p>
+            <div class="slide-number"></div>
         </div>
 
-        <!-- Navigation Buttons -->
-        <button class="navigation-button prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-        <button class="navigation-button next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <!-- スライド9: なぜプロンプトが必須か 2/2 -->
+        <div class="slide">
+            <h2>💡 なぜ今「プロンプト活用」が必須なのか？ (2/2) 💡</h2>
+            <h3>2. 「プロンプトエンジニアリング」は、高収入へのパスポート</h3>
+            <p>AIから目的とする情報を引き出す「最適な指示を設計する技術」です。</p>
+            <ul>
+                <li><span class="emphasis">高品質なアウトプットの安定生成</span>：クライアントからの信頼向上、高単価案件へ。</li>
+                <li><span class="emphasis">多様なタスクへの対応力</span>：ライティング、企画、マーケティングなど幅広い業務にAIを適用。</li>
+                <li><span class="highlight">市場価値の向上</span>：AIを使いこなせる人材として、キャリアアップ・高単価案件獲得の強力な武器に。</li>
+            </ul>
+            <p>AIと効果的に対話できる能力、すなわちプロンプト活用術が不可欠です。</p>
+            <div class="slide-number"></div>
+        </div>
+
+        <!-- スライド10: 商品詳細内容 -->
+        <div class="slide">
+            <h2>📘 本商品の詳細内容：ロードマップ＆実践プロンプト集 📘</h2>
+            <h3>あなたの「稼ぐ」を最大化するために設計されました。</h3>
+            <p>以下の要素が凝縮されています。</p>
+            <ul>
+                <li><span class="highlight">【実践ロードマップ】</span>AIを活用した副業で月5万円以上稼ぐ具体的なステップ。</li>
+                <li><span class="highlight">【超実践プロンプト集2026】</span>あらゆるコンテンツ制作・ビジネスシーンで即活用できる高品質プロンプト。</li>
+                <li>AI初心者でもプロ級の結果を出すための<span class="emphasis">「プロンプトエンジニアリング」基礎から応用</span>。</li>
+                <li><span class="emphasis">最新のChatGPT5.0（次世代LLM）</span>に合わせた最適化手法。</li>
+                <li>成果を出すための<span class="emphasis">具体的な活用事例とワークフロー</span>。</li>
+            </ul>
+            <div class="slide-number"></div>
+        </div>
+
+        <!-- スライド11: 購入後のステップ -->
+        <div class="slide">
+            <h2>🚀 購入後のステップ：あなたのAI収益化ロードマップ 🚀</h2>
+            <h3>1. 教材を読み込み、AI時代のマインドセットを構築</h3>
+            <p>まずは「稼ぐ」ためのAI活用術の全体像と可能性を理解します。</p>
+            <h3>2. 実践プロンプト集で即座にAIを使いこなす</h3>
+            <p>提供されたプロンプトをコピペ、微調整するだけで、質の高いアウトプットを生成し始めます。</p>
+            <h3>3. ロードマップに沿って収益化を実行</h3>
+            <p>コンテンツ制作の効率化、案件獲得、ビジネス拡大へと段階的に進み、着実に収益を積み上げます。</p>
+            <p>明日からあなたのビジネスはAIと共に加速します。</p>
+            <div class="slide-number"></div>
+        </div>
+
+        <!-- スライド12: 行動喚起 -->
+        <div class="slide">
+            <h2>🔥 今すぐ、AI時代の波に乗る！ 🔥</h2>
+            <p>AIは未来の働き方の中心です。この波に乗るか、飲まれるかはあなたの選択次第。</p>
+            <p><span class="highlight">「ChatGPTプロンプト完全攻略」</span>は、あなたがAIを味方につけ、<span class="emphasis">月5万円以上の副収入を実現するための、最も確実なパスポート</span>です。</p>
+            <p>悩んでいる時間は、チャンスを逃している時間です。一歩踏み出し、AIと共に新しい未来を築きましょう。</p>
+            <a href="https://booth.pm/ja/items/YOUR_PRODUCT_ID" target="_blank" class="action-button">BOOTHで今すぐ手に入れる！ <i class="fas fa-arrow-right"></i></a>
+            <div class="slide-number"></div>
+        </div>
+
+        <!-- スライド13: 感謝 -->
+        <div class="slide">
+            <h2>ご清覧いただきありがとうございます！</h2>
+            <p>この教材が、あなたのクリエイティブ活動と副業収益を飛躍的に向上させることを心より願っています。</p>
+            <p>ご不明な点がありましたら、BOOTHメッセージにてお気軽にお問い合わせください。</p>
+            <p class="emphasis">AIを使いこなし、あなたの未来を切り拓きましょう！</p>
+            <div class="slide-number"></div>
+        </div>
+
     </div>
 
     <script>
+        let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
 
-        // Function to show a specific slide
+        // スライドを表示する関数
         function showSlide(index) {
-            // Ensure index is within bounds
-            if (index < 0) {
-                index = slides.length - 1; // Wrap around to the last slide
-            } else if (index >= slides.length) {
-                index = 0; // Wrap around to the first slide
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+                slide.style.animation = 'none'; // アニメーションをリセット
+            });
+
+            if (index >= totalSlides) {
+                currentSlide = 0; // 最後まで行ったら最初に戻る
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1; // 最初より前なら最後に行く
+            } else {
+                currentSlide = index;
             }
 
+            slides[currentSlide].classList.add('active');
+            slides[currentSlide].style.animation = 'fadeIn 0.8s ease-out forwards'; // 新しいスライドにアニメーションを適用
+            updateSlideNumber();
+        }
+
+        // 次のスライドへ移動
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // 前のスライドへ移動
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // スライド番号を更新
+        function updateSlideNumber() {
             slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.add('active'); // Show current slide
-                } else {
-                    slide.classList.remove('active'); // Hide other slides
+                let slideNumberElement = slide.querySelector('.slide-number');
+                if (!slideNumberElement) {
+                    slideNumberElement = document.createElement('div');
+                    slideNumberElement.classList.add('slide-number');
+                    slide.appendChild(slideNumberElement);
                 }
+                slideNumberElement.textContent = `${currentSlide + 1} / ${totalSlides}`;
             });
-            currentSlideIndex = index;
         }
 
-        // Function to change slide (next/prev)
-        function changeSlide(direction) {
-            showSlide(currentSlideIndex + direction);
-        }
-
-        // Initialize the first slide on load
-        showSlide(0);
-
-        // Keyboard navigation (left/right arrow keys)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                changeSlide(-1);
-            } else if (e.key === 'ArrowRight') {
-                changeSlide(1);
+        // キーボードの左右矢印キーでスライドを切り替える
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
             }
         });
+
+        // ページ読み込み時に最初のスライドを表示
+        showSlide(0);
     </script>
 </body>
 </html>
