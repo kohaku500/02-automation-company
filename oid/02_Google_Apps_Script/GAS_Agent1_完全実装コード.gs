@@ -13,8 +13,8 @@
 
 // ========== グローバル設定 ==========
 const LABEL_NAME = "AI受信箱";
-const SPREADSHEET_ID = PropertiesService.getUserProperties().getProperty('SPREADSHEET_ID') || "";
-const SLACK_WEBHOOK_URL = PropertiesService.getUserProperties().getProperty('SLACK_WEBHOOK_URL') || "";
+const SPREADSHEET_ID = "1LKpQwkbzzaQXZAyNGLWfDibbeINsReEdR-7kXMyxDMA";
+const SLACK_WEBHOOK_URL = "";
 
 // ========== メイン関数: 定期実行（毎時間） ==========
 function checkAndReplyToEmails() {
