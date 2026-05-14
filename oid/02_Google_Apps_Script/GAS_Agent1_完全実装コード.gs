@@ -40,7 +40,7 @@ function checkAndReplyToEmails() {
       const body = latestMsg.getPlainBody();
 
       // 既に応答済みかチェック
-      if (thread.hasLabel(GmailApp.getUserLabelByName("응답済み"))) {
+      if (thread.hasLabel(GmailApp.getUserLabelByName("応答済み"))) {
         return;
       }
 
