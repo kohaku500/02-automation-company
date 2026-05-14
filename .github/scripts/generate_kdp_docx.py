@@ -59,9 +59,11 @@ for section in doc.sections:
 
 # ---- パース処理 ----
 def add_heading(text, level):
+    text = text.replace('**', '').strip()
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(20 if level == 1 else 12)
     p.paragraph_format.space_after = Pt(10)
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     run = p.add_run(text)
     if level == 1:
         set_font(run, size=20, bold=True)
@@ -77,6 +79,7 @@ def add_heading(text, level):
 
 def add_paragraph_text(text):
     p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.first_line_indent = Cm(1)
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
     p.paragraph_format.space_after = Pt(6)
@@ -91,7 +94,9 @@ def add_paragraph_text(text):
             set_font(run, size=11)
 
 def add_bullet(text, level=0):
+    text = text.replace('**', '').strip()
     p = doc.add_paragraph(style='List Bullet')
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.left_indent = Cm(1 + level * 0.5)
     run = p.add_run(text)
     set_font(run, size=11)
