@@ -22,12 +22,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc fonts-noto-cjk
-          pip install requests pillow
+          pip install requests pillow python-docx
 
       - name: Prepare EPUB and metadata
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python3 .github/scripts/prepare_kindle_publication.py
+
+      - name: Generate KDP-optimized DOCX
+        run: python3 .github/scripts/generate_kdp_docx.py
 
       - name: Generate cover image
         run: python3 .github/scripts/generate_kindle_cover.py
