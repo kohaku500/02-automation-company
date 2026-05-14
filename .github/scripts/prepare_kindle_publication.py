@@ -34,15 +34,32 @@ print(f"✅ 原稿読み込み: {len(manuscript)}文字")
 pub_dir = f'Kindle出版/{today}'
 os.makedirs(pub_dir, exist_ok=True)
 
-# ---- ① EPUB変換 ----
-print("📚 EPUB変換中...")
-epub_path = f'{pub_dir}/manuscript.epub'
-
 # タイトル抽出
 title_match = re.search(r'^#\s+(.+)', manuscript, re.MULTILINE)
 title = title_match.group(1).strip() if title_match else f"AI活用ガイド {today}"
 
-# pandoc で md → epub 変換
+# ---- ① DOCX変換（KDPで最も安定） ----
+print("📚 DOCX変換中...")
+docx_path = f'{pub_dir}/manuscript.docx'
+try:
+    subprocess.run([
+        'pandoc',
+        manuscript_path,
+        '-o', docx_path,
+        '--metadata', f'title={title}',
+        '--metadata', 'lang=ja',
+        '--toc',
+        '--toc-depth=2',
+    ], check=True)
+    print(f"  ✅ DOCX生成: {docx_path}")
+except subprocess.CalledProcessError as e:
+    print(f"  ❌ DOCX変換失敗: {e}")
+except FileNotFoundError:
+    print("  ⚠️ pandoc未インストール")
+
+# ---- ① EPUB変換（サブ） ----
+print("📚 EPUB変換中...")
+epub_path = f'{pub_dir}/manuscript.epub'
 try:
     subprocess.run([
         'pandoc',
@@ -50,14 +67,14 @@ try:
         '-o', epub_path,
         '--metadata', f'title={title}',
         '--metadata', 'lang=ja',
+        '--epub-metadata', '/dev/stdin',
         '--toc',
         '--toc-depth=2',
-    ], check=True)
+    ], input=f'<dc:language>ja</dc:language>'.encode(),
+    check=True)
     print(f"  ✅ EPUB生成: {epub_path}")
-except subprocess.CalledProcessError as e:
-    print(f"  ❌ pandoc失敗: {e}")
-except FileNotFoundError:
-    print("  ⚠️ pandoc未インストール（ワークフローで apt install pandoc 必須）")
+except Exception as e:
+    print(f"  ⚠️ EPUB生成失敗（DOCXを使用）: {e}")
 
 # ---- ② メタデータ生成（Gemini） ----
 print("📝 メタデータ生成中...")
