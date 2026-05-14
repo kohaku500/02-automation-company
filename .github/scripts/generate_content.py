@@ -249,6 +249,12 @@ try:
         if kindle_response.status_code == 200:
             kindle_result = kindle_response.json()
             kindle_content = kindle_result['candidates'][0]['content']['parts'][0]['text']
+            # AIの前置き文（「はい、承知いたしました。」等）を除去
+            first_heading = kindle_content.find('\n#')
+            if first_heading > 0:
+                kindle_content = kindle_content[first_heading:].lstrip('\n')
+            elif kindle_content.startswith('#'):
+                pass  # 最初から見出しで始まっている場合はそのまま
             with open(f'{package_dir}/kindle_manuscript.md', 'w', encoding='utf-8') as f:
                 f.write(kindle_content)
             print(f"  ✅ Kindle向け原稿完成")
