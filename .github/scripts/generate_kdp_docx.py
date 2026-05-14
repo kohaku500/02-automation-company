@@ -38,6 +38,16 @@ docx_path = f'{pub_dir}/kdp_manuscript.docx'
 # ---- Document 作成 ----
 doc = Document()
 
+# ドキュメント全体のデフォルトを左揃えに変更
+from docx.oxml.ns import qn as _qn
+from docx.oxml import OxmlElement as _OxmlElement
+for style_name in ['Normal', 'Default Paragraph Font', 'List Bullet']:
+    try:
+        style = doc.styles[style_name]
+        style.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    except Exception:
+        pass
+
 # 日本語フォント設定
 def set_font(run, size=11, bold=False):
     run.font.name = 'ＭＳ 明朝'
@@ -77,9 +87,19 @@ def add_heading(text, level):
     else:
         set_font(run, size=12, bold=True)
 
+def force_left_align(p):
+    pPr = p._element.get_or_add_pPr()
+    jc = OxmlElement('w:jc')
+    jc.set(qn('w:val'), 'left')
+    existing = pPr.find(qn('w:jc'))
+    if existing is not None:
+        pPr.remove(existing)
+    pPr.append(jc)
+
 def add_paragraph_text(text):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    force_left_align(p)
     p.paragraph_format.first_line_indent = Cm(1)
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
     p.paragraph_format.space_after = Pt(6)
@@ -97,6 +117,7 @@ def add_bullet(text, level=0):
     text = text.replace('**', '').strip()
     p = doc.add_paragraph(style='List Bullet')
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    force_left_align(p)
     p.paragraph_format.left_indent = Cm(1 + level * 0.5)
     run = p.add_run(text)
     set_font(run, size=11)
