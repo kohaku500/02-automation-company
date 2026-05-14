@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIライティングアシスタント『らくらくライターAI』の使い方ガイド🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本設定 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8fbfd;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        /* セクション */
+        section {
+            margin-bottom: 50px;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            border-left: 6px solid #4a90e2;
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        /* 段落 */
+        p {
+            margin-bottom: 1em;
+            font-size: 1.05rem;
+        }
+
+        /* リスト */
+        ul, ol {
+            margin: 0 0 1.5em 25px;
+            padding: 0;
+        }
+
+        ul li, ol li {
+            margin-bottom: 0.8em;
+            font-size: 1.05rem;
+        }
+
+        ol li {
+            counter-increment: step-counter;
+        }
+
+        ol li::before {
+            content: "STEP " counter(step-counter) ": ";
+            font-weight: bold;
+            color: #4a90e2;
+            margin-right: 5px;
+        }
+
+        /* 強調表示 */
+        strong {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .highlight {
+            background-color: #eaf6ff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 5px solid #a8dadc;
+        }
+
+        .faq-item dt {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .faq-item dd {
+            margin-left: 0;
+            color: #555;
+        }
+
+        /* コードブロック風 */
+        .code-block {
+            background-color: #f0f4f7;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'monospace', 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 20px 0;
+            border: 1px solid #e0e6ec;
+            color: #34495e;
+        }
+
+        /* note記事との活用方法のグリッド */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-item {
+            background-color: #fefefe;
+            border: 1px solid #e1ecf4;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-item h3 {
+            font-size: 1.25rem;
+            color: #4a90e2;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                box-shadow: none; /* スマホでは影をなくしてすっきり見せる */
+                border-radius: 0; /* スマホでは角丸も無くすか控えめに */
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+                padding-left: 10px;
+            }
+
+            section h3 {
+                font-size: 1.2rem;
+            }
+
+            p, ul li, ol li, .faq-item dt, .faq-item dd {
+                font-size: 0.95rem;
+            }
+
+            ol li::before {
+                font-size: 0.95rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr; /* スマホでは1列にする */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AIライティングアシスタント『らくらくライターAI』の使い方ガイド🎉</h1>
+            <p><strong>noteクリエイターの皆さん、こんにちは！</strong><br>
+            記事作成をもっと楽しく、もっと効率的にしませんか？<br>
+            この記事では、AIライティングアシスタント「らくらくライターAI」（仮称）を使って、<br>
+            あなたのnote記事作成を劇的にサポートする方法をわかりやすくご紹介します！</p>
+            <p>まるで優秀な編集アシスタントが隣にいるような体験を、ぜひあなたも！✨</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>📝 ツール『らくらくライターAI』の概要と目的</h2>
+                <p>「らくらくライターAI」は、<strong>AIの力を活用して文章作成をサポートするWebツール</strong>です。</p>
+                <p>
+                    アイデア出しから記事の構成作成、具体的な本文の生成、さらには推敲や校正まで、<br>
+                    文章作成のあらゆるプロセスであなたをアシストします。
+                </p>
+                <h3>💡 こんなnoteクリエイターさんにおすすめ！</h3>
+                <ul>
+                    <li>「何を書けばいいか分からない…」と<strong>ネタ切れ</strong>に悩んでいる方</li>
+                    <li>記事の構成を考えるのに<strong>時間がかかってしまう</strong>方</li>
+                    <li>もっと魅力的な見出しや導入文を作りたい方</li>
+                    <li>文章の推敲や校正を効率化したい方</li>
+                    <li>とにかく<strong>記事作成の時間を短縮したい</strong>方</li>
+                </ul>
+                <p>このツールを使えば、あなたの創造性を最大限に引き出しながら、<br>
+                より質の高い記事を、よりスピーディーに生み出すことができるようになりますよ！🚀</p>
+            </section>
+
+            <section>
+                <h2>🚀 使用手順（ステップバイステップ）</h2>
+                <p>それでは、「らくらくライターAI」の基本的な使い方を一緒に見ていきましょう！</p>
+                <ol>
+                    <li>
+                        <strong>ツールにアクセスする</strong><br>
+                        まず、ブラウザで「らくらくライターAI」のWebサイトにアクセスします。<br>
+                        （例: <code>https://www.rakuraku-writer-ai.com</code> など）
+                    </li>
+                    <li>
+                        <strong>目的（モード）を選択する</strong><br>
+                        ツールには、いくつかのモード（機能）があります。あなたの目的に合わせて選びましょう。<br>
+                        <ul style="list-style-type: '👉 ';">
+                            <li><span class="highlight">「記事構成案作成」</span>：記事の章立てや見出しのアイデアが欲しい時</li>
+                            <li><span class="highlight">「本文生成（段落）」</span>：特定のテーマについて文章を書いてほしい時</li>
+                            <li><span class="highlight">「アイデアブレスト」</span>：記事のテーマや内容についてアイデアを広げたい時</li>
+                            <li><span class="highlight">「見出し・タイトル案生成」</span>：魅力的な見出しやタイトルを考えたい時</li>
+                            <li><span class="highlight">「SNS投稿文作成」</span>：note記事を告知するSNSの投稿文を作りたい時</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>キーワードや指示（プロンプト）を入力する</strong><br>
+                        選択したモードに合わせて、AIにどんな文章を生成してほしいか具体的に入力します。<br>
+                        <p class="code-block">
+                            例：<br>
+                            - テーマ: 「noteでフォロワーを増やす5つのコツ」<br>
+                            - ターゲット: 「noteを始めたばかりの初心者」<br>
+                            - 含めてほしい要素: 「毎日投稿」「交流」「プロフィール充実」<br>
+                            - 生成してほしいもの: 「記事の構成案」
+                        </p>
+                        <p><strong>💡 コツ：</strong>具体的であればあるほど、AIはあなたの意図に沿った質の高い文章を生成してくれます。</p>
+                    </li>
+                    <li>
+                        <strong>AIが生成した文章を確認・編集する</strong><br>
+                        入力後、「生成」ボタンなどをクリックすると、AIが数秒で文章を生成します。<br>
+                        <p class="code-block">
+                            [AIが生成した構成案の例]<br>
+                            ### 1. はじめに：noteでフォロワーが増えないと悩んでいませんか？<br>
+                            ### 2. なぜフォロワーが増えないのか？その原因と対策<br>
+                            ### 3. 【実践編】今日からできる！フォロワーを増やす5つのコツ<br>
+                            　 3-1. 毎日投稿で露出を増やす<br>
+                            　 3-2. 他のクリエイターと積極的に交流する<br>
+                            　 3-3. 魅力的なプロフィールを作成する<br>
+                            　 3-4. 読者の心をつかむタイトルと見出し<br>
+                            　 3-5. 質の高い記事を継続的に発信する<br>
+                            ### 4. フォロワーが増えたら次にすること<br>
+                            ### 5. おわりに：行動あるのみ！noteライフを楽しもう！
+                        </p>
+                        <p>生成された文章は、あなたのイメージに合わせて自由に編集・加筆修正してください。<br>
+                        AIの出力を叩き台として活用し、<strong>最終的にはあなたの言葉で仕上げることが大切です。</strong></p>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>❓ よくある質問 (FAQ)</h2>
+                <dl>
+                    <div class="faq-item">
+                        <dt>Q1: 『らくらくライターAI』は無料で使えますか？</dt>
+                        <dd>A: はい、基本的な機能は無料でご利用いただけます！より高度な機能や生成量に制限がある場合がありますので、詳細はツールの料金プランをご確認ください。</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>Q2: どんなジャンルのnote記事に使えますか？</dt>
+                        <dd>A: ビジネス、趣味、体験談、日記など、幅広いジャンルの記事で活用できます。キーワードや指示を適切に入力することで、どんなテーマにも対応可能です。</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>Q3: AIが生成した文章はそのまま使っても大丈夫ですか？</dt>
+                        <dd>A: AIが生成した文章はあくまで「下書き」や「アイデア」として活用し、<strong>必ずご自身の目で確認し、必要に応じて加筆・修正を行ってください。</strong> 事実誤認や不自然な表現が含まれる可能性もあります。</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>Q4: 著作権はどうなりますか？</dt>
+                        <dd>A: 通常、AIが生成した文章の著作権は、その文章を生成した利用者に帰属します。ただし、利用規約を必ずご確認ください。</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section>
+                <h2>✨ note記事との活用方法：こんな使い方がおすすめ！</h2>
+                <p>「らくらくライターAI」は、noteクリエイターの強力な味方になります。具体的な活用シーンをいくつかご紹介します。</p>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>1. 記事の下書き・構成作成の時短に</h3>
+                        <p>「記事構成案作成」モードで、書くべき内容の骨組みをサクッと作成。0から考える手間が省け、執筆時間を大幅に短縮できます。</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>2. アイデアの壁打ち相手として</h3>
+                        <p>「アイデアブレスト」モードにテーマを入力すると、様々な視点からのアイデアを提案してくれます。思わぬ発見で、記事の幅が広がるかも！</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>3. 魅力的な見出し・タイトルを考案</h3>
+                        <p>「見出し・タイトル案生成」モードで、読者の目を引く魅力的なタイトルや、クリックされやすい見出しの候補を複数提案。最適なものを選びましょう。</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>4. SNSでの告知文を自動生成</h3>
+                        <p>note記事をSNSで告知する際の投稿文を「SNS投稿文作成」モードで生成。ハッシュタグの提案までしてくれるので、広報活動もスムーズに。</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>5. 導入文・結びの文章作成</h3>
+                        <p>記事の冒頭や締めくくりの文章は意外と難しいもの。「本文生成」モードで、読者を引き込む導入文や、心に残る結びの文章のヒントを得られます。</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>6. 言い換え・推敲のサポート</h3>
+                        <p>「この表現、もっと良くならないかな？」と思った時に、特定の文章をコピペして「言い換え」を依頼。語彙の幅が広がり、文章の質が向上します。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>さあ、あなたも「らくらくライターAI」を使いこなして、<br>
+            noteでのクリエイティブな活動をもっともっと楽しみましょう！<br>
+            新しい記事が生まれる瞬間を、AIと一緒に体験してくださいね！🥳</p>
+            <p><small>&copy; 2023 らくらくライターAI ガイド</small></p>
+        </footer>
+    </div>
+</body>
+</html>
