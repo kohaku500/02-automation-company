@@ -4,7 +4,7 @@
  * 目的: 営業メール返信に自動で応答し、ファネル最上流の反応確認と初期顧客分類を行う
  *
  * 機能:
- * 1. "Agent-Inbox" ラベルの未処理メールを自動検出
+ * 1. "AI受信箱" ラベルの未処理メールを自動検出
  * 2. メール本文から顧客の関心度を判定（高/中/低）
  * 3. 判定に応じた自動応答テンプレートで返信
  * 4. 顧客情報を Google Sheets の CRM に自動登録
@@ -12,7 +12,7 @@
  */
 
 // ========== グローバル設定 ==========
-const LABEL_NAME = "Agent-Inbox";
+const LABEL_NAME = "AI受信箱";
 const SPREADSHEET_ID = PropertiesService.getUserProperties().getProperty('SPREADSHEET_ID') || "";
 const SLACK_WEBHOOK_URL = PropertiesService.getUserProperties().getProperty('SLACK_WEBHOOK_URL') || "";
 
@@ -21,7 +21,7 @@ function checkAndReplyToEmails() {
   try {
     const gmailLabel = GmailApp.getUserLabelByName(LABEL_NAME);
     if (!gmailLabel) {
-      logError("ラベル 'Agent-Inbox' が見つかりません。先に作成してください。");
+      logError("ラベル 'AI受信箱' が見つかりません。先に作成してください。");
       return;
     }
 
