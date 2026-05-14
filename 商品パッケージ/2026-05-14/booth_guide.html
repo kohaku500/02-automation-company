@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特典ツール活用ガイド＆商品ロードマップ</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #2c3e50; /* Darker blue-grey for headings */
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #007bff; /* Primary brand color */
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 2em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            margin-bottom: 1em;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hero / Introduction */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #eaf6ff; /* Light blue background */
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+        .hero p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Steps */
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+        .step-list li {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+        .step-list li strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+        .step-list li .step-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 15px;
+            flex-shrink: 0;
+            line-height: 1;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background-color: #eaf6ff;
+            border: 1px solid #007bff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+        }
+        .step-list li .step-content {
+            flex-grow: 1;
+        }
+
+        /* Roadmap */
+        .roadmap-stage {
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fdfdfd;
+            position: relative;
+            padding-left: 60px; /* Space for stage number */
+        }
+        .roadmap-stage h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .roadmap-stage .stage-number {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #007bff;
+            line-height: 1;
+        }
+        .roadmap-stage ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .roadmap-stage ul li {
+            margin-bottom: 8px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            background-color: #fdfdfd;
+            overflow: hidden; /* Ensure border-radius applies */
+        }
+        .faq-item summary {
+            font-weight: bold;
+            padding: 15px 20px;
+            cursor: pointer;
+            outline: none;
+            background-color: #eaf6ff;
+            color: #2c3e50;
+            border-bottom: 1px solid #e0e0e0;
+            display: block; /* For custom arrow placement */
+            position: relative;
+        }
+        .faq-item summary::marker, /* Hide default marker */
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item summary::after { /* Custom arrow */
+            content: '+';
+            font-size: 1.5em;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s;
+        }
+        .faq-item[open] summary::after {
+            content: '-';
+            transform: translateY(-50%) rotate(0deg); /* No rotation for '-' */
+        }
+        .faq-item .faq-content {
+            padding: 15px 20px;
+            border-top: 1px solid #e9e9e9;
+            background-color: #fff;
+        }
+
+        /* Call to Action / Support Button */
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+        .support-info {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            .step-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .step-list li .step-number {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            .roadmap-stage {
+                padding-left: 20px; /* Less space needed on mobile */
+            }
+            .roadmap-stage .stage-number {
+                position: static; /* Stack on mobile */
+                margin-bottom: 10px;
+                display: block;
+            }
+            .container {
+                padding: 10px;
+            }
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>特典ツール活用ガイド＆商品ロードマップ</h1>
+            <p>このページでは、ご購入いただいた商品の価値を最大限に引き出すための「特典ツール」の使い方と、商品全体の活用方法について詳しくご説明します。ぜひご活用いただき、あなたの目標達成にお役立てください。</p>
+        </header>
+
+        <section id="tool-overview">
+            <h2>特典ツールの概要と活用シーン</h2>
+            <p>この特典ツールは、ご購入いただいた[メインの商品名やサービス名]をより効果的に、そして効率的にご利用いただくために開発されました。以下の特徴と活用シーンをご覧ください。</p>
+
+            <h3>ツールの特徴</h3>
+            <ul>
+                <li><strong>時間短縮:</strong> [具体的な機能例：自動データ収集、一括処理]により、作業時間を大幅に削減します。</li>
+                <li><strong>精度向上:</strong> [具体的な機能例：詳細分析機能、自動提案機能]を活用することで、より正確な結果や分析が可能になります。</li>
+                <li><strong>使いやすさ:</strong> 直感的なインターフェースで、誰でも簡単に操作できます。</li>
+                <li><strong>[その他の特徴]:</strong> 例：カスタマイズ性、拡張性、特定のデータ処理能力など。</li>
+            </ul>
+
+            <h3>活用シーン</h3>
+            <p>特典ツールは、特に以下のような場面でその真価を発揮します。</p>
+            <ul>
+                <li><strong>[活用シーン1]:</strong> 例：リサーチ初期段階での情報収集と整理に</li>
+                <li><strong>[活用シーン2]:</strong> 例：コンテンツ作成時のアイデア出しや構成案作成に</li>
+                <li><strong>[活用シーン3]:</strong> 例：データ分析や効果測定の効率化に</li>
+                <li><strong>[活用シーン4]:</strong> 例：定期的なルーティン作業の自動化に</li>
+            </ul>
+            <p>このツールを上手に活用することで、商品から得られる成果を最大化できます。</p>
+        </section>
+
+        <section id="tool-usage">
+            <h2>ステップバイステップの使用手順</h2>
+            <p>特典ツールは非常にシンプルに設計されていますが、初めての方でも迷わずお使いいただけるよう、詳細な手順をご説明します。</p>
+
+            <ol class="step-list">
+                <li>
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>ツールへのアクセス</strong>
+                        <p>まずは、以下のリンクをクリックして特典ツールにアクセスしてください。</p>
+                        <p><a href="#ツールURLをここに記載" class="cta-button" style="background-color: #28a745;">特典ツールにアクセスする</a></p>
+                        <p><em>※アクセスには、商品購入時に発行された[ID/パスワードなど]が必要な場合があります。</em></p>
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>初期設定の確認・入力</strong>
+                        <p>ツールにログイン後、[「設定」または「プロジェクト作成」などの項目名]に進みます。ここで、あなたの目的に合わせて以下の情報を入力または確認してください。</p>
+                        <ul>
+                            <li>[設定項目1]: 例：対象キーワード、期間設定</li>
+                            <li>[設定項目2]: 例：分析したいデータの種類、出力形式</li>
+                            <li>[設定項目3]: 例：利用するテンプレートの選択</li>
+                        </ul>
+                        <p>基本的な設定はデフォルトでもご利用いただけますが、カスタマイズすることでよりパーソナルな結果が得られます。</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>ツールの実行</strong>
+                        <p>設定が完了したら、「実行」または「開始」ボタンをクリックします。ツールが自動的に必要な処理を開始します。</p>
+                        <ul>
+                            <li>処理中は、画面を閉じずにしばらくお待ちください。</li>
+                            <li>[目安時間]：通常、数秒から数分で完了します。</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>結果の確認と活用</strong>
+                        <p>処理が完了すると、結果が画面に表示されるか、[特定の形式：例：CSV、PDF]でダウンロードできるようになります。</p>
+                        <ul>
+                            <li><strong>結果の分析:</strong> 表示されたデータやレポートの内容を確認し、あなたのビジネスや学習にどう活かせるかを検討しましょう。</li>
+                            <li><strong>次のアクション:</strong> ツールの結果を元に、商品の次のステップ（例：コンテンツ作成、戦略立案）に進んでください。</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+            <p>ご不明な点があれば、このページの「よくある質問」またはサポート情報をご覧ください。</p>
+        </section>
+
+        <section id="product-roadmap">
+            <h2>商品全体の活用ロードマップ</h2>
+            <p>特典ツールを組み込むことで、ご購入いただいた商品の効果はさらに加速します。ここでは、商品とツールを合わせて最大限に活用するためのロードマップをご紹介します。</p>
+
+            <div class="roadmap-stage">
+                <span class="stage-number">1</span>
+                <h3>導入期：基礎を固め、土台を築く</h3>
+                <p>商品全体を理解し、特典ツールの基本的な操作に慣れる期間です。</p>
+                <ul>
+                    <li>商品のメインコンテンツをまずは一通り学習・確認する。</li>
+                    <li>特典ツールの「ステップバイステップの使用手順」に従い、一度試運転してみる。</li>
+                    <li>ツールの出力結果がどのようなものかを把握する。</li>
+                    <li>【推奨活用】ツールのデータ収集機能で、最初の情報収集や現状把握を行う。</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-stage">
+                <span class="stage-number">2</span>
+                <h3>実践期：学習と実践を繰り返す</h3>
+                <p>商品のメインノウハウと特典ツールを連携させ、具体的な成果を出すための実践を行います。</p>
+                <ul>
+                    <li>商品の各章やモジュールに沿って、具体的なタスクを実行する。</li>
+                    <li>各タスクにおいて、特典ツールを最適なタイミングで活用し、作業の効率化や精度向上を図る。</li>
+                    <li>例：コンテンツ作成→ツールでキーワード選定・構成案作成→作成→商品のノウハウで改善</li>
+                    <li>小さな成功体験を積み重ね、自信をつける。</li>
+                    <li>【推奨活用】ツールの分析機能を使って、自身の作業や戦略の効果を定期的に測定・評価する。</li>
+                </ul>
+            </div>
+
+            <div class="roadmap-stage">
+                <span class="stage-number">3</span>
+                <h3>発展期：応用と最適化で成果を最大化</h3>
+                <p>商品と特典ツールをさらに深く使いこなし、継続的な成果を目指します。</p>
+                <ul>
+                    <li>商品の応用編や発展的なコンテンツにも挑戦する。</li>
+                    <li>特典ツールの高度な機能やカスタマイズオプションを試してみる。</li>
+                    <li>ツールの結果と商品のノウハウを組み合わせ、独自の戦略や仕組みを構築する。</li>
+                    <li>定期的な改善サイクル（計画→実行→評価→改善）にツールを組み込む。</li>
+                    <li>【推奨活用】ツールの自動化機能を活用し、ルーティンワークから解放され、より戦略的な活動に注力する。</li>
+                </ul>
+            </div>
+            <p>このロードマップはあくまで一例です。あなたのペースや目標に合わせて、柔軟に活用してください。</p>
+        </section>
+
+        <section id="faq-support">
+            <h2>よくある質問とサポート情報</h2>
+
+            <h3>よくある質問（FAQ）</h3>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Q1: 特典ツールにログインできません。</summary>
+                    <div class="faq-content">
+                        <p>A: ログイン情報が誤っている可能性があります。商品購入時に送付されたメールをご確認ください。また、大文字・小文字、半角・全角の違いにもご注意ください。それでも解決しない場合は、サポートまでお問い合わせください。</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Q2: ツールがうまく動作しません。</summary>
+                    <div class="faq-content">
+                        <p>A: まずは以下の点をご確認ください。</p>
+                        <ul>
+                            <li>インターネット接続は安定していますか？</li>
+                            <li>推奨ブラウザ（Google Chrome、Firefox、Safariの最新版など）をご利用ですか？</li>
+                            <li>入力した情報に誤りはありませんか？</li>
+                        </ul>
+                        <p>ブラウザのキャッシュクリアや再起動もお試しください。問題が解決しない場合は、エラーメッセージのスクリーンショットを添えてサポートまでご連絡ください。</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Q3: 特典ツールはどこからダウンロードできますか？</summary>
+                    <div class="faq-content">
+                        <p>A: この特典ツールはWebアプリケーション形式で提供されているため、ダウンロードは不要です。上記の「ステップバイステップの使用手順」に記載されているリンクから直接アクセスしてご利用ください。</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Q4: 商品の活用方法について個別の相談は可能ですか？</summary>
+                    <div class="faq-content">
+                        <p>A: はい、ご購入いただいた商品の内容に関するご相談も承っております。具体的なお悩みや質問を明記の上、サポートまでお問い合わせください。可能な範囲でアドバイスさせていただきます。</p>
+                    </div>
+                </details>
+            </div>
+
+            <h3>サポート情報</h3>
+            <p>上記で解決しない問題や、その他ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+            <div class="support-info">
+                <p><strong>お問い合わせ方法:</strong></p>
+                <p>以下の専用フォームよりご連絡ください。</p>
+                <a href="#お問い合わせフォームURLをここに記載" class="cta-button">サポートへ問い合わせる</a>
+                <p style="margin-top: 20px;">通常、2営業日以内にご返信いたします。</p>
+                <p><em>※緊急の場合や、フォームが利用できない場合は、[support@yourcompany.com]まで直接メールをお送りください。</em></p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 あなたの会社名または個人名. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
