@@ -27,8 +27,8 @@ function checkAndReplyToEmails() {
 
     const threads = gmailLabel.getUnreadThreads(0, 50);
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const logSheet = ss.getSheetByName("Agent-Log") || ss.insertSheet("Agent-Log");
-    const crmSheet = ss.getSheetByName("CRM-Master") || ss.insertSheet("CRM-Master");
+    const logSheet = ss.getSheetByName("対応ログ") || ss.insertSheet("対応ログ");
+    const crmSheet = ss.getSheetByName("顧客管理") || ss.insertSheet("顧客管理");
 
     let processedCount = 0;
 
@@ -322,7 +322,7 @@ function notifyToSlack(interestLevel, sender, subject) {
 // ========== エラーログ関数 ==========
 function logError(message) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const errorSheet = ss.getSheetByName("Error-Log") || ss.insertSheet("Error-Log");
+  const errorSheet = ss.getSheetByName("エラーログ") || ss.insertSheet("エラーログ");
 
   if (errorSheet.getLastRow() === 0) {
     errorSheet.appendRow(["タイムスタンプ", "エラーメッセージ"]);
