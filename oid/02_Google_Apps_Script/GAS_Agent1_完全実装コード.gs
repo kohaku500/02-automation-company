@@ -25,7 +25,7 @@ function checkAndReplyToEmails() {
       return;
     }
 
-    const threads = GmailApp.search(`label:AI受信箱 is:unread`, 0, 50);
+    const threads = GmailApp.search(`label:AI受信箱 -label:応答済み`, 0, 50);
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const logSheet = ss.getSheetByName("対応ログ") || ss.insertSheet("対応ログ");
     const crmSheet = ss.getSheetByName("顧客管理") || ss.insertSheet("顧客管理");
