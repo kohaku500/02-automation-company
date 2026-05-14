@@ -118,13 +118,14 @@ def add_paragraph_text(text):
 
 def add_bullet(text, level=0):
     text = text.replace('**', '').strip()
-    p = doc.add_paragraph(style='List Bullet')
+    p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     force_left_align(p)
-    p.paragraph_format.left_indent = Cm(0.5 + level * 0.5)
+    p.paragraph_format.left_indent = Pt(0)
     p.paragraph_format.first_line_indent = Pt(0)
     p.paragraph_format.space_after = Pt(4)
-    run = p.add_run(text)
+    indent = '　' * level
+    run = p.add_run(indent + '・' + text)
     set_font(run, size=11)
 
 # タイトルページ
