@@ -39,11 +39,6 @@ function checkAndReplyToEmails() {
       const subject = thread.getFirstMessageSubject();
       const body = latestMsg.getPlainBody();
 
-      // 既に応答済みかチェック
-      if (thread.hasLabel(GmailApp.getUserLabelByName("応答済み"))) {
-        return;
-      }
-
       // 関心度判定
       const interestLevel = classifyInterest(body);
 
