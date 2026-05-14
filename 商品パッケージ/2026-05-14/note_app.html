@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPTプロンプト自動生成アシスタント - クリエイター・副業向け</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'BIZ UDPGothic', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.08); /* カードに影を追加 */
+            margin-bottom: 20px;
+            border-radius: 0.75rem; /* 角を丸くする */
+        }
+        .card-header {
+            background-color: #3b82f6; /* noteのブランドカラーに近い青 */
+            color: white;
+            font-weight: bold;
+            font-size: 1.35rem;
+            border-bottom: none;
+            padding: 1.2rem 1.8rem;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 0.6rem;
+            color: #212529;
+        }
+        textarea {
+            resize: vertical; /* 縦方向にリサイズ可能 */
+            min-height: 100px;
+        }
+        #outputPrompt {
+            min-height: 250px; /* 出力エリアを高くする */
+            background-color: #e9ecef; /* 少し濃い背景色 */
+            border: 1px solid #ced4da;
+            white-space: pre-wrap; /* 改行とスペースを保持 */
+            word-wrap: break-word; /* 長い単語でも折り返す */
+            font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace; /* プロンプトが見やすい等幅フォント */
+            font-size: 0.9rem;
+            color: #000;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            transition: all 0.2s ease-in-out; /* ホバーアニメーション */
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            border-color: #2563eb;
+            transform: translateY(-1px); /* 少し上に動くアニメーション */
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: #5c636a;
+            border-color: #565e64;
+            transform: translateY(-1px);
+        }
+        /* コピー成功時のボタンのカスタムスタイル */
+        .btn-success-custom {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success-custom:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        h1 {
+            color: #1a202c; /* ダークな見出し色 */
+            font-weight: 700;
+        }
+        p.text-muted {
+            color: #6c757d !important;
+        }
+        .form-control {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+        }
+        .form-control:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+        }
+        /* モバイル表示時の調整 */
+        @media (max-width: 767.98px) {
+            .card-header {
+                font-size: 1.15rem;
+                padding: 1rem 1.2rem;
+            }
+            .form-label small {
+                display: block; /* 説明文を改行して表示 */
+                margin-top: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">🤖 ChatGPTプロンプト自動生成アシスタント</h1>
+        <p class="text-center text-muted mb-5">
+            あなたのクリエイティブ活動や副業を加速させるプロンプトを、AIがアシスト！<br>
+            以下の質問に答えるだけで、ChatGPTにコピペする最適なプロンプトの骨子を作成します。
+        </p>
+
+        <div class="card">
+            <div class="card-header">
+                📝 プロンプト生成フォームに入力
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <label for="userRole" class="form-label">
+                        あなたの役割（ペルソナ） <br class="d-md-none"><small class="text-muted">例: Webライター、SNSマーケター、ブロガー、動画クリエイター、プログラマー</small>
+                    </label>
+                    <input type="text" class="form-control" id="userRole" placeholder="例: Webライター" value="note記事の執筆者">
+                </div>
+                <div class="mb-4">
+                    <label for="goal" class="form-label">
+                        達成したい目標・タスク <br class="d-md-none"><small class="text-muted">例: ブログ記事の構成案作成、キャッチーなSNS投稿文を複数生成</small>
+                    </label>
+                    <input type="text" class="form-control" id="goal" placeholder="例: 「AIを活用した時間管理術」に関するブログ記事の構成案を作成" value="「ChatGPTプロンプト活用術（クリエイター・副業向け）」に関するnote記事のタイトル案と導入文を生成">
+                </div>
+                <div class="mb-4">
+                    <label for="targetAudience" class="form-label">
+                        ターゲット読者・顧客 <br class="d-md-none"><small class="text-muted">例: 20代の副業初心者、中小企業の経営者、AIツールに興味がある人</small>
+                    </label>
+                    <input type="text" class="form-control" id="targetAudience" placeholder="例: AIツールに興味のある20代〜40代のクリエイター・副業家" value="AIツールの活用に関心があり、副業やクリエイター活動で収益化を目指す20代〜40代のユーザー">
+                </div>
+                <div class="mb-4">
+                    <label for="outputFormat" class="form-label">
+                        期待する出力形式・トーン <br class="d-md-none"><small class="text-muted">例: 箇条書き、丁寧な口調、マークダウン形式、〇〇文字以内</small>
+                    </label>
+                    <input type="text" class="form-control" id="outputFormat" placeholder="例: 箇条書きで3案、キャッチーなトーンで" value="SEOに強く、読者の共感を呼ぶタイトル案を10個、魅力的な導入文を3パターン（それぞれ150文字程度）生成。マークダウン形式で出力。">
+                </div>
+                <div class="mb-4">
+                    <label for="constraints" class="form-label">
+                        詳細情報・制約条件 <br class="d-md-none"><small class="text-muted">例: 含めるキーワード、文字数、参考資料URL、避けてほしい表現</small>
+                    </label>
+                    <textarea class="form-control" id="constraints" rows="4" placeholder="例: キーワード「ChatGPT5.0」「稼ぐ」「ロードマップ」。文字数は各案150文字程度。競合記事との差別化を意識。" >キーワード「ChatGPT」「プロンプト」「稼ぐ」「クリエイター」「副業」「ロードマップ」「最新版」を必ず含める。読者の不安を解消し、希望を与えるようなポジティブなトーン。文字数は指定の通り。noteの特性（SEO、拡散性）を理解し、読者が「続きを読みたい！」と思わせる内容にすること。</textarea>
+                </div>
+                <button type="button" class="btn btn-primary w-100 py-2" id="generatePrompt">
+                    プロンプトを生成する
+                </button>
+            </div>
+        </div>
+
+        <div class="card mt-5" id="outputCard" style="display:none;">
+            <div class="card-header">
+                ✨ 生成されたプロンプト (ChatGPTにコピペしてください)
+            </div>
+            <div class="card-body p-4">
+                <textarea class="form-control" id="outputPrompt" rows="12" readonly></textarea>
+                <button type="button" class="btn btn-secondary w-100 mt-3 py-2" id="copyPrompt">
+                    プロンプトをコピーする
+                </button>
+            </div>
+        </div>
+
+        <p class="text-center text-muted mt-5 mb-3">
+            <strong>ヒント：</strong> このツールはプロンプトの「骨子」を生成します。より質の高い結果を得るためには、生成されたプロンプトをさらに具体的に編集・追記してChatGPTに投入してください。
+            例えば、具体的な記事の構成案、参考にするサイトのURL、ターゲット層の具体的な悩みなどを加えると効果的です。
+        </p>
+        <p class="text-center text-muted small">
+            ※ このツールはあなたの個人情報を収集しません。すべての処理はブラウザ内で完結します。
+        </p>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('generatePrompt').addEventListener('click', function() {
+            const userRole = document.getElementById('userRole').value.trim();
+            const goal = document.getElementById('goal').value.trim();
+            const targetAudience = document.getElementById('targetAudience').value.trim();
+            const outputFormat = document.getElementById('outputFormat').value.trim();
+            const constraints = document.getElementById('constraints').value.trim();
+
+            // 必須項目チェック
+            if (!userRole || !goal || !targetAudience || !outputFormat) {
+                alert('「あなたの役割」「達成したい目標」「ターゲット読者」「出力形式」は必須項目です。これらを具体的に入力してください。');
+                return;
+            }
+
+            // プロンプトテンプレートの生成
+            const promptTemplate = `あなたはプロの${userRole}です。以下の情報に基づいて、具体的なコンテンツやアイデアを生成してください。
+
+# 依頼内容
+## 目的
+${goal}
+
+## ターゲット
+${targetAudience}
+
+## 出力形式
+${outputFormat}
+
+## 詳細情報/条件
+${constraints ? constraints : '特になし'}
+
+## 指示
+上記の情報を基に、最も効果的で質の高い結果を出力してください。
+`;
+
+            // 生成されたプロンプトを表示
+            document.getElementById('outputPrompt').value = promptTemplate;
+            document.getElementById('outputCard').style.display = 'block';
+            
+            // 結果表示エリアまでスムーズにスクロール
+            const outputCard = document.getElementById('outputCard');
+            window.scrollTo({
+                top: outputCard.offsetTop - 50, // カードの少し上までスクロール
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('copyPrompt').addEventListener('click', function() {
+            const outputPrompt = document.getElementById('outputPrompt');
+            outputPrompt.select(); // テキストエリアのテキストを選択
+            outputPrompt.setSelectionRange(0, 99999); // モバイルデバイス向けに全選択
+
+            try {
+                navigator.clipboard.writeText(outputPrompt.value); // クリップボードにコピー
+                const originalText = this.textContent; // 元のボタンテキストを保存
+                this.textContent = '✅ コピーしました！'; // コピー成功メッセージを表示
+                this.classList.remove('btn-secondary');
+                this.classList.add('btn-success-custom'); // 成功時のスタイルに変更
+
+                // 2秒後に元の状態に戻す
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.classList.remove('btn-success-custom');
+                    this.classList.add('btn-secondary');
+                }, 2000);
+            } catch (err) {
+                alert('コピーに失敗しました。お手数ですが、手動でコピーしてください。');
+                console.error('Failed to copy text: ', err);
+            }
+        });
+    </script>
+</body>
+</html>
