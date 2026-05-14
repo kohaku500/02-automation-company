@@ -166,18 +166,17 @@ for line in lines:
     if not stripped:
         continue
 
-    # 見出し
-    if stripped.startswith('# '):
-        if skip_first_h1:
+    # 見出し（#の数・スペース有無問わず対応）
+    heading_match = re.match(r'^(#{1,6})\s*(.*)', stripped)
+    if heading_match:
+        level = len(heading_match.group(1))
+        heading_text = heading_match.group(2).strip()
+        if not heading_text:
+            continue
+        if level == 1 and skip_first_h1:
             skip_first_h1 = False
             continue
-        add_heading(stripped[2:], 1)
-    elif stripped.startswith('## '):
-        add_heading(stripped[3:], 2)
-    elif stripped.startswith('### '):
-        add_heading(stripped[4:], 3)
-    elif stripped.startswith('#### '):
-        add_heading(stripped[5:], 4)
+        add_heading(heading_text, min(level, 4))
     # 箇条書き
     elif stripped.startswith('- ') or stripped.startswith('* '):
         add_bullet(stripped[2:])
