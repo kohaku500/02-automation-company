@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPTプロンプト大全 - 書籍紹介スライド</title>
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS 埋め込み */
+        :root {
+            --primary-color: #004080; /* 深い青 */
+            --secondary-color: #f0f4f8; /* オフホワイト */
+            --accent-color: #3cb371; /* ミディアムシーグリーン */
+            --text-color: #333333; /* 濃いグレー */
+            --light-text-color: #ffffff; /* 白 */
+            --border-radius: 8px;
+            --spacing-unit: 1rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            overflow: hidden; /* スライド切り替え時のスクロールバーを抑制 */
+            line-height: 1.6;
+        }
+
+        .slideshow-container {
+            background-color: var(--light-text-color);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 1000px; /* PCでの最大幅を少し広めに */
+            height: 600px; /* 固定高さ */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none; /* デフォルトで非表示 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            position: absolute; /* 重ねて配置 */
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out; /* スライドのフェードイン/アウト */
+            z-index: 1; /* 非アクティブなスライドは背面 */
+        }
+
+        .slide.active {
+            display: flex; /* アクティブなスライドを表示 */
+            opacity: 1;
+            z-index: 2; /* アクティブなスライドは前面 */
+        }
+
+        .slide h1 {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 0.4em;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+        .slide h2 i {
+            margin-right: 0.4em;
+            color: var(--accent-color);
+        }
+
+        .slide h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 0.6em;
+            font-weight: 500;
+        }
+
+        .slide p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            max-width: 85%;
+        }
+
+        .slide ul, .slide ol {
+            text-align: left;
+            margin: 1em auto;
+            max-width: 75%; /* PCでのリストの最大幅 */
+            list-style-position: inside;
+            padding-left: 0;
+            font-size: 1.1em;
+        }
+
+        .slide ul li, .slide ol li {
+            margin-bottom: 0.8em;
+            line-height: 1.5;
+            padding-left: 1.5em; /* インデント調整 */
+            text-indent: -1.5em;
+        }
+        .slide ul li::before {
+            content: "\f00c"; /* Font Awesome check icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--accent-color);
+            margin-right: 0.8em;
+        }
+        .slide ol li::before {
+            content: counter(item) ". ";
+            counter-increment: item;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+        .slide ol {
+            counter-reset: item;
+            list-style-type: none;
+        }
+
+
+        .slide ul li i {
+            margin-right: 0.5em;
+            color: var(--accent-color);
+            width: 1.2em; /* アイコン幅を揃える */
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(60, 179, 113, 0.3); /* ソフトな影 */
+        }
+
+        .book-cover {
+            border: 2px solid var(--primary-color);
+            padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+            border-radius: var(--border-radius);
+            margin-top: 2em;
+            display: inline-block;
+            background-color: var(--light-text-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .book-cover h3 {
+            font-size: 1.5em;
+            margin: 0.5em 0 0.2em 0;
+            color: var(--primary-color);
+        }
+        .book-cover p {
+            font-size: 1em;
+            margin: 0;
+            max-width: none;
+            color: var(--text-color);
+        }
+
+        .nav-buttons {
+            position: absolute;
+            bottom: var(--spacing-unit) * 1.5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-unit) * 1.5;
+            z-index: 10; /* スライドより手前に表示 */
+        }
+
+        .nav-button {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.8em 1.8em;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .nav-button:active {
+            transform: translateY(0);
+        }
+
+        .slide-indicator {
+            position: absolute;
+            top: var(--spacing-unit) * 1.5;
+            right: var(--spacing-unit) * 2;
+            font-size: 1.1em;
+            color: var(--primary-color);
+            z-index: 10;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 0.3em 0.8em;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 最後のスライド向け調整 */
+        .slide:last-of-type p {
+            font-size: 1.3em;
+            margin-bottom: 0.8em;
+        }
+        .slide:last-of-type .cta {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-top: 2em;
+            text-shadow: 0 0 8px rgba(60, 179, 113, 0.4);
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
+            .slideshow-container {
+                width: 98%;
+                height: 90vh; /* 高さも相対的に */
+                max-height: 700px;
+                border-radius: 0; /* 角丸をなくす */
+                box-shadow: none;
+            }
+
+            .slide {
+                padding: var(--spacing-unit) calc(var(--spacing-unit) * 0.8);
+            }
+
+            .slide h1 {
+                font-size: 2.2em;
+                margin-top: 0.5em;
+            }
+            .slide h2 {
+                font-size: 1.8em;
+                margin-bottom: 0.6em;
+            }
+            .slide h3 {
+                font-size: 1.4em;
+                margin-bottom: 0.4em;
+            }
+            .slide p {
+                font-size: 1em;
+                max-width: 95%;
+                margin-bottom: 0.8em;
+            }
+            .slide ul, .slide ol {
+                max-width: 95%;
+                font-size: 0.95em;
+                margin: 0.8em auto;
+            }
+            .slide ul li, .slide ol li {
+                margin-bottom: 0.6em;
+                padding-left: 1.2em;
+                text-indent: -1.2em;
+            }
+            .slide ul li::before {
+                margin-right: 0.6em;
+            }
+            .slide ul li i {
+                margin-right: 0.4em;
+            }
+
+            .nav-buttons {
+                flex-direction: row;
+                bottom: var(--spacing-unit) * 0.8;
+                gap: var(--spacing-unit);
+            }
+            .nav-button {
+                padding: 0.6em 1em;
+                font-size: 0.9em;
+                gap: 0.4em;
+            }
+            .nav-button i {
+                font-size: 0.9em;
+            }
+
+            .slide-indicator {
+                top: var(--spacing-unit);
+                right: var(--spacing-unit);
+                font-size: 0.9em;
+                padding: 0.2em 0.6em;
+            }
+
+            .book-cover {
+                margin-top: 1.5em;
+                padding: 0.8em 1em;
+            }
+            .book-cover h3 {
+                font-size: 1.2em;
+            }
+            .book-cover p {
+                font-size: 0.9em;
+            }
+
+            .slide:last-of-type p {
+                font-size: 1.1em;
+            }
+            .slide:last-of-type .cta {
+                font-size: 1.5em;
+                margin-top: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        <div id="slideIndicator" class="slide-indicator"></div>
+
+        <!-- スライド1: タイトル -->
+        <div class="slide">
+            <h1>ChatGPTプロンプト大全</h1>
+            <p style="font-size: 1.8em;">クリエイター・副業で<br>「稼ぐ」「効率化」「実践」を加速するAI活用術</p>
+        </div>
+
+        <!-- スライド2: はじめに - AI時代の羅針盤 -->
+        <div class="slide">
+            <h2><i class="fas fa-compass"></i> はじめに：AI時代の羅針盤</h2>
+            <p>2026年5月、私たちは<span class="highlight">「AIネイティブ」</span>と呼ばれる新しい時代の入り口に立っています。</p>
+            <ul>
+                <li>ChatGPT5.0など生成AIが仕事・生活・創造性を根本から変革</li>
+                <li>かつて数日を要した作業が今や<span class="highlight">数分で完了する時代</span></li>
+                <li>AIは脅威ではなく、あなたにとって<span class="highlight">「最高のビジネスパートナー」</span>となり得ます。</li>
+            </ul>
+        </div>
+
+        <!-- スライド3: 本書の目的 - プロンプトエンジニアリングの真髄 -->
+        <div class="slide">
+            <h2><i class="fas fa-lightbulb"></i> 本書の目的：プロンプトエンジニアリングの真髄</h2>
+            <p>本書は、この強力なAIを最大限に活用するための<span class="highlight">「プロンプトエンジニアリング」</span>に特化。</p>
+            <ul>
+                <li>ChatGPTを<span class="highlight">思考の拡張装置、強力なアシスタント</span>として機能させる</li>
+                <li>「稼ぐ」「効率化」「実践」の3つの柱に焦点を当てる</li>
+                <li>具体的なプロンプト例、ワークシート、テンプレート、図解を豊富に収録</li>
+            </ul>
+        </div>
+
+        <!-- スライド4: 本書で得られる４つの能力 -->
+        <div class="slide">
+            <h2><i class="fas fa-cogs"></i> 本書で得られる４つの能力</h2>
+            <ul>
+                <li><i class="fas fa-brain"></i> <b>思考の拡張とアイデアの無限生成</b>：アイデア枯渇から解放</li>
+                <li><i class="fas fa-clock"></i> <b>作業の劇的効率化</b>：時間のかかるタスクをAIに任せる</li>
+                <li><i class="fas fa-chart-line"></i> <b>スキルと収益の向上</b>：コンテンツ制作能力を高め、収入源を確立</li>
+                <li><i class="fas fa-robot"></i> <b>AI時代の未来への適応</b>：AIとの共存に必要な知識と倫理観</li>
+            </ul>
+            <p>AIを「最高の相棒」とし、クリエイティブな未来、そして豊かな副業ライフを拓きましょう。</p>
+        </div>
+
+        <!-- スライド5: 目次 - 全体像 -->
+        <div class="slide">
+            <h2><i class="fas fa-book"></i> 目次：本書の全体像</h2>
+            <ol>
+                <li>第1章：ChatGPTがもたらす革命とプロンプトの力</li>
+                <li>第2章：【基礎編】プロンプトエンジニアリングの基本原則と対話術</li>
+                <li>第3章：【実践編】クリエイティブワークを加速するプロンプト集</li>
+                <li>第4章：【応用編】副業で「稼ぐ」ためのChatGPT活用戦略</li>
+            </ol>
+        </div>
+
+        <!-- スライド6: 第1章: ChatGPTがもたらす革命 -->
+        <div class="slide">
+            <h2><i class="fas fa-rocket"></i> 第1章：ChatGPTがもたらす革命</h2>
+            <h3>2026年、AIが変えるクリエイター・副業の未来</h3>
+            <ul>
+                <li>ChatGPT5.0が示すAIの現在地と「思考の拡張」</li>
+                <li>なぜ今、プロンプト活用がクリエイター・副業の必須スキルなのか</li>
+                <li>本書で学ぶ「稼ぐ」「効率化」「実践」の哲学</li>
+            </ul>
+            <p>AIは単なるツールではなく、<span class="highlight">あなたの創造性を無限に引き出すパートナー</span>です。</p>
+        </div>
+
+        <!-- スライド7: 第2章: 【基礎編】プロンプトエンジニアリングの基本 -->
+        <div class="slide">
+            <h2><i class="fas fa-chalkboard-teacher"></i> 第2章：【基礎編】プロンプトエンジニアリング</h2>
+            <h3>プロンプト活用の基本原則と対話術</h3>
+            <ul>
+                <li><b>良いプロンプトの3原則</b>：<br><span class="highlight">明確性、具体性、目的性</span></li>
+                <li>プロンプトに含めるべき主要要素と構成のヒント</li>
+                <li><b>効果的な対話サイクル</b>：<br>入力 → 評価 → 修正 → 再生成</li>
+                <li>失敗事例から学ぶ！プロンプト改善の基本パターン</li>
+            </ul>
+        </div>
+
+        <!-- スライド8: 第3章: 【実践編】クリエイティブワークを加速（Part 1） -->
+        <div class="slide">
+            <h2><i class="fas fa-feather-alt"></i> 第3章：【実践編】クリエイティブワークを加速</h2>
+            <h3>3-1. 高品質なコンテンツを生み出すライティング効率化</h3>
+            <ul>
+                <li><i class="fas fa-newspaper"></i> ブログ記事・コラムの企画・執筆支援</li>
+                <li><i class="fas fa-share-alt"></i> SNS投稿（X、Instagram、Facebook）コンテンツ生成</li>
+                <li><i class="fas fa-envelope-open-text"></i> メールマガジン・セールスレター作成</li>
+                <li><i class="fas fa-window-maximize"></i> WebサイトのLP（ランディングページ）コピーライティング</li>
+            </ul>
+        </div>
+
+        <!-- スライド9: 第3章: 【実践編】クリエイティブワークを加速（Part 2） -->
+        <div class="slide">
+            <h2><i class="fas fa-sitemap"></i> 第3章：【実践編】クリエイティブワークを加速</h2>
+            <h3>3-2. アイデア出し・企画書作成で思考を整理・具体化</h3>
+            <ul>
+                <li><i class="fas fa-lightbulb"></i> 新規企画・プロジェクトのブレインストーミング</li>
+                <li><i class="fas fa-file-alt"></i> 企画書の骨子・構成案作成</li>
+                <li><i class="fas fa-user-friends"></i> ターゲット分析・ペルソナ設定</li>
+            </ul>
+        </div>
+
+        <!-- スライド10: 第3章: 【実践編】クリエイティブワークを加速（Part 3） -->
+        <div class="slide">
+            <h2><i class="fas fa-chart-bar"></i> 第3章：【実践編】クリエイティブワークを加速</h2>
+            <h3>3-3. マーケティング・ブランディング支援</h3>
+            <ul>
+                <li><i class="fas fa-search"></i> SEOキーワード選定とタイトル・見出し案生成</li>
+                <li><i class="fas fa-tags"></i> キャッチコピー・タグライン作成</li>
+                <li><i class="fas fa-chart-area"></i> 競合分析と差別化戦略</li>
+            </ul>
+            <h3>3-4. デザイン・UI/UX支援</h3>
+            <ul>
+                <li><i class="fas fa-paint-brush"></i> デザインコンセプト・アイデア生成</li>
+            </ul>
+        </div>
+
+        <!-- スライド11: 第4章: 【応用編】副業で「稼ぐ」戦略（Part 1） -->
+        <div class="slide">
+            <h2><i class="fas fa-wallet"></i> 第4章：【応用編】副業で「稼ぐ」ための戦略</h2>
+            <h3>4-1. ChatGPTを活用したコンテンツ販売戦略</h3>
+            <ul>
+                <li><i class="fas fa-book-open"></i> デジタルコンテンツ（電子書籍、教材）の企画・執筆支援</li>
+                <li><i class="fas fa-pen-nib"></i> 有料note記事の構成・本文作成支援</li>
+                <li><i class="fas fa-shopping-cart"></i> 商品説明文・販売ページ作成</li>
+            </ul>
+        </div>
+
+        <!-- スライド12: 第4章: 【応用編】副業で「稼ぐ」戦略（Part 2） -->
+        <div class="slide">
+            <h2><i class="fas fa-briefcase"></i> 第4章：【応用編】副業で「稼ぐ」ための戦略</h2>
+            <h3>4-2. フリーランス案件獲得のためのAI活用術</h3>
+            <ul>
+                <li><i class="fas fa-file-invoice"></i> 提案書・見積書作成の効率化</li>
+                <li><i class="fas fa-address-card"></i> ポートフォリオコンテンツのブラッシュアップ</li>
+            </ul>
+            <h3>4-3. 新規サービス・商品開発のアイデア創出と検証</h3>
+            <ul>
+                <li><i class="fas fa-lightbulb"></i> ニーズ分析と市場調査、MVPコンセプト設計</li>
+            </ul>
+            <h3>4-4. 時間管理・生産性向上：秘書としてのChatGPT</h3>
+            <ul>
+                <li><i class="fas fa-tasks"></i> タスク管理・スケジュール支援</li>
+            </ul>
+        </div>
+
+        <!-- スライド13: まとめと行動への呼びかけ -->
+        <div class="slide">
+            <h2><i class="fas fa-handshake"></i> AIを最高の相棒に、未来を拓く</h2>
+            <p>「ChatGPTプロンプト大全」は、AIに仕事を奪われることを恐れるのではなく、</p>
+            <p><span class="highlight">AIを「最高の相棒」として迎え入れ、</span></p>
+            <p><span class="highlight">あなたのクリエイティブな未来、そして豊かな副業ライフを拓く</span>ための羅針盤です。</p>
+            <p class="cta">さあ、今日からあなたのAI活用術を加速させましょう！</p>
+            <div class="book-cover">
+                <h3>ChatGPTプロンプト大全</h3>
+                <p>クリエイター・副業で「稼ぐ」「効率化」「実践」を加速するAI活用術</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button id="prevSlide" class="nav-button"><i class="fas fa-chevron-left"></i> 前へ</button>
+            <button id="nextSlide" class="nav-button">次へ <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript 埋め込み
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevButton = document.getElementById('prevSlide');
+            const nextButton = document.getElementById('nextSlide');
+            const slideIndicator = document.getElementById('slideIndicator');
+            let currentSlideIndex = 0;
+
+            function showSlide(index) {
+                // スライドのインデックスを循環させる
+                if (index < 0) {
+                    currentSlideIndex = slides.length - 1;
+                } else if (index >= slides.length) {
+                    currentSlideIndex = 0;
+                } else {
+                    currentSlideIndex = index;
+                }
+
+                slides.forEach((slide, i) => {
+                    if (i === currentSlideIndex) {
+                        // アクティブなスライド
+                        slide.classList.add('active');
+                        // スライド表示時のopacityを1に設定
+                        slide.style.opacity = '1';
+                        slide.style.zIndex = '2'; // アクティブなスライドは前面
+                    } else {
+                        // 非アクティブなスライド
+                        slide.classList.remove('active');
+                        // スライド非表示時のopacityを0に設定
+                        slide.style.opacity = '0';
+                        slide.style.zIndex = '1'; // 非アクティブなスライドは背面
+                    }
+                });
+                
+                slideIndicator.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+            }
+
+            function nextSlide() {
+                showSlide(currentSlideIndex + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlideIndex - 1);
+            }
+
+            // イベントリスナー
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // 初期表示
+            showSlide(currentSlideIndex);
+        });
+    </script>
+</body>
+</html>
