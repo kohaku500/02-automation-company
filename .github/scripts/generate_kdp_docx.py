@@ -45,6 +45,8 @@ for style_name in ['Normal', 'Default Paragraph Font', 'List Bullet']:
     try:
         style = doc.styles[style_name]
         style.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        style.paragraph_format.first_line_indent = Pt(0)
+        style.paragraph_format.space_after = Pt(10)
     except Exception:
         pass
 
@@ -100,9 +102,10 @@ def add_paragraph_text(text):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     force_left_align(p)
-    p.paragraph_format.first_line_indent = Cm(1)
+    p.paragraph_format.first_line_indent = Pt(0)
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
-    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.space_after = Pt(10)
+    p.paragraph_format.space_before = Pt(0)
     # マークダウンの **太字** を処理
     parts = re.split(r'(\*\*[^*]+\*\*)', text)
     for part in parts:
@@ -118,7 +121,9 @@ def add_bullet(text, level=0):
     p = doc.add_paragraph(style='List Bullet')
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     force_left_align(p)
-    p.paragraph_format.left_indent = Cm(1 + level * 0.5)
+    p.paragraph_format.left_indent = Cm(0.5 + level * 0.5)
+    p.paragraph_format.first_line_indent = Pt(0)
+    p.paragraph_format.space_after = Pt(4)
     run = p.add_run(text)
     set_font(run, size=11)
 
