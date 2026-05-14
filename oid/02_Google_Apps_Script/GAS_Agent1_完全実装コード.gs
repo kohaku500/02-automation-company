@@ -26,7 +26,7 @@ function checkAndReplyToEmails() {
     }
 
     const threads = GmailApp.search(`label:AI受信箱 is:unread`, 0, 50);
-    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
     const logSheet = ss.getSheetByName("対応ログ") || ss.insertSheet("対応ログ");
     const crmSheet = ss.getSheetByName("顧客管理") || ss.insertSheet("顧客管理");
 
@@ -321,7 +321,7 @@ function notifyToSlack(interestLevel, sender, subject) {
 
 // ========== エラーログ関数 ==========
 function logError(message) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById("1LKpQwkbzzaQXZAyNGLWfDibbeINsReEdR-7kXMyxDMA");
   const errorSheet = ss.getSheetByName("エラーログ") || ss.insertSheet("エラーログ");
 
   if (errorSheet.getLastRow() === 0) {
