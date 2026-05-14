@@ -57,24 +57,34 @@ except subprocess.CalledProcessError as e:
 except FileNotFoundError:
     print("  ⚠️ pandoc未インストール")
 
-# ---- ① EPUB変換（サブ） ----
+# ---- ① EPUB2変換（Kindle Previewer互換） ----
 print("📚 EPUB変換中...")
 epub_path = f'{pub_dir}/manuscript.epub'
+
+# メタデータXMLを作成
+meta_xml = f'''<dc:title>{title}</dc:title>
+<dc:language>ja</dc:language>
+<dc:creator>{title}</dc:creator>'''
+meta_path = f'{pub_dir}/epub_meta.xml'
+with open(meta_path, 'w', encoding='utf-8') as f:
+    f.write(meta_xml)
+
 try:
     subprocess.run([
         'pandoc',
         manuscript_path,
         '-o', epub_path,
+        '--epub-version=2',
+        f'--epub-metadata={meta_path}',
         '--metadata', f'title={title}',
         '--metadata', 'lang=ja',
-        '--epub-metadata', '/dev/stdin',
         '--toc',
         '--toc-depth=2',
-    ], input=f'<dc:language>ja</dc:language>'.encode(),
-    check=True)
-    print(f"  ✅ EPUB生成: {epub_path}")
+        '--standalone',
+    ], check=True)
+    print(f"  ✅ EPUB2生成: {epub_path}")
 except Exception as e:
-    print(f"  ⚠️ EPUB生成失敗（DOCXを使用）: {e}")
+    print(f"  ⚠️ EPUB生成失敗: {e}")
 
 # ---- ② メタデータ生成（Gemini） ----
 print("📝 メタデータ生成中...")
