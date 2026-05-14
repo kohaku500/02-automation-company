@@ -69,6 +69,16 @@ meta_path = f'{pub_dir}/epub_meta.xml'
 with open(meta_path, 'w', encoding='utf-8') as f:
     f.write(meta_xml)
 
+# CSSファイル作成（左揃え強制）
+css_content = """body { text-align: left !important; }
+p { text-align: left !important; margin-bottom: 0.8em; }
+h1, h2, h3, h4 { text-align: left !important; }
+li { text-align: left !important; }
+"""
+css_path = f'{pub_dir}/kindle_style.css'
+with open(css_path, 'w', encoding='utf-8') as f:
+    f.write(css_content)
+
 try:
     subprocess.run([
         'pandoc',
@@ -76,6 +86,7 @@ try:
         '-o', epub_path,
         '--epub-version=2',
         f'--epub-metadata={meta_path}',
+        f'--css={css_path}',
         '--metadata', f'title={title}',
         '--metadata', 'lang=ja',
         '--toc',
