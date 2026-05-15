@@ -1,0 +1,109 @@
+import os
+from datetime import datetime, timedelta as td
+import requests
+
+api_key = os.environ.get('GEMINI_API_KEY')
+today = datetime.now().strftime('%Y-%m-%d')
+
+# COO判定レポートを読み込む（部署間連携）
+coo_judgment_file = f'運営ログ/COO判定_{today}.md'
+coo_judgment = ""
+if os.path.exists(coo_judgment_file):
+    with open(coo_judgment_file, 'r', encoding='utf-8') as f:
+        coo_judgment = f.read()
+    print(f"✅ COO判定レポートを読み込み: {coo_judgment_file}")
+else:
+    print(f"⚠️ COO判定レポートが見つかりません: {coo_judgment_file}")
+
+# 学習データ（成功事例・失敗事例）を読み込む
+success_cases = ""
+failure_cases = ""
+# 過去7日分の事例を集約
+for i in range(1, 8):
+    past_date = (datetime.now() - td(days=i)).strftime('%Y-%m-%d')
+    if os.path.exists(f'成功事例/{past_date}.md'):
+        with open(f'成功事例/{past_date}.md', 'r', encoding='utf-8') as f:
+            success_cases += f.read()[:800] + "\n\n"
+    if os.path.exists(f'失敗事例/{past_date}.md'):
+        with open(f'失敗事例/{past_date}.md', 'r', encoding='utf-8') as f:
+            failure_cases += f.read()[:800] + "\n\n"
+if success_cases:
+    print(f"✅ 過去7日の成功事例を読み込み")
+if failure_cases:
+    print(f"✅ 過去7日の失敗事例を読み込み")
+
+prompt = f"""あなたはマーケティング部です。本日（{today}）に最も売れそうな商品企画案を10本生成してください。
+
+# COO判定レポートからの指示（重要：必ず反映すること）
+{coo_judgment if coo_judgment else "（COO判定がない場合は、独自にトレンドを判断）"}
+
+# 過去7日間の成功事例（再現すべきパターン）
+{success_cases if success_cases else "（過去事例なし）"}
+
+# 過去7日間の失敗事例（避けるべきパターン）
+{failure_cases if failure_cases else "（過去事例なし）"}
+
+上記の COO 判定 + 過去の成功・失敗事例を踏まえて、企画案を生成してください。
+- 成功事例のパターンを活用する
+- 失敗事例のパターンを避ける
+
+# note向け商品企画案10本（{today}）
+
+以下のフォーマットで、noteで売れそうな商品を10案提案してください：
+
+## 企画案1
+- タイトル: （note記事のタイトル案）
+- ジャンル: ライフハック / 副業ツール / 教育資料 のいずれか
+- ターゲット層: （具体的なペルソナ）
+- 概要: （50文字程度の説明）
+- 差別化ポイント: （競合との違い）
+- 推定価格: ¥1,500
+- 売上見込み: 高/中/低
+
+## 企画案2
+- タイトル: ...
+
+## 企画案3
+- タイトル: ...
+
+## 企画案4
+- タイトル: ...
+
+## 企画案5
+- タイトル: ...
+
+## 企画案6
+- タイトル: ...
+
+## 企画案7
+- タイトル: ...
+
+## 企画案8
+- タイトル: ...
+
+## 企画案9
+- タイトル: ...
+
+## 企画案10
+- タイトル: ...
+
+企画案生成完了"""
+
+headers = {'Content-Type': 'application/json'}
+payload = {'contents': [{'parts': [{'text': prompt}]}]}
+
+response = requests.post(
+    f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+    headers=headers,
+    json=payload
+)
+
+if response.status_code == 200:
+    result = response.json()
+    report = result['candidates'][0]['content']['parts'][0]['text']
+    os.makedirs('商品企画', exist_ok=True)
+    with open(f'商品企画/企画案_{today}.md', 'w', encoding='utf-8') as f:
+        f.write(report)
+    print(f"✅ 商品企画案生成完了")
+else:
+    print(f"❌ エラー: {response.status_code}")

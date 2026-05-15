@@ -1,0 +1,204 @@
+import os
+import re
+from datetime import datetime, timedelta
+
+today = datetime.now().strftime('%Y-%m-%d')
+score_data = []
+
+def extract_scores_from_report(filepath):
+    """日報から品質スコアを抽出"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return None
+
+    scores = {}
+    for pkg in ['note_package.md', 'booth_package.md', 'kindle_manuscript.md']:
+        match = re.search(rf'{re.escape(pkg)}[:\s]+(\d+)/100', content)
+        if match:
+            scores[pkg.replace('.md', '')] = int(match.group(1))
+    return scores if scores else None
+
+# 過去7日分のスコアを収集
+labels = []
+note_scores = []
+booth_scores = []
+kindle_scores = []
+
+for i in range(6, -1, -1):
+    past_date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+    report_file = f'運営ログ/日報_{past_date}.md'
+    scores = extract_scores_from_report(report_file)
+
+    labels.append(past_date[5:])  # MM-DD形式
+    if scores:
+        note_scores.append(scores.get('note_package', 0))
+        booth_scores.append(scores.get('booth_package', 0))
+        kindle_scores.append(scores.get('kindle_manuscript', 0))
+    else:
+        note_scores.append(0)
+        booth_scores.append(0)
+        kindle_scores.append(0)
+
+# 直近の品質スコアサマリー
+today_report = f'運営ログ/日報_{today}.md'
+today_scores = extract_scores_from_report(today_report) or {}
+today_note = today_scores.get('note_package', 'N/A')
+today_booth = today_scores.get('booth_package', 'N/A')
+today_kindle = today_scores.get('kindle_manuscript', 'N/A')
+today_avg = round(sum([s for s in [today_note, today_booth, today_kindle] if isinstance(s, int)]) / 3, 1) if any(isinstance(s, int) for s in [today_note, today_booth, today_kindle]) else 'N/A'
+
+# 7日平均
+avg_note = round(sum(note_scores) / 7, 1)
+avg_booth = round(sum(booth_scores) / 7, 1)
+avg_kindle = round(sum(kindle_scores) / 7, 1)
+avg_all = round((avg_note + avg_booth + avg_kindle) / 3, 1)
+
+# 直近の日報テキスト読み込み（COO判定など）
+latest_report_text = ""
+if os.path.exists(today_report):
+    with open(today_report, 'r', encoding='utf-8') as f:
+        latest_report_text = f.read()[:3000]
+
+labels_js = str(labels).replace("'", '"')
+note_js = str(note_scores)
+booth_js = str(booth_scores)
+kindle_js = str(kindle_scores)
+
+alert_class = "alert-danger" if isinstance(today_avg, float) and today_avg < 60 else "alert-warning" if isinstance(today_avg, float) and today_avg < 80 else "alert-success"
+alert_msg = "要改善: 品質スコアが低いです" if isinstance(today_avg, float) and today_avg < 60 else "注意: 一部のスコアが基準を下回っています" if isinstance(today_avg, float) and today_avg < 80 else "良好: 品質基準を満たしています"
+
+html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品質ダッシュボード - {today}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {{ background: #f0f2f5; font-family: 'Segoe UI', sans-serif; }}
+    .card {{ border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: none; }}
+    .score-badge {{ font-size: 2.5rem; font-weight: 700; }}
+    .good {{ color: #198754; }}
+    .warn {{ color: #fd7e14; }}
+    .bad {{ color: #dc3545; }}
+    .header-bar {{ background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 24px 0; margin-bottom: 24px; }}
+    pre {{ white-space: pre-wrap; font-size: 0.85rem; max-height: 300px; overflow-y: auto; }}
+  </style>
+</head>
+<body>
+<div class="header-bar">
+  <div class="container">
+    <h1 class="mb-1">品質ダッシュボード</h1>
+    <p class="mb-0 opacity-75">{today} 生成 | 完全自動化収益化会社</p>
+  </div>
+</div>
+<div class="container pb-4">
+
+  <div class="alert {alert_class} mb-4" role="alert">
+    <strong>{alert_msg}</strong>　本日の総合スコア: {today_avg}/100点
+  </div>
+
+  <!-- 本日スコア -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="text-muted small mb-1">総合平均</div>
+        <div class="score-badge {'good' if isinstance(today_avg, float) and today_avg >= 80 else 'warn' if isinstance(today_avg, float) and today_avg >= 60 else 'bad'}">{today_avg}</div>
+        <div class="text-muted small">/100点</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="text-muted small mb-1">note</div>
+        <div class="score-badge {'good' if isinstance(today_note, int) and today_note >= 80 else 'warn' if isinstance(today_note, int) and today_note >= 60 else 'bad'}">{today_note}</div>
+        <div class="text-muted small">/100点</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="text-muted small mb-1">BOOTH</div>
+        <div class="score-badge {'good' if isinstance(today_booth, int) and today_booth >= 80 else 'warn' if isinstance(today_booth, int) and today_booth >= 60 else 'bad'}">{today_booth}</div>
+        <div class="text-muted small">/100点</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 text-center">
+        <div class="text-muted small mb-1">Kindle</div>
+        <div class="score-badge {'good' if isinstance(today_kindle, int) and today_kindle >= 80 else 'warn' if isinstance(today_kindle, int) and today_kindle >= 60 else 'bad'}">{today_kindle}</div>
+        <div class="text-muted small">/100点</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7日トレンドグラフ -->
+  <div class="card p-4 mb-4">
+    <h5 class="mb-3">過去7日間 品質スコアトレンド</h5>
+    <canvas id="trendChart" height="80"></canvas>
+  </div>
+
+  <!-- 7日平均 -->
+  <div class="card p-4 mb-4">
+    <h5 class="mb-3">7日間 平均スコア</h5>
+    <div class="row text-center">
+      <div class="col">
+        <div class="text-muted small">note</div>
+        <div class="fw-bold fs-4">{avg_note}</div>
+      </div>
+      <div class="col">
+        <div class="text-muted small">BOOTH</div>
+        <div class="fw-bold fs-4">{avg_booth}</div>
+      </div>
+      <div class="col">
+        <div class="text-muted small">Kindle</div>
+        <div class="fw-bold fs-4">{avg_kindle}</div>
+      </div>
+      <div class="col">
+        <div class="text-muted small">総合平均</div>
+        <div class="fw-bold fs-4">{avg_all}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 最新日報 -->
+  <div class="card p-4 mb-4">
+    <h5 class="mb-3">本日の日報（抜粋）</h5>
+    <pre class="bg-light p-3 rounded">{latest_report_text if latest_report_text else "（日報未生成）"}</pre>
+  </div>
+
+</div>
+<script>
+const ctx = document.getElementById('trendChart').getContext('2d');
+new Chart(ctx, {{
+  type: 'line',
+  data: {{
+    labels: {labels_js},
+    datasets: [
+      {{ label: 'note', data: {note_js}, borderColor: '#0d6efd', backgroundColor: 'rgba(13,110,253,0.1)', tension: 0.3, fill: true }},
+      {{ label: 'BOOTH', data: {booth_js}, borderColor: '#198754', backgroundColor: 'rgba(25,135,84,0.1)', tension: 0.3, fill: true }},
+      {{ label: 'Kindle', data: {kindle_js}, borderColor: '#fd7e14', backgroundColor: 'rgba(253,126,20,0.1)', tension: 0.3, fill: true }}
+    ]
+  }},
+  options: {{
+    responsive: true,
+    scales: {{
+      y: {{ min: 0, max: 100, ticks: {{ stepSize: 20 }}, grid: {{ color: 'rgba(0,0,0,0.05)' }} }},
+      x: {{ grid: {{ display: false }} }}
+    }},
+    plugins: {{
+      legend: {{ position: 'top' }},
+      tooltip: {{ mode: 'index', intersect: false }}
+    }}
+  }}
+}});
+</script>
+</body>
+</html>"""
+
+os.makedirs('運営ログ', exist_ok=True)
+output_path = f'運営ログ/ダッシュボード_{today}.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html)
+print(f"✅ ダッシュボード生成完了: {output_path}")

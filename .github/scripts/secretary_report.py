@@ -1,0 +1,280 @@
+import os
+import re
+from datetime import datetime
+import requests
+
+api_key = os.environ.get('GEMINI_API_KEY')
+today = datetime.now().strftime('%Y-%m-%d')
+
+# 全部署の出力を統合（部署間連携）
+all_outputs = {}
+
+# COO判定
+coo_file = f'運営ログ/COO判定_{today}.md'
+if os.path.exists(coo_file):
+    with open(coo_file, 'r', encoding='utf-8') as f:
+        all_outputs['COO判定'] = f.read()[:1500]
+    print(f"✅ COO判定読み込み")
+
+# マーケティング企画
+marketing_file = f'商品企画/企画案_{today}.md'
+if os.path.exists(marketing_file):
+    with open(marketing_file, 'r', encoding='utf-8') as f:
+        all_outputs['マーケティング企画'] = f.read()[:1500]
+    print(f"✅ マーケティング企画読み込み")
+
+# コンテンツ出力（存在チェック）& 品質スコア評価
+
+def evaluate_package_quality(filepath):
+    """パッケージの品質をスコア評価（0-100点）"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return 0, "ファイル読み込み失敗"
+
+    score = 0
+    details = []
+
+    # 1. 文字数（最大20点）
+    char_count = len(content)
+    if char_count >= 10000:
+        score += 20
+        details.append("文字数: ✅")
+    elif char_count >= 5000:
+        score += 15
+        details.append("文字数: △ (目標未達)")
+    else:
+        details.append("文字数: ❌ (不足)")
+
+    # 2. タイトルの具体性（最大15点）
+    title_match = re.search(r'^#+\s+(.+?)$', content, re.MULTILINE)
+    if title_match:
+        title = title_match.group(1)
+        has_number = bool(re.search(r'\d+', title))
+        has_specific = len(title) > 15
+        if has_number and has_specific:
+            score += 15
+            details.append("タイトル: ✅")
+        elif has_number or has_specific:
+            score += 10
+            details.append("タイトル: △")
+        else:
+            details.append("タイトル: ❌")
+
+    # 3. 見出し構造（最大15点）
+    h2_count = len(re.findall(r'^##\s+', content, re.MULTILINE))
+    h3_count = len(re.findall(r'^###\s+', content, re.MULTILINE))
+    hierarchy_score = min(15, (h2_count * 2) + (h3_count // 2))
+    score += hierarchy_score
+    details.append(f"見出し: {h2_count}個（スコア: {hierarchy_score}点）")
+
+    # 4. 実例・事例数（最大20点）
+    example_count = len(re.findall(r'(例：|事例|例えば|具体例|Case:|実例)', content, re.IGNORECASE))
+    example_score = min(20, example_count * 3)
+    score += example_score
+    details.append(f"実例・事例: {example_count}個（スコア: {example_score}点）")
+
+    # 5. 画像・図解・表（最大15点）
+    image_count = len(re.findall(r'!\[|<img|<table|\|.*\|', content))
+    image_score = min(15, image_count * 2)
+    score += image_score
+    details.append(f"図解・表: {image_count}個（スコア: {image_score}点）")
+
+    # 6. CTA（最大15点）
+    cta_keywords = ['購入', '申込', '登録', '今すぐ', 'サポート', '有料マガジン', 'FAQ']
+    cta_count = len([kw for kw in cta_keywords if kw in content])
+    cta_score = min(15, cta_count * 5)
+    score += cta_score
+    details.append(f"CTA: {cta_count}個（スコア: {cta_score}点）")
+
+    final_score = min(100, score)
+    summary = "\n".join(details)
+    return final_score, summary
+
+content_dir = f'商品パッケージ/{today}'
+content_files_status = {}
+quality_scores = {}
+
+for filename in ['note_package.md', 'booth_package.md', 'kindle_manuscript.md', 'presentation.html', 'app.html', 'user_guide.html']:
+    filepath = f'{content_dir}/{filename}'
+    exists = os.path.exists(filepath)
+    content_files_status[filename] = '✅ 存在' if exists else '❌ 未生成'
+
+    if exists and filename.endswith('.md'):
+        score, details = evaluate_package_quality(filepath)
+        quality_scores[filename] = (score, details)
+
+all_outputs['コンテンツファイル状態'] = "\n".join([f"- {k}: {v}" for k, v in content_files_status.items()])
+
+quality_report = ""
+for pkg_name, (score, details) in quality_scores.items():
+    quality_report += f"\n### {pkg_name}\n**スコア: {score}/100点**\n{details}\n"
+
+if quality_report:
+    all_outputs['品質スコア'] = quality_report
+
+# クライアントレポート
+client_file = f'運営ログ/顧客レポート_{today}.md'
+if os.path.exists(client_file):
+    with open(client_file, 'r', encoding='utf-8') as f:
+        all_outputs['クライアントレポート'] = f.read()[:1500]
+    print(f"✅ クライアントレポート読み込み")
+
+dept_summary = "\n\n".join([f"## {k}\n{v}" for k, v in all_outputs.items()])
+
+# 品質スコア結果を抽出（プロンプト用）
+quality_summary = ""
+if quality_scores:
+    quality_summary = "\n## 自動品質スコア評価結果\n"
+    for pkg_name, (score, details) in quality_scores.items():
+        quality_summary += f"### {pkg_name}: {score}/100点\n{details}\n\n"
+
+prompt = f"""あなたは秘書室です。本日（{today}）の日報を生成してください。
+
+# 本日の各部署の実績（統合データ）
+{dept_summary if dept_summary else "（部署データなし）"}
+{quality_summary}
+
+上記の実データに基づいて、テンプレートではなく具体的な日報を生成してください。
+
+# 日報（{today}）
+
+## 売上・成果
+- 新規商品リリース: X件
+- note販売額: ¥XXXX
+- BOOTH販売額: ¥XXXX
+- Kindle販売額: ¥XXXX
+- 新規顧客数: X人
+
+## 各部署成果概要
+### マーケティング部
+- 投稿ネタ提供: X件
+- 競合分析: X社
+- 次期商品提案: X案
+
+### コンテンツ制作部
+- 新規商品完成: X件
+- パッケージ作成: 状態
+
+### クライアント管理部
+- 新規顧客: X人
+- 返金リクエスト: X件
+- 平均満足度: X.X
+
+### 情報システム部
+- セキュリティスキャン: 状態
+- エラー修復: 状態
+
+## 販売可能な商品チェック（本日）
+
+### 3種の神器確認
+本日のコンテンツ制作部の出力について確認してください：
+- ✅/❌ 投稿させる文書（note_package.md / booth_package.md / kindle_manuscript.md の全3つ）
+- ✅/❌ プレゼン資料（presentation.html）
+- ✅/❌ アプリ（app.html）
+
+### 販売開始判定
+3種全て揃っている場合：
+「✅ 本日の商品は販売開始可能です。3種の神器が完成しました。」
+
+不足している場合：
+「❌ 販売開始保留：以下の神器が未完成です：[神器名]」
+
+## 3種の神器の品質確認（デザイン部の動作確認）
+
+### 品質スコア評価（0〜100点）
+
+#### 投稿させる文書（複数プラットフォーム向け）
+**note_package.md（スコア: XX/100点）**
+- タイトルに「数字」「具体性」があるか: ✅/❌
+- 冒頭200字で読者の悩みを言語化しているか: ✅/❌
+- 見出しが3〜5階層で体系化されているか: ✅/❌
+- 実例・事例が3件以上含まれているか: ✅/❌
+- 図解・画像が5枚以上挿入されているか: ✅/❌
+- CTAが明確に指示されているか: ✅/❌
+- **改善内容**: XX
+
+**booth_package.md（スコア: XX/100点）**
+- 理論的背景が充実しているか: ✅/❌
+- ステップバイステップガイドが明確か: ✅/❌
+- ワークシート・テンプレートが実用的か: ✅/❌
+- FAQ・トラブルシューティングが充実しているか: ✅/❌
+- **改善内容**: XX
+
+**kindle_manuscript.md（スコア: XX/100点）**
+- 目次構成が適切か: ✅/❌
+- 章立てが体系的か（全5章以上）: ✅/❌
+- テンプレート・チェックリストが付録に含まれているか: ✅/❌
+- 電子書籍形式に最適化されているか: ✅/❌
+- **改善内容**: XX
+
+#### プレゼン資料（presentation.html）
+**スコア: XX/100点**
+- 色が3色（+文字色）に統一されているか: ✅/❌
+- フォントが2種類以下か: ✅/❌
+- 1スライド3〜5項目に整理されているか: ✅/❌
+- スライド数が10〜15枚か: ✅/❌
+- 図解・グラフが活用されているか: ✅/❌
+- PCとスマホの両方で正常表示されるか: ✅/❌
+- **改善内容**: XX
+
+#### アプリ（app.html）
+**スコア: XX/100点**
+- ナビゲーション構造が3クリック以内で目的機能に到達するか: ✅/❌
+- ボタンサイズが44×44px以上か: ✅/❌
+- フォーム項目が5フィールド以下（必須項目のみ）か: ✅/❌
+- エラーメッセージが建設的か: ✅/❌
+- 初回ロード時間が2秒以内か: ✅/❌
+- スマートフォンで正常動作するか: ✅/❌
+- **改善内容**: XX
+
+### 総合評価
+- **3種の神器の総合スコア**: XX/100点（平均値）
+- **デザイン部（複数パス処理）の効果**: 優秀 / 良好 / 要改善
+- **次の改善優先度**: XX に集中
+
+## 課題・懸案事項
+- （該当があれば記載）
+- 販売チェックで不備があった場合は、原因も記載
+- 品質スコア 80点未満の場合は、改善方針も記載
+
+## 明日の方針
+- COOからの指示待ち
+
+日報生成完了"""
+
+headers = {'Content-Type': 'application/json'}
+payload = {'contents': [{'parts': [{'text': prompt}]}]}
+
+response = requests.post(
+    f'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={api_key}',
+    headers=headers,
+    json=payload
+)
+
+if response.status_code == 200:
+    result = response.json()
+    report_content = result['candidates'][0]['content']['parts'][0]['text']
+    os.makedirs('運営ログ', exist_ok=True)
+    file_path = f'運営ログ/日報_{today}.md'
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(report_content)
+    print(f"✅ 日報生成完了: {file_path}")
+
+    # 品質アラート判定（GITHUB_OUTPUT に書き出し → steps.outputs で参照）
+    low_scores = [(pkg, s) for pkg, (s, _) in quality_scores.items() if s < 80]
+    github_output = os.environ.get('GITHUB_OUTPUT', '/dev/null')
+    if low_scores:
+        alert_msg = " / ".join([f"{p}={s}点" for p, s in low_scores])
+        with open(github_output, 'a') as out_file:
+            out_file.write(f"quality_alert=true\n")
+            out_file.write(f"quality_alert_msg={alert_msg}\n")
+        print(f"⚠️ 品質アラート: {alert_msg}")
+    else:
+        with open(github_output, 'a') as out_file:
+            out_file.write(f"quality_alert=false\n")
+        print(f"✅ 全パッケージ品質基準クリア")
+else:
+    print(f"❌ API呼び出し失敗: {response.status_code}")
+    print(response.text)
