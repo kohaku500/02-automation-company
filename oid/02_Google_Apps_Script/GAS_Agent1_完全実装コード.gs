@@ -156,50 +156,109 @@ function extractLeadInfo(emailBody, senderEmail) {
   return leadInfo;
 }
 
+// ========== 文体学習関数（送信済みメールから抽出） ==========
+function learnMyStyle() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const styleSheet = ss.getSheetByName("スタイル設定") || ss.insertSheet("スタイル設定");
+
+  const sentThreads = GmailApp.search('in:sent', 0, 50);
+  const myEmail = Session.getActiveUser().getEmail();
+
+  const greetings = {};
+  const closings = {};
+  const signatures = [];
+
+  sentThreads.forEach(thread => {
+    thread.getMessages().forEach(msg => {
+      if (msg.getFrom().includes(myEmail)) {
+        const lines = msg.getPlainBody().split('\n').map(l => l.trim()).filter(l => l !== '');
+        if (lines.length < 2) return;
+
+        // 書き出し（最初の行・30文字以内）
+        const g = lines[0];
+        if (g.length <= 30) greetings[g] = (greetings[g] || 0) + 1;
+
+        // 締め（後ろから2〜4行目・30文字以内）
+        for (let i = Math.max(0, lines.length - 4); i < lines.length - 1; i++) {
+          const c = lines[i];
+          if (c.length > 3 && c.length <= 30) closings[c] = (closings[c] || 0) + 1;
+        }
+
+        // 署名（最後の行）
+        signatures.push(lines[lines.length - 1]);
+      }
+    });
+  });
+
+  const topGreeting = Object.entries(greetings).sort((a, b) => b[1] - a[1])[0]?.[0] || 'お疲れ様です。';
+  const topClosing  = Object.entries(closings).sort((a, b) => b[1] - a[1])[0]?.[0] || 'よろしくお願いいたします。';
+  const topSignature = signatures[0] || '';
+
+  styleSheet.clearContents();
+  styleSheet.appendRow(['設定項目', '値']);
+  styleSheet.appendRow(['書き出し', topGreeting]);
+  styleSheet.appendRow(['締めの言葉', topClosing]);
+  styleSheet.appendRow(['署名', topSignature]);
+
+  console.log(`✅ スタイル学習完了`);
+  console.log(`書き出し: ${topGreeting}`);
+  console.log(`締め: ${topClosing}`);
+  console.log(`署名: ${topSignature}`);
+}
+
+// ========== スタイル設定を読み込む ==========
+function getMyStyle() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const styleSheet = ss.getSheetByName("スタイル設定");
+  if (!styleSheet || styleSheet.getLastRow() < 2) {
+    return { greeting: 'お疲れ様です。', closing: 'よろしくお願いいたします。', signature: '' };
+  }
+  const style = { greeting: 'お疲れ様です。', closing: 'よろしくお願いいたします。', signature: '' };
+  styleSheet.getDataRange().getValues().slice(1).forEach(row => {
+    if (row[0] === '書き出し')  style.greeting  = row[1];
+    if (row[0] === '締めの言葉') style.closing   = row[1];
+    if (row[0] === '署名')      style.signature = row[1];
+  });
+  return style;
+}
+
 // ========== テンプレート取得 ==========
 function getTemplateByLevel(level) {
+  const { greeting, closing, signature } = getMyStyle();
+
   const templates = {
-    "高": `お疲れ様です。
+    "高": `${greeting}
 
 ご関心ありがとうございます。具体的なご要望をお聞きいただき、心強いです。
 
-より詳細な提案をさせていただくため、15分の無料相談をご提案させていただきたいのですが、
-ご都合のつく日時はありますでしょうか？
+より詳細なご提案をさせていただくため、15分ほどお時間をいただけますでしょうか？
+ご都合のつく日時をお知らせください。
 
-以下のリンクからご予約いただけます：
-https://calendly.com/takada-makoto/consultation
+${closing}
 
-よろしくお願いいたします。
+${signature}`,
 
-誠一
-Takada Makoto`,
-
-    "中": `お疲れ様です。
+    "中": `${greeting}
 
 ご問い合わせありがとうございます。
 
-弊社の取り組みについて、より詳しくご説明させていただきたく、
-初回相談をお勧めいたします。
+弊社の取り組みについて、より詳しくご説明させていただきたく存じます。
+ご都合のよい日時をお知らせいただけますでしょうか。
 
-以下のリンクからご予約ください（無料・30分程度）：
-https://calendly.com/takada-makoto/consultation
+${closing}
 
-ご不明な点があればお気軽にお問い合わせください。
+${signature}`,
 
-誠一
-Takada Makoto`,
+    "低": `${greeting}
 
-    "低": `お疲れ様です。
-
-この度は情報請求いただき、ありがとうございます。
+この度はご連絡いただき、ありがとうございます。
 
 詳細な資料をお送りいたします。
-ご不明な点やご質問があれば、いつでもお気軽にお問い合わせください。
+ご不明な点がございましたら、お気軽にお問い合わせください。
 
-今後ともよろしくお願いいたします。
+${closing}
 
-誠一
-Takada Makoto`
+${signature}`
   };
 
   return templates[level] || templates["中"];
