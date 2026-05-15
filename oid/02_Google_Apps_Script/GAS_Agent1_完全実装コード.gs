@@ -164,9 +164,25 @@ function extractLeadInfo(emailBody, senderEmail) {
   return leadInfo;
 }
 
+// ========== 送信者名を抽出 ==========
+function extractSenderName(sender) {
+  // "田中太郎 <tanaka@company.com>" → "田中"
+  const nameMatch = sender.match(/^([^<@]+)/);
+  if (nameMatch) {
+    const fullName = nameMatch[1].trim().replace(/"/g, '');
+    if (fullName) {
+      // 姓のみ（最初の2文字または最初の単語）
+      const lastName = fullName.split(/\s/)[0].slice(0, 3);
+      return `${lastName}様`;
+    }
+  }
+  return 'お世話になっております';
+}
+
 // ========== AIプラン：Geminiで返信文を生成 ==========
 function generateAIReply(body, subject, sender) {
-  const { greeting, closing, signature } = getMyStyle();
+  const { closing, signature } = getMyStyle();
+  const senderGreeting = extractSenderName(sender);
 
   const prompt = `あなたはビジネスメールの返信を代行するAI秘書です。
 以下のメールに対して、自然で丁寧な返信文を日本語で作成してください。
@@ -178,7 +194,7 @@ function generateAIReply(body, subject, sender) {
 ${body}
 
 【返信のルール】
-- 書き出しは必ず「${greeting}」で始める
+- 書き出しは必ず「${senderGreeting}」で始める
 - 締めは「${closing}」で終える
 - 署名は「${signature}」を使う
 - 相手の質問や要望に具体的に答える
