@@ -1,8 +1,6 @@
 name: Daily Content Booth Assets - 17:30 JST
 
 on:
-  schedule:
-    - cron: '30 8 * * *'
   workflow_dispatch:
 
 jobs:

@@ -1,9 +1,6 @@
 name: Weekly Review - 日曜 09:00 JST
 
 on:
-  schedule:
-    # 毎週日曜日 00:00 UTC = 日曜 09:00 JST
-    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:

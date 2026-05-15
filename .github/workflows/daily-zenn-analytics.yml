@@ -1,8 +1,6 @@
 name: Daily Zenn Analytics - 20:00 JST
 
 on:
-  schedule:
-    - cron: '0 11 * * *'  # 20:00 JST
   workflow_dispatch:
 
 jobs:

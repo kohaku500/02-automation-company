@@ -1,7 +1,5 @@
 name: Daily Content Base - 17:00 JST
 on:
-  schedule:
-    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:

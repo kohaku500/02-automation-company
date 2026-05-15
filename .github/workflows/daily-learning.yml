@@ -1,9 +1,6 @@
 name: Daily Learning System - 07:00 JST
 
 on:
-  schedule:
-    # 毎日 22:00 UTC = 毎朝 07:00 JST（COO判定の前に実行）
-    - cron: '0 22 * * *'
   workflow_dispatch:
 
 jobs:

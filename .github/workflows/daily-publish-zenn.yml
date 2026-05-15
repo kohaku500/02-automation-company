@@ -1,8 +1,6 @@
 name: Daily Publish to Zenn - 18:00 JST
 
 on:
-  schedule:
-    - cron: '0 9 * * *'  # 18:00 JST
   workflow_dispatch:
 
 jobs:
