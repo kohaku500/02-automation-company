@@ -194,7 +194,8 @@ function generateAIReply(body, subject, sender) {
 ${body}
 
 【返信のルール】
-- 書き出しは必ず「${senderGreeting}」で始める
+- 書き出しは送信者の名前から適切に判断する（例：田中太郎→「田中様」、名前不明→「お世話になっております」）
+- infoやnoreplyなど人名でない場合は「お世話になっております」を使う
 - 締めは「${closing}」で終える
 - 署名は「${signature}」を使う
 - 相手の質問や要望に具体的に答える
