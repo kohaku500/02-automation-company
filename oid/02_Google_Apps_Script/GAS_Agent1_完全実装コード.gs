@@ -54,7 +54,7 @@ function checkAndReplyToEmails() {
       // プランに応じて返信文を生成
       const responseTemplate = PLAN === "ai" && GEMINI_API_KEY
         ? generateAIReply(body, subject, sender)
-        : getTemplateByLevel(interestLevel);
+        : getTemplateByLevel(interestLevel, sender);
 
       // 自動応答メール送信
       if (responseTemplate) {
@@ -217,7 +217,7 @@ ${body}
     return result.candidates[0].content.parts[0].text;
   } catch (e) {
     console.log(`Gemini API エラー。テンプレートで代替: ${e}`);
-    return getTemplateByLevel(classifyInterest(body));
+    return getTemplateByLevel(classifyInterest(body), sender);
   }
 }
 
@@ -288,8 +288,9 @@ function getMyStyle() {
 }
 
 // ========== テンプレート取得 ==========
-function getTemplateByLevel(level) {
-  const { greeting, closing, signature } = getMyStyle();
+function getTemplateByLevel(level, sender) {
+  const { closing, signature } = getMyStyle();
+  const greeting = extractSenderName(sender);
 
   const templates = {
     "高": `${greeting}
