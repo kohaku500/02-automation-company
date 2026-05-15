@@ -16,6 +16,12 @@ const LABEL_NAME = "AI受信箱";
 const SPREADSHEET_ID = "1LKpQwkbzzaQXZAyNGLWfDibbeINsReEdR-7kXMyxDMA";
 const SLACK_WEBHOOK_URL = "";
 
+// ========== プラン設定 ==========
+// "basic" : 定型文テンプレートで返信（APIキー不要）
+// "ai"    : GeminiがメールをAIが読んで自然な返信を生成
+const PLAN = "basic";
+const GEMINI_API_KEY = ""; // AIプランの場合はここにAPIキーを入力
+
 // ========== メイン関数: 定期実行（毎時間） ==========
 function checkAndReplyToEmails() {
   try {
@@ -45,8 +51,10 @@ function checkAndReplyToEmails() {
       // メール本文から企業情報抽出
       const leadInfo = extractLeadInfo(body, sender);
 
-      // テンプレートから応答メール生成
-      const responseTemplate = getTemplateByLevel(interestLevel);
+      // プランに応じて返信文を生成
+      const responseTemplate = PLAN === "ai" && GEMINI_API_KEY
+        ? generateAIReply(body, subject, sender)
+        : getTemplateByLevel(interestLevel);
 
       // 自動応答メール送信
       if (responseTemplate) {
@@ -154,6 +162,46 @@ function extractLeadInfo(emailBody, senderEmail) {
   }
 
   return leadInfo;
+}
+
+// ========== AIプラン：Geminiで返信文を生成 ==========
+function generateAIReply(body, subject, sender) {
+  const { greeting, closing, signature } = getMyStyle();
+
+  const prompt = `あなたはビジネスメールの返信を代行するAI秘書です。
+以下のメールに対して、自然で丁寧な返信文を日本語で作成してください。
+
+【受信メール】
+件名: ${subject}
+送信者: ${sender}
+本文:
+${body}
+
+【返信のルール】
+- 書き出しは必ず「${greeting}」で始める
+- 締めは「${closing}」で終える
+- 署名は「${signature}」を使う
+- 相手の質問や要望に具体的に答える
+- 200文字以内で簡潔に
+- 丁寧だが堅すぎない文体
+
+返信文のみを出力してください。`;
+
+  try {
+    const response = UrlFetchApp.fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      }
+    );
+    const result = JSON.parse(response.getContentText());
+    return result.candidates[0].content.parts[0].text;
+  } catch (e) {
+    console.log(`Gemini API エラー。テンプレートで代替: ${e}`);
+    return getTemplateByLevel(classifyInterest(body));
+  }
 }
 
 // ========== 文体学習関数（送信済みメールから抽出） ==========
